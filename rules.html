@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h1,h2,h3{
+            text-align: center;
+        }
+        h1,h2,h3,h4,h5,h6{
+            margin: 0;
+        }
+        .x2{
+            min-width: calc(66% - 42px);
+        }
+        .x3{
+            min-width: calc(100% - 40px);
+        }
+        @font-face {
+            font-family: 'source';
+            src: url('C:/dev/charsheet/Source_Code_Pro/SourceCodePro-VariableFont_wght.ttf');
+        }
+        *{
+            font-family: 'source';
+            font-weight: 700;
+        }
+        container{
+            display: flex;
+            width: 200vh;
+            margin: 0 auto;
+            flex-direction: column;
+        }
+        row{
+            display: flex;
+            flex: 1;
+            flex-grow: 1;
+            padding: 20px 0px;
+            margin-bottom: 20px;
+            flex-direction: row;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        box{
+            display: flex;
+            flex: 1;
+            flex-grow: 1;
+            border: 2px solid #ccc;
+            min-width: calc(32% - 50px);
+            padding: 20px;
+
+            flex-direction: column;
+        }
+        box:first-child{
+            border-top-left-radius: 20px;
+            border-bottom-left-radius: 20px;
+        }
+        box:last-child{
+            border-top-right-radius: 20px;
+            border-bottom-right-radius: 20px;
+        }
+        info-list{
+            display: flex;
+            flex-direction: column;
+            background: #eee;
+        }
+        info-list.space-between info-row{
+            justify-content: space-between;
+        }
+        info-list.centered info-row{
+            justify-content: center;
+        }
+        info-row{
+            display: flex;
+            counter-increment: list;
+            flex-direction: row;
+            border-bottom: 1px dotted #aaa;
+        }
+        info-row inner{
+            padding: 7px;
+            display: flex;
+            flex-direction: row;
+            flex: 1;
+            flex-grow: 1;
+        }
+        info-row inner>*{
+            margin-right: 10px;
+            font-size: 14px;
+        }
+        info-row inner>h4{
+            width: 130px;
+        }
+        info-list:not(.no-enumeration) info-row::before{   
+            content: "#" counter(list);
+            background: #ccc;
+            padding: 6px;
+            width: 32px;
+            text-align: center;
+        }
+        
+        info-list.separator-pipes info-row inner>*:not(:first-child)::before
+        {
+            content: "|";
+            margin-right: 10px;
+        }
+        info-list.space-between inner{
+            justify-content: space-between;
+        }
+        info-list.space-between inner>*:last-child{
+            text-align: right;
+        }
+        li{
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <container>
+        <row>
+            <h1 style="width: 100%;">Combat module alpha</h1>
+        </row>
+        <row>
+            <box>
+                <p>Combat happens when people disagree violently, and is resolved in the following way, usually involving bruises, blood, and death.</p>
+                <img src="img/capsule_616x353.jpg" alt="">
+            </box>
+            <box class="x2">
+                <p>The following are core concepts of the combat system.</p>
+                <ul>
+                    <li>Combat takes place on a 1d battle mat called the <i>Battleground</i>. You either push forward, or fall back.</li>
+                    <li>Combat has two measures of time. <i>Rounds</i>, which consists of an arbitrary amount of <i>Turns</i></li>
+                    <li>Combatants can only specify their actions at the beginning of each <i>Round</i>, while during this time, their actions each <i>Turn</i> is dictated by their planning</li>
+                    <li>Combat ends when at the end of a <i>Round</i> either one side is defeated, or has fled the battleground</li>
+                    <li>Combatants are likely to be permanently damaged, die, or be kidnapped in the aftermath of combat, players, and their opponents alike</li>
+                </ul>
+            </box>
+        </row>
+
+        <row>
+            <box class="x2">
+                <h2>The Battleground</h2>
+                <p>The Battleground consists of 11 tiles, where two sides can duke it out. Each tile will have a width and a type of terrain, as well as possibly a feature, and a hazard</p>
+                <p>When the battle starts the GM first decides on the position of the two opposing parties, depending on the scene.</p>
+                <img src="img/battleground.jpg" alt="">
+            </box>
+            <box>
+                <h3>Movement</h3>
+                <p>Combatants may move 1 tile at the start of every round, then 1 tile at the start of each turn.</p>
+                <p>These rules apply to movement</p>
+                <ul>
+                    <li>Conscious combatants of opposing sides may not occupy the same tile.</li>
+                    <li>Combatants of the same side may occupy the same tile, and move freely through tiles occupied by their allies.</li>
+                    <li>A combatant cannot move past an opponent.</li>
+                </ul>
+                <p>Depending on the combatants perks and/or equipment, they may be able to move further, or ignore some rules regarding invalid movement. These rules are also designed for mainly grounded combat. Aerial combat, or underwater combat would have different rules for movement.</p>
+            </box>
+            <box>
+                <h3>Terrain</h3>
+                <p>The terrain of a tile may increase or decrease damage of incoming ranged attacks, as well as increase the amount of movement required to cross it.</p>
+                <p>When a tile has a terrain which requires 2 or more movements to cross, resolve it as it was two tiles, and keep track of the combatants progress.</p>
+                <h4>Tile width</h4>
+                <p>A tile can only contain an amount of characters less than or equal to its width.</p>
+                <img src="img/terrain-7-1-1-758x635.jpg" alt="">                
+            </box>
+            <box>
+                <h3>Features</h3>
+                <p>A tile feature can be anything from a watchtower, to abandoned house, or maybe a ballista. Features are used by combatants to fortify, or push hard from certain positions on the battleground, to setting devious traps.</p>
+                <h4>Interaction</h4>
+                <p>Each feature has its own usage, but they may only be interacted with before the start of a new <i>Round</i>.</p>
+                <p>All features have a requirement of how to interact with them, from an amount of combatants to be present, to a certain damage type to hit them.</p>
+                <h4>Scouting</h4>
+                <p>Some features are face down as combat starts, and will only be discovered when scouted. A hidden feature is scouted when a combatant stands on the same tile as it.</p>
+                <p>A combatant can spend turns to increase their scouting radius while stationary, moving will reset their extended scouting radius. For each turn scouting, the combatant will scout features one tile further away from them.</p>
+            </box>
+            <box>
+                <h3>Hazards</h3>
+                <p>A tile can be hazardous to combatants. It might be on fire, have puddles of corrosive acid, toxic gas, or deep chasms dangerously close to the battle.</p>
+                <p>Each hazard is unique, might have a duration of rounds it is present, and will make any combatants starting a turn on the hazard suffer its negative effects.</p>
+                <p>Some equipment, and incantations may create hazards on the battleground</p>
+                <img src="img/Acid.jpg" alt="">
+            </box>
+        </row>
+
+        <row>
+            <box class="x2">
+                <h2>Rounds and Turns</h2>
+                
+            </box>
+            <box>
+                <h3>Planning</h3>
+            </box>
+            <box>
+                <h3>Attacks</h3>
+                <h4>Melee</h4>
+                <h4>Ranged</h4>
+            </box>
+            <box>
+                <h3>Sustaining damage</h3>
+                <h4>Endurance</h4>
+                <h4>Wounds</h4>
+                <h4>Armor</h4>
+                <p>Characters and creatures are either unarmored, wear armor, or have natural armor.</p>
+                <p>When attacked, each die rolled for the attack is reduced by the armor value of the victim.</p>
+                <p>If wearing armor, and all dice roll the exact armor value, the armor is damaged. Mark one usage from the armor.</p>
+            </box>
+
+            <box>
+                <h3>Weaknesses</h3>
+                <p>All weapons can deal damage of one or more damage types. All combatants have one or more weakness to these damage types. Figuring out an opponents weakness can be key to winning a battle</p>
+                <p>When dealing damage to an opponent with a damage type they are weak against, you add the max value of your weapon dice to the attack result. Also, armor does not protect against attacks exploiting a weakness.</p>
+                <h4>Damage types</h4>
+                <info-list class="no-enumeration centered" style="counter-set: list 0;">
+                    <info-row>
+                        <inner>
+                            <h4>Slashing</h4>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Bludgeoning</h4>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Piercng</h4>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Accurate</h4>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Explosive</h4>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Arcane</h4>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Holy</h4>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Occult</h4>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Burning</h4>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Freezing</h4>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Shocking</h4>
+                        </inner>
+                    </info-row>
+                </info-list>
+            </box>
+            <box class="x2">
+                <h3>Conditions</h3>
+                <p>Conditions are applied as an opponent is <i>Overtaken</i>, and last until the end of the round.</p>
+                <info-list class="separator-pipes" style="counter-set: list 0;">
+                    <info-row>
+                        <inner>
+                            <h4>Disarmed</h4>
+                            <item>Cannot attack with <i>Melee</i> weapons</item>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Dazed</h4>
+                            <item>Cannot attack with <i>Ranged</i> weapons</item>
+                        </inner>
+                    </info-row>
+
+                    <info-row>
+                        <inner>
+                            <h4>Exhausted</h4>
+                            <item>Attacks with <i>Physical</i> weapons are reduced to 3d4 damage</item>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Distracted</h4>
+                            <item>Attacks with <i>Magical</i> weapons are reduced to 3d4 damage</item>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Vulnerable</h4>
+                            <item><i>Armor</i> is reduced by half, rounding down</item>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Slowed</h4>
+                            <item>Victim cannot move during <i>Turns</i></item>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Staggered</h4>
+                            <item>The victim applies no <i>Force</i> with their attacks</item>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Withering</h4>
+                            <item>The victim takes 1d10 damage at the start of each <i>Round</i></item>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Forgetful</h4>
+                            <item>The victim cannot use <i>Incantations</i> or <i>Switch weapons</i></item>
+                        </inner>
+                    </info-row>
+                </info-list>
+            </box>
+            <box>
+                <h3>Opposing fronts</h3>
+                <h4>Morale</h4>
+            </box>
+            <box>
+                <h3>Special actions</h3>
+                <h4>Switching weapons</h4>
+                <h4>Incantations</h4>
+            </box>
+            <box>
+                <h3>Guide</h3>
+            </box>
+        </row>
+
+        <row>
+            <box>
+                <h2>Weapons</h2>
+            </box>
+            <box>
+                <h3>Quality types</h3>
+            </box>
+            <box>
+                <h3>Damage types</h3>
+                
+            </box>
+        </row>
+
+        <row>
+            <box>
+                <h2>Character creation</h2>
+            </box>
+            <box class="x2">
+                <h3>Attributes</h3>
+                <h4>Strength, STR</h4>
+                <h4>Dexterity, DEX</h4>
+                <h4>Willpower, WIL</h4>
+                <h4>Rolling and assigning</h4>
+                <h4>Endurance</h4>
+            </box>
+            <box class="x3" style="counter-set: list 1;">
+                <h3>Background</h3>
+                <info-list class="separator-pipes">
+                    <info-row>
+                        <inner>
+                            <h4>Sage</h4>
+                            <item>Common magic weapon</item>
+                            <item>Incantation</item>
+                            <item>Familiar</item>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Soldier</h4>
+                            <item>Martial physical weapon</item>
+                            <item>Heavy armor</item>
+                            <item>Shield</item>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Rider</h4>
+                            <item>Martial physical weapon</item>
+                            <item>Horse</item>
+                            <item></item>
+                        </inner>
+                    </info-row>
+                </info-list>
+            </box>
+            <box class="x3">
+                <h3>Perks</h3>
+
+                <h4>Strength Perks</h4>
+                <info-list class="separator-pipes" style="counter-set: list 1;">
+                    <info-row>
+                        <inner>
+                            <h4>Distract</h4>
+                            <item></item>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Blind</h4>
+                            <item></item>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Insult</h4>
+                            <item></item>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Commoner</h4>
+                            <item></item>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Swift engage</h4>
+                            <item></item>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Swift disengage</h4>
+                            <item></item>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Powerful push</h4>
+                            <item></item>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Stagger</h4>
+                            <item></item>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Maim</h4>
+                            <item></item>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Daze</h4>
+                            <item></item>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Stun</h4>
+                            <item></item>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Vulnerability</h4>
+                            <item></item>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Forceful</h4>
+                            <item></item>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4></h4>
+                            <item></item>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4></h4>
+                            <item></item>
+                        </inner>
+                    </info-row>
+                </info-list>
+                
+                <h4>Dexterity Perks</h4>
+                <info-list class="separator-pipes" style="counter-set: list 1;">
+                    <info-row>
+                        <inner>
+                            <h4>Pain Tolerance</h4>
+                            <item></item>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Quick Recovery</h4>
+                            <item></item>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Commoner</h4>
+                            <item></item>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Acrobatics</h4>
+                            <item></item>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Pain</h4>
+                            <item></item>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Slow</h4>
+                            <item></item>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Maim</h4>
+                            <item></item>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Weaken</h4>
+                            <item></item>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Savagery</h4>
+                            <item></item>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Artful dodger</h4>
+                            <item></item>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4></h4>
+                            <item></item>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4></h4>
+                            <item></item>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4></h4>
+                            <item></item>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4></h4>
+                            <item></item>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4></h4>
+                            <item></item>
+                        </inner>
+                    </info-row>
+                </info-list>
+
+                
+                <h4>Willpower Perks</h4>
+                <info-list class="separator-pipes" style="counter-set: list 1;">
+                    <info-row>
+                        <inner>
+                            <h4>Bewilder</h4>
+                            <item></item>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Berserk</h4>
+                            <item></item>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Taunt</h4>
+                            <item></item>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Commoner</h4>
+                            <item></item>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Fear</h4>
+                            <item></item>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Burning</h4>
+                            <item></item>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Shocked</h4>
+                            <item></item>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Frozen</h4>
+                            <item></item>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Forgetfulness</h4>
+                            <item></item>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Finesse</h4>
+                            <item></item>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Persistant</h4>
+                            <item></item>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Bait</h4>
+                            <item></item>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4></h4>
+                            <item></item>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4></h4>
+                            <item></item>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4></h4>
+                            <item></item>
+                        </inner>
+                    </info-row>
+                </info-list>
+            </box>
+        </row>
+    </container>
+</body>
+</html>
