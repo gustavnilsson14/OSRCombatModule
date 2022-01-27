@@ -12,6 +12,17 @@
         h1,h2,h3,h4,h5,h6{
             margin: 0;
         }
+        h4,h5,h6{
+            margin-top:10px;
+            text-decoration: underline;
+        }
+        p{
+            margin: 10px 0;
+        }
+        img.small{
+            width: 50%;
+            margin: 0 auto;
+        }
         .x2{
             min-width: calc(66% - 42px);
         }
@@ -43,6 +54,13 @@
             gap: 20px;
             flex-wrap: wrap;
         }
+        row.internal{
+            padding: 0px;
+            margin: 0;;
+        }
+        row.internal box{
+            padding: 20px 0;
+        }
         box{
             display: flex;
             flex: 1;
@@ -72,9 +90,12 @@
         info-list.centered info-row{
             justify-content: center;
         }
+        info-list info-row h4{
+            margin: 0;
+            text-decoration: none;
+        }
         info-row{
             display: flex;
-            counter-increment: list;
             flex-direction: row;
             border-bottom: 1px dotted #aaa;
         }
@@ -92,12 +113,28 @@
         info-row inner>h4{
             width: 130px;
         }
+        .weapons info-row inner>h4{
+            width: 80px;
+        }
+        .weapons info-row inner>cost{
+            align-self: flex-end;
+            flex:1;
+            flex-grow: 1;
+            text-align: right; 
+            margin-right: 0px;
+        }
         info-list:not(.no-enumeration) info-row::before{   
             content: "#" counter(list);
             background: #ccc;
             padding: 6px;
             width: 32px;
             text-align: center;
+            counter-increment: list;            
+        }
+        info-list.dice-enumeration info-row::before{
+            content: "1d" counter(list);
+            counter-increment: list+2;
+            width: 38px;
         }
         
         info-list.separator-pipes info-row inner>*:not(:first-child)::before
@@ -113,6 +150,9 @@
         }
         li{
             font-size: 14px;
+        }
+        .no-border{
+            border:0;
         }
     </style>
 </head>
@@ -202,28 +242,162 @@
             <box>
                 <h3>Commitment</h3>
                 <p>After planning their moves at the start of each combat round, the players must decide, and commit to how many turns they wish to fight, a number between 1-5. Depending on the setup for the combat, eg if the fight is straightforward, or if one of the parties are ambushed or not, as well as the enemy group, this will be resolved in different ways.</p>
-                <h4>Straightforward</h4>
+                <h4>Fair fight</h4>
                 <p>If there is no ambush, the round will last for as long the players want to fight, -1 if the enemies prefer less turns, or +1 if the enemies prefer more turns.</p>
                 <h4>Ambush</h4>
                 <p>During an ambush, the first round lasts for as long as the ambushing party wants. In addition, the ambushers may decide to surround their enemies, putting them in the center of the battleground, and the ambushers on the edges.</p>
+                <img src="img/hqdefault.jpg" alt="">
             </box>
-            <box>
+            <box class="x2">
                 <h3>Attacks</h3>
                 <p>Attacks are basic offensive actions taken to hurt an enemy combatants. Attacks in combat hit by default.</p>
+                <p>All attacks deal three or more dice of damage. The amount of faces on the standard three dice are based on the combatants weapon, their familiarity with that specific weapon, and their experience level.</p>
+
                 <h4>Melee</h4>
                 <p>Melee attacks can only be made onto adjacent tiles. They are performed each turn.</p>
                 <h4>Ranged</h4>
                 <p>Ranged attacks can be made onto any tile of the battleground unless otherwise specified by the weapon. Ranged attacks must be prepared, so they are completed every other turn.</p>
-                <img src="img/hqdefault.jpg" alt="">
+                
+                <h4>Physical or Magical</h4>
+                <p>Weapons are deal physical or magical, depending on their make. This is tracked on the weapon card.</p>
+
+                <h4>Weapon break</h4>
+                <p>When victim to an attack, a combatant may choose that any of their held weapons or shields break, to completely nullify the damage.</p>
+                <h4>Damage</h4>
+                <row class="internal">
+                    <box class="no-border">
+                        <h4>Weapon type</h4>
+                        <p>Weapons are divided into the four classes shown below. These classes encompass all weapons from clubs, to flaming swords, and machine guns.</p>
+                        <p>Weapon type is shown on the weapon card.</p>
+                        <info-list class="dice-enumeration weapons" style="counter-set: list 4;">
+                            <info-row>
+                                <inner>
+                                    <h4>Crude</h4>
+                                    <cost>~10C</cost>
+                                </inner>
+                            </info-row>
+                            <info-row>
+                                <inner>
+                                    <h4>Martial</h4>
+                                    <cost>~500C</cost>
+                                </inner>
+                            </info-row>
+                            <info-row>
+                                <inner>
+                                    <h4>Enchanted</h4>
+                                    <cost>~10000C</cost>
+                                </inner>
+                            </info-row>
+                            <info-row>
+                                <inner>
+                                    <h4 style="width: 80px;">Hi-Tech</h4>
+                                    <cost>~10000C</cost>
+                                </inner>
+                            </info-row>
+                        </info-list>
+                    </box>
+                    <box class="no-border">
+                        <h4>Skill</h4>
+                        <p>A characters skill with the individual weapon affects their efficiency greatly, and can turn any weapon lethal.</p>
+                        <p>Skill is tracked on the weapon card.</p>
+                        <info-list class="dice-enumeration" style="counter-set: list 2;">
+                            <info-row>
+                                <inner>
+                                    <h4>New</h4>
+                                </inner>
+                            </info-row>
+                            <info-row>
+                                <inner>
+                                    <h4>Experienced</h4>
+                                </inner>
+                            </info-row>
+                            <info-row>
+                                <inner>
+                                    <h4>Skilled</h4>
+                                </inner>
+                            </info-row>
+                            <info-row>
+                                <inner>
+                                    <h4>Expert</h4>
+                                </inner>
+                            </info-row>
+                            <info-row>
+                                <inner>
+                                    <h4>Perfection</h4>
+                                </inner>
+                            </info-row>
+                        </info-list>
+                    </box>
+                    <box class="no-border">
+                        <h4>Level</h4>
+                        <p>The characters general experience level weighs in on how much damage they do.</p>
+                        <p>Level is tracked on your character sheet.</p>
+                        <info-list class="dice-enumeration" style="counter-set: list 2;">
+                            <info-row>
+                                <inner>
+                                    <h4>Nobody</h4>
+                                </inner>
+                            </info-row>
+                            <info-row>
+                                <inner>
+                                    <h4>Exceptional</h4>
+                                </inner>
+                            </info-row>
+                            <info-row>
+                                <inner>
+                                    <h4>Heroic</h4>
+                                </inner>
+                            </info-row>
+                            <info-row>
+                                <inner>
+                                    <h4>Legendary</h4>
+                                </inner>
+                            </info-row>
+                            <info-row>
+                                <inner>
+                                    <h4>Diety</h4>
+                                </inner>
+                            </info-row>
+                        </info-list>
+                    </box>
+                </row>
             </box>
-            <box>
+            <box class="x2">
                 <h3>Sustaining damage</h3>
+                <p>When attacked, combatants take damage</p>
+                
                 <h4>Endurance</h4>
-                <h4>Wounds</h4>
+                <p>Endurance is a measure of how combat ready a character is. The more damage comes their way, the more endurance is spent to dodge or deflect that damage, until they are finally hit an suffer wounds.</p>
+                <p>As endurance reaches 0, it can be reduced no further, and instead the character suffers wounds, with one exception.</p>
+                <p>If any damage would result in a negative endurance less than or equal to a combatants negative max endurance, they die instantly.</p>
+                
                 <h4>Armor</h4>
                 <p>Characters and creatures are either unarmored, wear armor, or have natural armor.</p>
                 <p>When attacked, each die rolled for the attack is reduced by the armor value of the victim.</p>
                 <p>If wearing armor, and all dice roll the exact armor value, the armor is damaged. Mark one usage from the armor.</p>
+                
+                <h4>Wounds</h4>
+                <p>Each time a combatant is damaged when at 0 endurance they suffer a wound. The amount of wounds sustained have these effects.</p>
+                <info-list class="separator-pipes" style="counter-set: list 0;">
+                    <info-row>
+                        <inner>
+                            <h4>Wounded</h4>
+                            <item>Max endurance halved</item>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Unconscious</h4>
+                            <item>Cant do shit</item>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Dead</h4>
+                            <item>Game over</item>
+                        </inner>
+                    </info-row>
+                </info-list>
             </box>
             <box>
                 <h3>Resolving the turn</h3>
@@ -362,6 +536,7 @@
                         </inner>
                     </info-row>
                 </info-list>
+                <img class="small" src="img/sick.jfif" alt="">
             </box>
             <box>
                 <h3>Opposing fronts</h3>
