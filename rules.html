@@ -153,11 +153,10 @@
             counter-increment: list+2;
             width: 38px;
         }
-        
-        info-list.separator-pipes info-row inner>*:not(:first-child)::before
+        info-list.separator-pipes info-row inner>*:not(:first-child)
         {
-            content: "|";
-            margin-right: 10px;
+            border-left: 2px solid black;
+            padding-left: 10px;
         }
         info-list.space-between inner{
             justify-content: space-between;
@@ -212,6 +211,7 @@
                     <li>Conscious combatants of opposing sides may not occupy the same tile.</li>
                     <li>Combatants of the same side may occupy the same tile, and move freely through tiles occupied by their allies.</li>
                     <li>A combatant cannot move past an opponent.</li>
+                    <li>Opposing combatants moving into the same tile roll 1d12, adding their strength to the result. The lower result will be unable to move</li>
                 </ul>
                 <p>Depending on the combatants perks and/or equipment, they may be able to move further, or ignore some rules regarding invalid movement. These rules are also designed for mainly grounded combat. Aerial combat, or underwater combat would have different rules for movement.</p>
             </box>
@@ -252,6 +252,7 @@
                 <h3>Planning</h3>
                 <p>At the start of each round, players plan what to do with the turns during the round.</p>
                 <p>This mainly consists of choosing a target to attack, a type of attack to use, and a target tile to move to.</p>
+                <p>During the planning phase, a combatant can also plan special actions, explained further below.</p>
                 <h4>Execution</h4>
                 <p>Each turn, the combatant will act out the plan as good as they can.</p>
                 <img src="img/1618422965_tactics.jpg" alt="">
@@ -549,7 +550,14 @@
                     <info-row>
                         <inner>
                             <h4>Forgetful</h4>
-                            <item>The victim cannot use <i>Incantations</i> or <i>Switch weapons</i></item>
+                            <item>The victim cannot use <i>Incantations</i> or <i>Use equipment</i></item>
+                        </inner>
+                    </info-row>
+                    
+                    <info-row>
+                        <inner>
+                            <h4>Fear</h4>
+                            <item>The victim will <i>Retreat</i> with their movement at the start of the next <i>round</i> victim will <i>Retreat</i> with their movement at the start of the next <i>round</i></item>
                         </inner>
                     </info-row>
                 </info-list>
@@ -557,15 +565,42 @@
             </box>
             <box>
                 <h3>Opposing fronts</h3>
-                <h4>Morale</h4>
+                <p>When opposing melee combatants meet on the battleground a front is created. How melee attackers are allowed to attack, and how the front moves, has specific rules.</p>
+                
+                <h4>Attacking</h4>
+                <p>Before any opposing combatant in a front can be the target of two attacks during the same turn, every enemy combatant must be the target of an attack. Only if your side of the front outnumber the other side, you can target the same target as one of your allies.</p>
+                
+                <h4>Force</h4>
+                <p>During a <i>Round</i>, the damage dealt by each side on a front is added together to become their <i>Force</i></p>
+                <p>At the end of the round, the side with most force may move forward, pushing the other side backwards.</p>
             </box>
             <box>
                 <h3>Special actions</h3>
-                <h4>Switching weapons</h4>
+                <p>During the planning phase of a round, a combatant can start performing special actions. Mostly this is using equipment, or casting incantations, but may include other actions as well.</p>
+                <h4>Using equipment</h4>
+                <p>When using equipment, a character can switch between or use any item from the main hand, off hand, or the belt instantly during the start of the round. Items held in the backpack can be used or switched to, but requires the combatant to spend a whole round to do so.</p>
                 <h4>Incantations</h4>
+                <p>Incantations are powerful spells stored in runes, scrolls, wands, or books. Incantations can be activated in the planning phase, and all have unique effects, requirements, and casting times that have to be met, specific to the incantation.</p>
+                <p>Incantations usually require a combatant to spend, or meet a certain WIL score</p>
             </box>
             <box>
                 <h3>Guide</h3>
+                <p>Step by step, this is how combat works.</p>
+                <ol>
+                    <li>Battle is initiated, is any party ambushing the other?</li>
+                    <li>Plan your actions during the round. What is your target tile, and what will you do?</li>
+                    <li>Use equipment, and move</li>
+                    <li>Determine the amount of turns in the round depending on the players party first, then the opponents desired turn amount.</li>
+                    <li>If both parties decided for 0 turns, the combat ends, otherwise proceed to step 7.</li>
+                    
+                    <li>The first turn starts.</li>
+                    <li>Hazards affect the combatants on the same tile.</li>
+                    <li>All characters move.</li>
+                    <li>All characters attack.</li>
+                    <li>If the round has more turns, go to step 7, otherwise proceed to step 11.</li>
+                    <li>If one side is defeated, the combat ends, otherwise go to step 2.</li>
+                </ol>
+                <img src="img/monsters-weapons-blood-victory-wallpaper-preview.jpg" alt="">
             </box>
         </row>
 

@@ -8,7 +8,7 @@
     <style>
         @font-face {
             font-family: 'source';
-            src: url('C:/dev/charsheet/Source_Code_Pro/SourceCodePro-VariableFont_wght.ttf');
+            src: url('Source_Code_Pro/SourceCodePro-VariableFont_wght.ttf');
         }
         *{
             text-transform: uppercase;
@@ -121,13 +121,9 @@
             position: relative;
             border: 1px dotted black;
         }
-        .c4 inventory-slot{
-            width: calc(50% - 5px);
-            padding-bottom: calc(50% - 5px);
-        }
-        .c8 inventory-slot{
-            width: calc(25% - 5px);
-            padding-bottom: calc(25% - 5px);
+        .c6 inventory-slot{
+            width: calc(33% - 5px);
+            padding-bottom: calc(33% - 5px);
         }
         inventory-slot text{
             padding: 10px;
@@ -221,7 +217,7 @@
         </row>
         <row-header style="margin-top: 36px;">inventory</row-header>
         <row>
-            <inventory-box class="c4">
+            <inventory-box class="c6">
                 <inventory-slot>
                     <text>Main hand</text>
                 </inventory-slot>
@@ -229,15 +225,19 @@
                     <text>Body</text>
                 </inventory-slot>
                 <inventory-slot>
+                    <text>Belt</text>
+                </inventory-slot>
+                <inventory-slot>
                     <text>Off hand</text>
                 </inventory-slot>
                 <inventory-slot>
                     <text>Body</text>
                 </inventory-slot>
+                <inventory-slot>
+                    <text>Belt</text>
+                </inventory-slot>
             </inventory-box>
-            <inventory-box class="c8">
-                <inventory-slot class="indexed"></inventory-slot>
-                <inventory-slot class="indexed"></inventory-slot>
+            <inventory-box class="c6">
                 <inventory-slot class="indexed"></inventory-slot>
                 <inventory-slot class="indexed"></inventory-slot>
                 <inventory-slot class="indexed"></inventory-slot>
