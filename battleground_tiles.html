@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @font-face {
+            font-family: 'source';
+            src: url('Source_Code_Pro/SourceCodePro-VariableFont_wght.ttf');
+        }
+        *{
+            font-family: 'source';
+            font-weight: 400;
+            text-transform: uppercase;
+        }
+        h4{
+            font-size:16px;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        p{
+            font-size:12px;
+            margin: 0;
+            padding: 0;
+        }
+        container{
+            width: calc(251px * 7);
+            display: flex;
+            flex-wrap: wrap;
+            border-top: 1px solid black;
+            border-left: 1px solid black;
+            justify-content: center;
+            margin: 0 auto;
+        }
+        tile{
+            padding:4px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            width: 242px;
+            height: 82px;
+            border-bottom: 1px solid black;
+            border-right: 1px solid black;
+        }
+        ps{
+            position: absolute;
+            right:0px;
+            bottom:0px;
+            padding: 5px 8px;
+        }
+    </style>
+</head>
+<body>
+    <container>
+        <tile>
+            <h4>Open space</h4>
+        </tile>
+        <tile>
+            <h4>Lightly forested</h4>
+            <p>When here, combatants gain +1 armor against ranged attacks.</p>
+        </tile>
+        <tile>
+            <h4>Heavliy forested</h4>
+            <p>When here, combatants gain +1 armor against ranged attacks.</p>
+            <ps>M: 2</ps>
+        </tile>
+        <tile>
+            <h4>Mire</h4>
+            <p>When here, combatants suffer -1 armor against ranged attacks.</p>
+            <ps>M: 4</ps>
+        </tile>
+        <tile>
+            <h4>River</h4>
+        </tile>
+        <tile>
+            <h4>Lake</h4>
+        </tile>
+        <tile>
+            <h4>Gate</h4>
+            <ps>W: 2</ps>
+        </tile>
+
+        <tile>
+            <h4>Uphill</h4>
+        </tile>
+        <tile>
+            <h4>Downhill</h4>
+        </tile>
+        <tile>
+            <h4>Highground</h4>
+        </tile>
+        <tile>
+            <h4>Open space</h4>
+        </tile>
+        <tile>
+            <h4>Open space</h4>
+        </tile>
+        <tile>
+            <h4>Open space</h4>
+        </tile>
+        <tile>
+            <h4>Open space</h4>
+        </tile>
+
+
+
+        <tile>
+            <h4>Fire!</h4>
+            <p>Take 1d8 burning damage.</p>
+            <ps>OOOOO</ps>
+        </tile>
+        <tile>
+            <h4>Thick bramble</h4>
+            <p>Deals 1d4 damage for each movement spent passing through.</p>
+        </tile>
+        <tile>
+            <h4>Icy ground</h4>
+            <p>Make a DEX save each turn. If failed, you get no movement this turn, and take 1d4 damage.</p>
+        </tile>
+        <tile>
+            <h4>Scattered Furniture</h4>
+            <p>Make a DEX save each turn. If failed, you get no movement this turn.</p>
+        </tile>
+        <tile>
+            <h4>Chemical barrels</h4>
+        </tile>
+        <tile>
+            <h4>Live damaged cables</h4>
+        </tile>
+        <tile>
+            <h4>Live damaged cables</h4>
+        </tile>
+
+
+        <tile>
+            <h4>Barricades</h4>
+            <p>If hunkered down behind these, ranged attacks only deal skill damage.</p>
+        </tile>
+        <tile>
+            <h4>Watchtower</h4>
+        </tile>
+        <tile>
+            <h4>Ballista</h4>
+        </tile>
+        <tile>
+            <h4>Ladder</h4>
+        </tile>
+    </container>
+</body>
+</html>
