@@ -25,6 +25,18 @@
             justify-content: center;
             margin: 0 auto;
         }
+        span{
+            position: relative;
+        }
+        .quality-prefilled::after{
+            position: absolute;
+            content: "";
+            top: 0px;
+            right: 4.5px;
+            transform: rotateZ(45deg);
+            border-left: 2px solid black;
+            height: 13px;
+        }
         
     </style>
     <link rel="stylesheet" href="css/item.css">
@@ -401,7 +413,7 @@
                     <span>gun</span>
                 </damagetypes>
                 <usage>
-                    <span>o</span>
+                    <span class="quality-prefilled">o</span>
                     <span>o</span>
                     <span>o</span>
                 </usage>

@@ -109,7 +109,7 @@ item inner usage span{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    content: url(img/blades.svg);
+    content: url(../img/blades.svg);
     flex: 1;
     margin-top: 4px;
 }
@@ -117,7 +117,7 @@ item inner usage span{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    content: url(img/ranged.svg);
+    content: url(../img/ranged.svg);
     flex: 1;
     margin-top: 4px;
 }
@@ -125,7 +125,7 @@ item inner usage span{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    content: url(img/meleespell.svg);
+    content: url(../img/meleespell.svg);
     flex: 1;
     margin-top: 4px;
 }
@@ -133,7 +133,7 @@ item inner usage span{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    content: url(img/spell.svg);
+    content: url(../img/spell.svg);
     flex: 1;
     margin-top: 4px;
 }

@@ -294,44 +294,44 @@
                 <h4>Damage</h4>
                 <row class="internal">
                     <box class="no-border">
-                        <h4>Weapon type</h4>
-                        <p>Weapons are divided into the four classes shown below. These classes encompass all weapons from clubs, to flaming swords, and machine guns.</p>
-                        <p>Weapon type is shown on the weapon card.</p>
+                        <h4>Weapon quality</h4>
+                        <p>A weapon can have a quality ranging from 1 to 5. The quality affects both the weapons damage, and durability.</p>
+                        <p>The quality translates into this general class of weapon, and general value.</p>
                         <info-list class="dice-enumeration weapons" style="counter-set: list 2;">
                             <info-row>
                                 <inner>
-                                    <h4>Improvised</h4>
+                                    <h4>1: Improvised</h4>
                                     <cost>N/A</cost>
                                 </inner>
                             </info-row>
                             <info-row>
                                 <inner>
-                                    <h4>Crude</h4>
+                                    <h4>2: Shoddy DIY</h4>
                                     <cost>~10C</cost>
                                 </inner>
                             </info-row>
                             <info-row>
                                 <inner>
-                                    <h4>Martial</h4>
+                                    <h4>3: Self-Defense</h4>
                                     <cost>~500C</cost>
                                 </inner>
                             </info-row>
                             <info-row>
                                 <inner>
-                                    <h4>Enchanted</h4>
-                                    <cost>~10000C</cost>
+                                    <h4>4: Army Grade</h4>
+                                    <cost>~2500C</cost>
                                 </inner>
                             </info-row>
                             <info-row>
                                 <inner>
-                                    <h4 style="width: 80px;">Hi-Tech</h4>
+                                    <h4 style="width: 80px;">5: Hi-Tech</h4>
                                     <cost>~10000C</cost>
                                 </inner>
                             </info-row>
                         </info-list>
                     </box>
                     <box class="no-border">
-                        <h4>Skill</h4>
+                        <h4>Skill level</h4>
                         <p>A characters skill with the individual weapon affects their efficiency greatly, and can turn any weapon lethal.</p>
                         <p>Skill is tracked on the weapon card.</p>
                         <info-list class="dice-enumeration" style="counter-set: list 2;">
@@ -637,8 +637,10 @@
                     <box class="no-border">
                         <h3>Stats</h3>
                         <h4>Quality</h4>
-                        <p>The measure of how lethal the weapon is, and also its current state of wear and tear. Whenever a weapon is used to penetrate armor, or parry an attack, fill in one of these slots, to track how damaged the weapon is.</p>
-                        <p>The damage of a weapon is directly linked to how many empty quality slots it has.</p>
+                        <p>The measure of how lethal the weapon is, and also its current state of wear and tear. There are sturdy quality slots, and also fragile quality slots.</p>
+                        <p>The damage of a weapon is directly linked to how many <i>sturdy</i> and <i>fragile</i> quality slots it has.</p>
+                        <p>The durability of the weapon s directly linked to how many <i>sturdy</i> quality slots it has</p>
+                        <p>Whenever a weapon is used to penetrate armor, or parry an attack, fill in one of these <i>empty</i> quality slots, to track how damaged the weapon is.</p>
                         <info-list class="dice-enumeration" style="counter-set: list 2;">
                             <info-row>
                                 <inner>
@@ -671,11 +673,11 @@
                         <h4>Skill Level</h4>
                         <p>Use this bar to track the current users skill level with the weapon.</p>
                         <h4>Damage types</h4>
-                        <p>Use this bar to track the current users skill level with the weapon.</p>
+                        <p>The different damage types this weapon may use.</p>
                         <h4>Breakage</h4>
-                        <p>A weapon which has all quality slots filled in breaks completely, beyond repair</p>
+                        <p>A weapon which has all sturdy quality slots filled in breaks completely, beyond repair</p>
                         <h4>Repair</h4>
-                        <p>Repairing a weapon may restore filled in quality slots. Repairing a quality slot will take some time, and resources, usually worth around ~75% of what the quality slot would cost if new.</p>
+                        <p>Repairing a weapon may restore sturdy quality slots. Repairing a quality slot will take some time, and resources, usually worth around ~75% of what the quality slot would cost if new.</p>
                     </box>
                 </row>
             </box>
