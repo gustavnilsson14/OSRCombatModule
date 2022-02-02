@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css" integrity="sha384-jLKHWM3JRmfMU0A5x5AkjWkw/EYfGUAGagvnfryNV3F9VqM98XiIH7VBGVoxVSc7" crossorigin="anonymous">
+    <style>
+        :root{
+            --tile-width: 4;
+            --tile-squared: 120px;
+        }
+        
+        @font-face {
+            font-family: 'source';
+            src: url('Source_Code_Pro/SourceCodePro-VariableFont_wght.ttf');
+        }
+        container{
+            width: calc(calc(var(--tile-squared) + 1px) * var(--tile-width));
+            display: flex;
+            flex-wrap: wrap;
+            border-top: 1px dotted black;
+            border-left: 1px dotted black;
+            justify-content: center;
+            margin: 0 auto;
+        }
+        
+    </style>
+    <link rel="stylesheet" href="css/item.css">
+</head>
+<body>
+    
+    <container>
+
+        <item class="melee physical">
+            <name>
+                <span>Knife</span>
+            </name>
+            <inner style="background-image: url(img/items/knife.jpg);">
+                <damagetypes>
+                    <span>cut</span>
+                    <span>stab</span>
+                </damagetypes>
+                <usage>
+                    <span>o</span>
+                    <span>o</span>
+                </usage>
+            </inner>
+            <skill>
+                <slot></slot>
+                <slot></slot>
+                <slot></slot>
+                <slot></slot>
+                <slot></slot>
+            </skill>
+        </item>
+
+        <item class="melee physical">
+            <name>
+                <span class="small">Stone spear</span>
+            </name>
+            <inner style="background-image: url(img/items/spear.stone_512.png);">
+                <damagetypes>
+                    <span>stab</span>
+                </damagetypes>
+                <usage>
+                    <span>o</span>
+                    <span>o</span>
+                </usage>
+            </inner>
+            <skill>
+                <slot></slot>
+                <slot></slot>
+                <slot></slot>
+                <slot></slot>
+                <slot></slot>
+            </skill>
+        </item>
+
+        <item class="melee physical">
+            <name>
+                <span class="small">Wooden Club</span>
+            </name>
+            <inner style="background-image: url(img/items/club.png);">
+                <damagetypes>
+                    <span>smash</span>
+                </damagetypes>
+                <usage>
+                    <span>o</span>
+                    <span>o</span>
+                </usage>
+            </inner>
+            <skill>
+                <slot></slot>
+                <slot></slot>
+                <slot></slot>
+                <slot></slot>
+                <slot></slot>
+            </skill>
+        </item>
+        
+        <item class="melee physical">
+            <name>
+                <span>Hammer</span>
+            </name>
+            <inner style="background-image: url(img/items/hammer.png);">
+                <damagetypes>
+                    <span>smash</span>
+                </damagetypes>
+                <usage>
+                    <span>o</span>
+                    <span>o</span>
+                </usage>
+            </inner>
+            <skill>
+                <slot></slot>
+                <slot></slot>
+                <slot></slot>
+                <slot></slot>
+                <slot></slot>
+            </skill>
+        </item>
+        
+        <item class="melee physical">
+            <name>
+                <span>Cutter</span>
+            </name>
+            <inner style="background-image: url(img/items/cutter.png);">
+                <damagetypes>
+                    <span>cut</span>
+                </damagetypes>
+                <usage>
+                    <span>o</span>
+                    <span>o</span>
+                </usage>
+            </inner>
+            <skill>
+                <slot></slot>
+                <slot></slot>
+                <slot></slot>
+                <slot></slot>
+                <slot></slot>
+            </skill>
+        </item>
+        
+        <item class="melee physical">
+            <name>
+                <span>Machete</span>
+            </name>
+            <inner style="background-image: url(img/items/machete.png);">
+                <damagetypes>
+                    <span>cut</span>
+                    <span>stab</span>
+                </damagetypes>
+                <usage>
+                    <span>o</span>
+                    <span>o</span>
+                </usage>
+            </inner>
+            <skill>
+                <slot></slot>
+                <slot></slot>
+                <slot></slot>
+                <slot></slot>
+                <slot></slot>
+            </skill>
+        </item>
+        
+        <item class="melee physical">
+            <name>
+                <span>Torch</span>
+            </name>
+            <inner style="background-image: url(img/items/torch.png);">
+                <damagetypes>
+                    <span>burn</span>
+                    <span>smash</span>
+                </damagetypes>
+                <usage>
+                    <span>o</span>
+                    <span>o</span>
+                </usage>
+            </inner>
+            <skill>
+                <slot></slot>
+                <slot></slot>
+                <slot></slot>
+                <slot></slot>
+                <slot></slot>
+            </skill>
+        </item>
+        
+        <item class="melee physical horizontal-image">
+            <name>
+                <span class="small">Lumber Axe</span>
+            </name>
+            <inner style="background-image: url(img/items/hatchet.png);">
+                <damagetypes>
+                    <span>cut</span>
+                    <span>smash</span>
+                </damagetypes>
+                <usage>
+                    <span>o</span>
+                    <span>o</span>
+                </usage>
+            </inner>
+            <skill>
+                <slot></slot>
+                <slot></slot>
+                <slot></slot>
+                <slot></slot>
+                <slot></slot>
+            </skill>
+        </item>
+        
+        <item class="melee physical">
+            <name>
+                <span class="smaller">Combat Shovel</span>
+            </name>
+            <inner style="background-image: url(img/items/shovel.png);">
+                <damagetypes>
+                    <span>cut</span>
+                    <span>stab</span>
+                    <span>smash</span>
+                </damagetypes>
+                <usage>
+                    <span>o</span>
+                    <span>o</span>
+                </usage>
+            </inner>
+            <skill>
+                <slot></slot>
+                <slot></slot>
+                <slot></slot>
+                <slot></slot>
+                <slot></slot>
+            </skill>
+        </item>
+
+        <item class="melee physical">
+            <name>
+                <span class="smaller">Huge Wrench</span>
+            </name>
+            <inner style="background-image: url(img/items/wrench.png);">
+                <damagetypes>
+                    <span>smash</span>
+                </damagetypes>
+                <usage>
+                    <span>o</span>
+                    <span>o</span>
+                </usage>
+            </inner>
+            <skill>
+                <slot></slot>
+                <slot></slot>
+                <slot></slot>
+                <slot></slot>
+                <slot></slot>
+            </skill>
+        </item>
+        <item class="melee physical horizontal-image">
+            <name>
+                <span>Sword</span>
+            </name>
+            <inner style="background-image: url(img/items/sword.png);">
+                <damagetypes>
+                    <span>cut</span>
+                    <span>stab</span>
+                </damagetypes>
+                <usage>
+                    <span>o</span>
+                    <span>o</span>
+                </usage>
+            </inner>
+            <skill>
+                <slot></slot>
+                <slot></slot>
+                <slot></slot>
+                <slot></slot>
+                <slot></slot>
+            </skill>
+        </item>
+        <item class="melee physical horizontal-image">
+            <name>
+                <span>Whip</span>
+            </name>
+            <inner style="background-image: url(img/items/whip.png);">
+                <damagetypes>
+                    <span>pain</span>
+                </damagetypes>
+                <usage>
+                    <span>o</span>
+                    <span>o</span>
+                </usage>
+            </inner>
+            <skill>
+                <slot></slot>
+                <slot></slot>
+                <slot></slot>
+                <slot></slot>
+                <slot></slot>
+            </skill>
+        </item>
+
+
+        
+        <item class="ranged physical horizontal-image">
+            <name>
+                <span class="small">Crossbow</span>
+            </name>
+            <inner style="background-image: url(img/items/crossbow.png);">
+                <damagetypes>
+                    <span>stab</span>
+                </damagetypes>
+                <usage>
+                    <span>o</span>
+                    <span>o</span>
+                </usage>
+            </inner>
+            <skill>
+                <slot></slot>
+                <slot></slot>
+                <slot></slot>
+                <slot></slot>
+                <slot></slot>
+            </skill>
+        </item>
+        <item class="ranged physical">
+            <name>
+                <span class="small">Wrist Cannon</span>
+            </name>
+            <inner style="background-image: url(img/items/slingshot.png);">
+                <damagetypes>
+                    <span>smash</span>
+                </damagetypes>
+                <usage>
+                    <span>o</span>
+                    <span>o</span>
+                </usage>
+            </inner>
+            <skill>
+                <slot></slot>
+                <slot></slot>
+                <slot></slot>
+                <slot></slot>
+                <slot></slot>
+            </skill>
+        </item>
+        <item class="ranged physical">
+            <name>
+                <span class="smaller">Throwing knives</span>
+            </name>
+            <inner style="background-image: url(img/items/knives.png);">
+                <damagetypes>
+                    <span>stab</span>
+                </damagetypes>
+                <usage>
+                    <span>o</span>
+                    <span>o</span>
+                </usage>
+            </inner>
+            <skill>
+                <slot></slot>
+                <slot></slot>
+                <slot></slot>
+                <slot></slot>
+                <slot></slot>
+            </skill>
+        </item>
+        <item class="ranged physical">
+            <name>
+                <span class="smaller">Compound Bow</span>
+            </name>
+            <inner style="background-image: url(img/items/bow.png);">
+                <damagetypes>
+                    <span>stab</span>
+                </damagetypes>
+                <usage>
+                    <span>o</span>
+                    <span>o</span>
+                </usage>
+            </inner>
+            <skill>
+                <slot></slot>
+                <slot></slot>
+                <slot></slot>
+                <slot></slot>
+                <slot></slot>
+            </skill>
+        </item>
+
+
+
+        
+        <item class="ranged physical">
+            <name>
+                <span>Beretta</span>
+            </name>
+            <inner style="background-image: url(img/items/beretta.png);">
+                <damagetypes>
+                    <span>gun</span>
+                </damagetypes>
+                <usage>
+                    <span>o</span>
+                    <span>o</span>
+                    <span>o</span>
+                </usage>
+            </inner>
+            <skill>
+                <slot></slot>
+                <slot></slot>
+                <slot></slot>
+                <slot></slot>
+                <slot></slot>
+            </skill>
+        </item>
+        <item class="ranged physical">
+            <name>
+                <span>Magnum</span>
+            </name>
+            <inner style="background-image: url(img/items/magnus.png);">
+                <damagetypes>
+                    <span>gun</span>
+                </damagetypes>
+                <usage>
+                    <span>o</span>
+                    <span>o</span>
+                    <span>o</span>
+                </usage>
+            </inner>
+            <skill>
+                <slot></slot>
+                <slot></slot>
+                <slot></slot>
+                <slot></slot>
+                <slot></slot>
+            </skill>
+        </item>
+        <item class="ranged physical horizontal-image">
+            <name>
+                <span>Shotgun</span>
+            </name>
+            <inner style="background-image: url(img/items/shotgun.png);">
+                <damagetypes>
+                    <span>blast</span>
+                </damagetypes>
+                <usage>
+                    <span>o</span>
+                    <span>o</span>
+                    <span>o</span>
+                </usage>
+            </inner>
+            <skill>
+                <slot></slot>
+                <slot></slot>
+                <slot></slot>
+                <slot></slot>
+                <slot></slot>
+            </skill>
+        </item>
+        <item class="ranged physical horizontal-image">
+            <name>
+                <span>Winchester</span>
+            </name>
+            <inner style="background-image: url(img/items/winchester.png);">
+                <damagetypes>
+                    <span>gun</span>
+                </damagetypes>
+                <usage>
+                    <span>o</span>
+                    <span>o</span>
+                    <span>o</span>
+                </usage>
+            </inner>
+            <skill>
+                <slot></slot>
+                <slot></slot>
+                <slot></slot>
+                <slot></slot>
+                <slot></slot>
+            </skill>
+        </item>
+        
+        <item class="ranged physical">
+            <name>
+                <span>Tec 9</span>
+            </name>
+            <inner style="background-image: url(img/items/tec9.png);">
+                <damagetypes>
+                    <span>gun</span>
+                </damagetypes>
+                <usage>
+                    <span>o</span>
+                    <span>o</span>
+                    <span>o</span>
+                </usage>
+            </inner>
+            <skill>
+                <slot></slot>
+                <slot></slot>
+                <slot></slot>
+                <slot></slot>
+                <slot></slot>
+            </skill>
+        </item>
+        <item class="ranged physical">
+            <name>
+                <span>Scorpion</span>
+            </name>
+            <inner style="background-image: url(img/items/scorpion.png);">
+                <damagetypes>
+                    <span>gun</span>
+                </damagetypes>
+                <usage>
+                    <span>o</span>
+                    <span>o</span>
+                    <span>o</span>
+                </usage>
+            </inner>
+            <skill>
+                <slot></slot>
+                <slot></slot>
+                <slot></slot>
+                <slot></slot>
+                <slot></slot>
+            </skill>
+        </item>
+        <item class="ranged physical horizontal-image">
+            <name>
+                <span>M-16</span>
+            </name>
+            <inner style="background-image: url(img/items/m16.png);">
+                <damagetypes>
+                    <span>gun</span>
+                </damagetypes>
+                <usage>
+                    <span>o</span>
+                    <span>o</span>
+                    <span>o</span>
+                    <span>o</span>
+                </usage>
+            </inner>
+            <skill>
+                <slot></slot>
+                <slot></slot>
+                <slot></slot>
+                <slot></slot>
+                <slot></slot>
+            </skill>
+        </item>
+        <item class="ranged physical horizontal-image">
+            <name>
+                <span>AK47</span>
+            </name>
+            <inner style="background-image: url(img/items/ak47.png);">
+                <damagetypes>
+                    <span>gun</span>
+                </damagetypes>
+                <usage>
+                    <span>o</span>
+                    <span>o</span>
+                    <span>o</span>
+                    <span>o</span>
+                </usage>
+            </inner>
+            <skill>
+                <slot></slot>
+                <slot></slot>
+                <slot></slot>
+                <slot></slot>
+                <slot></slot>
+            </skill>
+        </item>
+        
+        <item class="melee magical">
+            <name>
+                <span class="smaller">Lightning bolt</span>
+            </name>
+            <inner style="background-image: url(img/items/bolt.png);">
+                <damagetypes>
+                    <span>volt</span>
+                </damagetypes>
+                <usage>
+                    <span>o</span>
+                    <span>o</span>
+                    <span>o</span>
+                </usage>
+            </inner>
+            <skill>
+                <slot></slot>
+                <slot></slot>
+                <slot></slot>
+                <slot></slot>
+                <slot></slot>
+            </skill>
+        </item>
+        <item class="melee magical">
+            <name>
+                <span class="smaller">Firefist</span>
+            </name>
+            <inner style="background-image: url(img/items/firefist.png);">
+                <damagetypes>
+                    <span>burn</span>
+                </damagetypes>
+                <usage>
+                    <span>o</span>
+                    <span>o</span>
+                    <span>o</span>
+                </usage>
+            </inner>
+            <skill>
+                <slot></slot>
+                <slot></slot>
+                <slot></slot>
+                <slot></slot>
+                <slot></slot>
+            </skill>
+        </item>
+        <item class="melee magical">
+            <name>
+                <span class="smaller">frostfist</span>
+            </name>
+            <inner style="background-image: url(img/items/frostfist.png);">
+                <damagetypes>
+                    <span>burn</span>
+                </damagetypes>
+                <usage>
+                    <span>o</span>
+                    <span>o</span>
+                    <span>o</span>
+                </usage>
+            </inner>
+            <skill>
+                <slot></slot>
+                <slot></slot>
+                <slot></slot>
+                <slot></slot>
+                <slot></slot>
+            </skill>
+        </item>
+        <item class="melee magical">
+            <name>
+                <span class="smaller">Holy Smite</span>
+            </name>
+            <inner style="background-image: url(img/items/smite.png);">
+                <damagetypes>
+                    <span>holy</span>
+                </damagetypes>
+                <usage>
+                    <span>o</span>
+                    <span>o</span>
+                    <span>o</span>
+                </usage>
+            </inner>
+            <skill>
+                <slot></slot>
+                <slot></slot>
+                <slot></slot>
+                <slot></slot>
+                <slot></slot>
+            </skill>
+        </item>
+        <item class="melee magical">
+            <name>
+                <span class="smaller">Dark touch</span>
+            </name>
+            <inner style="background-image: url(img/items/darktouch.png);">
+                <damagetypes>
+                    <span>vile</span>
+                </damagetypes>
+                <usage>
+                    <span>o</span>
+                    <span>o</span>
+                    <span>o</span>
+                </usage>
+            </inner>
+            <skill>
+                <slot></slot>
+                <slot></slot>
+                <slot></slot>
+                <slot></slot>
+                <slot></slot>
+            </skill>
+        </item>
+
+        <item class="melee magical">
+            <name>
+                <span class="smaller">Arcane Bomb</span>
+            </name>
+            <inner style="background-image: url(img/items/explosion.png);">
+                <damagetypes>
+                    <span>blast</span>
+                </damagetypes>
+                <usage>
+                    <span>o</span>
+                    <span>o</span>
+                    <span>o</span>
+                </usage>
+            </inner>
+            <skill>
+                <slot></slot>
+                <slot></slot>
+                <slot></slot>
+                <slot></slot>
+                <slot></slot>
+            </skill>
+        </item>
+        
+    </container>
+</body>
+</html>

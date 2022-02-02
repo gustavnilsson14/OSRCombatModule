@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
+        body{
+            display: flex;
+            flex-direction: row;
+        }
         @font-face {
             font-family: 'source';
             src: url('Source_Code_Pro/SourceCodePro-VariableFont_wght.ttf');
@@ -156,6 +160,119 @@
     </style>
 </head>
 <body>
+    <container>
+        <bg></bg>
+        <row>
+            <box>
+                <parameter>
+                    <key>name</key>
+                    <value></value>
+                </parameter>
+                <parameter>
+                    <key>level</key>
+                    <value></value>
+                </parameter>
+            </box>
+            <box>
+                <parameter>
+                    <key>background</key>
+                </parameter>
+                <parameter class="narrow">
+                    <value></value>
+                </parameter>
+                <parameter class="narrow">
+                    <value></value>
+                </parameter>
+                <parameter class="narrow">
+                    <value></value>
+                </parameter>
+            </box>
+        </row>
+        <row style="justify-content: flex-end; margin-top: 25px;">
+            <box class="c5">
+                <parameter>
+                    <key class="uc">str</key>
+                    <value></value>
+                </parameter>
+                <parameter>
+                    <key class="uc">dex</key>
+                    <value></value>
+                </parameter>
+                <parameter>
+                    <key class="uc">wil</key>
+                    <value></value>
+                </parameter>
+            </box>
+            
+        </row>
+        <row style="justify-content: flex-end;">
+            <box class="c5">
+                <parameter>
+                    <key class="uc">en</key>
+                    <value></value>
+                    <separator></separator>
+                    <value></value>
+                </parameter>
+                <parameter>
+                    <key class="small">credits</key>
+                    <value></value>
+                </parameter>
+            </box>
+        </row>
+        <row-header style="margin-top: 36px;">inventory</row-header>
+        <row>
+            <inventory-box class="c6">
+                <inventory-slot>
+                    <text>Main hand</text>
+                </inventory-slot>
+                <inventory-slot>
+                    <text>Body</text>
+                </inventory-slot>
+                <inventory-slot>
+                    <text>Belt</text>
+                </inventory-slot>
+                <inventory-slot>
+                    <text>Off hand</text>
+                </inventory-slot>
+                <inventory-slot>
+                    <text>Body</text>
+                </inventory-slot>
+                <inventory-slot>
+                    <text>Belt</text>
+                </inventory-slot>
+            </inventory-box>
+            <inventory-box class="c6">
+                <inventory-slot class="indexed"></inventory-slot>
+                <inventory-slot class="indexed"></inventory-slot>
+                <inventory-slot class="indexed"></inventory-slot>
+                <inventory-slot class="indexed"></inventory-slot>
+                <inventory-slot class="indexed"></inventory-slot>
+                <inventory-slot class="indexed"></inventory-slot>
+            </inventory-box>
+        </row>
+        <row>
+            <box>
+                <parameter>
+                    <key>perks</key>
+                </parameter>
+                <parameter class="narrow">
+                    <value></value>
+                    <separator></separator>
+                    <value></value>
+                </parameter>
+                <parameter class="narrow">
+                    <value></value>
+                    <separator></separator>
+                    <value></value>
+                </parameter>
+                <parameter class="narrow">
+                    <value></value>
+                    <separator></separator>
+                    <value></value>
+                </parameter>
+            </box>
+        </row>
+    </container>
     <container>
         <bg></bg>
         <row>

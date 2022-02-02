@@ -71,6 +71,9 @@
         box{
             min-width: calc(100% - 50px);
         }
+        .x1-5{
+            min-width: calc(100% - 50px);
+        }
         .x2{
             min-width: calc(100% - 50px);
         }
@@ -80,6 +83,9 @@
         @media screen and (min-width: 920px) {
             box{
                 min-width: calc(32% - 50px);
+            }
+            .x1-5{
+                min-width: calc(50% - 56px);
             }
             .x2{
                 min-width: calc(66% - 42px);
@@ -128,7 +134,8 @@
             font-size: 14px;
         }
         info-row inner>h4{
-            width: 130px;
+            min-width: 130px;
+            margin-right: 10px;
         }
         .weapons info-row inner>h4{
             width: 80px;
@@ -170,7 +177,12 @@
         .no-border{
             border:0;
         }
+        item{
+            border-top: 1px dotted black;
+            border-left: 1px dotted black;
+        }
     </style>
+    <link rel="stylesheet" href="css/item.css">
 </head>
 <body>
     <container>
@@ -277,17 +289,21 @@
                 <p>Ranged attacks can be made onto any tile of the battleground unless otherwise specified by the weapon. Ranged attacks must be prepared, so they are completed every other turn.</p>
                 
                 <h4>Physical or Magical</h4>
-                <p>Weapons are deal physical or magical, depending on their make. This is tracked on the weapon card.</p>
+                <p>Weapons are physical or magical, depending on their make. This is tracked on the weapon card.</p>
 
-                <h4>Weapon break</h4>
-                <p>When victim to an attack, a combatant may choose that any of their held weapons or shields break, to completely nullify the damage.</p>
                 <h4>Damage</h4>
                 <row class="internal">
                     <box class="no-border">
                         <h4>Weapon type</h4>
                         <p>Weapons are divided into the four classes shown below. These classes encompass all weapons from clubs, to flaming swords, and machine guns.</p>
                         <p>Weapon type is shown on the weapon card.</p>
-                        <info-list class="dice-enumeration weapons" style="counter-set: list 4;">
+                        <info-list class="dice-enumeration weapons" style="counter-set: list 2;">
+                            <info-row>
+                                <inner>
+                                    <h4>Improvised</h4>
+                                    <cost>N/A</cost>
+                                </inner>
+                            </info-row>
                             <info-row>
                                 <inner>
                                     <h4>Crude</h4>
@@ -400,19 +416,19 @@
                     <info-row>
                         <inner>
                             <h4>Wounded</h4>
-                            <item>Max endurance halved</item>
+                            <span>Max endurance halved</span>
                         </inner>
                     </info-row>
                     <info-row>
                         <inner>
                             <h4>Unconscious</h4>
-                            <item>Cant do shit</item>
+                            <span>Cant do shit</span>
                         </inner>
                     </info-row>
                     <info-row>
                         <inner>
                             <h4>Dead</h4>
-                            <item>Game over</item>
+                            <span>Game over</span>
                         </inner>
                     </info-row>
                 </info-list>
@@ -439,32 +455,32 @@
                 <info-list class="no-enumeration centered" style="counter-set: list 0;">
                     <info-row>
                         <inner>
-                            <h4>Slashing</h4>
+                            <h4>Smash</h4>
                         </inner>
                     </info-row>
                     <info-row>
                         <inner>
-                            <h4>Bludgeoning</h4>
+                            <h4>Cut</h4>
                         </inner>
                     </info-row>
                     <info-row>
                         <inner>
-                            <h4>Piercng</h4>
+                            <h4>Stab</h4>
                         </inner>
                     </info-row>
                     <info-row>
                         <inner>
-                            <h4>Accurate</h4>
+                            <h4>Pain</h4>
                         </inner>
                     </info-row>
                     <info-row>
                         <inner>
-                            <h4>Explosive</h4>
+                            <h4>Gun</h4>
                         </inner>
                     </info-row>
                     <info-row>
                         <inner>
-                            <h4>Arcane</h4>
+                            <h4>Blast</h4>
                         </inner>
                     </info-row>
                     <info-row>
@@ -474,90 +490,88 @@
                     </info-row>
                     <info-row>
                         <inner>
-                            <h4>Occult</h4>
+                            <h4>Vile</h4>
                         </inner>
                     </info-row>
                     <info-row>
                         <inner>
-                            <h4>Burning</h4>
+                            <h4>Burn</h4>
                         </inner>
                     </info-row>
                     <info-row>
                         <inner>
-                            <h4>Freezing</h4>
+                            <h4>Cold</h4>
                         </inner>
                     </info-row>
                     <info-row>
                         <inner>
-                            <h4>Shocking</h4>
+                            <h4>Volt</h4>
                         </inner>
                     </info-row>
                 </info-list>
             </box>
             <box class="x2">
                 <h3>Conditions</h3>
-                <p>Conditions are applied as an opponent is <i>Overtaken</i>, and last until the end of the round.</p>
+                <p>Conditions apply negative effects to a combatant, and last until the end of the round.</p>
+                <p>Conditions are applied as a combatant is attacked by an enemy who may apply a condition to them. To apply a condition, the attacker must meet the following;</p>
+                <ul>
+                    <li>Exploit the enemys weakness with the attack, OR</li>
+                    <li>Suffer one durability loss to their weapon before attempting the roll</li>
+                </ul>
+                <ul>
+                    <li>The attack must deal damage, AND</li>
+                    <li>No damage dice may show a 1, AND</li>
+                    <li>The combatant has not applied a condition earlier this combat round.</li>
+                </ul>
                 <info-list class="separator-pipes" style="counter-set: list 0;">
                     <info-row>
                         <inner>
-                            <h4>Disarmed</h4>
-                            <item>Cannot attack with <i>Melee</i> weapons</item>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Dazed</h4>
-                            <item>Cannot attack with <i>Ranged</i> weapons</item>
-                        </inner>
-                    </info-row>
-
-                    <info-row>
-                        <inner>
                             <h4>Exhausted</h4>
-                            <item>Attacks with <i>Physical</i> weapons are reduced to 3d4 damage</item>
+                            <span>Cannot attack with <i>Melee</i> weapons</span>
                         </inner>
                     </info-row>
                     <info-row>
                         <inner>
                             <h4>Distracted</h4>
-                            <item>Attacks with <i>Magical</i> weapons are reduced to 3d4 damage</item>
+                            <span>Cannot attack with <i>Ranged</i> weapons</span>
                         </inner>
                     </info-row>
+
                     <info-row>
                         <inner>
                             <h4>Vulnerable</h4>
-                            <item><i>Armor</i> is reduced by half, rounding down</item>
+                            <span><i>Armor</i> is reduced by half, rounding down</span>
                         </inner>
                     </info-row>
                     <info-row>
                         <inner>
                             <h4>Slowed</h4>
-                            <item>Victim cannot move during <i>Turns</i></item>
+                            <span>Victim cannot move during <i>Turns</i></span>
                         </inner>
                     </info-row>
                     <info-row>
                         <inner>
                             <h4>Staggered</h4>
-                            <item>The victim applies no <i>Force</i> with their attacks</item>
+                            <span>The victim applies no <i>Force</i> with their attacks</span>
                         </inner>
                     </info-row>
                     <info-row>
                         <inner>
                             <h4>Withering</h4>
-                            <item>The victim takes 1d10 damage at the start of each <i>Round</i></item>
+                            <span>The victim takes 1d10 damage at the start of each <i>Turn</i></span>
                         </inner>
                     </info-row>
                     <info-row>
                         <inner>
                             <h4>Forgetful</h4>
-                            <item>The victim cannot use <i>Incantations</i> or <i>Use equipment</i></item>
+                            <span>The victim cannot use <i>Incantations</i> or <i>Use equipment</i></span>
                         </inner>
                     </info-row>
                     
                     <info-row>
                         <inner>
                             <h4>Fear</h4>
-                            <item>The victim will <i>Retreat</i> with their movement at the start of the next <i>round</i> victim will <i>Retreat</i> with their movement at the start of the next <i>round</i></item>
+                            <span>The victim will <i>Retreat</i> with their movement at the start of the next <i>Round</i></span>
                         </inner>
                     </info-row>
                 </info-list>
@@ -605,21 +619,73 @@
         </row>
 
         <row>
-            <box>
+            <box class="x1-5">
                 <h2>Weapons</h2>
+                <p>There is a variety of weapons out there, from knives and clubs, to guns and grenades. The following is true for a weapon;</p>
+                <ul>
+                    <li>Weapons add a damage die to each attack. Which die depends on their <i>Quality</i></li>
+                    <li>A weapons quality is also its durability</li>
+                    <li>All weapons have a card, and need to be held by a character to be used</li>
+                    <li>Weapons have several damage types. The player decides which damage type(s) to use during the planning phase of combat</li>
+                </ul>
+                <img src="img/weaponcard.png" alt="">
+                <p style="text-align: right;">Example weapon card</p>
             </box>
-            <box>
-                <h3>Quality types</h3>
-            </box>
-            <box>
-                <h3>Damage types</h3>
-                
+            <box class="x1-5">
+                <row class="internal">
+                    
+                    <box class="no-border">
+                        <h3>Stats</h3>
+                        <h4>Quality</h4>
+                        <p>The measure of how lethal the weapon is, and also its current state of wear and tear. Whenever a weapon is used to penetrate armor, or parry an attack, fill in one of these slots, to track how damaged the weapon is.</p>
+                        <p>The damage of a weapon is directly linked to how many empty quality slots it has.</p>
+                        <info-list class="dice-enumeration" style="counter-set: list 2;">
+                            <info-row>
+                                <inner>
+                                    <h4>1 Slot</h4>
+                                </inner>
+                            </info-row>
+                            <info-row>
+                                <inner>
+                                    <h4>2 Slots</h4>
+                                </inner>
+                            </info-row>
+                            <info-row>
+                                <inner>
+                                    <h4>3 Slots</h4>
+                                </inner>
+                            </info-row>
+                            <info-row>
+                                <inner>
+                                    <h4>4 Slots</h4>
+                                </inner>
+                            </info-row>
+                            <info-row>
+                                <inner>
+                                    <h4>5 Slots</h4>
+                                </inner>
+                            </info-row>
+                        </info-list>
+                    </box>
+                    <box class="no-border">
+                        <h4>Skill Level</h4>
+                        <p>Use this bar to track the current users skill level with the weapon.</p>
+                        <h4>Damage types</h4>
+                        <p>Use this bar to track the current users skill level with the weapon.</p>
+                        <h4>Breakage</h4>
+                        <p>A weapon which has all quality slots filled in breaks completely, beyond repair</p>
+                        <h4>Repair</h4>
+                        <p>Repairing a weapon may restore filled in quality slots. Repairing a quality slot will take some time, and resources, usually worth around ~75% of what the quality slot would cost if new.</p>
+                    </box>
+                </row>
             </box>
         </row>
 
         <row>
             <box>
                 <h2>Character creation</h2>
+                <p>To create a character requires you to make 3 rolls, one for each attribute, note them down on the character sheet. Then you should find, and note down the background corresponding to your total attribute value, and also find the three perks corresponding to your three individual attribute values.</p>
+                <p>Finally you should calculate your maximum endurance, and note that down on your character sheet.</p>
             </box>
             <box class="x2">
                 <h3>Attributes</h3>
@@ -635,31 +701,61 @@
                 <h4>Endurance</h4>
                 <p>20+(character level * 10)+STR+DEX+WIL</p>
             </box>
-            <box class="x3" style="counter-set: list 1;">
+            <box class="x3" style="counter-set: list 5;">
                 <h3>Background</h3>
                 <info-list class="separator-pipes">
                     <info-row>
                         <inner>
-                            <h4>Sage</h4>
-                            <item>Common magic weapon</item>
-                            <item>Incantation</item>
-                            <item>Familiar</item>
+                            <h4>Sentient Assasin Synthetic</h4>
+                            <span>Your AI has evolved, but you retain your skills.</span>
                         </inner>
                     </info-row>
                     <info-row>
                         <inner>
-                            <h4>Soldier</h4>
-                            <item>Martial physical weapon</item>
-                            <item>Heavy armor</item>
-                            <item>Shield</item>
+                            <h4>Old-Tech Scav</h4>
+                            <span>Scrounging for old artifacts is both interesting, and lucrative.</span>
                         </inner>
                     </info-row>
                     <info-row>
                         <inner>
-                            <h4>Rider</h4>
-                            <item>Martial physical weapon</item>
-                            <item>Horse</item>
-                            <item></item>
+                            <h4>Burnt Chrono Mage</h4>
+                            <span>The time travels came to a halt, as your chrono gyro was burnt. You are stuck here.</span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Junkyard Greasemonkey</h4>
+                            <span>Old combustion engines can be used for many things, they just need a fixup.</span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Wastelands Raider</h4>
+                            <span>Your life was spent plundering the weak from atop your wastes motorbike.</span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Wastelands Brigand</h4>
+                            <span>Waiting in ambush along a trade route was just another day for you.</span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Purifier</h4>
+                            <span>Most things in the wastes are toxic, and you know how to fix that.</span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Kahuna</h4>
+                            <span>You commune with spirits of the land to heal, bless or curse.</span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>War Boi</h4>
+                            <span>What a day, what a lovely day!.</span>
                         </inner>
                     </info-row>
                 </info-list>
@@ -672,91 +768,91 @@
                     <info-row>
                         <inner>
                             <h4>Distract</h4>
-                            <item></item>
+                            <span></span>
                         </inner>
                     </info-row>
                     <info-row>
                         <inner>
                             <h4>Blind</h4>
-                            <item></item>
+                            <span></span>
                         </inner>
                     </info-row>
                     <info-row>
                         <inner>
                             <h4>Insult</h4>
-                            <item></item>
+                            <span></span>
                         </inner>
                     </info-row>
                     <info-row>
                         <inner>
                             <h4>Commoner</h4>
-                            <item></item>
+                            <span></span>
                         </inner>
                     </info-row>
                     <info-row>
                         <inner>
                             <h4>Swift engage</h4>
-                            <item></item>
+                            <span></span>
                         </inner>
                     </info-row>
                     <info-row>
                         <inner>
                             <h4>Swift disengage</h4>
-                            <item></item>
+                            <span></span>
                         </inner>
                     </info-row>
                     <info-row>
                         <inner>
                             <h4>Powerful push</h4>
-                            <item></item>
+                            <span></span>
                         </inner>
                     </info-row>
                     <info-row>
                         <inner>
                             <h4>Stagger</h4>
-                            <item></item>
+                            <span></span>
                         </inner>
                     </info-row>
                     <info-row>
                         <inner>
                             <h4>Maim</h4>
-                            <item></item>
+                            <span></span>
                         </inner>
                     </info-row>
                     <info-row>
                         <inner>
                             <h4>Daze</h4>
-                            <item></item>
+                            <span></span>
                         </inner>
                     </info-row>
                     <info-row>
                         <inner>
                             <h4>Stun</h4>
-                            <item></item>
+                            <span></span>
                         </inner>
                     </info-row>
                     <info-row>
                         <inner>
                             <h4>Vulnerability</h4>
-                            <item></item>
+                            <span></span>
                         </inner>
                     </info-row>
                     <info-row>
                         <inner>
                             <h4>Forceful</h4>
-                            <item></item>
+                            <span></span>
                         </inner>
                     </info-row>
                     <info-row>
                         <inner>
                             <h4></h4>
-                            <item></item>
+                            <span></span>
                         </inner>
                     </info-row>
                     <info-row>
                         <inner>
                             <h4></h4>
-                            <item></item>
+                            <span></span>
                         </inner>
                     </info-row>
                 </info-list>
@@ -766,91 +862,91 @@
                     <info-row>
                         <inner>
                             <h4>Pain Tolerance</h4>
-                            <item></item>
+                            <span></span>
                         </inner>
                     </info-row>
                     <info-row>
                         <inner>
                             <h4>Quick Recovery</h4>
-                            <item></item>
+                            <span></span>
                         </inner>
                     </info-row>
                     <info-row>
                         <inner>
                             <h4>Commoner</h4>
-                            <item></item>
+                            <span></span>
                         </inner>
                     </info-row>
                     <info-row>
                         <inner>
                             <h4>Acrobatics</h4>
-                            <item></item>
+                            <span></span>
                         </inner>
                     </info-row>
                     <info-row>
                         <inner>
                             <h4>Pain</h4>
-                            <item></item>
+                            <span></span>
                         </inner>
                     </info-row>
                     <info-row>
                         <inner>
                             <h4>Slow</h4>
-                            <item></item>
+                            <span></span>
                         </inner>
                     </info-row>
                     <info-row>
                         <inner>
                             <h4>Maim</h4>
-                            <item></item>
+                            <span></span>
                         </inner>
                     </info-row>
                     <info-row>
                         <inner>
                             <h4>Weaken</h4>
-                            <item></item>
+                            <span></span>
                         </inner>
                     </info-row>
                     <info-row>
                         <inner>
                             <h4>Savagery</h4>
-                            <item></item>
+                            <span></span>
                         </inner>
                     </info-row>
                     <info-row>
                         <inner>
                             <h4>Artful dodger</h4>
-                            <item></item>
+                            <span></span>
                         </inner>
                     </info-row>
                     <info-row>
                         <inner>
                             <h4></h4>
-                            <item></item>
+                            <span></span>
                         </inner>
                     </info-row>
                     <info-row>
                         <inner>
                             <h4></h4>
-                            <item></item>
+                            <span></span>
                         </inner>
                     </info-row>
                     <info-row>
                         <inner>
                             <h4></h4>
-                            <item></item>
+                            <span></span>
                         </inner>
                     </info-row>
                     <info-row>
                         <inner>
                             <h4></h4>
-                            <item></item>
+                            <span></span>
                         </inner>
                     </info-row>
                     <info-row>
                         <inner>
                             <h4></h4>
-                            <item></item>
+                            <span></span>
                         </inner>
                     </info-row>
                 </info-list>
@@ -861,96 +957,123 @@
                     <info-row>
                         <inner>
                             <h4>Bewilder</h4>
-                            <item></item>
+                            <span></span>
                         </inner>
                     </info-row>
                     <info-row>
                         <inner>
                             <h4>Berserk</h4>
-                            <item></item>
+                            <span></span>
                         </inner>
                     </info-row>
                     <info-row>
                         <inner>
                             <h4>Taunt</h4>
-                            <item></item>
+                            <span></span>
                         </inner>
                     </info-row>
                     <info-row>
                         <inner>
                             <h4>Commoner</h4>
-                            <item></item>
+                            <span></span>
                         </inner>
                     </info-row>
                     <info-row>
                         <inner>
                             <h4>Fear</h4>
-                            <item></item>
+                            <span></span>
                         </inner>
                     </info-row>
                     <info-row>
                         <inner>
                             <h4>Burning</h4>
-                            <item></item>
+                            <span></span>
                         </inner>
                     </info-row>
                     <info-row>
                         <inner>
                             <h4>Shocked</h4>
-                            <item></item>
+                            <span></span>
                         </inner>
                     </info-row>
                     <info-row>
                         <inner>
                             <h4>Frozen</h4>
-                            <item></item>
+                            <span></span>
                         </inner>
                     </info-row>
                     <info-row>
                         <inner>
                             <h4>Forgetfulness</h4>
-                            <item></item>
+                            <span></span>
                         </inner>
                     </info-row>
                     <info-row>
                         <inner>
                             <h4>Finesse</h4>
-                            <item></item>
+                            <span></span>
                         </inner>
                     </info-row>
                     <info-row>
                         <inner>
                             <h4>Persistant</h4>
-                            <item></item>
+                            <span></span>
                         </inner>
                     </info-row>
                     <info-row>
                         <inner>
                             <h4>Bait</h4>
-                            <item></item>
+                            <span></span>
                         </inner>
                     </info-row>
                     <info-row>
                         <inner>
                             <h4></h4>
-                            <item></item>
+                            <span></span>
                         </inner>
                     </info-row>
                     <info-row>
                         <inner>
                             <h4></h4>
-                            <item></item>
+                            <span></span>
                         </inner>
                     </info-row>
                     <info-row>
                         <inner>
                             <h4></h4>
-                            <item></item>
+                            <span></span>
                         </inner>
                     </info-row>
                 </info-list>
             </box>
         </row>
     </container>
+    <script>
+        function rng(max){
+            return Math.floor(Math.random()*max)+1
+        }
+
+        function diceTest(amount, dice){
+            sets = [];
+            for(i in [...Array(amount).keys()]){
+                set = [];
+                for(die in dice){
+                    set.push(rng(dice[die]));
+                }
+                sets.push(set);
+            }
+            return sets;
+        }
+
+        function checkSetsForResult(sets, matches){
+            matchAmount = 0;
+            for(i in sets){
+                if(sets[i].find(element => matches.includes(element))){
+                    matchAmount++;
+                }
+            }
+            return matchAmount;
+        }
+    </script>
 </body>
 </html>

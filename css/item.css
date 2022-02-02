@@ -1,0 +1,139 @@
+
+:root{
+    --tile-width: 4;
+    --tile-squared: 120px;
+}
+@font-face {
+    font-family: 'medula';
+    src: url('../Source_Code_Pro/MedulaOne-Regular.ttf');
+}
+item{
+    display: flex;
+    flex-direction: column;
+    row-gap: 0px;
+    width: var(--tile-squared);
+    height: var(--tile-squared);
+    border-bottom: 1px dotted black;
+    border-right: 1px dotted black;
+}
+item *{
+    font-family: 'medula';
+    font-weight: 400;
+    text-transform: uppercase;
+    font-size:14px;
+}
+item name{
+    display: flex;
+    flex-direction: row;
+    height:35px;
+    background: white;
+    border-bottom: 1px solid black;
+    justify-content: space-between;
+    padding: 0 5px;
+}
+item name span{
+    font-size: 28px;
+    line-height: 38px;
+    width: 80%;
+    text-align: left;
+    margin-left: 5px;
+    white-space: nowrap;
+}
+item name span.small{
+    font-size: 24px;
+    line-height: 38px;
+}
+item name span.smaller{
+    font-size: 20px;
+    line-height: 38px;
+}
+item skill{
+    display: flex;
+    height: 10px;
+    flex-direction: row;
+    border-top: 1px solid black;
+}
+item skill slot{
+    display: flex;
+    flex: 1;
+    flex-grow: 1;
+    border-right: 1px solid black;
+}
+item skill slot:last-child{
+    border-right: 0;
+}
+item inner{
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    position: relative;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: auto 80%;
+}
+item.horizontal-image inner {
+    background-size: 80% auto;
+}
+item inner span{
+    font-size: 10px;
+    text-transform: lowercase;
+}
+item inner damagetypes,
+item inner usage{
+    display: flex;
+    flex-grow: 1;
+    flex: 1;
+    flex-direction: column;
+}
+item inner damagetypes{
+    justify-content: flex-end;
+}
+item inner damagetypes span{
+    justify-content: flex-end;
+    text-transform: uppercase;
+    font-size: 20px;
+}
+item inner usage{
+    text-align: right;
+    line-height: 10px;
+    justify-content: flex-end;
+    row-gap: 3px;
+    margin-bottom: 3px;
+}
+item inner usage span{
+    font-size: 18px;
+    font-family: 'source';
+    font-weight: 100;
+}
+.melee.physical name::before{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    content: url(img/blades.svg);
+    flex: 1;
+    margin-top: 4px;
+}
+.ranged.physical name::before{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    content: url(img/ranged.svg);
+    flex: 1;
+    margin-top: 4px;
+}
+.melee.magical name::before{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    content: url(img/meleespell.svg);
+    flex: 1;
+    margin-top: 4px;
+}
+.ranged.magical name::before{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    content: url(img/spell.svg);
+    flex: 1;
+    margin-top: 4px;
+}
