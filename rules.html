@@ -263,7 +263,7 @@
             <box>
                 <h3>Planning</h3>
                 <p>At the start of each round, players plan what to do with the turns during the round.</p>
-                <p>This mainly consists of choosing a target to attack, a type of attack to use, and a target tile to move to.</p>
+                <p>This mainly consists of choosing where to attempt to move, which action to take, and what target these actions has. a target to attack, a type of attack to use, and a target tile to move to.</p>
                 <p>During the planning phase, a combatant can also plan special actions, explained further below.</p>
                 <h4>Execution</h4>
                 <p>Each turn, the combatant will act out the plan as good as they can.</p>
@@ -395,6 +395,9 @@
                         </info-list>
                     </box>
                 </row>
+            </box>
+            <box>
+                <h3>Defending</h3>
             </box>
             <box class="x2">
                 <h3>Sustaining damage</h3>
@@ -577,7 +580,7 @@
                 </info-list>
                 <img class="small" src="img/sick.jfif" alt="">
             </box>
-            <box>
+            <box class="x1-5">
                 <h3>Opposing fronts</h3>
                 <p>When opposing melee combatants meet on the battleground a front is created. How melee attackers are allowed to attack, and how the front moves, has specific rules.</p>
                 
@@ -588,7 +591,7 @@
                 <p>During a <i>Round</i>, the damage dealt by each side on a front is added together to become their <i>Force</i></p>
                 <p>At the end of the round, the side with most force may move forward, pushing the other side backwards.</p>
             </box>
-            <box>
+            <box class="x1-5">
                 <h3>Special actions</h3>
                 <p>During the planning phase of a round, a combatant can start performing special actions. Mostly this is using equipment, or casting incantations, but may include other actions as well.</p>
                 <h4>Using equipment</h4>
@@ -596,8 +599,20 @@
                 <h4>Incantations</h4>
                 <p>Incantations are powerful spells stored in runes, scrolls, wands, or books. Incantations can be activated in the planning phase, and all have unique effects, requirements, and casting times that have to be met, specific to the incantation.</p>
                 <p>Incantations usually require a combatant to spend, or meet a certain WIL score</p>
+                <h4>Retreat, explained below</h4>
             </box>
             <box>
+                <h3>Retreat</h3>
+                <p>During combat, the losing side will more often than not want to retreat. To accomplish this, the combatants of the losing side must all succeed in retreating</p>
+                <p>For a combatant to retreat, they must take the retreat special action, and fulfill one of the following conditions;</p>
+                <ul>
+                    <li>Both sides want to retreat, OR</li>
+                    <li>The distance to the closest enemy, plus the amount of rounds the combat has lasted is greater than 7, OR</li>
+                    <li>The distance to the closest enemy is greater than 11</li>
+                </ul>
+                <p>After retreating the combatant will get away from their enemies, and automatically take a 10 minute break. After the break, the combatant will have their endurance fully restored.</p>
+            </box>
+            <box class="x2">
                 <h3>Guide</h3>
                 <p>Step by step, this is how combat works.</p>
                 <ol>
@@ -758,6 +773,19 @@
                         <inner>
                             <h4>War Boi</h4>
                             <span>What a day, what a lovely day!.</span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Malplaced navigation AI</h4>
+                            <span>An navigation AI which has installed itself into a service bot.</span>
+                            <span>Robotic</span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4></h4>
+                            <span></span>
                         </inner>
                     </info-row>
                 </info-list>
