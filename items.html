@@ -6,15 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css" integrity="sha384-jLKHWM3JRmfMU0A5x5AkjWkw/EYfGUAGagvnfryNV3F9VqM98XiIH7VBGVoxVSc7" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/default.css">
     <style>
         :root{
             --tile-width: 4;
             --tile-squared: 120px;
-        }
-        
-        @font-face {
-            font-family: 'source';
-            src: url('Source_Code_Pro/SourceCodePro-VariableFont_wght.ttf');
         }
         container{
             width: calc(calc(var(--tile-squared) + 1px) * var(--tile-width));
@@ -42,6 +38,13 @@
     <link rel="stylesheet" href="css/item.css">
 </head>
 <body>
+    <nav>
+        <a href="rules.html">Rules</a>
+        <a href="battle.html">Battle</a>
+        <a href="sheet.html">Sheet</a>
+        <a href="battleground_tiles.html">Tiles</a>
+        <a href="items.html">Items</a>
+    </nav>
     
     <container>
 
@@ -399,8 +402,9 @@
             </skill>
         </item>
 
+    </container>    
 
-        
+    <container>
         <item class="ranged physical horizontal-image">
             <name>
                 <span class="small">Crossbow</span>
@@ -672,6 +676,9 @@
                 <slot></slot>
             </skill>
         </item>
+    </container>
+
+    <container>
         
         <item class="melee magical">
             <name>
@@ -806,7 +813,8 @@
                 <slot></slot>
             </skill>
         </item>
-    </container>    
+    </container>
+
     <container>
     
         

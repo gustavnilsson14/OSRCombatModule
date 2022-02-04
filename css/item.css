@@ -3,10 +3,6 @@
     --tile-width: 4;
     --tile-squared: 120px;
 }
-@font-face {
-    font-family: 'medula';
-    src: url('../Source_Code_Pro/MedulaOne-Regular.ttf');
-}
 item{
     display: flex;
     flex-direction: column;

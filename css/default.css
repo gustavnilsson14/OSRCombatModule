@@ -1,0 +1,32 @@
+@font-face {
+    font-family: 'medula';
+    src: url('../Source_Code_Pro/MedulaOne-Regular.ttf');
+}
+        
+@font-face {
+    font-family: 'source';
+    src: url('../Source_Code_Pro/SourceCodePro-VariableFont_wght.ttf');
+}
+body{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    row-gap: 5vh;
+}
+nav{
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    top: 0px;
+    left: 0px;
+    width: 5vw;
+    height: 50vh;
+}
+nav a{
+    display: flex;
+    font-size: 2vw;
+    width: 360px;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-family: 'source';
+}

@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="css/default.css">
     <style>
         h1,h2,h3{
             text-align: center;
@@ -22,10 +23,6 @@
         img.small{
             width: 50%;
             margin: 0 auto;
-        }
-        @font-face {
-            font-family: 'source';
-            src: url('Source_Code_Pro/SourceCodePro-VariableFont_wght.ttf');
         }
         *{
             font-family: 'source';
@@ -55,10 +52,10 @@
         }
         row.internal{
             padding: 0px;
-            margin: 0;;
+            margin: 0;
         }
         row.internal box{
-            padding: 20px 0;
+            padding: 0px 0;
         }
         box{
             display: flex;
@@ -136,6 +133,9 @@
         info-row inner>h4{
             min-width: 130px;
             margin-right: 10px;
+            justify-content: center;
+            flex-direction: column;
+            display: flex;
         }
         .weapons info-row inner>h4{
             width: 80px;
@@ -153,7 +153,10 @@
             padding: 6px;
             width: 32px;
             text-align: center;
-            counter-increment: list;            
+            counter-increment: list;
+            justify-content: center;
+            flex-direction: column;
+            display: flex;
         }
         info-list.dice-enumeration info-row::before{
             content: "1d" counter(list);
@@ -185,6 +188,13 @@
     <link rel="stylesheet" href="css/item.css">
 </head>
 <body>
+    <nav>
+        <a href="rules.html">Rules</a>
+        <a href="battle.html">Battle</a>
+        <a href="sheet.html">Sheet</a>
+        <a href="battleground_tiles.html">Tiles</a>
+        <a href="items.html">Items</a>
+    </nav>
     <container>
         <row>
             <h1 style="width: 100%;">Combat module alpha</h1>
@@ -396,22 +406,38 @@
                     </box>
                 </row>
             </box>
-            <box>
-                <h3>Defending</h3>
-            </box>
             <box class="x2">
+                <row class="internal">
+                    <box class="no-border">
+                        <h3>Defense</h3>
+                
+                        <h4>Armor</h4>
+                        <p>Characters and creatures are either unarmored, wear armor, or have natural armor.</p>
+                        <p>When attacked, each die rolled for the attack is reduced by the <i>armor value</i> of the victim.</p>
+                        <p>If wearing armor, and all dice roll the exact <i>armor value</i>, the armor is damaged. Fill in one of the quality slots of the armor.</p>
+
+                        <h4>Parry</h4>
+                        <p>When holding a weapon, a character may plan the defense action. If they do so, during the turn while they parry their <i>armor value</i> is increased by 1.</p>
+                        <p>When parrying, for each attack that is made against the defender, their weapon loses one quality per attack at the <i>end</i> of the turn.</p>
+
+                    </box>
+                    <box class="no-border" style="justify-content: center;">
+                        <img src="img/armorcard.png" alt="">
+                        <p style="text-align: right;">Example armor card</p>
+                        
+                    </box>
+
+                </row>
+                
+            </box>
+            <box>
                 <h3>Sustaining damage</h3>
                 <p>When attacked, combatants take damage</p>
                 
                 <h4>Endurance</h4>
-                <p>Endurance is a measure of how combat ready a character is. The more damage comes their way, the more endurance is spent to dodge or deflect that damage, until they are finally hit an suffer wounds.</p>
+                <p>Endurance is a measure of how combat ready a character is. The more damage comes their way, the more endurance is spent to dodge or deflect that damage, until they are finally hit and suffer wounds.</p>
                 <p>As endurance reaches 0, it can be reduced no further, and instead the character suffers wounds, with one exception.</p>
                 <p>If any damage would result in a negative endurance less than or equal to a combatants negative max endurance, they die instantly.</p>
-                
-                <h4>Armor</h4>
-                <p>Characters and creatures are either unarmored, wear armor, or have natural armor.</p>
-                <p>When attacked, each die rolled for the attack is reduced by the armor value of the victim.</p>
-                <p>If wearing armor, and all dice roll the exact armor value, the armor is damaged. Mark one usage from the armor.</p>
                 
                 <h4>Wounds</h4>
                 <p>Each time a combatant is damaged when at 0 endurance they suffer a wound. The amount of wounds sustained have these effects.</p>
@@ -574,13 +600,13 @@
                     <info-row>
                         <inner>
                             <h4>Fear</h4>
-                            <span>The victim will <i>Retreat</i> with their movement at the start of the next <i>Round</i></span>
+                            <span>The victim will move backwards with their movement at the start of the next <i>Round</i></span>
                         </inner>
                     </info-row>
                 </info-list>
                 <img class="small" src="img/sick.jfif" alt="">
             </box>
-            <box class="x1-5">
+            <box>
                 <h3>Opposing fronts</h3>
                 <p>When opposing melee combatants meet on the battleground a front is created. How melee attackers are allowed to attack, and how the front moves, has specific rules.</p>
                 
@@ -591,7 +617,7 @@
                 <p>During a <i>Round</i>, the damage dealt by each side on a front is added together to become their <i>Force</i></p>
                 <p>At the end of the round, the side with most force may move forward, pushing the other side backwards.</p>
             </box>
-            <box class="x1-5">
+            <box>
                 <h3>Special actions</h3>
                 <p>During the planning phase of a round, a combatant can start performing special actions. Mostly this is using equipment, or casting incantations, but may include other actions as well.</p>
                 <h4>Using equipment</h4>
@@ -612,7 +638,7 @@
                 </ul>
                 <p>After retreating the combatant will get away from their enemies, and automatically take a 10 minute break. After the break, the combatant will have their endurance fully restored.</p>
             </box>
-            <box class="x2">
+            <box>
                 <h3>Guide</h3>
                 <p>Step by step, this is how combat works.</p>
                 <ol>
