@@ -25,13 +25,6 @@
             counter-reset: line-number;
             background-size: cover;
         }
-        container{
-            background-image: url(img/battleground/papyrus.png);
-        }
-        container.mountain{
-            background-image: url(img/battleground/mountain.png);
-            
-        }
         column{
             position: relative;
             display: flex;
@@ -113,6 +106,16 @@
             content: "HAZARD";
             font-family: 'source';
         }
+        
+        container{
+            background-image: url(img/battleground/papyrus.png);
+        }
+        container.mountain{
+            background-image: url(img/battleground/mountain.png);
+        }
+        container.basement{
+            background-image: url(img/battleground/basement.jpg);
+        }
     </style>
 </head>
 <body>
@@ -124,7 +127,8 @@
         <a href="items.html">Items</a>
         <a href="vehicles.html">Vehicles</a>
     </nav>
-    <container class="mountain">
+    <container>
+        <background class="basement"></background>
         <column>
             <features>
                 <feature></feature>

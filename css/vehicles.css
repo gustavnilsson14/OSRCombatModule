@@ -1,0 +1,102 @@
+
+        *{
+            font-family: 'source';
+        }
+        container{
+            justify-content: center;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        vehicle{
+            width: 500px;
+            height: 350px;
+            background-size: 50%;
+            background-position: center 25%;
+            display: flex;
+            background-repeat: no-repeat;
+            border: 1px dotted black;
+            position: relative;
+            justify-content: center;
+        }
+        vehicle>name{
+            text-align: center;
+            font-size: 44px;
+            font-family: medula;
+            margin-top: 10px;
+        }
+        vehicle storage{
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            width: 100%;
+            bottom: 0px;
+            left: 0px;
+            height: 250px;
+            counter-set: slot 0;
+        }
+        vehicle storage slot{
+            width: 123px;
+            height: 123px;
+            border: 1px solid black;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        vehicle storage slot.empty{
+            border: 0;
+            width: 125px;
+            height: 125px;
+        }
+        vehicle storage slot:not(.empty)::before{
+            counter-increment: slot;
+            content: "#" counter(slot);
+            width: 100%;
+            text-align: center;
+            font-size: 38px;
+            font-weight: bold;
+            font-family: source;
+        }
+        
+        stat{
+            position: absolute;
+            height: 99px;
+            width: 123px;
+            background: #ccc;
+            border: 1px solid black;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        stat>*{
+            flex:1;
+            flex-grow: 1;
+            flex-direction: column;
+            justify-content: center;
+            display: flex;
+            text-align: center;
+            font-size: 18px;
+        }
+        stat value{
+            height: 50px;
+            width: 123px;
+            background: #eee;
+            flex-direction: row;
+        }
+        stat value>*{
+            flex:1;
+            flex-grow: 1;
+            text-align: left;
+            flex-direction: column;
+            justify-content: center;
+            display: flex;
+            font-size: 18px;
+        }
+        stat value separator::before{
+            content: "|";
+            text-align: center;
+            display: block;
+        }
