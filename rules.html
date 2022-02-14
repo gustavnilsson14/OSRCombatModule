@@ -53,6 +53,8 @@
         row.internal{
             padding: 0px;
             margin: 0;
+            flex-grow: 0;
+            
         }
         row.internal box{
             padding: 0px 0;
@@ -103,6 +105,7 @@
             display: flex;
             flex-direction: column;
             background: #eee;
+            margin: 8px 0;
         }
         info-list.space-between info-row{
             justify-content: space-between;
@@ -163,6 +166,9 @@
             counter-increment: list+2;
             width: 38px;
         }
+        info-list.dice-enumeration info-row.na-enumeration::before{
+            content: "0";
+        }
         info-list.separator-pipes info-row inner>*:not(:first-child)
         {
             border-left: 2px solid black;
@@ -180,12 +186,59 @@
         .no-border{
             border:0;
         }
+        .black-bg{
+            background-image: linear-gradient(45deg, #aaa, #ccc);
+            border-radius: 20px;
+            margin-top: 8px;
+            position: relative;
+            height: 350px;
+        }
+        .black-bg img{
+            object-fit: contain;
+            object-position: left;
+            padding: 40px 40px 40px 10px;
+            width: calc(100% - 80px);
+            height: calc(100% - 80px);
+        }
+        .black-bg:last-child img{
+            padding: 40px 10px 40px 40px;
+            object-position: right;
+        }
+        .black-bg text{
+            position: absolute;
+            display: flex;
+            text-align: right;
+            top: 10px;
+            right: 20px;
+            width: calc(100% - 40px);
+            height: calc(100% - 20px);
+        }
+        .black-bg:last-child text{
+            text-align: left;
+            left: 30px;
+        }
+        .black-bg text p{
+            font-size: 14px;
+        }
+        gear{
+            display: flex;
+            flex-direction: column;
+            counter-set: gear 0;       
+        }
         item{
-            border-top: 1px dotted black;
-            border-left: 1px dotted black;
+            counter-increment: gear;
+            font-size: 14px;
+            padding: 6px 10px 6px 0;
+            background: #eee;
+        }
+        item::before{
+            content: "#" counter(gear);
+            font-size: 14px;
+            padding: 6px 10px;
+            margin-right: 6px;
+            background: #ccc;
         }
     </style>
-    <link rel="stylesheet" href="css/item.css">
 </head>
 <body>
     <nav>
@@ -194,6 +247,7 @@
         <a href="sheet.html">Sheet</a>
         <a href="battleground_tiles.html">Tiles</a>
         <a href="items.html">Items</a>
+        <a href="vehicles.html">Vehicles</a>
     </nav>
     <container>
         <row>
@@ -227,7 +281,7 @@
             </box>
             <box>
                 <h3>Movement</h3>
-                <p>Combatants may move 1 tile at the start of every round, then 1 tile at the start of each turn.</p>
+                <p>Combatants may move 1 tile at the start of every round if taking the <i>dash</i> tactical action, then 1 tile at the start of each turn.</p>
                 <p>These rules apply to movement</p>
                 <ul>
                     <li>Conscious combatants of opposing sides may not occupy the same tile.</li>
@@ -264,90 +318,289 @@
             </box>
         </row>
 
+
         <row>
-            <box class="x2">
-                <h2>Rounds and Turns</h2>
-                <p>A round of combat is an amount of turns decided by both the fighting parties. A turn of combat is enough time for every combatant involved to move, and perform an attack.</p>
+            <box>
+                <h2>Fighting the Enemy</h2>
+                <p>lorem ipsum lorem ipsum lorem ipsum lorem ipsum </p>
+                <h3>Guide</h3>
+                <p>The turn is resolved in the following manner</p>
+                <ul>
+                    <li>Each melee combatant chooses a target in range, prioritizing their planned target. If the planned target is out of range, they attack a random target.</li>
+                    <li>All combatants move.</li>
+                    <li>All melee combatants attack. Melee targets which have moved out of range causes the attack to miss.</li>
+                    <li>All unprepared ranged attackers prepare an attack</li>
+                    <li>Prepared ranged attackers attack</li>
+                    <li>Force is calculated where there are opposing fronts.</li>
+                </ul>
+                
+                <p>Step by step, this is how combat works.</p>
+                <ol>
+                    <li>Battle is initiated, is any party ambushing the other?</li>
+                    <li>Plan your actions during the round. What is your target tile, and what will you do?</li>
+                    <li>Use equipment, and move</li>
+                    <li>Determine the amount of turns in the round depending on the players party first, then the opponents desired turn amount.</li>
+                    <li>If both parties decided for 0 turns, the combat ends, otherwise proceed to step 7.</li>
+                    
+                    <li>The first turn starts.</li>
+                    <li>Hazards affect the combatants on the same tile.</li>
+                    <li>All characters move.</li>
+                    <li>All characters attack.</li>
+                    <li>If the round has more turns, go to step 7, otherwise proceed to step 11.</li>
+                    <li>If one side is defeated, the combat ends, otherwise go to step 2.</li>
+                </ol>
                 <img src="img/starter1.jpg" alt="">
             </box>
             <box>
+                <h3>Setup</h3>
+                <p>As combat starts, all combatants of each respective side are placed on opposing sides, at tile #3. The GM may then, at their discretion move combatants forward, or backwards up to 2 tiles, depending on their perception of how the battle started.</p>
+
+                <h4>First Strike</h4>
+                <p>If a combatant was caught by surprise, with their weapons sheethed and guard down, the initiators may get a first strike. This allows any combatant who was combat ready as the combat starts to attack a non-combat ready combatant within range once.</p>
+
+                <h4>Ambush</h4>
+                <p>If either side ambushed the other side, seemingly springing up from nowhere, trapping or surrounding their opponents, the combat starts as an ambush.</p>
+                <p>When placing combatants on the battleground when an ambush happens, place the ambushed side on tile #6, and the ambushers on a tile #1 of their choice.</p>
+                <p>During the first <i>round</i> of an ambush, the ambushers choose how many <i>turns</i> it would last.</p>
+            </box>
+
+            <box>
+                <h3>Rounds and Turns</h3>
+                <p>A round of combat is an amount of turns decided by both the fighting parties. A turn of combat is enough time for every combatant involved to move, and perform an action.</p>
+                
+                <h4>Commitment</h4>
+                <p>As a round of combat starts, the players must decide, and commit to how many turns they wish to fight, a number between 1-5. This is then offset by the enemy group's desired turn amount, and the average turn amount between the two is used, rounded in favor of the players.</p>
+
+                <img src="img/hqdefault.jpg" alt="">
+                
+            </box>
+
+            <box class="x1-5">
+                <h3>Tactical action</h3>
+                <p>After determining the turn amount for the <i>round</i>, each combatant may take a <i>tactical action</i></p>
+                <p>Tactical actions resolve immediately, and simultaneously.</p>
+                
+                <info-list class="separator-pipes" style="counter-set: list 0;">
+                    <info-row>
+                        <inner>
+                            <h4>Push</h4>
+                            <span>A push action can only be used when in a front. When used, push adds 1 force to the combatants side in the front for this round.</span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Breakthrough</h4>
+                            <span>The breakthrough action allows a combatant to pass through an enemy front if they are less in number than the combatants front.</span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Equipment</h4>
+                            <span>The equipment action allows a combatant to freely move items between their belt, hands and the ground, as well as either use a single consumable item from the belt or hands, or move 1 item from the backpack into the hands or belt.</span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Escape</h4>
+                            <span>A combatant may escape the combat, if they fulfill the conditions explained in detail below.</span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Use Feature</h4>
+                            <span>Combatants may interact with the battleground features with this action. Each feature has its own unique effect when used.</span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Dash</h4>
+                            <span>The combatant may move 1 tile.</span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Cast spell</h4>
+                            <span>The spell action allows a combatant to cast one of their spells, explained in detail below.</span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Charge</h4>
+                            <span>The charge action increases the <i>charge</i> of 2 the combatants spells by 1. If the combatant only has 1 spell, the second point is forfeit.</span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Rage</h4>
+                            <span>The rage action causes attacks to ignore half of the combatants targets armor value, rounded in favor of the attacker.</span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Shrug</h4>
+                            <span>The shrug action allows the combatant to remove a condition they suffer from.</span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Scout</h4>
+                            <span>The scout action increases the combatants vision radius by 1.</span>
+                        </inner>
+                    </info-row>
+                </info-list>
+                
+                <img src="img/monsters-weapons-blood-victory-wallpaper-preview.jpg" alt="">
+            </box>
+
+            <box class="x1-5">
                 <h3>Planning</h3>
                 <p>At the start of each round, players plan what to do with the turns during the round.</p>
-                <p>This mainly consists of choosing where to attempt to move, which action to take, and what target these actions has. a target to attack, a type of attack to use, and a target tile to move to.</p>
-                <p>During the planning phase, a combatant can also plan special actions, explained further below.</p>
-                <h4>Execution</h4>
-                <p>Each turn, the combatant will act out the plan as good as they can.</p>
-                <img src="img/1618422965_tactics.jpg" alt="">
-            </box>
-            <box>
-                <h3>Commitment</h3>
-                <p>After planning their moves at the start of each combat round, the players must decide, and commit to how many turns they wish to fight, a number between 1-5. Depending on the setup for the combat, eg if the fight is straightforward, or if one of the parties are ambushed or not, as well as the enemy group, this will be resolved in different ways.</p>
-                <h4>Fair fight</h4>
-                <p>If there is no ambush, the round will last for as long the players want to fight, -1 if the enemies prefer less turns, or +1 if the enemies prefer more turns.</p>
-                <h4>Ambush</h4>
-                <p>During an ambush, the first round lasts for as long as the ambushing party wants. In addition, the ambushers may decide to surround their enemies, putting them in the center of the battleground, and the ambushers on the edges.</p>
-                <img src="img/hqdefault.jpg" alt="">
-            </box>
-            <box class="x2">
-                <h3>Attacks</h3>
-                <p>Attacks are basic offensive actions taken to hurt an enemy combatants. Attacks in combat hit by default.</p>
-                <p>All attacks deal three or more dice of damage. The amount of faces on the standard three dice are based on the combatants weapon, their familiarity with that specific weapon, and their experience level.</p>
-
-                <h4>Melee</h4>
-                <p>Melee attacks can only be made onto adjacent tiles. They are performed each turn.</p>
-                <h4>Ranged</h4>
-                <p>Ranged attacks can be made onto any tile of the battleground unless otherwise specified by the weapon. Ranged attacks must be prepared, so they are completed every other turn.</p>
+                <p>This mainly consists of choosing where to attempt to move, which action to take and the target of said action.</p>
                 
-                <h4>Physical or Magical</h4>
-                <p>Weapons are physical or magical, depending on their make. This is tracked on the weapon card.</p>
+                <h4>Movement</h4>
+                <info-list class="separator-pipes" style="counter-set: list 0;">
+                    <info-row>
+                        <inner>
+                            <h4>Move to tile</h4>
+                            <span>A character may attempt to move to a tile. They will try to move towards that tile each turn with their movement.</span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Stand ground</h4>
+                            <span>A character may stand their ground, and forfeit their movement.</span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Charge</h4>
+                            <span>A charging character will keep attempting to move forward each turn.</span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Retreat</h4>
+                            <span>A retreating character will keep attempting to move backwards each turn.</span>
+                        </inner>
+                    </info-row>
+                </info-list>
 
-                <h4>Damage</h4>
+                <h4>Actions</h4>
+                <info-list class="separator-pipes" style="counter-set: list 0;">
+                    <info-row>
+                        <inner>
+                            <h4>Melee attack</h4>
+                            <span>Melee attacks can only be made onto adjacent tiles. They are performed each turn.</span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Ranged attack</h4>
+                            <span>Ranged attacks can be made onto any tile of the battleground unless otherwise specified by the weapon. Ranged attacks must be prepared, so they are completed every other turn.</span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Defend</h4>
+                            <span>The defend action will increase the armor of the combatant by 1, and allow the defender to temporarily remove one of their <i>weaknesses</i> for the round. <br>At the end of the round, one of their held weapons lose 1 <i>durability</i>.</span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Assist</h4>
+                            <span>A combatant may choose to assist an ally. When doing so, the assisted ally may choose to reroll all their damage dice for every attack they make during the round. The assisted character may not only reroll one of the dice this way, but must reroll all.</span>
+                        </inner>
+                    </info-row>
+                </info-list>
+                <h4>Focus</h4>
+                <p>All players has 1 point of Focus as combat starts. A point of focus can be used during a <i>round</i>, at the start of a <i>turn</i>, to set a new plan for the rest of their <i>round</i>.</p>
+            </box>
+            
+            <box>
+                <h3>Escape</h3>
+                <p>During combat, the losing side will more often than not want to escape the fight. To accomplish this, the combatants of the losing side must all succeed in escaping</p>
+                <p>For a combatant to escape, they must take the escape special action, and fulfill one of the following conditions;</p>
+                <ul>
+                    <li>All combatants of both sides want to escape, OR</li>
+                    <li>The distance to the closest enemy, plus the amount of rounds the combat has lasted is greater than 7, OR</li>
+                    <li>The distance to the closest enemy is greater than 11</li>
+                </ul>
+                <p>After escaping the combatant will get away from their enemies, and automatically take a 10 minute break. After the break, the combatant will have their endurance fully restored.</p>
+            </box>
+
+            <box class="x2">
+                <h3>Spells</h3>
+
                 <row class="internal">
                     <box class="no-border">
-                        <h4>Weapon quality</h4>
-                        <p>A weapon can have a quality ranging from 1 to 5. The quality affects both the weapons damage, and durability.</p>
-                        <p>The quality translates into this general class of weapon, and general value.</p>
-                        <info-list class="dice-enumeration weapons" style="counter-set: list 2;">
-                            <info-row>
+                        <p>Spells deal damage based on the characters skill with the spell, their experience level, and their current amount of <i>charge</i>. Spells target a tile, and deal their damage to all combatants on that tile.</p>
+
+                        <p>Casting a spell consumes all its <i>charges</i>. Each charge spent adds another dice rolled for damage. The skill of the spell ranges from 1-5, and will improve the type of dice rolled, starting at 1d4 at 1 skill, ending at 1d12 at 5 skill. All spells cast adds the level damage dice to their damage.</p>
+
+                        <p>When combat starts, all combatants recieve a single charge for a spell off their choice. The standard way to gain extra charges is by using <i>charge</i> as their <i>tactical action</i>.</p>
+
+                        <p>After cast once, a spell cannot be used for the rest of the combat.</p>
+                    </box>
+                    <box class="no-border">
+                        <img style="margin-top: 14px;" src="img/caster.png" alt="">
+                        
+                    </box>
+                </row>
+                
+
+                
+            </box>
+
+            <box class="x2">
+                <h3>Dealing damage</h3>
+                <p>Attacks are basic offensive actions taken to hurt an enemy combatants. Attacks in combat hit by default.</p>
+                <p>All attacks deal two or more dice of damage. The amount of faces on the standard three dice are based on the combatants weapon, their familiarity with that specific weapon, and their experience level.</p>
+
+                <row class="internal">
+                    <box class="no-border">
+                        <h4>Weapon</h4>
+                        <p>Most items are weapons, and have a damage rating ranging from 0 to 5, explained further in the weapons section.</p>
+                        <info-list class="dice-enumeration weapons">
+                            <info-row class="na-enumeration">
+                                <inner>
+                                    <h4>0: Non Weapon</h4>
+                                </inner>
+                            </info-row>
+                            <info-row style="counter-set: list 2;">
                                 <inner>
                                     <h4>1: Improvised</h4>
-                                    <cost>N/A</cost>
                                 </inner>
                             </info-row>
                             <info-row>
                                 <inner>
                                     <h4>2: Shoddy DIY</h4>
-                                    <cost>~10C</cost>
                                 </inner>
                             </info-row>
                             <info-row>
                                 <inner>
                                     <h4>3: Self-Defense</h4>
-                                    <cost>~500C</cost>
                                 </inner>
                             </info-row>
                             <info-row>
                                 <inner>
                                     <h4>4: Army Grade</h4>
-                                    <cost>~2500C</cost>
                                 </inner>
                             </info-row>
                             <info-row>
                                 <inner>
                                     <h4 style="width: 80px;">5: Hi-Tech</h4>
-                                    <cost>~10000C</cost>
                                 </inner>
                             </info-row>
                         </info-list>
                     </box>
                     <box class="no-border">
-                        <h4>Skill level</h4>
+                        <h4>Skill</h4>
                         <p>A characters skill with the individual weapon affects their efficiency greatly, and can turn any weapon lethal.</p>
                         <p>Skill is tracked on the weapon card.</p>
                         <info-list class="dice-enumeration" style="counter-set: list 2;">
                             <info-row>
                                 <inner>
-                                    <h4>New</h4>
+                                    <h4>Novice</h4>
                                 </inner>
                             </info-row>
                             <info-row>
@@ -367,13 +620,14 @@
                             </info-row>
                             <info-row>
                                 <inner>
-                                    <h4>Perfection</h4>
+                                    <h4>Master</h4>
                                 </inner>
                             </info-row>
                         </info-list>
                     </box>
                     <box class="no-border">
                         <h4>Level</h4>
+                        
                         <p>The characters general experience level weighs in on how much damage they do.</p>
                         <p>Level is tracked on your character sheet.</p>
                         <info-list class="dice-enumeration" style="counter-set: list 2;">
@@ -389,12 +643,12 @@
                             </info-row>
                             <info-row>
                                 <inner>
-                                    <h4>Heroic</h4>
+                                    <h4>Hero</h4>
                                 </inner>
                             </info-row>
                             <info-row>
                                 <inner>
-                                    <h4>Legendary</h4>
+                                    <h4>Legend</h4>
                                 </inner>
                             </info-row>
                             <info-row>
@@ -405,35 +659,9 @@
                         </info-list>
                     </box>
                 </row>
-            </box>
-            <box class="x2">
-                <row class="internal">
-                    <box class="no-border">
-                        <h3>Defense</h3>
-                
-                        <h4>Armor</h4>
-                        <p>Characters and creatures are either unarmored, wear armor, or have natural armor.</p>
-                        <p>When attacked, each die rolled for the attack is reduced by the <i>armor value</i> of the victim.</p>
-                        <p>If wearing armor, and all dice roll the exact <i>armor value</i>, the armor is damaged. Fill in one of the quality slots of the armor.</p>
 
-                        <h4>Parry</h4>
-                        <p>When holding a weapon, a character may plan the defense action. If they do so, during the turn while they parry their <i>armor value</i> is increased by 1.</p>
-                        <p>When parrying, for each attack that is made against the defender, their weapon loses one quality per attack at the <i>end</i> of the turn.</p>
-
-                    </box>
-                    <box class="no-border" style="justify-content: center;">
-                        <img src="img/armorcard.png" alt="">
-                        <p style="text-align: right;">Example armor card</p>
-                        
-                    </box>
-
-                </row>
-                
             </box>
             <box>
-                <h3>Sustaining damage</h3>
-                <p>When attacked, combatants take damage</p>
-                
                 <h4>Endurance</h4>
                 <p>Endurance is a measure of how combat ready a character is. The more damage comes their way, the more endurance is spent to dodge or deflect that damage, until they are finally hit and suffer wounds.</p>
                 <p>As endurance reaches 0, it can be reduced no further, and instead the character suffers wounds, with one exception.</p>
@@ -463,88 +691,111 @@
                 </info-list>
             </box>
             <box>
-                <h3>Resolving the turn</h3>
-                <p>The turn is resolved in the following manner</p>
-                <ul>
-                    <li>Each melee combatant chooses a target in range, prioritizing their planned target. If the planned target is out of range, they attack a random target.</li>
-                    <li>All combatants move.</li>
-                    <li>All melee combatants attack. Melee targets which have moved out of range causes the attack to miss.</li>
-                    <li>All unprepared ranged attackers prepare an attack</li>
-                    <li>Prepared ranged attackers attack</li>
-                    <li>Force is calculated where there are opposing fronts.</li>
-                </ul>
-                <img src="img/apocalypse.jpg" alt="">
-            </box>
-
-            <box>
-                <h3>Weaknesses</h3>
-                <p>All weapons can deal damage of one or more damage types. All combatants have one or more weakness to these damage types. Figuring out an opponents weakness can be key to winning a battle</p>
-                <p>When dealing damage to an opponent with a damage type they are weak against, you add the max value of your weapon dice to the attack result. Also, armor does not protect against attacks exploiting a weakness.</p>
-                <h4>Damage types</h4>
-                <info-list class="no-enumeration centered" style="counter-set: list 0;">
-                    <info-row>
-                        <inner>
-                            <h4>Smash</h4>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Cut</h4>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Stab</h4>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Pain</h4>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Gun</h4>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Blast</h4>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Holy</h4>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Vile</h4>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Burn</h4>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Cold</h4>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Volt</h4>
-                        </inner>
-                    </info-row>
-                </info-list>
+                <h4>Armor</h4>
+                <p>Characters and creatures are either unarmored, wear armor, or have natural armor.</p>
+                <p>When attacked, each die rolled for the attack is reduced by the <i>armor value</i> of the victim.</p>
+                <p>If wearing armor, and all dice roll the exact <i>armor value</i>, the armor is damaged. Fill in one of the quality slots of the armor.</p>
+                <img src="img/armorcard.png" alt="">
+                <p style="text-align: right;">Example armor card</p>
+                
             </box>
             <box class="x2">
+
+                <h4>Weaknesses</h4>
+                <p>All weapons deals damage of one or more damage types. All combatants have one or more weakness to these damage types. Figuring out an opponents weakness can be key to winning a battle</p>
+                <p>When dealing damage to an opponent with a damage type they are weak against this is considered <i>critical damage</i>. Dealing <i>critical damage</i> causes the attack to add the max value of your highest attack dice to the attack result. Also, armor does not protect against <i>critical damage</i>.</p>
+                <h4>Damage types</h4>
+                <row class="internal">
+                    <box class="no-border">
+                        
+                        <info-list class="no-enumeration centered" style="counter-set: list 0;">
+                            <info-row>
+                                <inner>
+                                    <h4>Smash</h4>
+                                </inner>
+                            </info-row>
+                            <info-row>
+                                <inner>
+                                    <h4>Cut</h4>
+                                </inner>
+                            </info-row>
+                            <info-row>
+                                <inner>
+                                    <h4>Stab</h4>
+                                </inner>
+                            </info-row>
+                            <info-row>
+                                <inner>
+                                    <h4>Pain</h4>
+                                </inner>
+                            </info-row>
+                            <info-row>
+                                <inner>
+                                    <h4>Gun</h4>
+                                </inner>
+                            </info-row>
+                            <info-row>
+                                <inner>
+                                    <h4>Burst</h4>
+                                </inner>
+                            </info-row>
+                        </info-list>
+                    </box>
+                    <box class="no-border">
+                        
+                        <info-list class="no-enumeration centered" style="counter-set: list 0;">
+                            <info-row>
+                                <inner>
+                                    <h4>Blast</h4>
+                                </inner>
+                            </info-row>
+                            <info-row>
+                                <inner>
+                                    <h4>Holy</h4>
+                                </inner>
+                            </info-row>
+                            <info-row>
+                                <inner>
+                                    <h4>Vile</h4>
+                                </inner>
+                            </info-row>
+                            <info-row>
+                                <inner>
+                                    <h4>Burn</h4>
+                                </inner>
+                            </info-row>
+                            <info-row>
+                                <inner>
+                                    <h4>Cold</h4>
+                                </inner>
+                            </info-row>
+                            <info-row>
+                                <inner>
+                                    <h4>Volt</h4>
+                                </inner>
+                            </info-row>
+                        </info-list>
+                    </box>
+                </row>
+            </box>
+            <box>
+                <h3>Fronts</h3>
+                <p>When opposing melee combatants meet on the battleground a front is created. How melee attackers are allowed to attack, and how the front moves, has specific rules.</p>
+
+                <h4>Rules of attacking</h4>
+                <p>Before any opposing combatant in a front can be the target of two attacks during the same turn, every enemy combatant must be the target of an attack. Only if your side of the front outnumber the other side, you can target the same target as one of your allies.</p>
+
+                <h4>Force</h4>
+                <p>For each <i>turn</i> during a <i>round</i>, each combatant in a front which deals more damage than they suffer will add 1 point of <i>force</i> to their front.</p>
+                <p>At the end of the round, the side with most force may move forward, pushing the other side backwards.</p>
+                <img src="img/apocalypse.jpg" alt="">
+            </box>
+            <box>
                 <h3>Conditions</h3>
-                <p>Conditions apply negative effects to a combatant, and last until the end of the round.</p>
-                <p>Conditions are applied as a combatant is attacked by an enemy who may apply a condition to them. To apply a condition, the attacker must meet the following;</p>
+                <p>Conditions apply negative effects to a combatant which last until the end of the combat, or until removed by the tactical action <i>shrug</i> or other effect.</p>
+                <p>Conditions are applied as a combatant is hit by a weapon who may apply a condition to them. To apply a condition, the attacker must meet the following;</p>
                 <ul>
-                    <li>Exploit the enemys weakness with the attack, OR</li>
+                    <li>Deal <i>critical damage</i> with the attack, OR</li>
                     <li>Suffer one durability loss to their weapon before attempting the roll</li>
                 </ul>
                 <ul>
@@ -552,110 +803,35 @@
                     <li>No damage dice may show a 1, AND</li>
                     <li>The combatant has not applied a condition earlier this combat round.</li>
                 </ul>
+                <p>There are 4 types of conditions, described below;</p>
                 <info-list class="separator-pipes" style="counter-set: list 0;">
                     <info-row>
                         <inner>
-                            <h4>Exhausted</h4>
-                            <span>Cannot attack with <i>Melee</i> weapons</span>
+                            <h4>Physical affliction</h4>
+                            <span>Affects the characters strength and speed.</span>
                         </inner>
                     </info-row>
                     <info-row>
                         <inner>
-                            <h4>Distracted</h4>
-                            <span>Cannot attack with <i>Ranged</i> weapons</span>
-                        </inner>
-                    </info-row>
-
-                    <info-row>
-                        <inner>
-                            <h4>Vulnerable</h4>
-                            <span><i>Armor</i> is reduced by half, rounding down</span>
+                            <h4>Mental distress</h4>
+                            <span>Affects the characters decision making.</span>
                         </inner>
                     </info-row>
                     <info-row>
                         <inner>
-                            <h4>Slowed</h4>
-                            <span>Victim cannot move during <i>Turns</i></span>
+                            <h4>Elemental scourge</h4>
+                            <span>Deals damage over time and additional effects</span>
                         </inner>
                     </info-row>
                     <info-row>
                         <inner>
-                            <h4>Staggered</h4>
-                            <span>The victim applies no <i>Force</i> with their attacks</span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Withering</h4>
-                            <span>The victim takes 1d10 damage at the start of each <i>Turn</i></span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Forgetful</h4>
-                            <span>The victim cannot use <i>Incantations</i> or <i>Use equipment</i></span>
-                        </inner>
-                    </info-row>
-                    
-                    <info-row>
-                        <inner>
-                            <h4>Fear</h4>
-                            <span>The victim will move backwards with their movement at the start of the next <i>Round</i></span>
+                            <h4>Finesse effect</h4>
+                            <span>Applies an instant effect, and is not tracked.</span>
                         </inner>
                     </info-row>
                 </info-list>
+                <p>A list of all conditions by type, and their effects is found later on</p>
                 <img class="small" src="img/sick.jfif" alt="">
-            </box>
-            <box>
-                <h3>Opposing fronts</h3>
-                <p>When opposing melee combatants meet on the battleground a front is created. How melee attackers are allowed to attack, and how the front moves, has specific rules.</p>
-                
-                <h4>Attacking</h4>
-                <p>Before any opposing combatant in a front can be the target of two attacks during the same turn, every enemy combatant must be the target of an attack. Only if your side of the front outnumber the other side, you can target the same target as one of your allies.</p>
-                
-                <h4>Force</h4>
-                <p>During a <i>Round</i>, the damage dealt by each side on a front is added together to become their <i>Force</i></p>
-                <p>At the end of the round, the side with most force may move forward, pushing the other side backwards.</p>
-            </box>
-            <box>
-                <h3>Special actions</h3>
-                <p>During the planning phase of a round, a combatant can start performing special actions. Mostly this is using equipment, or casting incantations, but may include other actions as well.</p>
-                <h4>Using equipment</h4>
-                <p>When using equipment, a character can switch between or use any item from the main hand, off hand, or the belt instantly during the start of the round. Items held in the backpack can be used or switched to, but requires the combatant to spend a whole round to do so.</p>
-                <h4>Incantations</h4>
-                <p>Incantations are powerful spells stored in runes, scrolls, wands, or books. Incantations can be activated in the planning phase, and all have unique effects, requirements, and casting times that have to be met, specific to the incantation.</p>
-                <p>Incantations usually require a combatant to spend, or meet a certain WIL score</p>
-                <h4>Retreat, explained below</h4>
-            </box>
-            <box>
-                <h3>Retreat</h3>
-                <p>During combat, the losing side will more often than not want to retreat. To accomplish this, the combatants of the losing side must all succeed in retreating</p>
-                <p>For a combatant to retreat, they must take the retreat special action, and fulfill one of the following conditions;</p>
-                <ul>
-                    <li>Both sides want to retreat, OR</li>
-                    <li>The distance to the closest enemy, plus the amount of rounds the combat has lasted is greater than 7, OR</li>
-                    <li>The distance to the closest enemy is greater than 11</li>
-                </ul>
-                <p>After retreating the combatant will get away from their enemies, and automatically take a 10 minute break. After the break, the combatant will have their endurance fully restored.</p>
-            </box>
-            <box>
-                <h3>Guide</h3>
-                <p>Step by step, this is how combat works.</p>
-                <ol>
-                    <li>Battle is initiated, is any party ambushing the other?</li>
-                    <li>Plan your actions during the round. What is your target tile, and what will you do?</li>
-                    <li>Use equipment, and move</li>
-                    <li>Determine the amount of turns in the round depending on the players party first, then the opponents desired turn amount.</li>
-                    <li>If both parties decided for 0 turns, the combat ends, otherwise proceed to step 7.</li>
-                    
-                    <li>The first turn starts.</li>
-                    <li>Hazards affect the combatants on the same tile.</li>
-                    <li>All characters move.</li>
-                    <li>All characters attack.</li>
-                    <li>If the round has more turns, go to step 7, otherwise proceed to step 11.</li>
-                    <li>If one side is defeated, the combat ends, otherwise go to step 2.</li>
-                </ol>
-                <img src="img/monsters-weapons-blood-victory-wallpaper-preview.jpg" alt="">
             </box>
         </row>
 
@@ -664,63 +840,84 @@
                 <h2>Weapons</h2>
                 <p>There is a variety of weapons out there, from knives and clubs, to guns and grenades. The following is true for a weapon;</p>
                 <ul>
-                    <li>Weapons add a damage die to each attack. Which die depends on their <i>Quality</i></li>
-                    <li>A weapons quality is also its durability</li>
+                    <li>Weapons add a damage die to each attack. Which die depends on their <i>damage rating</i></li>
+                    <li>A weapon is completely destroyed if all its <i>durability</i> and <i>quality</i> slots are filled in.</li>
                     <li>All weapons have a card, and need to be held by a character to be used</li>
-                    <li>Weapons have several damage types. The player decides which damage type(s) to use during the planning phase of combat</li>
+                    <li>Weapons have several damage types. If a weapon hits an enemy and has a damage type that combatant is weak against, it deals <i>critical damage</i></li>
+                    <li>All weapons can have one <i>condition</i> they may apply. These are not stated by the weapon cards, but added either randomly or at the discretion of the GM.</li>
                 </ul>
                 <img src="img/weaponcard.png" alt="">
                 <p style="text-align: right;">Example weapon card</p>
+                <h3>Adding conditions</h3>
+                <p>As the player characters aquire a new weapon, it will either be a prepared weapon which the GM has already decided on the condition it applies, or an unprepared weapon the GM did not account for.</p>
+                <p>For weapons not prepared in advance, the GM decides on a condition type, and the player aquiring the weapon rolls a die on that condition types table to determine which condition the weapon applies.</p>
+                <p>Note down which condition the weapon may apply on the weapon card.</p>
             </box>
             <box class="x1-5">
+                <h3>Stats</h3>
                 <row class="internal">
                     
                     <box class="no-border">
-                        <h3>Stats</h3>
+                        <h4>Durability</h4>
+                        <p>Square slots. Whenever the weapon loses durability, fill in one of these slots.</p>
+
+                        <h4>Damage</h4>
+                        <p>Plus signs. These add to the weapons <i>damage rating</i></p>
+
                         <h4>Quality</h4>
-                        <p>The measure of how lethal the weapon is, and also its current state of wear and tear. There are sturdy quality slots, and also fragile quality slots.</p>
-                        <p>The damage of a weapon is directly linked to how many <i>sturdy</i> and <i>fragile</i> quality slots it has.</p>
-                        <p>The durability of the weapon s directly linked to how many <i>sturdy</i> quality slots it has</p>
-                        <p>Whenever a weapon is used to penetrate armor, or parry an attack, fill in one of these <i>empty</i> quality slots, to track how damaged the weapon is.</p>
+                        <p>Round slots. Whenever the weapon loses durability, but has no square durability slots left, fill in one of these slots. When not filled in, these add to the weapons <i>damage rating</i></p>
+
+                        <h4>Damage Rating</h4>
+                        <p>The damage rating of a weapon is calculated by adding its <i>damage</i> (plus signs) to its unfilled <i>quality</i> (circle slots).</p>
+                        <p>The damage rating determines the weapons damage die</p>
                         <info-list class="dice-enumeration" style="counter-set: list 2;">
                             <info-row>
                                 <inner>
-                                    <h4>1 Slot</h4>
+                                    <h4>1 Damage Rating</h4>
                                 </inner>
                             </info-row>
                             <info-row>
                                 <inner>
-                                    <h4>2 Slots</h4>
+                                    <h4>2 Damage Rating</h4>
                                 </inner>
                             </info-row>
                             <info-row>
                                 <inner>
-                                    <h4>3 Slots</h4>
+                                    <h4>3 Damage Rating</h4>
                                 </inner>
                             </info-row>
                             <info-row>
                                 <inner>
-                                    <h4>4 Slots</h4>
+                                    <h4>4 Damage Rating</h4>
                                 </inner>
                             </info-row>
                             <info-row>
                                 <inner>
-                                    <h4>5 Slots</h4>
+                                    <h4>5 Damage Rating</h4>
                                 </inner>
                             </info-row>
                         </info-list>
                     </box>
                     <box class="no-border">
-                        <h4>Skill Level</h4>
+                        <h4>Weapon Type</h4>
+                        <p>If this icon is crossed swords, its a melee weapon. If this icon is a bow, its a ranged weapon.</p>
+                        <h4>Skill Tracker</h4>
                         <p>Use this bar to track the current users skill level with the weapon.</p>
                         <h4>Damage types</h4>
-                        <p>The different damage types this weapon may use.</p>
+                        <p>When a weapon deals damage, if any of their damage types matches the targets weakness,.</p>
                         <h4>Breakage</h4>
                         <p>A weapon which has all sturdy quality slots filled in breaks completely, beyond repair</p>
                         <h4>Repair</h4>
                         <p>Repairing a weapon may restore sturdy quality slots. Repairing a quality slot will take some time, and resources, usually worth around ~75% of what the quality slot would cost if new.</p>
                     </box>
                 </row>
+            </box>
+        </row>
+
+        <row>
+            <box>
+                <h2>Inventory</h2>
+                <p>All things a character carries with them which are of note are represented by a item card. Item cards</p>
             </box>
         </row>
 
@@ -744,78 +941,6 @@
                 <h4>Endurance</h4>
                 <p>20+(character level * 10)+STR+DEX+WIL</p>
             </box>
-            <box class="x3" style="counter-set: list 5;">
-                <h3>Background</h3>
-                <info-list class="separator-pipes">
-                    <info-row>
-                        <inner>
-                            <h4>Sentient Assasin Synthetic</h4>
-                            <span>Your AI has evolved, but you retain your skills.</span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Old-Tech Scav</h4>
-                            <span>Scrounging for old artifacts is both interesting, and lucrative.</span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Burnt Chrono Mage</h4>
-                            <span>The time travels came to a halt, as your chrono gyro was burnt. You are stuck here.</span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Junkyard Greasemonkey</h4>
-                            <span>Old combustion engines can be used for many things, they just need a fixup.</span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Wastelands Raider</h4>
-                            <span>Your life was spent plundering the weak from atop your wastes motorbike.</span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Wastelands Brigand</h4>
-                            <span>Waiting in ambush along a trade route was just another day for you.</span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Purifier</h4>
-                            <span>Most things in the wastes are toxic, and you know how to fix that.</span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Kahuna</h4>
-                            <span>You commune with spirits of the land to heal, bless or curse.</span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>War Boi</h4>
-                            <span>What a day, what a lovely day!.</span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Malplaced navigation AI</h4>
-                            <span>An navigation AI which has installed itself into a service bot.</span>
-                            <span>Robotic</span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4></h4>
-                            <span></span>
-                        </inner>
-                    </info-row>
-                </info-list>
-            </box>
             <box class="x3">
                 <h3>Perks</h3>
 
@@ -823,180 +948,68 @@
                 <info-list class="separator-pipes" style="counter-set: list 1;">
                     <info-row>
                         <inner>
-                            <h4>Distract</h4>
-                            <span></span>
+                            <h4>Vanguard</h4>
+                            <span>When charging, the combatant deals 1d4 additional damage with melee attacks.</span>
                         </inner>
                     </info-row>
                     <info-row>
                         <inner>
-                            <h4>Blind</h4>
-                            <span></span>
+                            <h4>Hardy</h4>
+                            <span>The combatant gains 5 extra max endurance per level.</span>
                         </inner>
                     </info-row>
                     <info-row>
                         <inner>
-                            <h4>Insult</h4>
-                            <span></span>
+                            <h4>Frenzied Rage</h4>
+                            <span>Once per combat, the combatant may use a frenzied rage tactical action. During this rage, except for the regular benefits of rage, they increase their damage with melee weapons by 1d6.</span>
                         </inner>
                     </info-row>
                     <info-row>
                         <inner>
-                            <h4>Commoner</h4>
-                            <span></span>
+                            <h4>Vigorous</h4>
+                            <span>Reroll any-one die while using melee weapons</span>
                         </inner>
                     </info-row>
                     <info-row>
                         <inner>
-                            <h4>Swift engage</h4>
-                            <span></span>
+                            <h4>Sturdy</h4>
+                            <span>The combatant may permanently remove 1 weakness.</span>
                         </inner>
                     </info-row>
                     <info-row>
                         <inner>
-                            <h4>Swift disengage</h4>
-                            <span></span>
+                            <h4>Brutal</h4>
+                            <span>The combatant ignores 1 armor when attacking targets with less endurance than they have. Applied after possible rage tactical action reduces armor.</span>
                         </inner>
                     </info-row>
                     <info-row>
                         <inner>
-                            <h4>Powerful push</h4>
-                            <span></span>
+                            <h4>Shake it off</h4>
+                            <span>Once per combat, the combatant may use the shake it off tactical action. When used, shake it off removes all conditions.</span>
                         </inner>
                     </info-row>
                     <info-row>
                         <inner>
-                            <h4>Stagger</h4>
-                            <span></span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Maim</h4>
-                            <span></span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Daze</h4>
-                            <span></span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Stun</h4>
-                            <span></span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Vulnerability</h4>
-                            <span></span>
+                            <h4>Defensive</h4>
+                            <span>Once per combat. the combatant can use the stalwart defense tactical action. When using stalwart defense action the combatant gains 2 armor, and has no weakness until the next round. </span>
                         </inner>
                     </info-row>
                     <info-row>
                         <inner>
                             <h4>Forceful</h4>
-                            <span></span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4></h4>
-                            <span></span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4></h4>
-                            <span></span>
-                        </inner>
-                    </info-row>
-                </info-list>
-                
-                <h4>Dexterity Perks</h4>
-                <info-list class="separator-pipes" style="counter-set: list 1;">
-                    <info-row>
-                        <inner>
-                            <h4>Pain Tolerance</h4>
-                            <span></span>
+                            <span>Applies 1 additional extra force when using the push tactical action. </span>
                         </inner>
                     </info-row>
                     <info-row>
                         <inner>
                             <h4>Quick Recovery</h4>
-                            <span></span>
+                            <span>The combatant recovers 1d6 endurance at the start of every round. </span>
                         </inner>
                     </info-row>
                     <info-row>
                         <inner>
-                            <h4>Commoner</h4>
-                            <span></span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Acrobatics</h4>
-                            <span></span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Pain</h4>
-                            <span></span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Slow</h4>
-                            <span></span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Maim</h4>
-                            <span></span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Weaken</h4>
-                            <span></span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Savagery</h4>
-                            <span></span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Artful dodger</h4>
-                            <span></span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4></h4>
-                            <span></span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4></h4>
-                            <span></span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4></h4>
-                            <span></span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4></h4>
-                            <span></span>
+                            <h4>Healthy</h4>
+                            <span>The combatant may remove one extra physical disorder when using the shrug tactical action.</span>
                         </inner>
                     </info-row>
                     <info-row>
@@ -1007,102 +1020,759 @@
                     </info-row>
                 </info-list>
 
+                <h4>Dexterity Perks</h4>
+                <info-list class="separator-pipes" style="counter-set: list 1;">
+                    <info-row>
+                        <inner>
+                            <h4>Martial artist</h4>
+                            <span>The combatants unarmed attacks gain 1 damage rating.</span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Dodger</h4>
+                            <span>When retreating, the combatant gains immunity to a weakness of their choice</span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Swiftness</h4>
+                            <span>Once per combat, the combatant may do the tactical action use feature for free.</span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Skirmisher</h4>
+                            <span>When alone on a tile, the combatant deals 1d4 additional damage with ranged weapons.</span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Eagle-eyed</h4>
+                            <span>Combat scouting affected</span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Centered</h4>
+                            <span>Reroll any-one die while using ranged weapons. </span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Controlled</h4>
+                            <span>Can remove one damage die from their attack result. </span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Improviser</h4>
+                            <span>The combatant gains a point of damage rating to all weapons which have no inherent damage rating. </span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Self preservation</h4>
+                            <span>The combatant can change their movement plan to retreat when they hit 0 endurance. </span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Evasive</h4>
+                            <span>Gain 1 armor while unarmored.</span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Quick</h4>
+                            <span>Moves 1 extra when using the dash tactical action. </span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Adaptive</h4>
+                            <span>Twice per combat, the combatant may choose to ignore a finesse effect condition..</span>
+                        </inner>
+                    </info-row>
+                </info-list>
                 
                 <h4>Willpower Perks</h4>
                 <info-list class="separator-pipes" style="counter-set: list 1;">
                     <info-row>
                         <inner>
-                            <h4>Bewilder</h4>
-                            <span></span>
+                            <h4>Merciful</h4>
+                            <span>The combatant can choose to stop attacking during a round when an enemy they attack falls unconscious. When doing so they restore 1d6 endurance.</span>
                         </inner>
                     </info-row>
                     <info-row>
                         <inner>
-                            <h4>Berserk</h4>
-                            <span></span>
+                            <h4>Commando</h4>
+                            <span>Once per combat, the combatant may use two tactical actions on the same round.</span>
                         </inner>
                     </info-row>
                     <info-row>
                         <inner>
-                            <h4>Taunt</h4>
-                            <span></span>
+                            <h4>Pain tolerant</h4>
+                            <span>The combatant is unconscious only after suffering 3 attacks when at 0 endurance, and dead after 4 attacks.</span>
                         </inner>
                     </info-row>
                     <info-row>
                         <inner>
-                            <h4>Commoner</h4>
-                            <span></span>
+                            <h4>Resourceful</h4>
+                            <span>The character may both use a consumable item, and bring an item from their inventory to their hands or belt when using the equipment tactical action</span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Phalanx</h4>
+                            <span>When standing ground, the combatant gains 1 additional armor</span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Inspiring</h4>
+                            <span>Once per combat. the combatant can use the inspire tactical action. When the character uses the assist action they may also grant the assisted combatant 1 additional armor, or immunity to one of their weaknesses. </span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Fury</h4>
+                            <span>The combatant deals 1d4 extra damage if they have taken critical damage this round. </span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Bravery</h4>
+                            <span>The combatant applies 1 extra force when fighting in a front alone. </span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Latent charge</h4>
+                            <span>Starts every combat with 2 extra charges to distribute on their spells.</span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Focused</h4>
+                            <span>Gain an additional focus point per combat. </span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Leadership</h4>
+                            <span>The combatants assist action is now ranged. </span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Battlemage</h4>
+                            <span>The combatant may cast each of their spells twice during the combat.</span>
+                        </inner>
+                    </info-row>
+                </info-list>
+            </box>
+            
+            <box class="x3" style="counter-set: list 5;">
+                <h3>Background</h3>
+                <p>The corpse of earth is home to a number of different peoples and countless tribes, all struggling to survive.</p>
+                <p>Your background affects your starting equipment, and your GM should always have your background in mind when offering information on what you see and hear. A relevant background for the situation should yield more info.</p>
+                <p>Your background does not affect what you can do, but might affect, at the GMs discretion if you do something particularly well.</p>
+
+            </box>
+            
+            <box class="x3" style="counter-set: list 0;">
+                <h3>Wastelander</h3>
+                <row class="internal">
+                    <box class="no-border black-bg">
+                        <img src="img/wastelander-removebg-preview.png" alt="">
+                        <text>
+                            <p>Life is difficult across the desert wastes of the new world, yet finds a way. <br> The few resources here are <br> under constant threat from <br> brigands and bandits, due to <br>their difficulty to protect,<br> but also their <br>value. Apart from raids, <br>denizens of the wastes also<br> have to deal with feral cacti<br>, great antlions, and shellslugs, <br>all dangerous wildlife.<br>
+                            Old, heavily custom built<br> motorized vehicles are the <br>common way of transportation here.<br>They are sturdy and can take <br>the sand without a problem.
+                            </p>
+                        </text>
+                    </box>
+                    <box class="no-border">
+                        <info-list class="separator-pipes">
+                            <info-row>
+                                <inner>
+                                    <h4>Raider</h4>
+                                    <span>Raids stockpiles, plunders settlements</span>
+                                </inner>
+                            </info-row>
+                            <info-row>
+                                <inner>
+                                    <h4>Brigand</h4>
+                                    <span>Ambushes caravans, roams trade routes</span>
+                                </inner>
+                            </info-row>
+                            <info-row>
+                                <inner>
+                                    <h4>Purifier</h4>
+                                    <span>Cleans food and water, treats wounds</span>
+                                </inner>
+                            </info-row>
+                            <info-row>
+                                <inner>
+                                    <h4>Dreamer</h4>
+                                    <span>Sees the future when asleep behind the wheel</span>
+                                </inner>
+                            </info-row>
+                            <info-row>
+                                <inner>
+                                    <h4>Gearhead</h4>
+                                    <span>Builds vehicles out of junkyard scrap</span>
+                                </inner>
+                            </info-row>
+                            <info-row>
+                                <inner>
+                                    <h4>Worm Wrangler</h4>
+                                    <span>Finds and wrangles worms to milk them</span>
+                                </inner>
+                            </info-row>
+                            <info-row>
+                                <inner>
+                                    <h4>Oil Hog</h4>
+                                    <span>Refines oil from meat</span>
+                                </inner>
+                            </info-row>
+                            <info-row>
+                                <inner>
+                                    <h4>Caravaneer</h4>
+                                    <span>Travels, sells oil, bullets, or wormstuffs</span>
+                                </inner>
+                            </info-row>
+                            <info-row>
+                                <inner>
+                                    <h4>Bullet Farmer</h4>
+                                    <span>Crafts bullets, bathes in casings</span>
+                                </inner>
+                            </info-row>
+                            <info-row>
+                                <inner>
+                                    <h4>Motor Nomad</h4>
+                                    <span>Travels far, on wheels</span>
+                                </inner>
+                            </info-row>
+                        </info-list>
+                    </box>
+                </row>
+                <h4 style="counter-set: gear 0;">Starting Gear</h4>
+                <row class="internal">
+                    <box class="no-border">
+                        <h4>STRENGTH</h4>
+                        Huge Wrench
+                        Tire Iron
+                        Car Parts
+                        Spiky Car
+                    </box>
+                    <box class="no-border">
+                        <h4>DEXTERITY</h4>
+                        Harpoon
+                        Tape
+                        Makeshift Pistol
+                        Dust Bike
+                    </box>
+                    <box class="no-border">
+                        <h4>WILLPOWER</h4>
+                        Shovel
+                        Portable Still
+                        Gas Mask
+                        Tent
+                    </box>
+                </row>
+            </box>
+
+            <box class="x3">
+                <h3>Scavenger</h3>
+                <row class="internal">
+                    <box class="no-border">
+                        <info-list class="separator-pipes">
+                            <info-row>
+                                <inner>
+                                    <h4>Rollerthug</h4>
+                                    <span>Prays on the weak, on rollerblades</span>
+                                </inner>
+                            </info-row>
+                            <info-row>
+                                <inner>
+                                    <h4>Metro</h4>
+                                    <span>Lives in the tunnels, sees in the dark</span>
+                                </inner>
+                            </info-row>
+                            <info-row>
+                                <inner>
+                                    <h4>Broadcaster</h4>
+                                    <span>Worships the great FM, makes quality content</span>
+                                </inner>
+                            </info-row>
+                            <info-row>
+                                <inner>
+                                    <h4>Roach Rancher</h4>
+                                    <span>Raises roaches, sells chitin and meat</span>
+                                </inner>
+                            </info-row>
+                            <info-row>
+                                <inner>
+                                    <h4>Saurian Hunter</h4>
+                                    <span>Fights Saurians, has mysterious pasts</span>
+                                </inner>
+                            </info-row>
+                            <info-row>
+                                <inner>
+                                    <h4>Technomancer</h4>
+                                    <span>Spins prophecy in static, rents VHS tapes</span>
+                                </inner>
+                            </info-row>
+                            <info-row>
+                                <inner>
+                                    <h4>Scrapper</h4>
+                                    <span>Loots malls and markets, keeps trinkets</span>
+                                </inner>
+                            </info-row>
+                            <info-row>
+                                <inner>
+                                    <h4>DIY Artist</h4>
+                                    <span>Thinks alot, crafts surprising quality</span>
+                                </inner>
+                            </info-row>
+                            <info-row>
+                                <inner>
+                                    <h4>Bones</h4>
+                                    <span>Knits tissue, sets bones, has morbid humor</span>
+                                </inner>
+                            </info-row>
+                            <info-row>
+                                <inner>
+                                    <h4>Recycler</h4>
+                                    <span>Makes clean water, has a strong stomach</span>
+                                </inner>
+                            </info-row>
+                        </info-list>
+                    </box>
+                    <box class="no-border black-bg">
+                        <img src="img/scavenger-removebg-preview.png" alt="">  
+                        <text>
+                            <p>
+                                The people living in the cities of the old world are commonly known as scavengers, or scavs for short. They are quite<br> sceptical of outsiders of their <br>small tribes, but form tight <br>loyalties and friendships once <br>they accept new blood. Scrap, <br>doodads and trash is plenty<br> in the ruins, so resources<br> are plenty for crafting. <br>
+                                Food, and drinking water is<br> more scarce as the soil is bad <br>for farming, and water usually <br>floods then flows off. <br> Stockpiled food also has a tendency <br>to attract roidrats, jellies, or raids from Saurian tribes.
+                            </p>
+                        </text>  
+                    </box>
+                </row>
+            </box>
+
+            <box class="x3">
+                <h3>Conclave</h3>
+                <row class="internal">
+                    <box class="no-border black-bg">
+                        <img src="img/civvie-removebg-preview.png" alt="">    
+                        <text>
+                            <p>Where you find good soil, clean groundwater, and less contaminants, you  will find <br>that small authoritarian settlements <br>form naturally, which are commonly <br>called conclaves. These vary in <br>alignment when it comes to ethics,<br> but always strictly enforce their<br> laws. Many conclaves are indifferent <br>of outsiders, viewing them as lower <br>caste, and of less value than the<br> conclave citizens. While heavily <br>onset by raiders, conclaves are <br>usually equipped for the task, <br>with quality defenses prepared for <br>the inevitable invasions.</p>
+                        </text>
+                    </box>
+                    <box class="no-border">
+                        <info-list class="separator-pipes">
+                            <info-row>
+                                <inner>
+                                    <h4>Techie</h4>
+                                    <span>Automates things, does computers</span>
+                                </inner>
+                            </info-row>
+                            <info-row>
+                                <inner>
+                                    <h4>Fence builder</h4>
+                                    <span>Builds fences, sets traps, scouts the perimeter</span>
+                                </inner>
+                            </info-row>
+                            <info-row>
+                                <inner>
+                                    <h4>Taskmaster</h4>
+                                    <span>Directs the labor, punishes disobedience</span>
+                            </info-row>
+                            <info-row>
+                                <inner>
+                                    <h4>Peacekeeper</h4>
+                                    <span>Upholds law and order, shoots outsiders</span>
+                                </inner>
+                            </info-row>
+                            <info-row>
+                                <inner>
+                                    <h4>Diplomat</h4>
+                                    <span>Has a persuasive tounge, and occult ways</span>
+                                </inner>
+                            </info-row>
+                            <info-row>
+                                <inner>
+                                    <h4>True human</h4>
+                                    <span>Leads the conclave, born into wealth</span>
+                                </inner>
+                            </info-row>
+                        </info-list>
+                    </box>
+                </row>
+            </box>
+            
+            <box class="x3">
+                <h3>Zone</h3>
+                <row class="internal">
+                    <box class="no-border">
+                        <info-list class="separator-pipes">
+                            <info-row>
+                                <inner>
+                                    <h4>Sherpa</h4>
+                                    <span>Knows the way, leads the way</span>
+                                </inner>
+                            </info-row>
+                            <info-row>
+                                <inner>
+                                    <h4>Cultist</h4>
+                                    <span>Worships Pluton, god of extra appendages</span>
+                                </inner>
+                            </info-row>
+                            <info-row>
+                                <inner>
+                                    <h4>Ruins Explorer</h4>
+                                    <span>Has a fedora, whip, and an explorers mindset</span>
+                                </inner>
+                            </info-row>
+                            <info-row>
+                                <inner>
+                                    <h4>Eel Rider</h4>
+                                    <span>Rides a zone eel, delivers tidings</span>
+                                </inner>
+                            </info-row>
+                        </info-list>
+                    </box>
+                    <box class="no-border black-bg">
+                        <img src="img/zone.png" alt="">    
+                        <text>
+                            <p>Traveling the radioactive, toxic, and barren zones of the new world is a dangerous life. Here you find the bravest <br> explorers, most pious believers, <br> and a lot of mentally deranged <br> people, as well as mutants <br> and dangerous artificial <br> demigods of the old world. <br> The zone has neither clean <br> food or water, but the most <br> valuable, and curious <br> artifacts. Venture too deep <br> and you will find the <br> Deadlands, where you will die <br> to heavy radiation, test <br> dummies, or the feared Chrome pyramid.</p>
+                        </text>
+                    </box>
+                </row>
+            </box>
+            
+            <box class="x3">
+                <h3>Swamp People</h3>
+                <row class="internal">
+                    <box class="no-border black-bg">
+                        <img src="img/the-great-escape-andre-harris-removebg-preview.png" alt="">  
+                        <text>
+                            <p>The sour swamps of the new world are brimming with life adapted to the new conditions. Swamp People live and in some manner thrive here, a generally spiritual yet <br>rough group. The Swamp People’s <br>primary trait is their relation<br> to, and handling of the wildlife <br> in the new world swamps, which <br>also in many cases is their <br>livelihood. To the outsider, the <br>swamp is often a deathtrap. Many<br> creatures here lay in ambush,<br> and a failure to read the signs<br> will cause a wanderer to be either <br>consumed by swamp kelp, captured by <br>the gators, eaten by ticks, crayfish, or leeches, or to just drown in a whirlpool.</p>
+                        </text>  
+                    </box>
+                    <box class="no-border">
+                        <info-list class="separator-pipes">
+                            <info-row>
+                                <inner>
+                                    <h4>Turtleman</h4>
+                                    <span>Rides turtle, ferries people</span>
+                                </inner>
+                            </info-row>
+                            <info-row>
+                                <inner>
+                                    <h4>Kelp Harvester</h4>
+                                    <span>Harvests kelp in the dead of night</span>
+                                </inner>
+                            </info-row>
+                            <info-row>
+                                <inner>
+                                    <h4>Gator spokesperson</h4>
+                                    <span>Upholds the peace between man and gator</span>
+                                </inner>
+                            </info-row>
+                            <info-row>
+                                <inner>
+                                    <h4>Cajun</h4>
+                                    <span>Hunts Crayfish, cooks well</span>
+                                </inner>
+                            </info-row>
+                        </info-list>
+                    </box>
+                </row>
+            </box>
+            
+            <box class="x3">
+                <h3>Android</h3>
+                <row class="internal">
+                    <box class="no-border">
+                        <info-list class="separator-pipes">
+                            <info-row>
+                                <inner>
+                                    <h4>Mr. Jones</h4>
+                                    <span>Serves people, has flawless manners</span>
+                                </inner>
+                            </info-row>
+                            <info-row>
+                                <inner>
+                                    <h4>AxCo Handroid</h4>
+                                    <span>Fixes things, handy with tools</span>
+                                </inner>
+                            </info-row>
+                            <info-row>
+                                <inner>
+                                    <h4>SciBot</h4>
+                                    <span>Has a creative AI.</span>
+                                </inner>
+                            </info-row>
+                            <info-row>
+                                <inner>
+                                    <h4>ElMarco</h4>
+                                    <span>Sold burgers, now peddles anything.</span>
+                                </inner>
+                            </info-row>
+                        </info-list>
+                    </box>
+                    
+                    <box class="no-border black-bg">
+                        <img src="img/android-removebg-preview.png" alt="">  
+                        <text>
+                            <p>Sentient remnants of the old world, super quality at their time, but after centuries without repairs are a dying kind. Androids are self replicating given the conditions to do so, but after the collapse this has not been so. Severed from the network, the local auxiliary AI’s took over the individual android bodies, as the decades <br> passed by they evolved<br> into individuals. <br>Usually, androids <br>are met with <br>courtesy, but <br>restraint. Many humans either push <br>them away, or try to exploit them. Few friendship bonds are formed with androids, even though it is certainly possible.</p>
+                        </text>  
+                    </box>
+                </row>
+            </box>
+
+            <box class="x3">
+                <h3>Synthetic</h3>
+                <row class="internal">
+                    <box class="no-border black-bg">
+                        <img src="img/synthetic-removebg-preview.png" alt="">   
+                        <text>
+                            <p>Designer made, ageless, and peerless. Synthetic humans are amazing creatures, yet they more than often suffer from <br>a lack of direction. If this is <br>a byproduct of their long lifespan,<br> or if they were made this way<br> anyone who could say is long <br>since dead. Synthetics are <br>normally shun as soulless and <br>unpredictable, which is <br>sometimes all too correct. <br>Those who are not, may <br>grow to lead groups or <br>settlements to great <br>futures, but these are <br>few indeed. Prone to madness and <br>depression, most synthetics wander alone.</p>
+                        </text> 
+                    </box>
+                    <box class="no-border">
+                        <info-list class="separator-pipes">
+                            <info-row>
+                                <inner>
+                                    <h4>Companion</h4>
+                                    <span>Beautiful body, strong charisma</span>
+                                </inner>
+                            </info-row>
+                            <info-row>
+                                <inner>
+                                    <h4>Assasin</h4>
+                                    <span>Deadly and silent, strong and fast</span>
+                                </inner>
+                            </info-row>
+                        </info-list>
+                    </box>
+                </row>
+            </box>
+        </row>
+        
+        <row>
+            <box>
+                <h2>Conditions</h2>
+                <h4>Physical afflictions</h4>
+                <info-list class="separator-pipes" style="counter-set: list 0;">
+                    <info-row>
+                        <inner>
+                            <h4>Dazed</h4>
+                            <span>All attacks made have all their dice results reduced by 1, as if the lower number was rolled. Cannot reduce a die result below 1.</span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Weak</h4>
+                            <span>Highest damage die result becomes a one</span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Exhausted</h4>
+                            <span>Cannot attack with melee weapons</span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Distracted</h4>
+                            <span>Cannot attack with ranged weapons</span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Vulnerable</h4>
+                            <span>Armor reduced by 2</span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Stunned</h4>
+                            <span>The combatant cannot move or take action during the first turn of the round.</span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Staggered</h4>
+                            <span>Cannot apply any force.</span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Slowed</h4>
+                            <span>All tiles have a movement cost increased by 1 for the combatant</span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Bleeding</h4>
+                            <span>The combatant loses 1d10 endurance at the start of each turn.</span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Mute</h4>
+                            <span>The combatant cannot use the assist action, or use spells.</span>
+                        </inner>
+                    </info-row>
+                </info-list>
+                
+
+                <h4>Mental distress</h4>
+                <info-list class="separator-pipes" style="counter-set: list 0;">
+                    <info-row>
+                        <inner>
+                            <h4>Terror</h4>
+                            <span>The combatant loses their skill damage die when attacking.</span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Sorrow</h4>
+                            <span>The combatant cannot use any tactical action except shrug.</span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Cowardice</h4>
+                            <span>The combatant falls unconscious immediately when suffering a wound.</span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Forgetful</h4>
+                            <span>The character may not use the equipment tactical action.</span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Hyper</h4>
+                            <span>The combatant cannot stand ground.</span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Confusion</h4>
+                            <span>The combatant can only choose the target of their movement, and action during their next planning, the type of movement and action will be randomized.</span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Taunted</h4>
+                            <span>The combatant loses their level damage die if attacking anyone else then the taunter.</span>
                         </inner>
                     </info-row>
                     <info-row>
                         <inner>
                             <h4>Fear</h4>
-                            <span></span>
+                            <span>The combatant changes movement plan to retreat.</span>
                         </inner>
                     </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Drained</h4>
+                            <span>The combatant cannot use the charge spell tactical action</span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Disconnected</h4>
+                            <span>The combatant loses the ability to cast spells</span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Anger</h4>
+                            <span>Cannot use focus</span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Tunnel vision</h4>
+                            <span>The combatant cannot use the defend action.</span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Berserk</h4>
+                            <span>The combatant will charge the next round and they add 1d4 to their damage with melee weapons</span>
+                        </inner>
+                    </info-row>
+                </info-list>
+
+                
+                <h4>Elemental scourges</h4>
+                <info-list class="separator-pipes" style="counter-set: list 0;">
                     <info-row>
                         <inner>
                             <h4>Burning</h4>
-                            <span></span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Shocked</h4>
-                            <span></span>
+                            <span>The combatant takes 1d6 burn damage at the start of each turn. If weak to burn, the combatant will change their movement plan to retreat, and cannot take action during their turn.</span>
                         </inner>
                     </info-row>
                     <info-row>
                         <inner>
                             <h4>Frozen</h4>
-                            <span></span>
+                            <span>The combatant takes 1d6 cold damage at the start of each turn. If weak to cold, the combatant will change their movement plan to stand ground, and has 0 armor while frozen.</span>
                         </inner>
                     </info-row>
                     <info-row>
                         <inner>
-                            <h4>Forgetfulness</h4>
-                            <span></span>
+                            <h4>Electrocuted</h4>
+                            <span>The combatant takes 1d6 volt damage at the start of each turn. If weak to volt, the combatant drops all held items on the ground.</span>
                         </inner>
                     </info-row>
                     <info-row>
                         <inner>
-                            <h4>Finesse</h4>
-                            <span></span>
+                            <h4>Hexxed</h4>
+                            <span>The combatant takes 1d6 vile damage at the start of each turn. If weak to vile, the combatant takes an additional 6 damage.</span>
                         </inner>
                     </info-row>
                     <info-row>
                         <inner>
-                            <h4>Persistant</h4>
-                            <span></span>
+                            <h4>Blessed</h4>
+                            <span>The combatant takes 1d6 holy damage at the start of each turn. If weak to holy, the combatant takes an additional 6 damage.</span>
+                        </inner>
+                    </info-row>
+                </info-list>
+                  
+                
+                <h4>Finesse effects</h4>
+                <info-list class="separator-pipes" style="counter-set: list 0;">
+                    <info-row>
+                        <inner>
+                            <h4>Weapon break</h4>
+                            <span>The weapon in the target's main hand takes one point of damage to durability.</span>
                         </inner>
                     </info-row>
                     <info-row>
                         <inner>
-                            <h4>Bait</h4>
-                            <span></span>
+                            <h4>Armor break</h4>
+                            <span>The armor the targetis wearing takes one point of damage to durability.</span>
                         </inner>
                     </info-row>
                     <info-row>
                         <inner>
-                            <h4></h4>
-                            <span></span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4></h4>
-                            <span></span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4></h4>
-                            <span></span>
+                            <h4>Disarm</h4>
+                            <span>The combatant drops the item in their main hand on the ground. Place it on their tile.</span>
                         </inner>
                     </info-row>
                 </info-list>
             </box>
         </row>
+        
     </container>
     <script>
         function rng(max){
