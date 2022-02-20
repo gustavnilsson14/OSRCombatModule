@@ -4,389 +4,283 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
     <link rel="stylesheet" href="css/default.css">
+    <title>Document</title>
     <style>
-        body{
-            flex-direction: row;
-        }
         *{
-            text-transform: uppercase;
-            font-size: 20px;
-            font-family: 'source';
-            font-weight: 700;
+            font-family: source;
         }
-        .uc{
-            text-transform: uppercase;
+        .x0-5{
+            width: 50%;
         }
-        .c4{
-            flex-grow: 0.33;
-        }
-        .c5{
-            flex-grow: 0.4;
-        }
-        .c6{
-            flex-grow: 0.5;
-        }
-        .c7{
-            flex-grow: 0.6;
-        }
-        .c8{
-            flex-grow: 0.67;
+        .flex-end{
+            justify-content: flex-end;
         }
         container{
             width: 500px;
-            height:700px;
-            background: #eee;
-            display: block;
-            position: relative;
-        }
-        container bg{    
-            position: absolute;
-            background: url(bg.png);
-            width: 100%;
-            height: 400px;
-            z-index: 2;
-            background-size: 150%;
-            background-position: -85px 85px;
-            background-repeat: no-repeat;
-        }
-        row{
+            height: 669px;
             display: flex;
-            justify-content: center;
-            flex-direction: row;
-        }
-        box{
-            z-index: 3;
-            position: relative;
-            display: flex;
-            justify-content: space-evenly;
-            flex-grow: 1;
-            flex: 1;
             flex-direction: column;
-            margin: 5px 10px;
             background: #eee;
         }
-        inventory-box{
-            display: inline-flex;
-            justify-content: center;
-            flex-grow: 1;
-            flex: 1;
-            flex-direction: row;
-            flex-wrap: wrap;
-            counter-reset: line-number;
-        }
-        box-header,
-        row-header{
+        slot{
+            font-size: 20px;
             display: flex;
-            justify-content: center;
-        }
-        parameter{
-            display: flex;
-            justify-content: space-evenly;
-            flex-grow: 1;
-            flex-direction: row;
-            height: 34px;
-            border:1px solid black
-        }
-        parameter.narrow{
-            height: 24px;
-        }
-        parameter key{
-            background: #ccc;
-            padding: 5px;;
-            display: flex;
-            flex:1;
-            flex-grow: 1;
-            justify-content: center;
+            width:119px;
+            height:119px;
+            position: relative;
             flex-direction: column;
+            justify-content: center;
             text-align: center;
+            border-top: 1px solid black;
+            border-left: 1px solid black;
+            background: #bbb;
         }
-        parameter key.small{
-            font-size: 12px;
-            font-weight: bold;
-            text-transform: uppercase;
-        }
-        parameter value{
-            display: flex;
-            flex-grow: 1;
-            flex: 1.4;
-        }
-        parameter separator{
-            margin: 5px 0;
-            content: "";
+        row.internal slot:nth-child(2n){
             border-right: 1px solid black;
+            width: 118px;
         }
-        inventory-slot{
-            position: relative;
-            border: 1px dotted black;
+        row.internal:last-child slot{
+            border-bottom: 1px solid black;
+            height: 118px;
         }
-        .c6 inventory-slot{
-            width: calc(33% - 5px);
-            padding-bottom: calc(33% - 5px);
-        }
-        inventory-slot text{
-            padding: 10px;
+        skill{
             position: absolute;
             display: flex;
-            width: calc(100% - 20px);
-            height: calc(100% - 20px);
-            justify-content: center;
-            flex-direction: column;
-            text-align: center;
-            word-wrap: break-word;
-            font-size: 18px;
+            flex-direction: row;
+            width: 119px;
+            height: 15px;
+            bottom: 0px;
         }
-        inventory-slot.indexed{
-            counter-increment: line-number;
+        skill skillslot{
+            display: flex;
+            flex: 1;
+            flex-grow: 1;
+            height: 15px;
+            border: 1px solid black;
+            border-bottom: 0px;
+            
             background: #ddd;
         }
-        inventory-slot.indexed::after{
-            padding: 10px;
-            position: absolute;
+        stat{
+            height: 26px;
             display: flex;
-            width: calc(100% - 20px);
-            height: calc(100% - 20px);
-            justify-content: center;
+            border: 1px solid black;
+            background: #ddd;
+        }
+        stat>* {
+            height:23px;
+            line-height: 23px;
+        }
+        stat>name {
+            padding: 2px 5px;
+            background: #bbb;
+            min-width: calc(44% - 4px);
+        }
+        row, column{
+            display: flex;
+            flex-direction: row;
+            padding: 5px 0px;
+        }
+        column{
             flex-direction: column;
+            padding: 0px 5px;
+        }
+        row.internal, column.internal{
+            padding: 0;
+        }
+        .wrap{
+            flex-wrap: wrap;
+        }
+        box{
+            flex: 1;
+            flex-grow: 1;
+        }
+        portrait{
+            height: 205px;
+            display: flex;background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='28' ry='28' stroke='%23333' stroke-width='6' stroke-dasharray='5%2c 25' stroke-dashoffset='0' stroke-linecap='round'/%3e%3c/svg%3e");
+            border-radius: 28px;
+            stroke-dashoffset: 5px;
+            margin-right: 21px;
+        }
+        perks{
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            height: 100%;
+            background: #bbb;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+        }
+        perks header{
             text-align: center;
-            font-size: 38px;
-            content: counter(line-number);
+            flex:1;
+            flex-grow:1;
+            display: flex;
+            justify-content: center;
+            align-self: flex-end;
+            width: 100%;
+        }
+        perk{
+            background: #ddd;
+            display: flex;
+            flex-grow: 1;
+            width: calc(100% - 2px);
+            border-bottom: 1px solid black;
+        }
+        perk:nth-child(2){
+            background: #bbb;
+        }
+        endurance{
+            position: absolute;
+            background: url(img/shield.svg);
+            display: flex;
+            height: 150px;
+            background-repeat: no-repeat;
+            background-position: center;   
+            position: relative;
+            top: -15px;
+            left: 0px;
+            background-size: 90%;
+        }
+        endurance separator{
+            position: absolute;
+            display: block;
+            border-right: 6px solid black;
+            height: 70px;
+            top:40px;
+            left: calc(50% - 3px);
+        }
+        wound{
+            flex: 1;
+            flex-grow: 1;
+            display: flex;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: 45px 0px;
+            margin: 10px;
+            flex-direction: column;
+            justify-content: center;
+        }
+        wound::before{
+            margin-left: 10px;
+            border: 3px solid black;
+            background: #ddd;
+            border-radius: 50%;
+            content: "";
+            width: 15px;
+            height: 15px;
+        }
+        wound:nth-child(1){
+            background-image: url(img/wound.png);
+        }
+        wound:nth-child(2){
+            background-image: url(img/heart-pulse-solid.svg);
+        }
+        wound:nth-child(3){
+            background-image: url(img/skull-solid.svg);
         }
     </style>
 </head>
 <body>
-    <nav>
-        <a href="rules.html">Rules</a>
-        <a href="battle.html">Battle</a>
-        <a href="sheet.html">Sheet</a>
-        <a href="battleground_tiles.html">Tiles</a>
-        <a href="items.html">Items</a>
-        <a href="vehicles.html">Vehicles</a>
-    </nav>
     <container>
-        <bg></bg>
-        <row>
-            <box>
-                <parameter>
-                    <key>name</key>
-                    <value></value>
-                </parameter>
-                <parameter>
-                    <key>level</key>
-                    <value></value>
-                </parameter>
-            </box>
-            <box>
-                <parameter>
-                    <key>background</key>
-                </parameter>
-                <parameter class="narrow">
-                    <value></value>
-                </parameter>
-                <parameter class="narrow">
-                    <value></value>
-                </parameter>
-                <parameter class="narrow">
-                    <value></value>
-                </parameter>
-            </box>
-        </row>
-        <row style="justify-content: flex-end; margin-top: 25px;">
-            <box class="c5">
-                <parameter>
-                    <key class="uc">str</key>
-                    <value></value>
-                </parameter>
-                <parameter>
-                    <key class="uc">dex</key>
-                    <value></value>
-                </parameter>
-                <parameter>
-                    <key class="uc">wil</key>
-                    <value></value>
-                </parameter>
-            </box>
-            
-        </row>
-        <row style="justify-content: flex-end;">
-            <box class="c5">
-                <parameter>
-                    <key class="uc">en</key>
-                    <value></value>
+        <row style="padding-top:0px;">
+            <box style="flex-grow: 2.18;">
+                <stat>
+                    <name>Name</name>
                     <separator></separator>
                     <value></value>
-                </parameter>
-                <parameter>
-                    <key class="small">credits</key>
-                    <value></value>
-                </parameter>
-            </box>
-        </row>
-        <row-header style="margin-top: 36px;">inventory</row-header>
-        <row>
-            <inventory-box class="c6">
-                <inventory-slot>
-                    <text>Main hand</text>
-                </inventory-slot>
-                <inventory-slot>
-                    <text>Body</text>
-                </inventory-slot>
-                <inventory-slot>
-                    <text>Belt</text>
-                </inventory-slot>
-                <inventory-slot>
-                    <text>Off hand</text>
-                </inventory-slot>
-                <inventory-slot>
-                    <text>Body</text>
-                </inventory-slot>
-                <inventory-slot>
-                    <text>Belt</text>
-                </inventory-slot>
-            </inventory-box>
-            <inventory-box class="c6">
-                <inventory-slot class="indexed"></inventory-slot>
-                <inventory-slot class="indexed"></inventory-slot>
-                <inventory-slot class="indexed"></inventory-slot>
-                <inventory-slot class="indexed"></inventory-slot>
-                <inventory-slot class="indexed"></inventory-slot>
-                <inventory-slot class="indexed"></inventory-slot>
-            </inventory-box>
-        </row>
-        <row>
-            <box>
-                <parameter>
-                    <key>perks</key>
-                </parameter>
-                <parameter class="narrow">
-                    <value></value>
+                </stat>
+                <stat>
+                    <name>Background</name>
                     <separator></separator>
                     <value></value>
-                </parameter>
-                <parameter class="narrow">
-                    <value></value>
+                </stat>
+                <stat>
+                    <name>Level</name>
                     <separator></separator>
                     <value></value>
-                </parameter>
-                <parameter class="narrow">
-                    <value></value>
-                    <separator></separator>
-                    <value></value>
-                </parameter>
-            </box>
-        </row>
-    </container>
-    <container>
-        <bg></bg>
-        <row>
-            <box>
-                <parameter>
-                    <key>name</key>
-                    <value></value>
-                </parameter>
-                <parameter>
-                    <key>level</key>
-                    <value></value>
-                </parameter>
+                </stat>
             </box>
             <box>
-                <parameter>
-                    <key>background</key>
-                </parameter>
-                <parameter class="narrow">
-                    <value></value>
-                </parameter>
-                <parameter class="narrow">
-                    <value></value>
-                </parameter>
-                <parameter class="narrow">
-                    <value></value>
-                </parameter>
-            </box>
-        </row>
-        <row style="justify-content: flex-end; margin-top: 25px;">
-            <box class="c5">
-                <parameter>
-                    <key class="uc">str</key>
-                    <value></value>
-                </parameter>
-                <parameter>
-                    <key class="uc">dex</key>
-                    <value></value>
-                </parameter>
-                <parameter>
-                    <key class="uc">wil</key>
-                    <value></value>
-                </parameter>
-            </box>
-            
-        </row>
-        <row style="justify-content: flex-end;">
-            <box class="c5">
-                <parameter>
-                    <key class="uc">en</key>
-                    <value></value>
+                <stat>
+                    <name>STR</name>
                     <separator></separator>
                     <value></value>
-                </parameter>
-                <parameter>
-                    <key class="small">credits</key>
+                </stat>
+                <stat>
+                    <name>DEX</name>
+                    <separator></separator>
                     <value></value>
-                </parameter>
+                </stat>
+                <stat>
+                    <name>WIL</name>
+                    <separator></separator>
+                    <value></value>
+                </stat>
+            </box>
+            <box style="height:0px">
+                <endurance>
+                    <value></value>
+                    <separator></separator>
+                    <max></max>
+                </endurance>
             </box>
         </row>
-        <row-header style="margin-top: 36px;">inventory</row-header>
         <row>
-            <inventory-box class="c6">
-                <inventory-slot>
-                    <text>Main hand</text>
-                </inventory-slot>
-                <inventory-slot>
-                    <text>Body</text>
-                </inventory-slot>
-                <inventory-slot>
-                    <text>Belt</text>
-                </inventory-slot>
-                <inventory-slot>
-                    <text>Off hand</text>
-                </inventory-slot>
-                <inventory-slot>
-                    <text>Body</text>
-                </inventory-slot>
-                <inventory-slot>
-                    <text>Belt</text>
-                </inventory-slot>
-            </inventory-box>
-            <inventory-box class="c6">
-                <inventory-slot class="indexed"></inventory-slot>
-                <inventory-slot class="indexed"></inventory-slot>
-                <inventory-slot class="indexed"></inventory-slot>
-                <inventory-slot class="indexed"></inventory-slot>
-                <inventory-slot class="indexed"></inventory-slot>
-                <inventory-slot class="indexed"></inventory-slot>
-            </inventory-box>
-        </row>
-        <row>
+            <box style="flex: 2.18">
+                <portrait></portrait>
+            </box>
             <box>
-                <parameter>
-                    <key>perks</key>
-                </parameter>
-                <parameter class="narrow">
-                    <value></value>
-                    <separator></separator>
-                    <value></value>
-                </parameter>
-                <parameter class="narrow">
-                    <value></value>
-                    <separator></separator>
-                    <value></value>
-                </parameter>
-                <parameter class="narrow">
-                    <value></value>
-                    <separator></separator>
-                    <value></value>
-                </parameter>
+                <perks>
+                    <header>Perks</header>
+                    <perk></perk>
+                    <perk></perk>
+                    <perk></perk>
+                    <perk></perk>
+                    <perk></perk>
+                    <perk></perk>
+                    <perk></perk>
+                    <perk></perk>
+                </perks>
+            </box>
+            <box>
+                <column class="internal" style="height: 205px;">
+                    <wound style="margin-top: 30px;"></wound>
+                    <wound></wound>
+                    <wound></wound>
+                </column>
+            </box>
+        </row>
+        <row>
+            <box class="no-border x0-5">
+                <row class="internal wrap">
+                    <slot>
+                        Main<br>Hand
+                        <skill>
+                            <skillslot></skillslot>
+                            <skillslot></skillslot>
+                            <skillslot></skillslot>
+                            <skillslot></skillslot>
+                            <skillslot></skillslot>
+                        </skill>
+                    </slot>
+                    <slot>Body</slot>
+                    <slot>Off<br>Hand</slot>
+                    <slot>Body</slot>
+                    <slot>Belt</slot>
+                    <slot>Belt</slot>
+                </row>
+            </box>
+            <box class="no-border x0-5">
+                <row class="internal wrap flex-end">
+                    <slot>#1</slot> 
+                    <slot>Special</slot>
+                    <slot>#2</slot> 
+                    <slot>Special</slot>
+                    <slot>#3</slot>
+                    <slot>Special</slot>
+                </row>
             </box>
         </row>
     </container>
