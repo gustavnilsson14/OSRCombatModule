@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/default.css">
+    <link rel="stylesheet" href="css/item.css">
     <title>Document</title>
     <style>
         *{
@@ -24,16 +25,6 @@
             background: #eee;
         }
         slot{
-            font-size: 20px;
-            display: flex;
-            width:119px;
-            height:119px;
-            position: relative;
-            flex-direction: column;
-            justify-content: center;
-            text-align: center;
-            border-top: 1px solid black;
-            border-left: 1px solid black;
             background: #bbb;
         }
         row.internal slot:nth-child(2n){
@@ -46,20 +37,8 @@
         }
         skill{
             position: absolute;
-            display: flex;
-            flex-direction: row;
-            width: 119px;
-            height: 15px;
-            bottom: 0px;
         }
         skill skillslot{
-            display: flex;
-            flex: 1;
-            flex-grow: 1;
-            height: 15px;
-            border: 1px solid black;
-            border-bottom: 0px;
-            
             background: #ddd;
         }
         stat{

@@ -1,27 +1,14 @@
 
-:root{
-    --tile-width: 4;
-    --tile-squared: 120px;
-}
-item{
-    display: flex;
-    flex-direction: column;
-    row-gap: 0px;
-    width: var(--tile-squared);
-    height: var(--tile-squared);
-    border-bottom: 1px dotted black;
-    border-right: 1px dotted black;
-}
-item.x2{
+slot.x2{
     height: calc(var(--tile-squared) * 2);
 }
-item *{
+slot *{
     font-family: 'medula';
     font-weight: 400;
     text-transform: uppercase;
     font-size:14px;
 }
-item name{
+slot name{
     display: flex;
     flex-direction: row;
     height:35px;
@@ -30,7 +17,7 @@ item name{
     justify-content: space-between;
     padding: 0 5px;
 }
-item name span{
+slot name span{
     font-size: 28px;
     line-height: 38px;
     width: 80%;
@@ -38,34 +25,34 @@ item name span{
     margin-left: 5px;
     white-space: nowrap;
 }
-item name span.small{
+slot name span.small{
     font-size: 24px;
     line-height: 38px;
 }
-item name span.smaller{
+slot name span.smaller{
     font-size: 20px;
     line-height: 38px;
 }
-item name span.smallest{
+slot name span.smallest{
     font-size: 16px;
     line-height: 38px;
 }
-item skill{
+slot skill{
     display: flex;
     height: 10px;
     flex-direction: row;
     border-top: 1px solid black;
 }
-item skill slot{
+slot skill slot{
     display: flex;
     flex: 1;
     flex-grow: 1;
     border-right: 1px solid black;
 }
-item skill slot:last-child{
+slot skill slot:last-child{
     border-right: 0;
 }
-item inner{
+slot inner{
     display: flex;
     flex-direction: row;
     flex-grow: 1;
@@ -74,39 +61,39 @@ item inner{
     background-repeat: no-repeat;
     background-size: auto 80%;
 }
-item.x2 inner{
+slot.x2 inner{
     margin: 10px;
     background-size: auto 70%;
 }
-item.horizontal-image inner {
+slot.horizontal-image inner {
     background-size: 80% auto;
 }
-item.x2.horizontal-image inner{
+slot.x2.horizontal-image inner{
     margin: 10px;
     background-size: 70% auto;
 }
-item inner span{
+slot inner span{
     font-size: 10px;
     text-transform: lowercase;
 }
-item inner damagetypes,
-item inner usage{
+slot inner damagetypes,
+slot inner usage{
     display: flex;
     flex-direction: column;
-
 }
-item inner damagetypes{
+slot inner damagetypes{
     justify-content: flex-end;
     flex-grow: 1;
     flex: 1;
     margin-left: 2px;
 }
-item inner damagetypes span{
+slot inner damagetypes span{
     justify-content: flex-end;
     text-transform: uppercase;
     font-size: 18px;
+    text-align: left;
 }
-item inner usage{
+slot inner usage{
     text-align: right;
     line-height: 10px;
     justify-content: flex-end;
@@ -114,16 +101,16 @@ item inner usage{
     margin-bottom: 3px;
     margin-left: 3px;
 }
-item inner usage.second-row{
+slot inner usage.second-row{
     flex-direction: column-reverse;
     margin-top: 3px;
 }
-item inner usage span{
+slot inner usage span{
     font-size: 18px;
     font-family: 'source';
     font-weight: 100;
 }
-item inner usage *{
+slot inner usage *{
     display: flex;
     border: 2px solid black;
     width: 7px;
@@ -131,24 +118,24 @@ item inner usage *{
     align-self: flex-end;
     margin-right: 2px;
 }
-item inner usage durability{
+slot inner usage durability{
     border: 0;
     border-style: dashed;
     width: 11px;
     height: 11px;
     
 }
-item inner usage durability::before{
+slot inner usage durability::before{
     content: url(../img/corners.svg);
     width: 100%;
     height: 100%;
     
 }
-item inner usage damage{
+slot inner usage damage{
     border: 0;
     position: relative;
 }
-item inner usage damage::before{
+slot inner usage damage::before{
     content: "+";
     position: absolute;
     font-size: 30px;
@@ -156,10 +143,10 @@ item inner usage damage::before{
     top: -2px;
     right: 1.5px;
 }
-item inner usage both{
+slot inner usage both{
     border-radius: 50%;
 }
-item inner armor{
+slot inner armor{
     display: flex;
     background-image: url(../img/shield.svg);
     background-repeat: no-repeat;
@@ -171,43 +158,60 @@ item inner armor{
     flex-grow: 1;
     padding-left:8px;
 }
-.melee.physical name::before{
+
+slot{
+    font-size: 20px;
+    display: flex;
+    width:119px;
+    height:119px;
+    position: relative;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+}
+slot name::before{
     display: flex;
     flex-direction: column;
     justify-content: center;
+    flex: 1;
+    margin-top: 4px;
+}
+.melee name::before{
     content: url(../img/blades.svg);
-    flex: 1;
-    margin-top: 4px;
 }
-.ranged.physical name::before{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    content: url(../img/ranged.svg);
-    flex: 1;
-    margin-top: 4px;
+.ranged name::before{
+    content: url(../img/gun-solid.svg);
 }
-.melee.magical name::before{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+.magic name::before{
     content: url(../img/meleespell.svg);
-    flex: 1;
-    margin-top: 4px;
 }
-.ranged.magical name::before{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    content: url(../img/spell.svg);
-    flex: 1;
-    margin-top: 4px;
+.headgear name::before{
+    content: url(../img/jason-mask.svg);
 }
 .armor name::before{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
     content: url(../img/armor.svg);
+}
+.shield name::before{
+    content: url(../img/shield-solid.svg);
+}
+.stuff name::before{
+    content: url(../img/gear-solid.svg);
+}
+skill{
+    display: flex;
+    flex-direction: row;
+    width: 119px;
+    height: 15px;
+    bottom: 0px;
+}
+skill skillslot{
+    display: flex;
     flex: 1;
-    margin-top: 4px;
+    flex-grow: 1;
+    height: 100%;
+    border: 1px solid black;
+    border-bottom: 0px;
+    
 }

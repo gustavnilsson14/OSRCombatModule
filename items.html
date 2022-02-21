@@ -16,8 +16,6 @@
             width: calc(calc(var(--tile-squared) + 1px) * var(--tile-width));
             display: flex;
             flex-wrap: wrap;
-            border-top: 1px dotted black;
-            border-left: 1px dotted black;
             justify-content: center;
             margin: 0 auto;
         }
@@ -49,7 +47,7 @@
     
     <container>
 
-        <item class="melee physical">
+        <slot class="melee physical">
             <name>
                 <span>Knife</span>
             </name>
@@ -63,16 +61,17 @@
                     <both></both>
                 </usage>
             </inner>
+            
             <skill>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
             </skill>
-        </item>
+        </slot>
 
-        <item class="melee physical">
+        <slot class="melee physical">
             <name>
                 <span class="small">Crude spear</span>
             </name>
@@ -85,16 +84,17 @@
                     <damage></damage>
                 </usage>
             </inner>
+            
             <skill>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
             </skill>
-        </item>
+        </slot>
         
-        <item class="melee physical">
+        <slot class="melee physical">
             <name>
                 <span class="small">Nunchaku</span>
             </name>
@@ -108,16 +108,17 @@
                     <both></both>
                 </usage>
             </inner>
+            
             <skill>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
             </skill>
-        </item>
+        </slot>
 
-        <item class="melee physical">
+        <slot class="melee physical">
             <name>
                 <span class="small">Harpoon</span>
             </name>
@@ -131,16 +132,17 @@
                     <both></both>
                 </usage>
             </inner>
+            
             <skill>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
             </skill>
-        </item>
+        </slot>
 
-        <item class="melee physical">
+        <slot class="melee physical">
             <name>
                 <span class="small">Wooden Club</span>
             </name>
@@ -153,16 +155,17 @@
                     <both></both>
                 </usage>
             </inner>
+            
             <skill>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
             </skill>
-        </item>
+        </slot>
         
-        <item class="melee physical">
+        <slot class="melee physical">
             <name>
                 <span>Hammer</span>
             </name>
@@ -176,16 +179,17 @@
                     <both></both>
                 </usage>
             </inner>
+            
             <skill>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
             </skill>
-        </item>
+        </slot>
         
-        <item class="melee physical">
+        <slot class="melee physical">
             <name>
                 <span>Cutter</span>
             </name>
@@ -199,16 +203,17 @@
                     <damage></damage>
                 </usage>
             </inner>
+            
             <skill>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
             </skill>
-        </item>
+        </slot>
         
-        <item class="melee physical">
+        <slot class="melee physical">
             <name>
                 <span>Machete</span>
             </name>
@@ -224,16 +229,17 @@
                     <both></both>
                 </usage>
             </inner>
+            
             <skill>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
             </skill>
-        </item>
+        </slot>
         
-        <item class="melee physical">
+        <slot class="melee physical">
             <name>
                 <span>Torch</span>
             </name>
@@ -248,16 +254,17 @@
                     <both></both>
                 </usage>
             </inner>
+            
             <skill>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
             </skill>
-        </item>
+        </slot>
         
-        <item class="melee physical horizontal-image">
+        <slot class="melee physical horizontal-image">
             <name>
                 <span class="small">Lumber Axe</span>
             </name>
@@ -273,16 +280,17 @@
                     <both></both>
                 </usage>
             </inner>
+            
             <skill>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
             </skill>
-        </item>
+        </slot>
         
-        <item class="melee physical">
+        <slot class="melee physical">
             <name>
                 <span class="smaller">Shovel</span>
             </name>
@@ -298,16 +306,17 @@
                     <both></both>
                 </usage>
             </inner>
+            
             <skill>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
             </skill>
-        </item>
+        </slot>
 
-        <item class="melee physical">
+        <slot class="melee physical">
             <name>
                 <span class="smaller">Huge Wrench</span>
             </name>
@@ -323,15 +332,16 @@
                     <both></both>
                 </usage>
             </inner>
+            
             <skill>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
             </skill>
-        </item>
-        <item class="melee physical horizontal-image">
+        </slot>
+        <slot class="melee physical horizontal-image">
             <name>
                 <span>Sword</span>
             </name>
@@ -347,15 +357,16 @@
                     <both></both>
                 </usage>
             </inner>
+            
             <skill>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
             </skill>
-        </item>
-        <item class="melee physical horizontal-image">
+        </slot>
+        <slot class="melee physical horizontal-image">
             <name>
                 <span>Whip</span>
             </name>
@@ -369,15 +380,16 @@
                     <damage></damage>
                 </usage>
             </inner>
+            
             <skill>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
             </skill>
-        </item>
-        <item class="melee physical">
+        </slot>
+        <slot class="melee physical">
             <name>
                 <span>Tazer</span>
             </name>
@@ -392,15 +404,16 @@
                     <damage></damage>
                 </usage>
             </inner>
+            
             <skill>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
             </skill>
-        </item>
-        <item class="melee physical">
+        </slot>
+        <slot class="melee physical">
             <name>
                 <span class="smaller">Giant Crucifix</span>
             </name>
@@ -415,15 +428,16 @@
                     <both></both>
                 </usage>
             </inner>
+            
             <skill>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
             </skill>
-        </item>
-        <item class="melee physical">
+        </slot>
+        <slot class="melee physical">
             <name>
                 <span class="smaller">Bolt Stunner</span>
             </name>
@@ -437,15 +451,16 @@
                     <damage></damage>
                 </usage>
             </inner>
+            
             <skill>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
             </skill>
-        </item>
-        <item class="melee physical">
+        </slot>
+        <slot class="melee physical">
             <name>
                 <span class="smaller">Meat Cleaver</span>
             </name>
@@ -460,15 +475,16 @@
                     <both></both>
                 </usage>
             </inner>
+            
             <skill>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
             </skill>
-        </item>
-        <item class="melee physical">
+        </slot>
+        <slot class="melee physical">
             <name>
                 <span class="small">Screwdriver</span>
             </name>
@@ -483,15 +499,16 @@
                     <both></both>
                 </usage>
             </inner>
+            
             <skill>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
             </skill>
-        </item>
-        <item class="melee physical">
+        </slot>
+        <slot class="melee physical">
             <name>
                 <span>Crowbar</span>
             </name>
@@ -507,15 +524,16 @@
                     <both></both>
                 </usage>
             </inner>
+            
             <skill>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
             </skill>
-        </item>
-        <item class="melee physical">
+        </slot>
+        <slot class="melee physical">
             <name>
                 <span>Tire Iron</span>
             </name>
@@ -531,15 +549,16 @@
                     <both></both>
                 </usage>
             </inner>
+            
             <skill>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
             </skill>
-        </item>
-        <item class="melee physical">
+        </slot>
+        <slot class="melee physical">
             <name>
                 <span class="small">Climbing Pick</span>
             </name>
@@ -555,15 +574,16 @@
                     <both></both>
                 </usage>
             </inner>
+            
             <skill>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
             </skill>
-        </item>
-        <item class="melee physical">
+        </slot>
+        <slot class="melee physical">
             <name>
                 <span class="small">Baseball Bat</span>
             </name>
@@ -578,16 +598,17 @@
                     <both></both>
                 </usage>
             </inner>
+            
             <skill>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
             </skill>
-        </item>
+        </slot>
         
-        <item class="melee physical">
+        <slot class="melee physical">
             <name>
                 <span class="small">Hockey Club</span>
             </name>
@@ -602,15 +623,16 @@
                     <both></both>
                 </usage>
             </inner>
+            
             <skill>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
             </skill>
-        </item>
-        <item class="melee physical">
+        </slot>
+        <slot class="melee physical">
             <name>
                 <span class="small">Chainsaw</span>
             </name>
@@ -625,15 +647,16 @@
                     <damage></damage>
                 </usage>
             </inner>
+            
             <skill>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
             </skill>
-        </item>
-        <item class="melee physical">
+        </slot>
+        <slot class="melee physical">
             <name>
                 <span class="small">Chainsword</span>
             </name>
@@ -649,15 +672,16 @@
                     <damage></damage>
                 </usage>
             </inner>
+            
             <skill>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
             </skill>
-        </item>
-        <item class="melee physical horizontal-image">
+        </slot>
+        <slot class="melee physical horizontal-image">
             <name>
                 <span class="small">Vibroblade</span>
             </name>
@@ -676,15 +700,16 @@
                     <both></both>
                 </usage>
             </inner>
+            
             <skill>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
             </skill>
-        </item>
-        <item class="melee physical">
+        </slot>
+        <slot class="melee physical">
             <name>
                 <span class="smaller">Pots and Pans</span>
             </name>
@@ -699,15 +724,16 @@
                     <durability></durability>
                 </usage>
             </inner>
+            
             <skill>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
             </skill>
-        </item>
-        <item class="melee physical">
+        </slot>
+        <slot class="melee physical">
             <name>
                 <span class="smaller">Flashlight</span>
             </name>
@@ -720,15 +746,16 @@
                     <durability></durability>
                 </usage>
             </inner>
+            
             <skill>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
             </skill>
-        </item>
-        <item class="melee physical">
+        </slot>
+        <slot class="melee physical">
             <name>
                 <span>Rope</span>
             </name>
@@ -741,15 +768,16 @@
                     <durability></durability>
                 </usage>
             </inner>
+            
             <skill>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
             </skill>
-        </item>
-        <item class="melee physical">
+        </slot>
+        <slot class="melee physical">
             <name>
                 <span class="smaller">Portable Ladder</span>
             </name>
@@ -763,15 +791,16 @@
                     <durability></durability>
                 </usage>
             </inner>
+            
             <skill>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
             </skill>
-        </item>
-        <item class="melee physical">
+        </slot>
+        <slot class="melee physical">
             <name>
                 <span class="smaller">Army Knife</span>
             </name>
@@ -787,15 +816,16 @@
                     <durability></durability>
                 </usage>
             </inner>
+            
             <skill>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
             </skill>
-        </item>
-        <item class="melee physical">
+        </slot>
+        <slot class="melee physical">
             <name>
                 <span>2x4</span>
             </name>
@@ -809,15 +839,16 @@
                     <durability></durability>
                 </usage>
             </inner>
+            
             <skill>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
             </skill>
-        </item>
-        <item class="melee physical">
+        </slot>
+        <slot class="melee physical">
             <name>
                 <span class="small">Extinguisher</span>
             </name>
@@ -833,312 +864,23 @@
                     <durability></durability>
                 </usage>
             </inner>
+            
             <skill>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
             </skill>
-        </item>
+        </slot>
 
-    </container>    
-
-
-    <container>
-        <item>
-            <name>
-                <span>Rations</span>
-            </name>
-            <inner style="background-image: url(img/items/rations.png);">
-                <usage>
-                    <durability></durability>
-                    <durability></durability>
-                    <durability></durability>
-                </usage>
-            </inner>
-        </item>
-        <item>
-            <name>
-                <span class="small">Fresh Fruits</span>
-            </name>
-            <inner style="background-image: url(img/items/frutas_4-removebg-preview.png);">
-                <usage>
-                    <durability></durability>
-                    <durability></durability>
-                    <durability></durability>
-                </usage>
-            </inner>
-        </item>
-        <item>
-            <name>
-                <span>Water</span>
-            </name>
-            <inner style="background-image: url(img/items/aqua.jpg);">
-                <usage>
-                    <durability></durability>
-                    <durability></durability>
-                    <durability></durability>
-                </usage>
-            </inner>
-        </item>
-        <item>
-            <name>
-                <span>Caprisun</span>
-            </name>
-            <inner style="background-image: url(img/items/caprisun.jpg);">
-                <usage>
-                    <durability></durability>
-                    <durability></durability>
-                    <durability></durability>
-                </usage>
-            </inner>
-        </item>
-        <item>
-            <name>
-                <span>Nails</span>
-            </name>
-            <inner style="background-image: url(img/items/nails.png);">
-                <usage>
-                    <durability></durability>
-                    <durability></durability>
-                    <durability></durability>
-                </usage>
-            </inner>
-        </item>
-        <item>
-            <name>
-                <span>Adhesive</span>
-            </name>
-            <inner style="background-image: url(img/items/adhesive.png);">
-                <usage>
-                    <durability></durability>
-                    <durability></durability>
-                    <durability></durability>
-                </usage>
-            </inner>
-        </item>
-        <item>
-            <name>
-                <span>Tape</span>
-            </name>
-            <inner style="background-image: url(img/items/tape.png);">
-                <usage>
-                    <durability></durability>
-                    <durability></durability>
-                    <durability></durability>
-                </usage>
-            </inner>
-        </item>
-        <item>
-            <name>
-                <span class="small">Copper Wire</span>
-            </name>
-            <inner style="background-image: url(img/items/copperwire.png);">
-                <usage>
-                    <durability></durability>
-                    <durability></durability>
-                    <durability></durability>
-                </usage>
-            </inner>
-        </item>
-        <item>
-            <name>
-                <span>Sensors</span>
-            </name>
-            <inner style="background-image: url(img/items/sensors.png);">
-                <usage>
-                    <durability></durability>
-                    <durability></durability>
-                    <durability></durability>
-                </usage>
-            </inner>
-        </item>
-        <item>
-            <name>
-                <span>Timer</span>
-            </name>
-            <inner style="background-image: url(img/items/timer.png);">
-                <usage>
-                    <durability></durability>
-                    <durability></durability>
-                    <durability></durability>
-                </usage>
-            </inner>
-        </item>
-        <item>
-            <name>
-                <span>Remote</span>
-            </name>
-            <inner style="background-image: url(img/items/remote.png);">
-                <usage>
-                    <durability></durability>
-                    <durability></durability>
-                    <durability></durability>
-                </usage>
-            </inner>
-        </item>
-        <item>
-            <name>
-                <span>Medicine</span>
-            </name>
-            <inner style="background-image: url(img/items/meds.png);">
-                <usage>
-                    <durability></durability>
-                    <durability></durability>
-                    <durability></durability>
-                </usage>
-            </inner>
-        </item>
-        <item>
-            <name>
-                <span class="small">First Aid Kit</span>
-            </name>
-            <inner style="background-image: url(img/items/aidkit.png);">
-                <usage>
-                    <durability></durability>
-                    <durability></durability>
-                    <durability></durability>
-                </usage>
-            </inner>
-        </item>
-        <item class="horizontal-image">
-            <name>
-                <span class="smallest">Inflatable Rubber Boat</span>
-            </name>
-            <inner style="background-image: url(img/items/boat.png);">
-                <usage>
-                    <durability></durability>
-                    <durability></durability>
-                    <durability></durability>
-                </usage>
-            </inner>
-        </item>
-        <item>
-            <name>
-                <span class="small">Car Battery</span>
-            </name>
-            <inner style="background-image: url(img/items/carbattery.png);">
-                <usage>
-                    <durability></durability>
-                    <durability></durability>
-                    <durability></durability>
-                </usage>
-            </inner>
-        </item>
-        <item>
-            <name>
-                <span class="small">Cigarettes</span>
-            </name>
-            <inner style="background-image: url(img/items/cigarettes.png);">
-                <usage>
-                    <durability></durability>
-                    <durability></durability>
-                    <durability></durability>
-                </usage>
-            </inner>
-        </item>
-        <item>
-            <name>
-                <span class="small">Matches</span>
-            </name>
-            <inner style="background-image: url(img/items/matches.png);">
-                <usage>
-                    <durability></durability>
-                    <durability></durability>
-                    <durability></durability>
-                </usage>
-            </inner>
-        </item>
-        <item>
-            <name>
-                <span class="small">Gasoline</span>
-            </name>
-            <inner style="background-image: url(img/items/gasoline.png);">
-                <usage>
-                    <durability></durability>
-                    <durability></durability>
-                    <durability></durability>
-                </usage>
-            </inner>
-        </item>
-        <item>
-            <name>
-                <span class="small">Car Parts</span>
-            </name>
-            <inner style="background-image: url(img/items/carparts.png);">
-                <usage>
-                    <durability></durability>
-                    <durability></durability>
-                    <durability></durability>
-                </usage>
-            </inner>
-        </item>
-        <item>
-            <name>
-                <span class="smaller">Geiger Counter</span>
-            </name>
-            <inner style="background-image: url(img/items/geiger.jpg);">
-                <usage>
-                    <durability></durability>
-                    <durability></durability>
-                    <durability></durability>
-                </usage>
-            </inner>
-        </item>
-        <item>
-            <name>
-                <span class="smaller">Portable Still</span>
-            </name>
-            <inner style="background-image: url(img/items/still.jpg);">
-                <usage>
-                    <durability></durability>
-                    <durability></durability>
-                    <durability></durability>
-                </usage>
-            </inner>
-        </item>
-        <item>
-            <name>
-                <span class="small">Gas Mask</span>
-            </name>
-            <inner style="background-image: url(img/items/gasmask.jpg);">
-                <usage>
-                    <durability></durability>
-                    <durability></durability>
-                    <durability></durability>
-                </usage>
-            </inner>
-        </item>
-        <item>
-            <name>
-                <span>Tent</span>
-            </name>
-            <inner style="background-image: url(img/items/tent.jpg);">
-                <usage>
-                    <durability></durability>
-                    <durability></durability>
-                    <durability></durability>
-                </usage>
-            </inner>
-        </item>
-        <item>
-            <name>
-                <span>Vials</span>
-            </name>
-            <inner style="background-image: url(img/items/vials.png);">
-                <usage>
-                    <durability></durability>
-                    <durability></durability>
-                    <durability></durability>
-                </usage>
-            </inner>
-        </item>
     </container>    
 
     
+
+    
     <container>
-        <item class="ranged physical horizontal-image">
+        <slot class="ranged physical horizontal-image">
             <name>
                 <span class="small">Crossbow</span>
             </name>
@@ -1152,15 +894,16 @@
                     <damage></damage>
                 </usage>
             </inner>
+            
             <skill>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
             </skill>
-        </item>
-        <item class="ranged physical">
+        </slot>
+        <slot class="ranged physical">
             <name>
                 <span class="small">Wrist Cannon</span>
             </name>
@@ -1173,15 +916,16 @@
                     <both></both>
                 </usage>
             </inner>
+            
             <skill>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
             </skill>
-        </item>
-        <item class="ranged physical">
+        </slot>
+        <slot class="ranged physical">
             <name>
                 <span class="smaller">Throwing knives</span>
             </name>
@@ -1194,15 +938,16 @@
                     <both></both>
                 </usage>
             </inner>
+            
             <skill>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
             </skill>
-        </item>
-        <item class="ranged physical">
+        </slot>
+        <slot class="ranged physical">
             <name>
                 <span class="smaller">Compound Bow</span>
             </name>
@@ -1215,19 +960,20 @@
                     <damage></damage>
                 </usage>
             </inner>
+            
             <skill>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
             </skill>
-        </item>
+        </slot>
 
 
 
         
-        <item class="ranged physical horizontal-image">
+        <slot class="ranged physical horizontal-image">
             <name>
                 <span class="smaller">Makeshift Pistol</span>
             </name>
@@ -1241,16 +987,17 @@
                     <damage></damage>
                 </usage>
             </inner>
+            
             <skill>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
             </skill>
-        </item>
+        </slot>
         
-        <item class="ranged physical">
+        <slot class="ranged physical">
             <name>
                 <span>Beretta</span>
             </name>
@@ -1264,15 +1011,16 @@
                     <damage></damage>
                 </usage>
             </inner>
+            
             <skill>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
             </skill>
-        </item>
-        <item class="ranged physical">
+        </slot>
+        <slot class="ranged physical">
             <name>
                 <span>Magnum</span>
             </name>
@@ -1287,15 +1035,16 @@
                     <damage></damage>
                 </usage>
             </inner>
+            
             <skill>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
             </skill>
-        </item>
-        <item class="ranged physical horizontal-image">
+        </slot>
+        <slot class="ranged physical horizontal-image">
             <name>
                 <span>Shotgun</span>
             </name>
@@ -1311,15 +1060,16 @@
                     <damage></damage>
                 </usage>
             </inner>
+            
             <skill>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
             </skill>
-        </item>
-        <item class="ranged physical horizontal-image">
+        </slot>
+        <slot class="ranged physical horizontal-image">
             <name>
                 <span class="small">Winchester</span>
             </name>
@@ -1335,16 +1085,17 @@
                     <damage></damage>
                 </usage>
             </inner>
+            
             <skill>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
             </skill>
-        </item>
+        </slot>
         
-        <item class="ranged physical">
+        <slot class="ranged physical">
             <name>
                 <span>Tec 9</span>
             </name>
@@ -1360,15 +1111,16 @@
                     <damage></damage>
                 </usage>
             </inner>
+            
             <skill>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
             </skill>
-        </item>
-        <item class="ranged physical">
+        </slot>
+        <slot class="ranged physical">
             <name>
                 <span>Scorpion</span>
             </name>
@@ -1384,15 +1136,16 @@
                     <damage></damage>
                 </usage>
             </inner>
+            
             <skill>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
             </skill>
-        </item>
-        <item class="ranged physical horizontal-image">
+        </slot>
+        <slot class="ranged physical horizontal-image">
             <name>
                 <span>M-16</span>
             </name>
@@ -1408,15 +1161,16 @@
                     <damage></damage>
                 </usage>
             </inner>
+            
             <skill>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
             </skill>
-        </item>
-        <item class="ranged physical horizontal-image">
+        </slot>
+        <slot class="ranged physical horizontal-image">
             <name>
                 <span>AK47</span>
             </name>
@@ -1432,19 +1186,20 @@
                     <both></both>
                 </usage>
             </inner>
+            
             <skill>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
             </skill>
-        </item>
+        </slot>
     </container>
 
     <container>
         
-        <item class="melee magical">
+        <slot class="magic">
             <name>
                 <span class="smaller">Lightning bolt</span>
             </name>
@@ -1453,15 +1208,16 @@
                     <span>volt</span>
                 </damagetypes>
             </inner>
+            
             <skill>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
             </skill>
-        </item>
-        <item class="melee magical">
+        </slot>
+        <slot class="magic">
             <name>
                 <span class="smaller">Firefist</span>
             </name>
@@ -1470,15 +1226,16 @@
                     <span>burn</span>
                 </damagetypes>
             </inner>
+            
             <skill>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
             </skill>
-        </item>
-        <item class="melee magical">
+        </slot>
+        <slot class="magic">
             <name>
                 <span class="smaller">frostfist</span>
             </name>
@@ -1487,15 +1244,16 @@
                     <span>burn</span>
                 </damagetypes>
             </inner>
+            
             <skill>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
             </skill>
-        </item>
-        <item class="melee magical">
+        </slot>
+        <slot class="magic">
             <name>
                 <span class="smaller">Holy Smite</span>
             </name>
@@ -1504,15 +1262,16 @@
                     <span>holy</span>
                 </damagetypes>
             </inner>
+            
             <skill>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
             </skill>
-        </item>
-        <item class="melee magical">
+        </slot>
+        <slot class="magic">
             <name>
                 <span class="smaller">Dark touch</span>
             </name>
@@ -1521,16 +1280,17 @@
                     <span>vile</span>
                 </damagetypes>
             </inner>
+            
             <skill>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
             </skill>
-        </item>
+        </slot>
 
-        <item class="melee magical">
+        <slot class="magic">
             <name>
                 <span class="smaller">Arcane Bomb</span>
             </name>
@@ -1539,77 +1299,538 @@
                     <span>blast</span>
                 </damagetypes>
             </inner>
+            
             <skill>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
-                <slot></slot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
             </skill>
-        </item>
+        </slot>
     </container>
 
     <container>
-    
-        
-        
-        <item class="x2 armor">
+        <slot class="headgear">
             <name>
-                <span class="smaller">Patch Armor</span>
+                <span class="smaller">Hockey Mask</span>
             </name>
-            <inner style="background-image: url(img/items/armor-patch.png);">
-                <armor>1</armor>
+            <inner style="background-image: url(img/items/hocketmask.png);">
+                <damagetypes>
+                    <span>smash</span>
+                </damagetypes>
                 <usage>
                     <durability></durability>
                     <durability></durability>
+                    <both></both>
                 </usage>
             </inner>
-        </item>
-        <item class="x2 armor">
+        </slot>
+        <slot class="headgear">
             <name>
-                <span class="smaller">Light Armor</span>
+                <span class="smaller">Road Helmet</span>
             </name>
-            <inner style="background-image: url(img/items/armor-leather.png);">
-                <armor>1</armor>
+            <inner style="background-image: url(img/items/motorbikehelmet.jfif);">
+                <damagetypes>
+                    <span>smash</span>
+                </damagetypes>
                 <usage>
                     <durability></durability>
                     <durability></durability>
-                    <durability></durability>
-                    <durability></durability>
+                    <both></both>
                 </usage>
             </inner>
-        </item>
+        </slot>
+        <slot class="headgear">
+            <name>
+                <span class="smaller">Bike Helmet</span>
+            </name>
+            <inner style="background-image: url(img/items/bikehelmet.jpg);">
+                <damagetypes>
+                    <span>smash</span>
+                </damagetypes>
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                    <both></both>
+                </usage>
+            </inner>
+        </slot>
+        <slot class="headgear">
+            <name>
+                <span class="smaller">Hardhat</span>
+            </name>
+            <inner style="background-image: url(img/items/hardhat.jpg);">
+                <damagetypes>
+                    <span>smash</span>
+                </damagetypes>
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                    <both></both>
+                </usage>
+            </inner>
+        </slot>
+        <slot class="headgear">
+            <name>
+                <span class="smaller">Gas Mask</span>
+            </name>
+            <inner style="background-image: url(img/items/gasmask.jpg);">
+                <damagetypes>
+                    <span>smash</span>
+                </damagetypes>
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                    <both></both>
+                </usage>
+            </inner>
+        </slot>
+        <slot class="armor">
+            <name>
+                <span class="smaller">Kevlar Vest</span>
+            </name>
+            <inner style="background-image: url(img/items/kevlar.jpg);">
+                <damagetypes>
+                    <span>smash</span>
+                </damagetypes>
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                    <both></both>
+                </usage>
+            </inner>
+        </slot>
+        <slot class="armor">
+            <name>
+                <span class="smaller">Hockey Armor</span>
+            </name>
+            <inner style="background-image: url(img/items/hockeyarmor.png);">
+                <damagetypes>
+                    <span>smash</span>
+                </damagetypes>
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                    <both></both>
+                </usage>
+            </inner>
+        </slot>
+        <slot class="armor">
+            <name>
+                <span class="smaller">Leather Vest</span>
+            </name>
+            <inner style="background-image: url(img/items/leather.png);">
+                <damagetypes>
+                    <span>smash</span>
+                </damagetypes>
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                    <both></both>
+                </usage>
+            </inner>
+        </slot>
+        <slot class="armor">
+            <name>
+                <span class="smaller">Metal Plate</span>
+            </name>
+            <inner style="background-image: url(img/items/metalplate-removebg-preview.png);">
+                <damagetypes>
+                    <span>smash</span>
+                </damagetypes>
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                    <both></both>
+                </usage>
+            </inner>
+        </slot>
+        <slot class="shield">
+            <name>
+                <span class="smaller">Riot Shield</span>
+            </name>
+            <inner style="background-image: url(img/items/riotshield.jfif);">
+                <damagetypes>
+                    <span>smash</span>
+                </damagetypes>
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                    <both></both>
+                </usage>
+            </inner>
+        </slot>
+        <slot class="shield">
+            <name>
+                <span class="smaller">Stop Sign</span>
+            </name>
+            <inner style="background-image: url(img/items/stopshield.jpg);">
+                <damagetypes>
+                    <span>smash</span>
+                </damagetypes>
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                    <both></both>
+                </usage>
+            </inner>
+        </slot>
+        <slot class="shield">
+            <name>
+                <span class="smaller">Planks with Grip</span>
+            </name>
+            <inner style="background-image: url(img/items/plank.png);">
+                <damagetypes>
+                    <span>smash</span>
+                </damagetypes>
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                    <both></both>
+                </usage>
+            </inner>
+        </slot>
         
-        <item class="x2 armor">
+        <slot class="armor x2">
             <name>
-                <span class="smaller">Metal Armor</span>
+                <span class="smaller">Marine Armor</span>
             </name>
-            <inner style="background-image: url(img/items/armor-metal.png);">
-                <armor>2</armor>
+            <inner style="background-image: url(img/items/armor-combat.png);">
+                <damagetypes>
+                    <span>smash</span>
+                </damagetypes>
                 <usage>
                     <durability></durability>
                     <durability></durability>
-                    <durability></durability>
-                    <durability></durability>
+                    <both></both>
                 </usage>
             </inner>
-        </item>
-        <item class="x2 armor">
+        </slot>
+        <slot class="armor x2">
             <name>
                 <span class="smaller">Combat Armor</span>
             </name>
-            <inner style="background-image: url(img/items/armor-combat.png);">
-                <armor>3</armor>
+            <inner style="background-image: url(img/items/combat-armor.jfif);">
+                <damagetypes>
+                    <span>smash</span>
+                </damagetypes>
                 <usage>
                     <durability></durability>
+                    <durability></durability>
+                    <both></both>
+                </usage>
+            </inner>
+        </slot>
+        <slot class="armor x2">
+            <name>
+                <span class="smaller">Bull Armor</span>
+            </name>
+            <inner style="background-image: url(img/items/poweredarmor.jpg);">
+                <damagetypes>
+                    <span>smash</span>
+                </damagetypes>
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                    <both></both>
+                </usage>
+            </inner>
+        </slot>
+        <slot class="armor x2">
+            <name>
+                <span class="smaller">Shell Armor</span>
+            </name>
+            <inner style="background-image: url(img/items/shellarmor.png);">
+                <damagetypes>
+                    <span>smash</span>
+                </damagetypes>
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                    <both></both>
+                </usage>
+            </inner>
+        </slot>
+    </container>
+    
+    <container>
+        <slot class="stuff">
+            <name>
+                <span>Rations</span>
+            </name>
+            <inner style="background-image: url(img/items/rations.png);">
+                <usage>
                     <durability></durability>
                     <durability></durability>
                     <durability></durability>
                 </usage>
             </inner>
-        </item>
-        
-
+        </slot>
+        <slot class="stuff">
+            <name>
+                <span class="small">Fresh Fruits</span>
+            </name>
+            <inner style="background-image: url(img/items/frutas_4-removebg-preview.png);">
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                    <durability></durability>
+                </usage>
+            </inner>
+        </slot>
+        <slot class="stuff">
+            <name>
+                <span>Water</span>
+            </name>
+            <inner style="background-image: url(img/items/aqua.jpg);">
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                    <durability></durability>
+                </usage>
+            </inner>
+        </slot>
+        <slot class="stuff">
+            <name>
+                <span>Caprisun</span>
+            </name>
+            <inner style="background-image: url(img/items/caprisun.jpg);">
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                    <durability></durability>
+                </usage>
+            </inner>
+        </slot>
+        <slot class="stuff">
+            <name>
+                <span>Nails</span>
+            </name>
+            <inner style="background-image: url(img/items/nails.png);">
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                    <durability></durability>
+                </usage>
+            </inner>
+        </slot>
+        <slot class="stuff">
+            <name>
+                <span>Adhesive</span>
+            </name>
+            <inner style="background-image: url(img/items/adhesive.png);">
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                    <durability></durability>
+                </usage>
+            </inner>
+        </slot>
+        <slot class="stuff">
+            <name>
+                <span>Tape</span>
+            </name>
+            <inner style="background-image: url(img/items/tape.png);">
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                    <durability></durability>
+                </usage>
+            </inner>
+        </slot>
+        <slot class="stuff">
+            <name>
+                <span class="small">Copper Wire</span>
+            </name>
+            <inner style="background-image: url(img/items/copperwire.png);">
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                    <durability></durability>
+                </usage>
+            </inner>
+        </slot>
+        <slot class="stuff">
+            <name>
+                <span>Sensors</span>
+            </name>
+            <inner style="background-image: url(img/items/sensors.png);">
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                    <durability></durability>
+                </usage>
+            </inner>
+        </slot>
+        <slot class="stuff">
+            <name>
+                <span>Timer</span>
+            </name>
+            <inner style="background-image: url(img/items/timer.png);">
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                    <durability></durability>
+                </usage>
+            </inner>
+        </slot>
+        <slot class="stuff">
+            <name>
+                <span>Remote</span>
+            </name>
+            <inner style="background-image: url(img/items/remote.png);">
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                    <durability></durability>
+                </usage>
+            </inner>
+        </slot>
+        <slot class="stuff">
+            <name>
+                <span>Medicine</span>
+            </name>
+            <inner style="background-image: url(img/items/meds.png);">
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                    <durability></durability>
+                </usage>
+            </inner>
+        </slot>
+        <slot class="stuff">
+            <name>
+                <span class="small">First Aid Kit</span>
+            </name>
+            <inner style="background-image: url(img/items/aidkit.png);">
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                    <durability></durability>
+                </usage>
+            </inner>
+        </slot>
+        <slot class="horizontal-image">
+            <name>
+                <span class="smallest">Inflatable Rubber Boat</span>
+            </name>
+            <inner style="background-image: url(img/items/boat.png);">
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                    <durability></durability>
+                </usage>
+            </inner>
+        </slot>
+        <slot class="stuff">
+            <name>
+                <span class="small">Car Battery</span>
+            </name>
+            <inner style="background-image: url(img/items/carbattery.png);">
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                    <durability></durability>
+                </usage>
+            </inner>
+        </slot>
+        <slot class="stuff">
+            <name>
+                <span class="small">Cigarettes</span>
+            </name>
+            <inner style="background-image: url(img/items/cigarettes.png);">
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                    <durability></durability>
+                </usage>
+            </inner>
+        </slot>
+        <slot class="stuff">
+            <name>
+                <span class="small">Matches</span>
+            </name>
+            <inner style="background-image: url(img/items/matches.png);">
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                    <durability></durability>
+                </usage>
+            </inner>
+        </slot>
+        <slot class="stuff">
+            <name>
+                <span class="small">Gasoline</span>
+            </name>
+            <inner style="background-image: url(img/items/gasoline.png);">
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                    <durability></durability>
+                </usage>
+            </inner>
+        </slot>
+        <slot class="stuff">
+            <name>
+                <span class="small">Car Parts</span>
+            </name>
+            <inner style="background-image: url(img/items/carparts.png);">
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                    <durability></durability>
+                </usage>
+            </inner>
+        </slot>
+        <slot class="stuff">
+            <name>
+                <span class="smaller">Geiger Counter</span>
+            </name>
+            <inner style="background-image: url(img/items/geiger.jpg);">
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                    <durability></durability>
+                </usage>
+            </inner>
+        </slot>
+        <slot class="stuff">
+            <name>
+                <span class="smaller">Portable Still</span>
+            </name>
+            <inner style="background-image: url(img/items/still.jpg);">
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                    <durability></durability>
+                </usage>
+            </inner>
+        </slot>
+        <slot class="stuff">
+            <name>
+                <span>Tent</span>
+            </name>
+            <inner style="background-image: url(img/items/tent.jpg);">
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                    <durability></durability>
+                </usage>
+            </inner>
+        </slot>
+        <slot class="stuff">
+            <name>
+                <span>Vials</span>
+            </name>
+            <inner style="background-image: url(img/items/vials.png);">
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                    <durability></durability>
+                </usage>
+            </inner>
+        </slot>
     </container>
 </body>
 </html>

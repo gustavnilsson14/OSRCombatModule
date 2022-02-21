@@ -13,6 +13,17 @@ body{
     flex-direction: column;
     row-gap: 5vh;
 }
+a4{
+    width: 500px;
+    height: 700px;
+}
+a4-landscape{
+    height: 500px;
+    width: 700px;
+}
+container{
+
+}
 nav{
     position: fixed;
     display: flex;

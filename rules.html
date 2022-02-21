@@ -7,6 +7,11 @@
     <title>Document</title>
     <link rel="stylesheet" href="css/default.css">
     <style>
+        .flex-right{
+            display: flex; 
+            flex: 1;
+            justify-content: flex-end;
+        }
         h1,h2,h3{
             text-align: center;
         }
@@ -180,6 +185,9 @@
         info-list.space-between inner>*:last-child{
             text-align: right;
         }
+        info-list.no-min-width h4{
+            min-width: 0;
+        }
         li{
             font-size: 14px;
         }
@@ -237,6 +245,38 @@
             padding: 6px 10px;
             margin-right: 6px;
             background: #ccc;
+        }
+        ul.item-types li{
+            padding: 2px 0;
+        }
+        ul.item-types li span{
+            display: flex;
+            justify-content: space-between;
+            width: 150px;
+        }
+        ul.item-types li span::after{
+            display: block;
+            height: 18px;
+            width: 18px;
+            margin-left: 10px;
+        }
+        ul.item-types li.melee span::after{
+            content: url(img/blades.svg);
+        }
+        ul.item-types li.ranged span::after{
+            content: url(img/gun-solid.svg);
+        }
+        ul.item-types li.shield span::after{
+            content: url(img/shield-solid.svg);
+        }
+        ul.item-types li.headgear span::after{
+            content: url(img/jason-mask.svg);
+        }
+        ul.item-types li.armor span::after{
+            content: url(img/armor.svg);
+        }
+        ul.item-types li.stuff span::after{
+            content: url(img/gear-solid.svg);
         }
     </style>
 </head>
@@ -691,13 +731,10 @@
                 </info-list>
             </box>
             <box>
-                <h4>Armor</h4>
+                <h4>Armor value</h4>
                 <p>Characters and creatures are either unarmored, wear armor, or have natural armor.</p>
                 <p>When attacked, each die rolled for the attack is reduced by the <i>armor value</i> of the victim.</p>
-                <p>If wearing armor, and all dice roll the exact <i>armor value</i>, the armor is damaged. Fill in one of the quality slots of the armor.</p>
-                <img src="img/armorcard.png" alt="">
-                <p style="text-align: right;">Example armor card</p>
-                
+                <img src="img/armor.png" alt="">
             </box>
             <box class="x2">
 
@@ -708,69 +745,81 @@
                 <row class="internal">
                     <box class="no-border">
                         
-                        <info-list class="no-enumeration centered" style="counter-set: list 0;">
+                        <info-list class="no-min-width no-enumeration centered" style="counter-set: list 0;">
                             <info-row>
                                 <inner>
                                     <h4>Smash</h4>
+                                    <span class="flex-right">Blunt force trauma</span>
                                 </inner>
                             </info-row>
                             <info-row>
                                 <inner>
                                     <h4>Cut</h4>
+                                    <span class="flex-right">Sharp edge lacerations</span>
                                 </inner>
                             </info-row>
                             <info-row>
                                 <inner>
                                     <h4>Stab</h4>
+                                    <span class="flex-right">Pierce and puncture wounds</span>
                                 </inner>
                             </info-row>
                             <info-row>
                                 <inner>
                                     <h4>Pain</h4>
+                                    <span class="flex-right">Skin ripping, flesh tearing</span>
                                 </inner>
                             </info-row>
                             <info-row>
                                 <inner>
                                     <h4>Gun</h4>
+                                    <span class="flex-right">Bullet shock damage</span>
                                 </inner>
                             </info-row>
                             <info-row>
                                 <inner>
                                     <h4>Burst</h4>
+                                    <span class="flex-right">Multiple rapid bullet shocks</span>
                                 </inner>
                             </info-row>
                         </info-list>
                     </box>
                     <box class="no-border">
-                        <info-list class="no-enumeration centered" style="counter-set: list 0;">
+                        <info-list class="no-min-width no-enumeration centered" style="counter-set: list 0;">
                             <info-row>
                                 <inner>
                                     <h4>Blast</h4>
+                                    <span class="flex-right">Wide area or explosive</span>
                                 </inner>
                             </info-row>
                             <info-row>
                                 <inner>
-                                    <h4>Holy</h4>
+                                    <h4>Ooze</h4>
+                                    <span class="flex-right">Putrid, infectious or fungal</span>
                                 </inner>
                             </info-row>
                             <info-row>
                                 <inner>
-                                    <h4>Vile</h4>
+                                    <h4>Nuke</h4>
+                                    <span class="flex-right">Radiation or decay damage</span>
                                 </inner>
                             </info-row>
                             <info-row>
                                 <inner>
-                                    <h4>Burn</h4>
+                                    <h4>Light</h4>
+                                    <span class="flex-right">Purifying, or heat damage</span>
                                 </inner>
                             </info-row>
                             <info-row>
                                 <inner>
-                                    <h4>Cold</h4>
+                                    <h4>Neural</h4>
+                                    <span class="flex-right">Emotional, or brain damage</span>
                                 </inner>
                             </info-row>
                             <info-row>
                                 <inner>
-                                    <h4>Volt</h4>
+                                    <h4>Compute</h4>
+                                    <span class="flex-right">Shock, or circuit damage</span>
                                 </inner>
                             </info-row>
                         </info-list>
@@ -836,37 +885,81 @@
         </row>
 
         <row>
-            <box class="x1-5">
-                <h2>Weapons</h2>
-                <p>There is a variety of weapons out there, from knives and clubs, to guns and grenades. The following is true for a weapon;</p>
-                <ul>
-                    <li>Weapons add a damage die to each attack. Which die depends on their <i>damage rating</i></li>
-                    <li>A weapon is completely destroyed if all its <i>durability</i> and <i>quality</i> slots are filled in.</li>
-                    <li>All weapons have a card, and need to be held by a character to be used</li>
-                    <li>Weapons have several damage types. If a weapon hits an enemy and has a damage type that combatant is weak against, it deals <i>critical damage</i></li>
-                    <li>All weapons can have one <i>condition</i> they may apply. These are not stated by the weapon cards, but added either randomly or at the discretion of the GM.</li>
-                </ul>
-                <img src="img/weaponcard.png" alt="">
-                <p style="text-align: right;">Example weapon card</p>
-                <h3>Adding conditions</h3>
-                <p>As the player characters aquire a new weapon, it will either be a prepared weapon which the GM has already decided on the condition it applies, or an unprepared weapon the GM did not account for.</p>
-                <p>For weapons not prepared in advance, the GM decides on a condition type, and the player aquiring the weapon rolls a die on that condition types table to determine which condition the weapon applies.</p>
-                <p>Note down which condition the weapon may apply on the weapon card.</p>
+            <box>
+                <h2>Inventory</h2>
+                <p>All things a character carries with them which are of note are represented by a item card. Item cards represent any weapons, protection, or tools the character carries and have at their disposal. The character sheet, and vehicle sheets has dedicated slots to contain item cards, which also denote how the item is carried.</p>
+                <p>Items carried in the characters hands or belt can be used in combat, while items carried on the characters body are items worn or strapped to them, and items in the 3 inventory slots are items stored in a backpack.</p>
             </box>
             <box class="x1-5">
+                <h3>Item types</h3>
+                <p>There are six different types of items, each with their own icons and usage.</p>
+                <row class="internal" style="justify-content: space-evenly;">
+                    <ul class="item-types">
+                        <li class="melee">
+                            <span>Melee weapon</span>
+                        </li>
+                        <li class="ranged">
+                            <span>Ranged weapon</span>
+                        </li>
+                        <li class="shield">
+                            <span>Shield</span>
+                        </li>
+                    </ul>
+                    <ul class="item-types">
+                        <li class="headgear">
+                            <span>Headgear</span>
+                        </li>
+                        <li class="armor">
+                            <span>Armor</span>
+                        </li>
+                        <li class="stuff">
+                            <span>Tool</span>
+                        </li>
+                    </ul>
+                </row>
+                <img src="img/example-item.png" alt="">
+                <p style="text-align:right ;">Example item</p>
+            </box>
+            <box>
                 <h3>Stats</h3>
+                <p>All items have stats, but depending on the type of the item the stats may mean different things.</p>
+                <h4>Quality</h4>
+                <p>The round slots are called quality. The quality of an item counts as both a durability, and an effect icon. Filling in the quality slot as the result of damaging the item will also result in the quality being lost for effect purposes.</p>
+                <h4>Durability</h4>
+                <p>The durability of an item is a measure of how much damage the item can withstand. When all durability, and quality slots are filled in as a result of damage, an item is destroyed.</p>
+                <h4>Effect</h4>
+                <p>The effect of an item counts towards either the damage rating, or armor value of the item. Quality also adds to this</p>
+            </box>
+            <box>
+                <h3>Item damage</h3>
+                <p>When an item is either used for somthing it is not intended for, suffers rough physical treatment, is partially or completely consumed, or due to certain combat actions and events, it takes damage.</p>
+                <p>When an item takes damage, cross out the first durability or quality slot (starting from the top left) which is not yet filled in.</p>
+                <p>Some items, at the GM's discretion are not destroyed when all durability or quality slots are filled in, and may be recharged or refilled, although this is an exception</p>
+                <h4>Repair</h4>
+                <p>Repairing a weapon may restore sturdy quality slots. Repairing a quality slot will take some time, and resources, usually worth around ~75% of what the quality slot would cost if new.</p>
+                
+            </box>
+            <box class="x3">
                 <row class="internal">
-                    
                     <box class="no-border">
-                        <h4>Durability</h4>
-                        <p>Square slots. Whenever the weapon loses durability, fill in one of these slots.</p>
-
-                        <h4>Damage</h4>
-                        <p>Plus signs. These add to the weapons <i>damage rating</i></p>
-
-                        <h4>Quality</h4>
-                        <p>Round slots. Whenever the weapon loses durability, but has no square durability slots left, fill in one of these slots. When not filled in, these add to the weapons <i>damage rating</i></p>
-
+                        <h3>Weapons</h3>
+                        <p>There is a variety of weapons out there, from knives and clubs, to guns and grenades. The following is true for a weapon;</p>
+                        <ul>
+                            <li>Weapons add a damage die to each attack. Which die depends on their <i>damage rating</i></li>
+                            <li>All weapons have a card, and needs to be held by a character to be used</li>
+                            <li>Weapons have several damage types. If a weapon hits an enemy and has a damage type that combatant is weak against, it deals <i>critical damage</i></li>
+                            <li>All weapons can have one <i>condition</i> they may apply. These are not stated by the weapon cards, but added either randomly or at the discretion of the GM.</li>
+                            <li>There are two types of weapons, <i>melee</i> and <i>ranged</i></li>
+                            <li>Quality and effect increases the weapons <i>damage rating</i> by 1</li>
+                            <li>A weapons skill is used to track the players skill swith the individual weapon.</li>
+                        </ul>
+                        <h4>Adding conditions</h4>
+                        <p>As the player characters aquire a new weapon, it will either be a prepared weapon which the GM has already decided on the condition it applies, or an unprepared weapon the GM did not account for.</p>
+                        <p>For weapons not prepared in advance, the GM decides on a condition type, and the player aquiring the weapon rolls a die on that condition types table to determine which condition the weapon applies.</p>
+                        <p>Note down which condition the weapon may apply on the weapon card.</p>
+                        
+                    </box>
+                    <box class="no-border">
                         <h4>Damage Rating</h4>
                         <p>The damage rating of a weapon is calculated by adding its <i>damage</i> (plus signs) to its unfilled <i>quality</i> (circle slots).</p>
                         <p>The damage rating determines the weapons damage die</p>
@@ -897,27 +990,31 @@
                                 </inner>
                             </info-row>
                         </info-list>
-                    </box>
-                    <box class="no-border">
-                        <h4>Weapon Type</h4>
-                        <p>If this icon is crossed swords, its a melee weapon. If this icon is a bow, its a ranged weapon.</p>
-                        <h4>Skill Tracker</h4>
-                        <p>Use this bar to track the current users skill level with the weapon.</p>
-                        <h4>Damage types</h4>
-                        <p>When a weapon deals damage, if any of their damage types matches the targets weakness,.</p>
-                        <h4>Breakage</h4>
-                        <p>A weapon which has all sturdy quality slots filled in breaks completely, beyond repair</p>
-                        <h4>Repair</h4>
-                        <p>Repairing a weapon may restore sturdy quality slots. Repairing a quality slot will take some time, and resources, usually worth around ~75% of what the quality slot would cost if new.</p>
+                        <img src="img/weapons.jpg" alt="">
                     </box>
                 </row>
+                
             </box>
-        </row>
-
-        <row>
+            <box class="x2">
+                <h3>Protection</h3>
+                <p>Different types of armor comes in shields, helmets, bodywear, or complete outfits. The following statements are true about armor;</p>
+                <ul>
+                    <li>There are four types of protection, <i>armor</i>, <i>headgear</i>, and <i>shield</i></li>
+                    <li>Each quality and effect increases <i>armor value</i> by 1</li>
+                    <li>Quality is also used as durability for protection</li>
+                    <li>The <i>damage types</i> of a protection item determines weaknesses the it <i>mitigates</i></li>
+                    <li>Armor occupying two card slots will occupy a characters body <i>body</i> item slots</li>
+                </ul>
+                <h4>Armor value</h4>
+                <p>The total <i>armor value</i> of all equipped protection is added together when reducing the effect of an attack. Each damage die is reduced by the total <i>armor value</i></p>
+                <h4>Weakness mitigation</h4>
+                <p>All <i>damage types</i> listed with a protection will mitigate the wearers <i>weakness</i> to that damage type. Additionally, the wearer can never become weak to that damage type as long as they wear the armor.</p>
+            </box>
             <box>
-                <h2>Inventory</h2>
-                <p>All things a character carries with them which are of note are represented by a item card. Item cards</p>
+                <h3>Tool</h3>
+                <p>Tools are a common name for anything not a weapon, or protection. It is anything between batteries, water bottles, food, and egg timers.</p>
+                <p>Tools only has durability. Durability is reduced when tools is consumed, or used for something it is not made for</p>
+                <img src="img/do-yourself-tools-pile-white-background-household-diy-chore-concept-38956252-removebg-preview.png" alt="">
             </box>
         </row>
 
@@ -1479,19 +1576,19 @@
                             <info-row>
                                 <inner>
                                     <h4>Kelp Harvester</h4>
-                                    <span>Harvests kelp in the dead of night</span>
+                                    <span>Harvests kelp in the dead of night, while it sleeps</span>
                                 </inner>
                             </info-row>
                             <info-row>
                                 <inner>
                                     <h4>Gator spokesperson</h4>
-                                    <span>Upholds the peace between man and gator</span>
+                                    <span>Upholds the peace between man and gator. Bilingual</span>
                                 </inner>
                             </info-row>
                             <info-row>
                                 <inner>
                                     <h4>Cajun</h4>
-                                    <span>Hunts Crayfish, cooks well</span>
+                                    <span>Hunts crayfish, cooks crayfish, eats crayfish</span>
                                 </inner>
                             </info-row>
                         </info-list>
@@ -1519,7 +1616,7 @@
                             <info-row>
                                 <inner>
                                     <h4>SciBot</h4>
-                                    <span>Has a creative AI.</span>
+                                    <span>Has a creative AI, dressed in labcoat</span>
                                 </inner>
                             </info-row>
                             <info-row>

@@ -1,0 +1,229 @@
+body *{
+    font-family: medula;
+    font-size: 24px;
+    text-transform: capitalize;
+    display: flex;
+}
+header{
+    width: 100%;
+    display: block;
+    padding: 5px;
+    text-align: center;
+}
+a4-landscape{
+    display: block;
+}
+character-notes{
+    width: 100%;
+    flex-direction: column;
+}
+character-notes>row>character{
+    
+    flex: 1;
+    flex-grow: 1;
+    flex-direction: column;
+}
+character-notes>row>character *{
+    
+    background: #ddd;
+}
+character-notes>row>character *::before{
+    
+    width: calc(50% - 10px);
+    background: #bbb;
+    padding: 5px;
+    font-size: 24px;
+}
+character-notes>row>character player::before{
+    content: "Player";
+}
+character-notes>row>character name::before{
+    content: "Name";
+}
+character-notes>row>character background::before{
+    content: "Background";
+}
+tracking{
+    width: 100%;
+    height: calc(100% - 136px);
+    
+    flex-direction: row;
+}
+tracking>*{
+    flex: 1;
+    flex-grow: 1;
+}
+group-actions{
+    flex-direction: column;
+}
+group-actions>row{
+    display: flex;
+    flex: 1;
+    flex-grow: 1;
+}
+group-actions>row>*{
+    flex: 1;
+    flex-grow: 1;
+    flex-direction: column;
+    border-right: 1px dashed black;
+    border-bottom: 1px dashed black;
+}
+group-actions>row>*:nth-child(3n - 2){
+    border-left: 1px dashed black;
+
+}
+group-actions>row>*::before{
+    align-content: center;
+    justify-content: center;
+    width: calc(100% - 10px);
+    padding: 5px;
+    background: #bbb;
+}
+group-actions>row>risks-taken::before{
+    content: "risks-taken";
+}
+group-actions>row>great-plans::before{
+    content: "great-plans";
+}
+group-actions>row>lies-told::before{
+    content: "lies-told";
+}
+group-actions>row>mercy::before{
+    content: "mercy";
+}
+group-actions>row>cruelty::before{
+    content: "cruelty";
+}
+group-actions>row>life-indifference::before{
+    content: "life-indifference";
+}
+group-actions>row>charity::before{
+    content: "charity";
+}
+group-actions>row>time-taken::before{
+    content: "time-taken";
+}
+group-actions>row>crimes::before{
+    content: "crimes";
+}
+group-actions>row>*::after{
+    content: "";
+    width: 100%;
+    background: #ddd;
+    flex-grow: 1;
+    flex: 1;
+    font-size: 24px;
+}
+world{
+    
+    flex-direction: column;
+}
+world>*{
+    
+}
+world>faction{   
+    flex-direction: column;
+}
+world>faction>player-faction{
+    
+    flex-direction: row;
+}
+world>faction>player-faction>*{
+    
+    flex: 1;
+    flex-grow: 1;
+    flex-direction: column;
+}
+world>faction>player-faction>*::before{
+    content:"";
+    align-content: center;
+    justify-content: center;
+    width: calc(100% - 10px);
+    background: #bbb;
+    padding: 5px;
+}
+world>faction>player-faction>power::before{
+    content: "power";
+}
+world>faction>player-faction>credibility::before{
+    content:"credibility";
+}
+world>faction>player-faction>recognition::before{
+    content:"recognition";
+}
+world>faction>player-faction>morality::before{
+    content:"morality";
+}
+world>faction>player-faction>*::after{
+    content:"";
+    padding: 10px 0;
+    
+    width: calc(100% - 1px);
+    background: #ddd;
+    font-size: 24px;
+    border-right: 1px dashed black;
+    border-bottom: 1px dashed black;
+}
+world>faction>player-faction>*:first-child::after{
+    border-left: 1px dashed black;
+    width: calc(100% - 2px);
+}
+world>faction>other-factions{
+    
+    flex: 1;
+    flex-grow: 1;
+    flex-direction: row;
+}
+world>faction>other-factions>other-faction{
+    
+    flex: 1;
+    flex-grow: 1;
+ 
+    flex-direction: column;
+}
+world>faction>other-factions>other-faction>*{
+    
+    flex: 1;
+    flex-grow: 1;
+    flex-direction: row;
+}
+world>faction>other-factions>other-faction>*::before{
+    width: 50%;
+    background: #bbb;
+    padding: 5px 5px;
+}
+world>faction>other-factions>other-faction>name::before{
+    content:"name"
+}
+world>faction>other-factions>other-faction>power::before{
+    content:"power"
+}
+world>faction>other-factions>other-faction>opinion::before{
+    content:"opinion"
+}
+world>faction>other-factions>other-faction>*::after{
+    width: 50%;
+    align-content: center;
+    justify-content: center;
+    background: #ddd;
+    padding: 5px 0;
+    content:"";
+    border-right: 1px dashed black;
+    border-bottom: 1px dashed black;
+}
+world>faction>other-factions>other-faction>*:first-child::after{
+    border-top: 1px dashed black;
+}
+misc{
+    flex-direction: column;
+    flex: 1;
+    flex-grow: 1;
+}
+misc>row{
+    flex: 1;
+    flex-grow: 1;
+    background: #ddd;
+    border-right: 1px dashed black;
+    border-bottom: 1px dashed black;
+    border-top: 1px dashed black;
+}
