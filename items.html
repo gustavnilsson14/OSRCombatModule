@@ -1195,13 +1195,43 @@
                 <skillslot></skillslot>
             </skill>
         </slot>
+        <slot class="ranged physical horizontal-image">
+            <name>
+                <span class="smaller">Megiddo Mortar</span>
+            </name>
+            <inner style="background-image: url(img/items/megiddo.png);">
+                <damagetypes>
+                    <span>blast</span>
+                    <span>light</span>
+                </damagetypes>
+                <usage class="second-row">
+                    <durability></durability>
+                    <durability></durability>
+                </usage>
+                <usage>
+                    <both></both>
+                    <both></both>
+                    <both></both>
+                    <both></both>
+                    <both></both>
+                </usage>
+            </inner>
+            
+            <skill>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+            </skill>
+        </slot>
     </container>
 
     <container>
         
         <slot class="magic">
             <name>
-                <span class="smaller">Lightning bolt</span>
+                <span class="smaller">Shock</span>
             </name>
             <inner style="background-image: url(img/items/bolt.png), url(img/items/rune.png); background-size: 50%, 60%;">
                 <damagetypes>
@@ -1219,11 +1249,11 @@
         </slot>
         <slot class="magic">
             <name>
-                <span class="smaller">Firefist</span>
+                <span class="smaller">Aneurysm</span>
             </name>
-            <inner style="background-image: url(img/items/firefist.png), url(img/items/rune.png); background-size: 50%, 60%;">
+            <inner style="background-image: url(img/items/brainbleed.png), url(img/items/rune.png); background-size: 50%, 60%;">
                 <damagetypes>
-                    <span>burn</span>
+                    <span>psyche</span>
                 </damagetypes>
             </inner>
             
@@ -1237,11 +1267,11 @@
         </slot>
         <slot class="magic">
             <name>
-                <span class="smaller">frostfist</span>
+                <span class="smaller">Vile Mutagen</span>
             </name>
-            <inner style="background-image: url(img/items/frostfist.png), url(img/items/rune.png); background-size: 50%, 60%;">
+            <inner style="background-image: url(img/items/cancer-delande-celler-iStock-removebg-preview.png), url(img/items/rune.png); background-size: 50%, 60%;">
                 <damagetypes>
-                    <span>burn</span>
+                    <span>ooze</span>
                 </damagetypes>
             </inner>
             
@@ -1255,11 +1285,11 @@
         </slot>
         <slot class="magic">
             <name>
-                <span class="smaller">Holy Smite</span>
+                <span class="smaller">Enflame</span>
             </name>
-            <inner style="background-image: url(img/items/smite.png), url(img/items/rune.png); background-size: 50%, 60%;">
+            <inner style="background-image: url(img/items/enflame.png), url(img/items/rune.png); background-size: 40%, 60%;">
                 <damagetypes>
-                    <span>holy</span>
+                    <span>light</span>
                 </damagetypes>
             </inner>
             
@@ -1273,30 +1303,11 @@
         </slot>
         <slot class="magic">
             <name>
-                <span class="smaller">Dark touch</span>
+                <span class="smaller">Irradiate</span>
             </name>
-            <inner style="background-image: url(img/items/darktouch.png), url(img/items/rune.png); background-size: 30%, 60%;">
+            <inner style="background-image: url(img/items/Plutonium_pellet-removebg-preview.png), url(img/items/rune.png); background-size: 50%, 60%;">
                 <damagetypes>
-                    <span>vile</span>
-                </damagetypes>
-            </inner>
-            
-            <skill>
-                <skillslot></skillslot>
-                <skillslot></skillslot>
-                <skillslot></skillslot>
-                <skillslot></skillslot>
-                <skillslot></skillslot>
-            </skill>
-        </slot>
-
-        <slot class="magic">
-            <name>
-                <span class="smaller">Arcane Bomb</span>
-            </name>
-            <inner style="background-image: url(img/items/explosion.png), url(img/items/rune.png); background-size: 70%, 60%;">
-                <damagetypes>
-                    <span>blast</span>
+                    <span>ooze</span>
                 </damagetypes>
             </inner>
             
@@ -1452,7 +1463,10 @@
             </name>
             <inner style="background-image: url(img/items/riotshield.jfif);">
                 <damagetypes>
+                    <span>pain</span>
                     <span>smash</span>
+                    <span>blast</span>
+                    <span>burst</span>
                 </damagetypes>
                 <usage>
                     <durability></durability>
@@ -1467,6 +1481,9 @@
             </name>
             <inner style="background-image: url(img/items/stopshield.jpg);">
                 <damagetypes>
+                    <span>cut</span>
+                    <span>stab</span>
+                    <span>pain</span>
                     <span>smash</span>
                 </damagetypes>
                 <usage>
@@ -1482,11 +1499,10 @@
             </name>
             <inner style="background-image: url(img/items/plank.png);">
                 <damagetypes>
-                    <span>smash</span>
+                    <span>cut</span>
+                    <span>pain</span>
                 </damagetypes>
                 <usage>
-                    <durability></durability>
-                    <durability></durability>
                     <both></both>
                 </usage>
             </inner>
@@ -1498,12 +1514,15 @@
             </name>
             <inner style="background-image: url(img/items/armor-combat.png);">
                 <damagetypes>
+                    <span>cut</span>
                     <span>smash</span>
+                    <span>pain</span>
                 </damagetypes>
                 <usage>
                     <durability></durability>
                     <durability></durability>
                     <both></both>
+                    <damage></damage>
                 </usage>
             </inner>
         </slot>
@@ -1514,10 +1533,14 @@
             <inner style="background-image: url(img/items/combat-armor.jfif);">
                 <damagetypes>
                     <span>smash</span>
+                    <span>cut</span>
+                    <span>stab</span>
+                    <span>pain</span>
                 </damagetypes>
                 <usage>
                     <durability></durability>
                     <durability></durability>
+                    <both></both>
                     <both></both>
                 </usage>
             </inner>
@@ -1528,10 +1551,16 @@
             </name>
             <inner style="background-image: url(img/items/poweredarmor.jpg);">
                 <damagetypes>
+                    <span>cut</span>
+                    <span>gun</span>
+                    <span>stab</span>
                     <span>smash</span>
+                    <span>blast</span>
                 </damagetypes>
                 <usage>
+                    <both></both>
                     <durability></durability>
+                    <both></both>
                     <durability></durability>
                     <both></both>
                 </usage>
@@ -1543,12 +1572,48 @@
             </name>
             <inner style="background-image: url(img/items/shellarmor.png);">
                 <damagetypes>
-                    <span>smash</span>
+                    <span>gun</span>
+                    <span>burst</span>
+                    <span>blast</span>
+                </damagetypes>
+                <usage>
+                    <durability></durability>
+                    <both></both>
+                    <both></both>
+                    <damage></damage>
+                </usage>
+            </inner>
+        </slot>
+        <slot class="armor x2">
+            <name>
+                <span class="smaller">Hazmat Suit</span>
+            </name>
+            <inner style="background-image: url(img/items/hazmat.png);">
+                <damagetypes>
+                    <span>*</span>
+                    <span>ooze</span>
+                    <span>nuke</span>
+                    <span>volt</span>
                 </damagetypes>
                 <usage>
                     <durability></durability>
                     <durability></durability>
-                    <both></both>
+                    <durability></durability>
+                </usage>
+            </inner>
+        </slot>
+        <slot class="armor x2">
+            <name>
+                <span class="smaller">Camouflage</span>
+            </name>
+            <inner style="background-image: url(img/items/kamouflage-och-maskering-ghillie-suit-woodland-44574-f1-removebg-preview.png);">
+                <damagetypes>
+                    <span>*</span>
+                </damagetypes>
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                    <durability></durability>
                 </usage>
             </inner>
         </slot>
