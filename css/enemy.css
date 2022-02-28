@@ -1,0 +1,72 @@
+a4{
+    display: flex;
+}
+h2{
+    font-family: medula;
+}
+row:first-child{
+    border-bottom: 1px solid black;
+}
+row:first-child box{
+    transform: rotateZ(180deg);
+    background-size: 75%;
+    background-position: bottom;
+    background-repeat: no-repeat;
+}
+box{
+    display: flex;
+    width: 50%;
+    flex-direction: column;
+    padding: 4px;
+}
+row.inner box{
+    padding: 0px;
+    width: calc(50% - 2px);
+}
+h2{
+    margin: 0;
+    font-size: 42px;
+    text-align: center;
+}
+h3{
+    margin: 3px 0px 0px 0px;
+    font-size: 24px;
+    text-align: left;
+    font-family: medula;
+}
+p, span{
+    font-family: source;
+    margin: 0;
+    font-size: 14px;
+    line-height: 14px;
+}
+.small-text{
+    font-size: 12px;
+    line-height: 12px;
+}
+.smaller-text{
+    font-size: 10px;
+    line-height: 10px;
+}
+row.wrap{
+    flex-wrap: wrap;
+    column-gap:4px;
+    align-content: flex-start;
+}
+row.wrap.attributes span{
+    width: calc(50% - 5px)
+}
+row.wrap.attributes span key::after{
+    content: ":";
+}
+box span{
+    display: flex;
+    height: 14px;
+    font-family: source;
+}
+box span value{
+    margin-left:3px;
+}
+p,span{
+    letter-spacing: -2px;
+}

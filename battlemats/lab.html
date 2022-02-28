@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/default.css">
-    <link rel="stylesheet" href="css/battlemat-template.css">
+    <link rel="stylesheet" href="../css/default.css">
+    <link rel="stylesheet" href="../css/battlemat-template.css">
     <title>Document</title>
 </head>
 <body>
-    <a4-landscape style="background-image: url(img/battleground/zombiemall.jpg); background-position: bottom;">
+    <a4-landscape style="background-image: url(../img/battleground/decently_scary_lab.jpg); background-position-x: -275px; background-position-y: -100px; background-size: 180%;">
         <row>
             <tile></tile>
             <tile></tile>
@@ -30,9 +30,7 @@
                 <inner>
                     <header>Movement</header>
                     <text>
-                        Movement on the bridge costs 1 per tile.
-                        Combatants not on the bridge cannot usually take any actions unless native.
-                        Getting back on the bridge is a tactical action.
+                        Movement in the bio lab costs 1 per tile.
                     </text>    
                 </inner>
             </box>
@@ -40,22 +38,22 @@
                 <inner>
                     <header>Hazard</header>
                     <text>
-                        Combatants can target the bridge to damage it, light damage dealt will set it on fire, also damaging the bridge.
-                        After damaged, the bridge collapses at the end of the next round, causing the combat to end. Any combatant on the bridge saves their DEX or suffers a wound.
-                    </text>    
+                        There are large vats of toxins, acids, and other fluids not desirable to get on ones body.
+                        Any blast damage in the bio lab will cause fluids to splash on those on the tile of the attacker and target, dealing 3d4 ooze, and nuke damage.
+                    </text>
                 </inner>
             </box>
             <box>
                 <inner>
                     <header>Feature</header>
                     <text>
-                        There are several clusters of ooze fungi growing on the bridge.
-                        Moving onto a tile with fungi requires a DEX save. If unsuccessful, all combatants on the tile take 3d6 ooze damage
+                        There is a radiation burst control room which controls strong bursts of radiation in the rest of the lab, for sterilization purposes.
+                        When used, it deals 3d10 nuke damage to anything not on the same tile. Can only be used once per combat.
                     </text>    
                 </inner>
             </box>
         </row>
-        <location>Abandoned Mall</location>
+        <location>Bio Lab</location>
     </a4-landscape>
 </body>
 </html>

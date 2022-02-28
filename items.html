@@ -38,9 +38,8 @@
 <body>
     <nav>
         <a href="rules.html">Rules</a>
-        <a href="battle.html">Battle</a>
+        <a href="battlemats/template.html">Battle</a>
         <a href="sheet.html">Sheet</a>
-        <a href="battleground_tiles.html">Tiles</a>
         <a href="items.html">Items</a>
         <a href="vehicles.html">Vehicles</a>
     </nav>
@@ -245,7 +244,7 @@
             </name>
             <inner style="background-image: url(img/items/torch.png);">
                 <damagetypes>
-                    <span>burn</span>
+                    <span>light</span>
                     <span>smash</span>
                 </damagetypes>
                 <usage>
@@ -709,6 +708,80 @@
                 <skillslot></skillslot>
             </skill>
         </slot>
+        <slot class="melee physical horizontal-image">
+            <name>
+                <span class="small">Necro Cleaver</span>
+            </name>
+            <inner style="background-image: url(img/items/chainaxe.png);">
+                <damagetypes>
+                    <span>cut</span>
+                    <span>pain</span>
+                </damagetypes>
+                <usage>
+                    <both></both>
+                    <both></both>
+                    <both></both>
+                </usage>
+            </inner>
+            
+            <skill>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+            </skill>
+        </slot>
+        <slot class="melee physical">
+            <name>
+                <span class="smaller">Necro Bleeder</span>
+            </name>
+            <inner style="background-image: url(img/items/necrobleeder.png);">
+                <damagetypes>
+                    <span>stab</span>
+                    <span>pain</span>
+                </damagetypes>
+                <usage>
+                    <durability></durability>
+                    <both></both>
+                    <both></both>
+                </usage>
+            </inner>
+            
+            <skill>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+            </skill>
+        </slot>
+        <slot class="melee physical">
+            <name>
+                <span class="smaller">Gator Blade</span>
+            </name>
+            <inner style="background-image: url(img/items/gatorblade.png);">
+                <damagetypes>
+                    <span>cut</span>
+                    <span>stab</span>
+                </damagetypes>
+                <usage>
+                    <both></both>
+                    <both></both>
+                    <durability></durability>
+                    <both></both>
+                    <both></both>
+                </usage>
+            </inner>
+            
+            <skill>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+            </skill>
+        </slot>
         <slot class="melee physical">
             <name>
                 <span class="smaller">Pots and Pans</span>
@@ -764,6 +837,32 @@
                     <span>pain</span>
                 </damagetypes>
                 <usage>
+                    <durability></durability>
+                    <durability></durability>
+                </usage>
+            </inner>
+            
+            <skill>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+            </skill>
+        </slot>
+        <slot class="melee physical">
+            <name>
+                <span>Chain</span>
+            </name>
+            <inner style="background-image: url(img/items/grade-30-proof-coil-chain.jpg);">
+                <damagetypes>
+                    <span>smash</span>
+                    <span>pain</span>
+                </damagetypes>
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                    <durability></durability>
                     <durability></durability>
                     <durability></durability>
                 </usage>
@@ -873,6 +972,32 @@
                 <skillslot></skillslot>
             </skill>
         </slot>
+        <slot class="melee physical">
+            <name>
+                <span class="small">Bear Trap</span>
+            </name>
+            <inner style="background-image: url(img/items/beartrap.png);">
+                <damagetypes>
+                    <span>*</span>
+                    <span>cut</span>
+                    <span>pain</span>
+                    <span>smash</span>
+                </damagetypes>
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                    <durability></durability>
+                </usage>
+            </inner>
+            
+            <skill>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+            </skill>
+        </slot>
 
     </container>    
 
@@ -891,6 +1016,31 @@
                 <usage>
                     <durability></durability>
                     <both></both>
+                    <damage></damage>
+                </usage>
+            </inner>
+            
+            <skill>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+            </skill>
+        </slot>
+        <slot class="ranged physical">
+            <name>
+                <span class="smaller">Gator Bowgun</span>
+            </name>
+            <inner style="background-image: url(img/items/gator-bowgun.png);">
+                <damagetypes>
+                    <span>stab</span>
+                    <span>smash</span>
+                </damagetypes>
+                <usage>
+                    <durability></durability>
+                    <both></both>
+                    <durability></durability>
                     <damage></damage>
                 </usage>
             </inner>
@@ -1025,6 +1175,30 @@
                 <span>Magnum</span>
             </name>
             <inner style="background-image: url(img/items/magnus.png);">
+                <damagetypes>
+                    <span>gun</span>
+                </damagetypes>
+                <usage>
+                    <durability></durability>
+                    <both></both>
+                    <both></both>
+                    <damage></damage>
+                </usage>
+            </inner>
+            
+            <skill>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+            </skill>
+        </slot>
+        <slot class="ranged physical">
+            <name>
+                <span>Hand Cannon</span>
+            </name>
+            <inner style="background-image: url(img/items/images-removebg-preview\ \(1\).png);">
                 <damagetypes>
                     <span>gun</span>
                 </damagetypes>
@@ -1197,6 +1371,66 @@
         </slot>
         <slot class="ranged physical horizontal-image">
             <name>
+                <span class="small">M29-LMG</span>
+            </name>
+            <inner style="background-image: url(img/items/PEO_M249_Para_ACOG.jpg);">
+                <damagetypes>
+                    <span>burst</span>
+                </damagetypes>
+                <usage class="second-row">
+                    <both></both>
+                    <both></both>
+                </usage>
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                    <both></both>
+                    <damage></damage>
+                    <damage></damage>
+                </usage>
+            </inner>
+            
+            <skill>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+            </skill>
+        </slot>
+        <slot class="ranged physical horizontal-image">
+            <name>
+                <span class="smaller">Autocannon</span>
+            </name>
+            <inner style="background-image: url(img/items/Autocannon_Vraks.webp);">
+                <damagetypes>
+                    <span>gun</span>
+                    <span>pain</span>
+                    <span>burst</span>
+                </damagetypes>
+                <usage class="second-row">
+                    <durability></durability>
+                    <durability></durability>
+                </usage>
+                <usage>
+                    <both></both>
+                    <both></both>
+                    <both></both>
+                    <both></both>
+                    <both></both>
+                </usage>
+            </inner>
+            
+            <skill>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+            </skill>
+        </slot>
+        <slot class="ranged physical horizontal-image">
+            <name>
                 <span class="smaller">Megiddo Mortar</span>
             </name>
             <inner style="background-image: url(img/items/megiddo.png);">
@@ -1214,6 +1448,80 @@
                     <both></both>
                     <both></both>
                     <both></both>
+                </usage>
+            </inner>
+            
+            <skill>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+            </skill>
+        </slot>
+        <slot class="ranged horizontal-image">
+            <name>
+                <span class="small">Nailgun</span>
+            </name>
+            <inner style="background-image: url(img/items/nailgun_01.png14672430-033D-4D2C-858B-E5B447482AF8Large-removebg-preview.png);">
+                <damagetypes>
+                    <span>pain</span>
+                    <span>stab</span>
+                </damagetypes>
+                <usage>
+                    <durability></durability>
+                    <both></both>
+                    <damage></damage>
+                </usage>
+            </inner>
+            
+            <skill>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+            </skill>
+        </slot>
+        <slot class="ranged horizontal-image">
+            <name>
+                <span class="small">Necro Rifle</span>
+            </name>
+            <inner style="background-image: url(img/items/hellrifle.png);">
+                <damagetypes>
+                    <span>gun</span>
+                    <span>stab</span>
+                </damagetypes>
+                <usage>
+                    <both></both>
+                    <both></both>
+                    <damage></damage>
+                </usage>
+            </inner>
+            
+            <skill>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+            </skill>
+        </slot>
+        <slot class="ranged horizontal-image">
+            <name>
+                <span class="small">Necro Repeater</span>
+            </name>
+            <inner style="background-image: url(img/items/necrorepeater.png);">
+                <damagetypes>
+                    <span>gun</span>
+                    <span>stab</span>
+                    <span>burst</span>
+                </damagetypes>
+                <usage>
+                    <both></both>
+                    <both></both>
+                    <both></both>
+                    <damage></damage>
                 </usage>
             </inner>
             
@@ -1394,6 +1702,21 @@
                     <durability></durability>
                     <durability></durability>
                     <both></both>
+                </usage>
+            </inner>
+        </slot>
+        <slot class="headgear">
+            <name>
+                <span class="smaller">Goggles</span>
+            </name>
+            <inner style="background-image: url(img/items/goggles.png);">
+                <damagetypes>
+                    <span>*</span>
+                </damagetypes>
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                    <durability></durability>
                 </usage>
             </inner>
         </slot>
@@ -1617,6 +1940,23 @@
                 </usage>
             </inner>
         </slot>
+        <slot class="armor x2">
+            <name>
+                <span class="smaller">Arctic Gear</span>
+            </name>
+            <inner style="background-image: url(img/items/arctic.png);">
+                <damagetypes>
+                    <span>*</span>
+                    <span>cut</span>
+                    <span>smash</span>
+                </damagetypes>
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                    <both></both>
+                </usage>
+            </inner>
+        </slot>
     </container>
     
     <container>
@@ -1776,9 +2116,9 @@
                 </usage>
             </inner>
         </slot>
-        <slot class="horizontal-image">
+        <slot class="stuff horizontal-image">
             <name>
-                <span class="smallest">Inflatable Rubber Boat</span>
+                <span class="smallest">Inflatable Boat</span>
             </name>
             <inner style="background-image: url(img/items/boat.png);">
                 <usage>
@@ -1889,6 +2229,30 @@
                 <span>Vials</span>
             </name>
             <inner style="background-image: url(img/items/vials.png);">
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                    <durability></durability>
+                </usage>
+            </inner>
+        </slot>
+        <slot class="stuff">
+            <name>
+                <span>Acid</span>
+            </name>
+            <inner style="background-image: url(img/items/acid.webp);">
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                    <durability></durability>
+                </usage>
+            </inner>
+        </slot>
+        <slot class="stuff">
+            <name>
+                <span>Parachute</span>
+            </name>
+            <inner style="background-image: url(img/items/download.jpg);">
                 <usage>
                     <durability></durability>
                     <durability></durability>

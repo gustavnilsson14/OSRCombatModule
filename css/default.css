@@ -11,7 +11,9 @@ body{
     display: flex;
     justify-content: center;
     flex-direction: column;
-    row-gap: 5vh;
+    margin: 0;
+    border: 0;
+    padding: 0;
 }
 a4{
     width: 500px;
@@ -20,9 +22,6 @@ a4{
 a4-landscape{
     height: 500px;
     width: 700px;
-}
-container{
-
 }
 nav{
     position: fixed;
@@ -39,4 +38,19 @@ nav a{
     text-transform: uppercase;
     font-weight: 700;
     font-family: 'source';
+}
+row{
+    display: flex;
+    flex: 1;
+    flex-grow: 1;
+    flex-direction: row;
+}
+column{
+    display: flex;
+    flex: 1;
+    flex-grow: 1;
+    flex-direction: column;
+}
+row>separator{
+    border-right: 1px solid black;
 }

@@ -180,6 +180,9 @@
         info-list.dice-enumeration info-row.na-enumeration::before{
             content: "0";
         }
+        info-list.dice-enumeration info-row.before-increment-static::before{
+            content: "+1";
+        }
         info-list.separator-pipes info-row inner>*:not(:first-child)
         {
             border-left: 2px solid black;
@@ -289,9 +292,8 @@
 <body>
     <nav>
         <a href="rules.html">Rules</a>
-        <a href="battle.html">Battle</a>
+        <a href="battlemats/template.html">Battle</a>
         <a href="sheet.html">Sheet</a>
-        <a href="battleground_tiles.html">Tiles</a>
         <a href="items.html">Items</a>
         <a href="vehicles.html">Vehicles</a>
     </nav>
@@ -471,8 +473,8 @@
                     </info-row>
                     <info-row>
                         <inner>
-                            <h4>Charge</h4>
-                            <span>The charge action increases the <i>charge</i> of 2 the combatants spells by 1. If the combatant only has 1 spell, the second point is forfeit.</span>
+                            <h4>Boost</h4>
+                            <span>The boost action increases the <i>charge</i> of 2 the combatants spells by 1. If the combatant only has 1 spell, the second point is forfeit.</span>
                         </inner>
                     </info-row>
                     <info-row>
@@ -548,7 +550,7 @@
                     <info-row>
                         <inner>
                             <h4>Defend</h4>
-                            <span>The defend action will increase the armor of the combatant by 1, and allow the defender to temporarily remove one of their <i>weaknesses</i> for the round. <br>At the end of the round, one of their held weapons lose 1 <i>durability</i>.</span>
+                            <span>The defend action will increase the armor of the combatant by 1, and allow the defender to temporarily mitigate one of their <i>weaknesses</i> for the round. <br>At the end of the round, one of their held weapons lose 1 <i>durability</i>.</span>
                         </inner>
                     </info-row>
                     <info-row>
@@ -604,8 +606,8 @@
 
                 <row class="internal">
                     <box class="no-border">
-                        <h4>Weapon</h4>
-                        <p>Most items are weapons, and have a damage rating ranging from 0 to 5, explained further in the weapons section.</p>
+                        <h4>Damage Rating (DR)</h4>
+                        <p>Most items are weapons, and have a damage rating ranging from 0 and upwards, explained further in the weapons section.</p>
                         <info-list class="dice-enumeration weapons">
                             <info-row class="na-enumeration">
                                 <inner>
@@ -637,10 +639,15 @@
                                     <h4 style="width: 80px;">5: Hi-Tech</h4>
                                 </inner>
                             </info-row>
+                            <info-row class="before-increment-static">
+                                <inner>
+                                    <h4 style="width: 80px;">5+: Legendary</h4>
+                                </inner>
+                            </info-row>
                         </info-list>
                     </box>
                     <box class="no-border">
-                        <h4>Skill</h4>
+                        <h4>Skill Rating (SR)</h4>
                         <p>A characters skill with the individual weapon affects their efficiency greatly, and can turn any weapon lethal.</p>
                         <p>Skill is tracked on the weapon card.</p>
                         <info-list class="dice-enumeration" style="counter-set: list 2;">
@@ -672,7 +679,7 @@
                         </info-list>
                     </box>
                     <box class="no-border">
-                        <h4>Level</h4>
+                        <h4>Level (LVL)</h4>
                         
                         <p>The characters general experience level weighs in on how much damage they do.</p>
                         <p>Level is tracked on your character sheet.</p>
@@ -773,7 +780,7 @@
                             <info-row>
                                 <inner>
                                     <h4>Pain</h4>
-                                    <span class="flex-right">Skin ripping, flesh tearing</span>
+                                    <span class="flex-right">Skin ripping, bites and gores</span>
                                 </inner>
                             </info-row>
                             <info-row>
@@ -968,7 +975,7 @@
                     <box class="no-border">
                         <h4>Damage Rating</h4>
                         <p>The damage rating of a weapon is calculated by adding its <i>damage</i> (plus signs) to its unfilled <i>quality</i> (circle slots).</p>
-                        <p>The damage rating determines the weapons damage die</p>
+                        <p>The damage rating determines the weapons damage die. Damage ratings over 5 add +1 to the die roll.</p>
                         <info-list class="dice-enumeration" style="counter-set: list 2;">
                             <info-row>
                                 <inner>
@@ -993,6 +1000,11 @@
                             <info-row>
                                 <inner>
                                     <h4>5 Damage Rating</h4>
+                                </inner>
+                            </info-row>
+                            <info-row class="before-increment-static">
+                                <inner>
+                                    <h4>5+ Damage Rating</h4>
                                 </inner>
                             </info-row>
                         </info-list>
@@ -1555,6 +1567,12 @@
                                     <span>Explores the possibilities of magic, using radiation and toxins.</span>
                                 </inner>
                             </info-row>
+                            <info-row>
+                                <inner>
+                                    <h4>Moneybags</h4>
+                                    <span>Parish and outlaw, criminal kingpin.</span>
+                                </inner>
+                            </info-row>
                         </info-list>
                     </box>
                     <box class="no-border black-bg">
@@ -1732,13 +1750,25 @@
                     <info-row>
                         <inner>
                             <h4>Bleeding</h4>
-                            <span>The combatant loses 1d10 endurance at the start of each turn.</span>
+                            <span>The combatant loses 1d10 endurance at the start of each round.</span>
                         </inner>
                     </info-row>
                     <info-row>
                         <inner>
                             <h4>Mute</h4>
                             <span>The combatant cannot use the assist action, or use spells.</span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Pinned down</h4>
+                            <span>The combatant changes movement plan to stand ground, and can only use stand ground. Cures hyper.</span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Maimed</h4>
+                            <span>The combatant drops whatever is in their off hand, and it is unusable while maimed.</span>
                         </inner>
                     </info-row>
                 </info-list>
@@ -1773,7 +1803,7 @@
                     <info-row>
                         <inner>
                             <h4>Hyper</h4>
-                            <span>The combatant cannot stand ground.</span>
+                            <span>The combatant cannot stand ground. Cures pinned down.</span>
                         </inner>
                     </info-row>
                     <info-row>
@@ -1832,31 +1862,31 @@
                     <info-row>
                         <inner>
                             <h4>Burning</h4>
-                            <span>The combatant takes 1d6 burn damage at the start of each turn. If weak to burn, the combatant will change their movement plan to retreat, and cannot take action during their turn.</span>
+                            <span>The combatant takes 1d6 light damage at the start of each turn, +6 if weak to light.</span>
                         </inner>
                     </info-row>
                     <info-row>
                         <inner>
-                            <h4>Frozen</h4>
-                            <span>The combatant takes 1d6 cold damage at the start of each turn. If weak to cold, the combatant will change their movement plan to stand ground, and has 0 armor while frozen.</span>
+                            <h4>Poisoned</h4>
+                            <span>The combatant takes 1d6 nuke damage at the start of each turn, +6 if weak to nuke.</span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Sickened</h4>
+                            <span>The combatant takes 1d6 ooze damage at the start of each turn, +6 if weak to ooze.</span>
                         </inner>
                     </info-row>
                     <info-row>
                         <inner>
                             <h4>Electrocuted</h4>
-                            <span>The combatant takes 1d6 volt damage at the start of each turn. If weak to volt, the combatant drops all held items on the ground.</span>
+                            <span>The combatant takes 1d6 volt damage at the start of each turn, +6 if weak to volt.</span>
                         </inner>
                     </info-row>
                     <info-row>
                         <inner>
-                            <h4>Hexxed</h4>
-                            <span>The combatant takes 1d6 vile damage at the start of each turn. If weak to vile, the combatant takes an additional 6 damage.</span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Blessed</h4>
-                            <span>The combatant takes 1d6 holy damage at the start of each turn. If weak to holy, the combatant takes an additional 6 damage.</span>
+                            <h4>Breakdown</h4>
+                            <span>The combatant takes 1d6 neural damage at the start of each turn, +6 if weak to neural.</span>
                         </inner>
                     </info-row>
                 </info-list>
@@ -1880,6 +1910,392 @@
                         <inner>
                             <h4>Disarm</h4>
                             <span>The combatant drops the item in their main hand on the ground. Place it on their tile.</span>
+                        </inner>
+                    </info-row>
+                </info-list>
+            </box>
+        </row>
+        <row>
+            <box>
+                <h2>Mutations</h2>
+                
+                <info-list class="separator-pipes" style="counter-set: list 0;">
+                    <info-row>
+                        <inner>
+                            <h4>Horns</h4>
+                            <span></span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Wings</h4>
+                            <span></span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Gills</h4>
+                            <span></span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Claws</h4>
+                            <span></span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Filter Sac</h4>
+                            <span></span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Venom Gland</h4>
+                            <span></span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Fangs</h4>
+                            <span></span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Scaly Skin</h4>
+                            <span></span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Chameleon Skin</h4>
+                            <span></span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Reflective Skin</h4>
+                            <span></span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Tail</h4>
+                            <span></span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Beak</h4>
+                            <span></span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Hooves</h4>
+                            <span></span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Spines</h4>
+                            <span></span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Big Brain</h4>
+                            <span></span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Hollow Bones</h4>
+                            <span></span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Odor Control</h4>
+                            <span></span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Corrosive Breath</h4>
+                            <span></span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Esper</h4>
+                            <span></span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Thick Fur</h4>
+                            <span></span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Extra Heart</h4>
+                            <span></span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Telepathic Conduit</h4>
+                            <span></span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Slime Gland</h4>
+                            <span></span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Quills</h4>
+                            <span></span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Extra Arm</h4>
+                            <span></span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Adrenal Control</h4>
+                            <span></span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Belly Sack</h4>
+                            <span></span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Extra Legs</h4>
+                            <span></span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Cyclopean</h4>
+                            <span></span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Extra Eyes</h4>
+                            <span></span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Vocal Control</h4>
+                            <span></span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Hair Control</h4>
+                            <span></span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Grotesque Regeneration</h4>
+                            <span></span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Suction Cups</h4>
+                            <span></span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Toad Tounge</h4>
+                            <span></span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Headless</h4>
+                            <span></span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Corrosive Blood</h4>
+                            <span></span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Irradiated Blood</h4>
+                            <span></span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Adhesive Blood</h4>
+                            <span></span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Fungal Spores</h4>
+                            <span></span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Backup Brain</h4>
+                            <span></span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Teeth Rows</h4>
+                            <span></span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Heat Vision</h4>
+                            <span></span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Whiskers</h4>
+                            <span>They sense air currents and vibrations</span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Powerful Legs</h4>
+                            <span></span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Fins</h4>
+                            <span></span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Spherical</h4>
+                            <span>All protrusions may retract. Can extend legs and arms, but can also roll.</span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Antlers</h4>
+                            <span></span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Mane</h4>
+                            <span></span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Venom Spines</h4>
+                            <span></span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Venom Quills</h4>
+                            <span></span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Ink Spray</h4>
+                            <span></span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Moist</h4>
+                            <span>You are constantly slimy and slippery. You are immune to the <i>burning</i> condition</span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Mole Claws</h4>
+                            <span></span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Facial Exoskeleton</h4>
+                            <span></span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Elastic</h4>
+                            <span></span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Hardened Eyes</h4>
+                            <span></span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4></h4>
+                            <span></span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4></h4>
+                            <span></span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4></h4>
+                            <span></span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4></h4>
+                            <span></span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4></h4>
+                            <span></span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4></h4>
+                            <span></span>
                         </inner>
                     </info-row>
                 </info-list>

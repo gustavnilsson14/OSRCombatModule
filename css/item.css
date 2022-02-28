@@ -103,7 +103,8 @@ slot inner usage{
 }
 slot inner usage.second-row{
     flex-direction: column-reverse;
-    margin-top: 3px;
+    margin-top: 2px;
+    margin-right: -3px;
 }
 slot inner usage span{
     font-size: 18px;
@@ -123,25 +124,26 @@ slot inner usage durability{
     border-style: dashed;
     width: 11px;
     height: 11px;
-    
 }
 slot inner usage durability::before{
     content: url(../img/corners.svg);
     width: 100%;
     height: 100%;
-    
 }
 slot inner usage damage{
     border: 0;
     position: relative;
+    width: 11px;
+    height: 11px;
+    
 }
 slot inner usage damage::before{
     content: "+";
     position: absolute;
-    font-size: 30px;
+    font-size: 36px;
     font-weight: 400;
-    top: -2px;
-    right: 1.5px;
+    top: 0px;
+    right: 0.5px;
 }
 slot inner usage both{
     border-radius: 50%;
