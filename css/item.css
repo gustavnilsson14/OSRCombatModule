@@ -173,6 +173,9 @@ slot{
     border-top: 1px solid black;
     border-left: 1px solid black;
 }
+slot.result name{
+    background:#ccc;
+}
 slot name::before{
     display: flex;
     flex-direction: column;

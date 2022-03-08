@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css" integrity="sha384-jLKHWM3JRmfMU0A5x5AkjWkw/EYfGUAGagvnfryNV3F9VqM98XiIH7VBGVoxVSc7" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/default.css">
+    <style>
+        :root{
+            --tile-width: 4;
+            --tile-squared: 120px;
+        }
+        body{
+            flex-direction: row;
+        }
+        container{
+            width: calc(calc(var(--tile-squared) + 1px) * var(--tile-width));
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        span{
+            position: relative;
+        }
+        .quality-prefilled::after{
+            position: absolute;
+            content: "";
+            top: 0px;
+            right: 4.5px;
+            transform: rotateZ(45deg);
+            border-left: 2px solid black;
+            height: 13px;
+        }
+        slot{
+            border-top: 0px solid black !important;
+            border-left: 0px solid black !important;
+            border: 1px dotted black !important;
+            margin-left:-1px;
+            margin-top:-1px;
+        }
+        
+    </style>
+    <link rel="stylesheet" href="css/item.css">
+</head>
+<body>
+    <nav>
+        <a href="rules.html">Rules</a>
+        <a href="battlemats/template.html">Battle</a>
+        <a href="sheet.html">Sheet</a>
+        <a href="items.html">Items</a>
+        <a href="vehicles.html">Vehicles</a>
+
+        <button onclick="random()">Roll</button>
+
+        <button onclick="prep()">Prep for print</button>
+        <input type="text" placeholder="slots (1-20)">
+        <amount></amount>
+    </nav>
+    <container>
+    
+
+        <slot>
+            <name>
+                <span class="small">Busted Ribcage</span>
+            </name>
+            <inner style="background-image: url(img/injury/ribcage.png);"></inner>
+            <span style="font-size:24px">Body</span>
+        </slot>
+        <slot>
+            <name>
+                <span class="small">Punctured Lung</span>
+            </name>
+            <inner style="background-image: url(img/injury/punclung.width-840-removebg-preview.png);"></inner>
+            <span style="font-size:24px">Body</span>
+        </slot>
+        <slot>
+            <name>
+                <span class="small">Cracked Knee</span>
+            </name>
+            <inner style="background-image: url(img/injury/crackedknee.png);"></inner>
+            <span style="font-size:24px">Belt</span>
+        </slot>
+        <slot>
+            <name>
+                <span class="small">Hamstring Tear</span>
+            </name>
+            <inner style="background-image: url(img/injury/a00408f02-removebg-preview.png);"></inner>
+            <span style="font-size:24px">Belt</span>
+        </slot>
+        <slot>
+            <name>
+                <span class="small">Fractured Hand</span>
+            </name>
+            <inner style="background-image: url(img/injury/hand.png);"></inner>
+            <span style="font-size:24px">Hand</span>
+        </slot>
+        <slot>
+            <name>
+                <span class="smaller">Broken Shoulder</span>
+            </name>
+            <inner style="background-image: url(img/injury/shoulder.png);"></inner>
+            <span style="font-size:24px">Hand</span>
+        </slot>
+
+    </container>
+    <script>
+        document.querySelector("nav amount").textContent = document.querySelectorAll("slot").length;
+        function random(){
+            const slots = document.querySelectorAll("slot");
+            
+            slots.forEach(slot => {
+                slot.classList.remove("result");
+            });
+            const dieRoll = Math.floor(Math.random() * slots.length);
+            slots[dieRoll].classList.add("result");
+            slots[dieRoll].scrollIntoView({
+                behavior: 'smooth', // Defines the transition animation. default: auto
+                block: 'center', // Defines vertical alignment. default: start
+            });
+        }
+        function prep(){
+            const slotRange = document.querySelector("nav input").value;
+            document.querySelector("nav").remove();
+            document.querySelector("body").style.justifyContent = "flex-start";
+            
+            const indexes = [];
+            parseInt(slotRange.split(",")[0]).forEach(range => {
+                const min = parseInt(range.split("-")[0]);
+                const max = parseInt(range.split("-")[1]);
+                for (let index = min; index < max; index++) {
+                    console.log(index);
+                    if(indexes.indexOf(index) != -1) continue;
+                    indexes.add(index);
+                }
+            });
+
+            
+            document.querySelectorAll("slot").forEach((slot, i) => {
+                if(indexes.indexOf(i) == -1) return;
+                slot.remove();
+            });
+            
+        }
+    </script>
+</body>
+</html>

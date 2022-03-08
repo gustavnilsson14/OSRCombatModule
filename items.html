@@ -12,12 +12,14 @@
             --tile-width: 4;
             --tile-squared: 120px;
         }
+        body{
+            flex-direction: row;
+        }
         container{
             width: calc(calc(var(--tile-squared) + 1px) * var(--tile-width));
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            margin: 0 auto;
         }
         span{
             position: relative;
@@ -31,6 +33,13 @@
             border-left: 2px solid black;
             height: 13px;
         }
+        slot{
+            border-top: 0px solid black !important;
+            border-left: 0px solid black !important;
+            border: 1px dotted black !important;
+            margin-left:-1px;
+            margin-top:-1px;
+        }
         
     </style>
     <link rel="stylesheet" href="css/item.css">
@@ -42,9 +51,44 @@
         <a href="sheet.html">Sheet</a>
         <a href="items.html">Items</a>
         <a href="vehicles.html">Vehicles</a>
+
+        <button onclick="random()">Roll</button>
+        <label for=""></label>
+        <filter>
+            <label for="melee">melee</label>
+            <input type="checkbox" name="melee" id="melee">
+        </filter>
+        <filter>
+            <label for="ranged">ranged</label>
+            <input type="checkbox" name="ranged" id="ranged">
+        </filter>
+        <filter>
+            <label for="stuff">stuff</label>
+            <input type="checkbox" name="stuff" id="stuff">
+        </filter>
+        <filter>
+            <label for="magic">magic</label>
+            <input type="checkbox" name="magic" id="magic">
+        </filter>
+        <filter>
+            <label for="headgear">headgear</label>
+            <input type="checkbox" name="headgear" id="headgear">
+        </filter>
+        <filter>
+            <label for="shield">shield</label>
+            <input type="checkbox" name="shield" id="shield">
+        </filter>
+        <filter>
+            <label for="armor">armor</label>
+            <input type="checkbox" name="armor" id="armor">
+        </filter>
+
+        <button onclick="prep()">Prep for print</button>
+        <input type="text" placeholder="slots (1-20)">
+        <amount></amount>
     </nav>
-    
     <container>
+    
 
         <slot class="melee physical">
             <name>
@@ -56,6 +100,7 @@
                     <span>stab</span>
                 </damagetypes>
                 <usage>
+                    <durability></durability>
                     <both></both>
                     <both></both>
                 </usage>
@@ -124,8 +169,10 @@
             <inner style="background-image: url(img/items/harpoon.png);">
                 <damagetypes>
                     <span>stab</span>
+                    <span>pain</span>
                 </damagetypes>
                 <usage>
+                    <durability></durability>
                     <durability></durability>
                     <both></both>
                     <both></both>
@@ -173,7 +220,6 @@
                     <span>smash</span>
                 </damagetypes>
                 <usage>
-                    <durability></durability>
                     <both></both>
                     <both></both>
                 </usage>
@@ -195,6 +241,7 @@
             <inner style="background-image: url(img/items/cutter.png);">
                 <damagetypes>
                     <span>cut</span>
+                    <span>pain</span>
                 </damagetypes>
                 <usage>
                     <both></both>
@@ -222,9 +269,10 @@
                     <span>stab</span>
                 </damagetypes>
                 <usage>
+                    <both></both>
                     <durability></durability>
                     <both></both>
-                    <both></both>
+                    <durability></durability>
                     <both></both>
                 </usage>
             </inner>
@@ -248,7 +296,6 @@
                     <span>smash</span>
                 </damagetypes>
                 <usage>
-                    <durability></durability>
                     <durability></durability>
                     <both></both>
                 </usage>
@@ -323,6 +370,10 @@
                 <damagetypes>
                     <span>smash</span>
                 </damagetypes>
+                <usage class="second-row">
+                    <durability></durability>
+                    <durability></durability>
+                </usage>
                 <usage>
                     <durability></durability>
                     <durability></durability>
@@ -349,10 +400,15 @@
                     <span>cut</span>
                     <span>stab</span>
                 </damagetypes>
+                <usage class="second-row">
+                    <durability></durability>
+                    <both></both>
+                </usage>
                 <usage>
                     <both></both>
+                    <durability></durability>
                     <both></both>
-                    <both></both>
+                    <durability></durability>
                     <both></both>
                 </usage>
             </inner>
@@ -375,8 +431,7 @@
                 </damagetypes>
                 <usage>
                     <both></both>
-                    <damage></damage>
-                    <damage></damage>
+                    <both></both>
                 </usage>
             </inner>
             
@@ -399,8 +454,7 @@
                 </damagetypes>
                 <usage>
                     <both></both>
-                    <damage></damage>
-                    <damage></damage>
+                    <both></both>
                 </usage>
             </inner>
             
@@ -418,12 +472,13 @@
             </name>
             <inner style="background-image: url(img/items/cross.png);">
                 <damagetypes>
-                    <span>holy</span>
+                    <span>light</span>
                     <span>smash</span>
                 </damagetypes>
                 <usage>
                     <durability></durability>
                     <both></both>
+                    <durability></durability>
                     <both></both>
                 </usage>
             </inner>
@@ -447,6 +502,7 @@
                 <usage>
                     <both></both>
                     <both></both>
+                    <durability></durability>
                     <damage></damage>
                 </usage>
             </inner>
@@ -515,6 +571,10 @@
                 <damagetypes>
                     <span>smash</span>
                 </damagetypes>
+                <usage class="second-row">
+                    <durability></durability>
+                    <durability></durability>
+                </usage>
                 <usage>
                     <durability></durability>
                     <durability></durability>
@@ -540,6 +600,9 @@
                 <damagetypes>
                     <span>smash</span>
                 </damagetypes>
+                <usage class="second-row">
+                    <durability></durability>
+                </usage>
                 <usage>
                     <durability></durability>
                     <durability></durability>
@@ -594,6 +657,7 @@
                     <durability></durability>
                     <durability></durability>
                     <durability></durability>
+                    <durability></durability>
                     <both></both>
                 </usage>
             </inner>
@@ -638,10 +702,15 @@
             <inner style="background-image: url(img/items/chainsaw.png);">
                 <damagetypes>
                     <span>cut</span>
+                    <span>pain</span>
                 </damagetypes>
+                <usage class="second-row">
+                    <both></both>
+                </usage>
                 <usage>
                     <both></both>
-                    <both></both>
+                    <durability></durability>
+                    <durability></durability>
                     <damage></damage>
                     <damage></damage>
                 </usage>
@@ -662,11 +731,16 @@
             <inner style="background-image: url(img/items/chainsword.png);">
                 <damagetypes>
                     <span>cut</span>
+                    <span>pain</span>
                 </damagetypes>
+                <usage class="second-row">
+                    <both></both>
+                    <both></both>
+                </usage>
                 <usage>
                     <both></both>
-                    <both></both>
-                    <both></both>
+                    <durability></durability>
+                    <durability></durability>
                     <damage></damage>
                     <damage></damage>
                 </usage>
@@ -690,13 +764,17 @@
                 </damagetypes>
                 <usage class="second-row">
                     <durability></durability>
+                    <both></both>
+                    <durability></durability>
+                    <both></both>
+                    <both></both>
                 </usage>
                 <usage>
                     <both></both>
+                    <durability></durability>
                     <both></both>
-                    <both></both>
-                    <both></both>
-                    <both></both>
+                    <durability></durability>
+                    <damage></damage>
                 </usage>
             </inner>
             
@@ -719,6 +797,7 @@
                 </damagetypes>
                 <usage>
                     <both></both>
+                    <durability></durability>
                     <both></both>
                     <both></both>
                 </usage>
@@ -742,6 +821,7 @@
                     <span>pain</span>
                 </damagetypes>
                 <usage>
+                    <durability></durability>
                     <durability></durability>
                     <both></both>
                     <both></both>
@@ -999,12 +1079,12 @@
             </skill>
         </slot>
 
-    </container>    
+        
 
     
 
     
-    <container>
+    
         <slot class="ranged physical horizontal-image">
             <name>
                 <span class="small">Crossbow</span>
@@ -1014,6 +1094,7 @@
                     <span>stab</span>
                 </damagetypes>
                 <usage>
+                    <durability></durability>
                     <durability></durability>
                     <both></both>
                     <damage></damage>
@@ -1063,6 +1144,7 @@
                 </damagetypes>
                 <usage>
                     <durability></durability>
+                    <durability></durability>
                     <both></both>
                 </usage>
             </inner>
@@ -1084,6 +1166,8 @@
                     <span>stab</span>
                 </damagetypes>
                 <usage>
+                    <durability></durability>
+                    <durability></durability>
                     <both></both>
                     <both></both>
                 </usage>
@@ -1106,6 +1190,7 @@
                     <span>stab</span>
                 </damagetypes>
                 <usage>
+                    <durability></durability>
                     <both></both>
                     <damage></damage>
                 </usage>
@@ -1179,8 +1264,8 @@
                     <span>gun</span>
                 </damagetypes>
                 <usage>
-                    <durability></durability>
                     <both></both>
+                    <durability></durability>
                     <both></both>
                     <damage></damage>
                 </usage>
@@ -1196,7 +1281,7 @@
         </slot>
         <slot class="ranged physical">
             <name>
-                <span>Hand Cannon</span>
+                <span class="small">Hand Cannon</span>
             </name>
             <inner style="background-image: url(img/items/images-removebg-preview\ \(1\).png);">
                 <damagetypes>
@@ -1279,6 +1364,7 @@
                     <span>burst</span>
                 </damagetypes>
                 <usage>
+                    <durability></durability>
                     <both></both>
                     <damage></damage>
                     <damage></damage>
@@ -1304,6 +1390,7 @@
                     <span>burst</span>
                 </damagetypes>
                 <usage>
+                    <durability></durability>
                     <both></both>
                     <both></both>
                     <damage></damage>
@@ -1329,6 +1416,7 @@
                     <span>burst</span>
                 </damagetypes>
                 <usage>
+                    <durability></durability>
                     <both></both>
                     <both></both>
                     <both></both>
@@ -1353,7 +1441,11 @@
                     <span>gun</span>
                     <span>burst</span>
                 </damagetypes>
+                <usage class="second-row">
+                    <durability></durability>
+                </usage>
                 <usage>
+                    <durability></durability>
                     <both></both>
                     <both></both>
                     <both></both>
@@ -1380,9 +1472,10 @@
                 <usage class="second-row">
                     <both></both>
                     <both></both>
+                    <durability></durability>
                 </usage>
                 <usage>
-                    <durability></durability>
+                    <both></both>
                     <durability></durability>
                     <both></both>
                     <damage></damage>
@@ -1411,6 +1504,7 @@
                 <usage class="second-row">
                     <durability></durability>
                     <durability></durability>
+                    <both></both>
                 </usage>
                 <usage>
                     <both></both>
@@ -1441,13 +1535,15 @@
                 <usage class="second-row">
                     <durability></durability>
                     <durability></durability>
+                    <both></both>
+                    <both></both>
                 </usage>
                 <usage>
                     <both></both>
                     <both></both>
                     <both></both>
-                    <both></both>
-                    <both></both>
+                    <damage></damage>
+                    <damage></damage>
                 </usage>
             </inner>
             
@@ -1469,6 +1565,7 @@
                     <span>stab</span>
                 </damagetypes>
                 <usage>
+                    <durability></durability>
                     <durability></durability>
                     <both></both>
                     <damage></damage>
@@ -1493,6 +1590,7 @@
                     <span>stab</span>
                 </damagetypes>
                 <usage>
+                    <durability></durability>
                     <both></both>
                     <both></both>
                     <damage></damage>
@@ -1509,7 +1607,7 @@
         </slot>
         <slot class="ranged horizontal-image">
             <name>
-                <span class="small">Necro Repeater</span>
+                <span class="smaller">Necro Repeater</span>
             </name>
             <inner style="background-image: url(img/items/necrorepeater.png);">
                 <damagetypes>
@@ -1518,6 +1616,7 @@
                     <span>burst</span>
                 </damagetypes>
                 <usage>
+                    <durability></durability>
                     <both></both>
                     <both></both>
                     <both></both>
@@ -1533,9 +1632,9 @@
                 <skillslot></skillslot>
             </skill>
         </slot>
-    </container>
+    
 
-    <container>
+    
         
         <slot class="magic">
             <name>
@@ -1561,7 +1660,7 @@
             </name>
             <inner style="background-image: url(img/items/brainbleed.png), url(img/items/rune.png); background-size: 50%, 60%;">
                 <damagetypes>
-                    <span>psyche</span>
+                    <span>neural</span>
                 </damagetypes>
             </inner>
             
@@ -1627,339 +1726,9 @@
                 <skillslot></skillslot>
             </skill>
         </slot>
-    </container>
-
-    <container>
-        <slot class="headgear">
-            <name>
-                <span class="smaller">Hockey Mask</span>
-            </name>
-            <inner style="background-image: url(img/items/hocketmask.png);">
-                <damagetypes>
-                    <span>smash</span>
-                </damagetypes>
-                <usage>
-                    <durability></durability>
-                    <durability></durability>
-                    <both></both>
-                </usage>
-            </inner>
-        </slot>
-        <slot class="headgear">
-            <name>
-                <span class="smaller">Road Helmet</span>
-            </name>
-            <inner style="background-image: url(img/items/motorbikehelmet.jfif);">
-                <damagetypes>
-                    <span>smash</span>
-                </damagetypes>
-                <usage>
-                    <durability></durability>
-                    <durability></durability>
-                    <both></both>
-                </usage>
-            </inner>
-        </slot>
-        <slot class="headgear">
-            <name>
-                <span class="smaller">Bike Helmet</span>
-            </name>
-            <inner style="background-image: url(img/items/bikehelmet.jpg);">
-                <damagetypes>
-                    <span>smash</span>
-                </damagetypes>
-                <usage>
-                    <durability></durability>
-                    <durability></durability>
-                    <both></both>
-                </usage>
-            </inner>
-        </slot>
-        <slot class="headgear">
-            <name>
-                <span class="smaller">Hardhat</span>
-            </name>
-            <inner style="background-image: url(img/items/hardhat.jpg);">
-                <damagetypes>
-                    <span>smash</span>
-                </damagetypes>
-                <usage>
-                    <durability></durability>
-                    <durability></durability>
-                    <both></both>
-                </usage>
-            </inner>
-        </slot>
-        <slot class="headgear">
-            <name>
-                <span class="smaller">Gas Mask</span>
-            </name>
-            <inner style="background-image: url(img/items/gasmask.jpg);">
-                <damagetypes>
-                    <span>smash</span>
-                </damagetypes>
-                <usage>
-                    <durability></durability>
-                    <durability></durability>
-                    <both></both>
-                </usage>
-            </inner>
-        </slot>
-        <slot class="headgear">
-            <name>
-                <span class="smaller">Goggles</span>
-            </name>
-            <inner style="background-image: url(img/items/goggles.png);">
-                <damagetypes>
-                    <span>*</span>
-                </damagetypes>
-                <usage>
-                    <durability></durability>
-                    <durability></durability>
-                    <durability></durability>
-                </usage>
-            </inner>
-        </slot>
-        <slot class="armor">
-            <name>
-                <span class="smaller">Kevlar Vest</span>
-            </name>
-            <inner style="background-image: url(img/items/kevlar.jpg);">
-                <damagetypes>
-                    <span>smash</span>
-                </damagetypes>
-                <usage>
-                    <durability></durability>
-                    <durability></durability>
-                    <both></both>
-                </usage>
-            </inner>
-        </slot>
-        <slot class="armor">
-            <name>
-                <span class="smaller">Hockey Armor</span>
-            </name>
-            <inner style="background-image: url(img/items/hockeyarmor.png);">
-                <damagetypes>
-                    <span>smash</span>
-                </damagetypes>
-                <usage>
-                    <durability></durability>
-                    <durability></durability>
-                    <both></both>
-                </usage>
-            </inner>
-        </slot>
-        <slot class="armor">
-            <name>
-                <span class="smaller">Leather Vest</span>
-            </name>
-            <inner style="background-image: url(img/items/leather.png);">
-                <damagetypes>
-                    <span>smash</span>
-                </damagetypes>
-                <usage>
-                    <durability></durability>
-                    <durability></durability>
-                    <both></both>
-                </usage>
-            </inner>
-        </slot>
-        <slot class="armor">
-            <name>
-                <span class="smaller">Metal Plate</span>
-            </name>
-            <inner style="background-image: url(img/items/metalplate-removebg-preview.png);">
-                <damagetypes>
-                    <span>smash</span>
-                </damagetypes>
-                <usage>
-                    <durability></durability>
-                    <durability></durability>
-                    <both></both>
-                </usage>
-            </inner>
-        </slot>
-        <slot class="shield">
-            <name>
-                <span class="smaller">Riot Shield</span>
-            </name>
-            <inner style="background-image: url(img/items/riotshield.jfif);">
-                <damagetypes>
-                    <span>pain</span>
-                    <span>smash</span>
-                    <span>blast</span>
-                    <span>burst</span>
-                </damagetypes>
-                <usage>
-                    <durability></durability>
-                    <durability></durability>
-                    <both></both>
-                </usage>
-            </inner>
-        </slot>
-        <slot class="shield">
-            <name>
-                <span class="smaller">Stop Sign</span>
-            </name>
-            <inner style="background-image: url(img/items/stopshield.jpg);">
-                <damagetypes>
-                    <span>cut</span>
-                    <span>stab</span>
-                    <span>pain</span>
-                    <span>smash</span>
-                </damagetypes>
-                <usage>
-                    <durability></durability>
-                    <durability></durability>
-                    <both></both>
-                </usage>
-            </inner>
-        </slot>
-        <slot class="shield">
-            <name>
-                <span class="smaller">Planks with Grip</span>
-            </name>
-            <inner style="background-image: url(img/items/plank.png);">
-                <damagetypes>
-                    <span>cut</span>
-                    <span>pain</span>
-                </damagetypes>
-                <usage>
-                    <both></both>
-                </usage>
-            </inner>
-        </slot>
-        
-        <slot class="armor x2">
-            <name>
-                <span class="smaller">Marine Armor</span>
-            </name>
-            <inner style="background-image: url(img/items/armor-combat.png);">
-                <damagetypes>
-                    <span>cut</span>
-                    <span>smash</span>
-                    <span>pain</span>
-                </damagetypes>
-                <usage>
-                    <durability></durability>
-                    <durability></durability>
-                    <both></both>
-                    <damage></damage>
-                </usage>
-            </inner>
-        </slot>
-        <slot class="armor x2">
-            <name>
-                <span class="smaller">Combat Armor</span>
-            </name>
-            <inner style="background-image: url(img/items/combat-armor.jfif);">
-                <damagetypes>
-                    <span>smash</span>
-                    <span>cut</span>
-                    <span>stab</span>
-                    <span>pain</span>
-                </damagetypes>
-                <usage>
-                    <durability></durability>
-                    <durability></durability>
-                    <both></both>
-                    <both></both>
-                </usage>
-            </inner>
-        </slot>
-        <slot class="armor x2">
-            <name>
-                <span class="smaller">Bull Armor</span>
-            </name>
-            <inner style="background-image: url(img/items/poweredarmor.jpg);">
-                <damagetypes>
-                    <span>cut</span>
-                    <span>gun</span>
-                    <span>stab</span>
-                    <span>smash</span>
-                    <span>blast</span>
-                </damagetypes>
-                <usage>
-                    <both></both>
-                    <durability></durability>
-                    <both></both>
-                    <durability></durability>
-                    <both></both>
-                </usage>
-            </inner>
-        </slot>
-        <slot class="armor x2">
-            <name>
-                <span class="smaller">Shell Armor</span>
-            </name>
-            <inner style="background-image: url(img/items/shellarmor.png);">
-                <damagetypes>
-                    <span>gun</span>
-                    <span>burst</span>
-                    <span>blast</span>
-                </damagetypes>
-                <usage>
-                    <durability></durability>
-                    <both></both>
-                    <both></both>
-                    <damage></damage>
-                </usage>
-            </inner>
-        </slot>
-        <slot class="armor x2">
-            <name>
-                <span class="smaller">Hazmat Suit</span>
-            </name>
-            <inner style="background-image: url(img/items/hazmat.png);">
-                <damagetypes>
-                    <span>*</span>
-                    <span>ooze</span>
-                    <span>nuke</span>
-                    <span>volt</span>
-                </damagetypes>
-                <usage>
-                    <durability></durability>
-                    <durability></durability>
-                    <durability></durability>
-                </usage>
-            </inner>
-        </slot>
-        <slot class="armor x2">
-            <name>
-                <span class="smaller">Camouflage</span>
-            </name>
-            <inner style="background-image: url(img/items/kamouflage-och-maskering-ghillie-suit-woodland-44574-f1-removebg-preview.png);">
-                <damagetypes>
-                    <span>*</span>
-                </damagetypes>
-                <usage>
-                    <durability></durability>
-                    <durability></durability>
-                    <durability></durability>
-                </usage>
-            </inner>
-        </slot>
-        <slot class="armor x2">
-            <name>
-                <span class="smaller">Arctic Gear</span>
-            </name>
-            <inner style="background-image: url(img/items/arctic.png);">
-                <damagetypes>
-                    <span>*</span>
-                    <span>cut</span>
-                    <span>smash</span>
-                </damagetypes>
-                <usage>
-                    <durability></durability>
-                    <durability></durability>
-                    <both></both>
-                </usage>
-            </inner>
-        </slot>
-    </container>
     
-    <container>
+
+    
         <slot class="stuff">
             <name>
                 <span>Rations</span>
@@ -2250,6 +2019,20 @@
         </slot>
         <slot class="stuff">
             <name>
+                <span>Chemicals</span>
+            </name>
+            <inner style="background-image: url(img/items/ricca-solvents-removebg-preview.png);">
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                    <durability></durability>
+                    <durability></durability>
+                    <durability></durability>
+                </usage>
+            </inner>
+        </slot>
+        <slot class="stuff">
+            <name>
                 <span>Parachute</span>
             </name>
             <inner style="background-image: url(img/items/download.jpg);">
@@ -2260,6 +2043,563 @@
                 </usage>
             </inner>
         </slot>
+        <slot class="stuff">
+            <name>
+                <span class="smaller">Office Supplies</span>
+            </name>
+            <inner style="background-image: url(img/items/office.png);">
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                    <durability></durability>
+                    <durability></durability>
+                    <durability></durability>
+                </usage>
+            </inner>
+        </slot>
+        <slot class="stuff">
+            <name>
+                <span class="small">Explosives</span>
+            </name>
+            <inner style="background-image: url(img/items/explosives.png);">
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                </usage>
+            </inner>
+        </slot>
+        <slot class="stuff">
+            <name>
+                <span class="small">Chewing Gum</span>
+            </name>
+            <inner style="background-image: url(img/items/chewinggum.png);">
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                    <durability></durability>
+                    <durability></durability>
+                    <durability></durability>
+                </usage>
+            </inner>
+        </slot>
+        <slot class="stuff">
+            <name>
+                <span class="small">Bucket</span>
+            </name>
+            <inner style="background-image: url(img/items/bucket.png);">
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                    <durability></durability>
+                </usage>
+            </inner>
+        </slot>
+        <slot class="stuff">
+            <name>
+                <span class="small">Steak</span>
+            </name>
+            <inner style="background-image: url(img/items/Ribeye_Steak_Lip-on-removebg-preview.png);">
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                    <durability></durability>
+                </usage>
+            </inner>
+        </slot>
+        <slot class="stuff">
+            <name>
+                <span class="smaller">Water Dispenser</span>
+            </name>
+            <inner style="background-image: url(img/items/water.png);">
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                    <durability></durability>
+                    <durability></durability>
+                    <durability></durability>
+                </usage>
+            </inner>
+        </slot>
+        <slot class="stuff">
+            <name>
+                <span class="smaller">Paper Money</span>
+            </name>
+            <inner style="background-image: url(img/items/history-of-paper-money-removebg-preview.png);">
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                    <durability></durability>
+                </usage>
+            </inner>
+        </slot>
+        <slot class="stuff">
+            <name>
+                <span class="smaller">Regeneratium</span>
+            </name>
+            <inner style="background-image: url(img/items/syringe.medical_512-removebg-preview.png);">
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                </usage>
+            </inner>
+        </slot>
+        <slot class="stuff">
+            <name>
+                <span class="smaller">Amphetamines</span>
+            </name>
+            <inner style="background-image: url(img/items/amphetamine.png);">
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                    <durability></durability>
+                    <durability></durability>
+                    <durability></durability>
+                </usage>
+            </inner>
+        </slot>
+        <slot class="stuff">
+            <name>
+                <span class="smaller">Hallucinogens</span>
+            </name>
+            <inner style="background-image: url(img/items/lsd.png);">
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                    <durability></durability>
+                    <durability></durability>
+                    <durability></durability>
+                </usage>
+            </inner>
+        </slot>
+        <slot class="stuff">
+            <name>
+                <span class="smaller">Opioids</span>
+            </name>
+            <inner style="background-image: url(img/items/Opium-100glas-removebg-preview.png);">
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                    <durability></durability>
+                    <durability></durability>
+                    <durability></durability>
+                </usage>
+            </inner>
+        </slot>
+        <slot class="stuff">
+            <name>
+                <span class="smaller">Booze</span>
+            </name>
+            <inner style="background-image: url(img/items/bottle-of-booze-700-189084535-removebg-preview.png);">
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                    <durability></durability>
+                    <durability></durability>
+                    <durability></durability>
+                </usage>
+            </inner>
+        </slot>
+        <slot class="stuff">
+            <name>
+                <span class="smaller">Ammo</span>
+            </name>
+            <inner style="justify-content: space-between;background-image: url(img/items/ammo.png);">
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                    <durability></durability>
+                    <durability></durability>
+                    <durability></durability>
+                </usage>
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                    <durability></durability>
+                    <durability></durability>
+                    <durability></durability>
+                </usage>
+            </inner>
+        </slot>
+
+
+        
+        <slot class="headgear">
+            <name>
+                <span class="smaller">Hockey Mask</span>
+            </name>
+            <inner style="background-image: url(img/items/hocketmask.png);">
+                <damagetypes>
+                    <span>smash</span>
+                </damagetypes>
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                    <both></both>
+                </usage>
+            </inner>
+        </slot>
+        <slot class="headgear">
+            <name>
+                <span class="smaller">Road Helmet</span>
+            </name>
+            <inner style="background-image: url(img/items/motorbikehelmet.jfif);">
+                <damagetypes>
+                    <span>smash</span>
+                </damagetypes>
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                    <both></both>
+                </usage>
+            </inner>
+        </slot>
+        <slot class="headgear">
+            <name>
+                <span class="smaller">Bike Helmet</span>
+            </name>
+            <inner style="background-image: url(img/items/bikehelmet.jpg);">
+                <damagetypes>
+                    <span>smash</span>
+                </damagetypes>
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                    <durability></durability>
+                </usage>
+            </inner>
+        </slot>
+        <slot class="headgear">
+            <name>
+                <span class="smaller">Hardhat</span>
+            </name>
+            <inner style="background-image: url(img/items/hardhat.jpg);">
+                <damagetypes>
+                    <span>smash</span>
+                </damagetypes>
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                    <durability></durability>
+                </usage>
+            </inner>
+        </slot>
+        <slot class="headgear">
+            <name>
+                <span class="smaller">Gas Mask</span>
+            </name>
+            <inner style="background-image: url(img/items/gasmask.jpg);">
+                <damagetypes>
+                    <span>ooze</span>
+                </damagetypes>
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                </usage>
+            </inner>
+        </slot>
+        <slot class="headgear">
+            <name>
+                <span class="smaller">Goggles</span>
+            </name>
+            <inner style="background-image: url(img/items/goggles.png);">
+                <damagetypes>
+                    <span>*</span>
+                </damagetypes>
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                </usage>
+            </inner>
+        </slot>
+        <slot class="armor">
+            <name>
+                <span class="smaller">Kevlar Vest</span>
+            </name>
+            <inner style="background-image: url(img/items/kevlar.jpg);">
+                <damagetypes>
+                    <span>gun</span>
+                </damagetypes>
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                    <both></both>
+                </usage>
+            </inner>
+        </slot>
+        <slot class="armor">
+            <name>
+                <span class="smaller">Hockey Armor</span>
+            </name>
+            <inner style="background-image: url(img/items/hockeyarmor.png);">
+                <damagetypes>
+                    <span>smash</span>
+                </damagetypes>
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                    <both></both>
+                </usage>
+            </inner>
+        </slot>
+        <slot class="armor">
+            <name>
+                <span class="smaller">Leather Vest</span>
+            </name>
+            <inner style="background-image: url(img/items/leather.png);">
+                <damagetypes>
+                    <span>pain</span>
+                </damagetypes>
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                    <both></both>
+                </usage>
+            </inner>
+        </slot>
+        <slot class="armor">
+            <name>
+                <span class="smaller">Metal Plate</span>
+            </name>
+            <inner style="background-image: url(img/items/metalplate-removebg-preview.png);">
+                <damagetypes>
+                    <span>cut</span>
+                </damagetypes>
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                    <both></both>
+                </usage>
+            </inner>
+        </slot>
+        <slot class="shield">
+            <name>
+                <span class="smaller">Riot Shield</span>
+            </name>
+            <inner style="background-image: url(img/items/riotshield.jfif);">
+                <damagetypes>
+                    <span>blast</span>
+                </damagetypes>
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                    <both></both>
+                </usage>
+            </inner>
+        </slot>
+        <slot class="shield">
+            <name>
+                <span class="smaller">Stop Sign</span>
+            </name>
+            <inner style="background-image: url(img/items/stopshield.jpg);">
+                <damagetypes>
+                    <span>stab</span>
+                </damagetypes>
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                    <both></both>
+                </usage>
+            </inner>
+        </slot>
+        <slot class="shield">
+            <name>
+                <span class="smaller">Planks with Grip</span>
+            </name>
+            <inner style="background-image: url(img/items/plank.png);">
+                <damagetypes>
+                    <span>volt</span>
+                </damagetypes>
+                <usage>
+                    <durability></durability>
+                    <both></both>
+                </usage>
+            </inner>
+        </slot>
+        
+        <slot class="armor x2">
+            <name>
+                <span class="smaller">Marine Armor</span>
+            </name>
+            <inner style="background-image: url(img/items/armor-combat.png);">
+                <damagetypes>
+                    <span>burst</span>
+                    <span>blast</span>
+                </damagetypes>
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                    <durability></durability>
+                    <both></both>
+                    <both></both>
+                </usage>
+            </inner>
+        </slot>
+        <slot class="armor x2">
+            <name>
+                <span class="smaller">Combat Armor</span>
+            </name>
+            <inner style="background-image: url(img/items/combat-armor.jfif);">
+                <damagetypes>
+                    <span>nuke</span>
+                    <span>light</span>
+                </damagetypes>
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                    <durability></durability>
+                    <both></both>
+                    <both></both>
+                </usage>
+            </inner>
+        </slot>
+        <slot class="armor x2">
+            <name>
+                <span class="smaller">Bull Armor</span>
+            </name>
+            <inner style="background-image: url(img/items/poweredarmor.jpg);">
+                <damagetypes>
+                    <span>ooze</span>
+                    <span>neural</span>
+                </damagetypes>
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                    <durability></durability>
+                    <both></both>
+                    <both></both>
+                </usage>
+            </inner>
+        </slot>
+        <slot class="armor x2">
+            <name>
+                <span class="smaller">Shell Armor</span>
+            </name>
+            <inner style="background-image: url(img/items/shellarmor.png);">
+                <damagetypes>
+                    <span>gun</span>
+                    <span>light</span>
+                </damagetypes>
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                    <durability></durability>
+                    <both></both>
+                    <both></both>
+                </usage>
+            </inner>
+        </slot>
+        <slot class="armor x2">
+            <name>
+                <span class="smaller">Hazmat Suit</span>
+            </name>
+            <inner style="background-image: url(img/items/hazmat.png);">
+                <damagetypes>
+                    <span>*</span>
+                    <span>ooze</span>
+                    <span>nuke</span>
+                    <span>volt</span>
+                </damagetypes>
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                    <durability></durability>
+                </usage>
+            </inner>
+        </slot>
+        <slot class="armor x2">
+            <name>
+                <span class="smaller">Camouflage</span>
+            </name>
+            <inner style="background-image: url(img/items/kamouflage-och-maskering-ghillie-suit-woodland-44574-f1-removebg-preview.png);">
+                <damagetypes>
+                    <span>*</span>
+                    <span>pain</span>
+                </damagetypes>
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                    <durability></durability>
+                </usage>
+            </inner>
+        </slot>
+        <slot class="armor x2">
+            <name>
+                <span class="smaller">Arctic Gear</span>
+            </name>
+            <inner style="background-image: url(img/items/arctic.png);">
+                <damagetypes>
+                    <span>*</span>
+                    <span>cut</span>
+                    <span>smash</span>
+                </damagetypes>
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                    <durability></durability>
+                    <durability></durability>
+                    <both></both>
+                </usage>
+            </inner>
+        </slot>
     </container>
+    <script>
+        document.querySelector("nav amount").textContent = document.querySelectorAll("slot").length;
+        document.querySelectorAll("slot").forEach((element,i) => {
+            element.setAttribute("index", i+1);
+        });;
+        function random(){
+            const filters = getFilters();
+            const slots = getSlotsByFilters(getFilters());
+            slots.forEach(slot => {
+                slot.classList.remove("result");
+            });
+            const dieRoll = Math.floor(Math.random() * slots.length);
+            slots[dieRoll].classList.add("result");
+            slots[dieRoll].scrollIntoView({
+                behavior: 'smooth', // Defines the transition animation. default: auto
+                block: 'center', // Defines vertical alignment. default: start
+            });
+        }
+        function getFilters(){
+            const filters = [];
+            document.querySelectorAll("filter").forEach(filter => {
+                if(!filter.querySelector("input").checked) return;
+                filters.push(filter.querySelector("input").getAttribute("name"));
+            });
+            return filters;
+        }
+        function getSlotsByFilters(filters){
+            if(filters.length == 0) return document.querySelectorAll("slot");
+            var slots = [];
+            filters.forEach(filter => {
+                slots = [...slots,...document.querySelectorAll(`slot.${filter}`)];
+            });
+            return slots;
+        }
+        
+        function prep(){
+            const slotRange = document.querySelector("nav input").value;
+            document.querySelector("nav").remove();
+            document.querySelector("body").style.justifyContent = "flex-start";
+            
+            const indexes = [];
+            slotRange.split(",").forEach(range => {
+                const min = parseInt(range.split("-")[0]);
+                const max = parseInt(range.split("-")[1]);
+                for (let index = min-1; index < max; index++) {
+                    console.log(index);
+                    if(indexes.indexOf(index) != -1) continue;
+                    indexes.push(index);
+                }
+            });
+
+            
+            document.querySelectorAll("slot").forEach((slot, i) => {
+                if(indexes.indexOf(i) != -1) return;
+                slot.remove();
+            });
+            
+        }
+    </script>
 </body>
 </html>

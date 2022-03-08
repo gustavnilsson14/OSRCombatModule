@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/default.css">
+    <title>Document</title>
+    <style>
+        *{
+            font-family: source;
+        }
+        a4-landscape{
+            margin: 0 auto;
+        }
+        box{
+            display: flex;
+            flex: 1;
+            flex-grow: 1;
+            flex-direction: column;
+            justify-content: flex-start;
+            margin: 5px;
+        }
+        h3,p,li,ol,ul{
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+        h3{
+            font-size:14px;
+            margin-top: 6px;
+        }
+        p,li{
+            font-size:12px;
+        }
+        ol,ul{
+            flex: none;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            padding-left: 0;
+            list-style: none;
+            counter-set: counter 0;
+            flex-direction: column;
+        }
+        ol,ul:not(.not-flex){
+            display: flex;
+            
+        }
+        ol li::before{
+            margin-right: 2px;
+            content: counter(counter) ":";
+            counter-increment: counter;
+        }
+        ul li::before{
+            margin-right: 2px;
+            content: "-";
+        }
+        ul:not(.not-flex) li{
+            padding-right: 4px;
+            display: flex;
+            flex: none;
+            flex-basis: min-content;
+        }
+    </style>
+
+</head>
+<body>
+    <nav>
+        <a href="rules.html">Rules</a>
+        <a href="battlemats/template.html">Battle</a>
+        <a href="sheet.html">Sheet</a>
+        <a href="items.html">Items</a>
+        <a href="vehicles.html">Vehicles</a>
+        <a href="rules_sheet.html">Play</a>
+    </nav>
+    <a4-landscape>
+        <row>
+            <box style="flex-grow: 0.5;">
+                <h3>Combat</h3>
+                <p>GM decides a range of 3~ tiles available for player characters, place minis on mat.</p>
+                <box>
+                    <h3>Round lifecycle</h3>
+                    <ol>
+                        <li>Handle battlemat features and combatant conditions</li>
+                        <li>Decide amount of turns</li>
+                        <li>Planning movement and action</li>
+                        <li>Take tactical action</li>
+                    </ol>
+                </box>
+                <box>
+                    <h3>Turn lifecycle</h3>
+                    <ol>
+                        <li>Handle battlemat features and combatant conditions</li>
+                        <li>Possible use of focus points</li>
+                        <li>Move all combatants simultaneously.</li>
+                        <li>Stress equipment</li>
+                        <li>Assists and defends</li>
+                        <li>Ranged attack preparation</li>
+                        <li>Melee and Ranged attacks</li>
+                    </ol>
+                </box>
+            </box>
+            <box>
+                <row>
+                    <box>
+                        <h3>Tactical actions</h3>
+                        <ul>
+                            <li>Dash</li>
+                            <li>Equipment</li>
+                            <li>Shrug</li>
+                            <li>Catch Breath</li>
+                            <li>Cast spell</li>
+                            <li>Boost</li>
+                            <li>Escape</li>
+                            <li>Kidnap</li>
+                        </ul>
+                        <h3>Actions</h3>
+                        <ul>
+                            <li>Melee attack</li>
+                            <li>Ranged attack</li>
+                            <li>Assist</li>
+                            <li>Defend</li>
+                        </ul>
+                        <h3>Stress equipment</h3>
+                        <ul>
+                            <li>Weapon durability causes attack to ignore armor</li>
+                            <li>Armor durability</li>
+                        </ul>
+                        <h3>Escape</h3>
+                        <p>2d8 below (distance to closest enemy + rounds passed)</p>
+                    </box>
+                    <box>
+                        <h3>Critical damage</h3>
+                        <p>Add another of the highest die rolled for damage and add to the attack.</p>
+                        <h3>Conditions</h3>
+                        <ul>
+                            <li>Always add a condition to weapon when aquired</li>
+                            <li>One condition can be applied per weapon per round</li>
+                        </ul>
+                        <p>Conditions can be applied on attack when;</p>
+                        <ul>
+                            <li>Dealing critical damage</li>
+                            <li>Stressing the weapon</li>
+                        </ul>
+                        <h3>Wounds and Injury</h3>
+                        <ul>
+                            <li>When wounded, max endurance is halved</li>
+                        </ul>
+                        <p>Random an injury if;</p>
+                        <ul>
+                            <li>Falling unconscious in combat</li>
+                            <li>Taking injury out of combat</li>
+                        </ul>
+                    </box>
+                </row>
+            </box>
+        </row>
+        <row>
+            <box>
+                <h3>Damage types</h3>
+                <row>
+                    <ul>
+                        <li>Smash</li>
+                        <li>Cut</li>
+                        <li>Stab</li>
+                        <li>Pain</li>
+                    </ul>
+                    <ul>
+                        <li>Gun</li>
+                        <li>Burst</li>
+                        <li>Blast</li>
+                        <li>Ooze</li>
+                    </ul>
+                    <ul>
+                        <li>Nuke</li>
+                        <li>Light</li>
+                        <li>Neural</li>
+                        <li>Volt</li>
+                    </ul>
+                </row>
+            </box>
+            <box style="flex: 2;">
+                <h3>Gameplay tips!</h3>
+                <row>
+                    <box style="margin: 0;">
+                        <p>When taking action;</p>
+                        <ul class="not-flex">
+                            <li>Die rolls mean <b>danger!</b></li>
+                            <li>Be <i>descriptive</i> and specific</li>
+                            <li>Use your <i>inventory</i> creatively</li>
+                        </ul>
+                    </box>
+                    <box style="margin: 0;">
+                        <p>When in combat;</p>
+                        <ul class="not-flex">
+                            <li>Death is <b>never</b> sudden</li>
+                            <li>Exploit <i>weaknesses</i></li>
+                            <li>Use your <i>inventory</i> creatively</li>
+                        </ul>
+                    </box>
+                </row>
+            </box>
+        </row>
+    </a4-landscape>
+    
+</body>
+</html>

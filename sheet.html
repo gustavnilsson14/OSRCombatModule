@@ -22,7 +22,6 @@
             height: 669px;
             display: flex;
             flex-direction: column;
-            background: #eee;
         }
         slot{
             background: #bbb;
@@ -82,33 +81,39 @@
             stroke-dashoffset: 5px;
             margin-right: 21px;
         }
-        perks{
+        perks, weaknesses{
             display: flex;
-            flex-direction: row;
+            flex-direction: column;
             flex-wrap: wrap;
             height: 100%;
             background: #bbb;
             border-top-left-radius: 15px;
             border-top-right-radius: 15px;
         }
-        perks header{
+        weaknesses{
+            height: 125px;
+            margin-left: 5px;
+        }
+        perks header,
+        weaknesses header{
             text-align: center;
             flex:1;
             flex-grow:1;
             display: flex;
             justify-content: center;
-            align-self: flex-end;
+            align-self: center;
             width: 100%;
+            padding: 4px 0;
+            border-bottom: 1px solid black;
         }
-        perk{
+        perks grayrow,
+        weaknesses grayrow{
             background: #ddd;
             display: flex;
             flex-grow: 1;
+            flex: 1;
             width: calc(100% - 2px);
             border-bottom: 1px solid black;
-        }
-        perk:nth-child(2){
-            background: #bbb;
         }
         endurance{
             position: absolute;
@@ -130,19 +135,19 @@
             top:40px;
             left: calc(50% - 3px);
         }
-        wound{
+        wound {
             flex: 1;
             flex-grow: 1;
             display: flex;
-            background-size: contain;
+            background-size: 100%;
             background-repeat: no-repeat;
-            background-position: 45px 0px;
+            background-position: 0px 14px;
             margin: 10px;
             flex-direction: column;
-            justify-content: center;
+            justify-content: flex-end;
+            height: 60px;
         }
         wound::before{
-            margin-left: 10px;
             border: 3px solid black;
             background: #ddd;
             border-radius: 50%;
@@ -154,9 +159,13 @@
             background-image: url(img/wound.png);
         }
         wound:nth-child(2){
+            background-position-y: 16px;
+            background-size: 105%;
             background-image: url(img/heart-pulse-solid.svg);
         }
         wound:nth-child(3){
+            background-size: 90%;
+            background-position-x: 1px;
             background-image: url(img/skull-solid.svg);
         }
     </style>
@@ -207,28 +216,40 @@
             </box>
         </row>
         <row>
-            <box style="flex: 2.18">
+            <box style="flex: 1.6">
                 <portrait></portrait>
             </box>
-            <box>
+            <box style="flex: 1.25">
                 <perks>
                     <header>Perks</header>
-                    <perk></perk>
-                    <perk></perk>
-                    <perk></perk>
-                    <perk></perk>
-                    <perk></perk>
-                    <perk></perk>
-                    <perk></perk>
-                    <perk></perk>
+                    <grayrow></grayrow>
+                    <grayrow></grayrow>
+                    <grayrow></grayrow>
+                    <grayrow></grayrow>
+                    <grayrow></grayrow>
+                    <grayrow></grayrow>
+                    <grayrow></grayrow>
+                    <grayrow></grayrow>
+                    <grayrow></grayrow>
+                    <grayrow></grayrow>
+                    <grayrow></grayrow>
                 </perks>
             </box>
-            <box>
-                <column class="internal" style="height: 205px;">
-                    <wound style="margin-top: 30px;"></wound>
+            <box style="flex: 0">
+                <row class="internal">
                     <wound></wound>
                     <wound></wound>
-                </column>
+                    <wound></wound>
+                </row>
+                <weaknesses>
+                    <header>Weakness</header>
+                    <grayrow></grayrow>
+                    <grayrow></grayrow>
+                    <grayrow></grayrow>
+                    <grayrow></grayrow>
+                    <grayrow></grayrow>
+                    <grayrow></grayrow>
+                </weaknesses>
             </box>
         </row>
         <row>
