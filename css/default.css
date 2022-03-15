@@ -54,3 +54,10 @@ column{
 row>separator{
     border-right: 1px solid black;
 }
+.wrap{
+    flex-wrap: wrap;
+}
+.on-top{
+    position: relative;
+    z-index: 99;
+}

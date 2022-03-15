@@ -84,7 +84,7 @@
         </filter>
 
         <button onclick="prep()">Prep for print</button>
-        <input type="text" placeholder="slots (1-20)">
+        <input id="slots" type="text" placeholder="slots (1-20)">
         <amount></amount>
     </nav>
     <container>
@@ -788,7 +788,7 @@
         </slot>
         <slot class="melee physical horizontal-image">
             <name>
-                <span class="small">Necro Cleaver</span>
+                <span class="smaller">Necro Cleaver</span>
             </name>
             <inner style="background-image: url(img/items/chainaxe.png);">
                 <damagetypes>
@@ -1070,6 +1070,77 @@
                 </usage>
             </inner>
             
+            <skill>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+            </skill>
+        </slot>
+        <slot class="melee physical horizontal-image">
+            <name>
+                <span class="small">Bolt Cutter</span>
+            </name>
+            <inner style="background-image: url(img/items/boltcutter.png);">
+                <damagetypes>
+                    <span>smash</span>
+                </damagetypes>
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                    <durability></durability>
+                    <durability></durability>
+                    <both></both>
+                </usage>
+            </inner>
+            
+            <skill>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+            </skill>
+        </slot>
+        <slot class="melee physical">
+            <name>
+                <span class="small">Pure Staff</span>
+            </name>
+            <inner style="background-image: url(img/items/purestaff.png);">
+                <damagetypes>
+                    <span>*</span>
+                    <span>smash</span>
+                </damagetypes>
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                    <both></both>
+                </usage>
+            </inner>
+            <skill>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+                <skillslot></skillslot>
+            </skill>
+        </slot>
+        <slot class="melee physical">
+            <name>
+                <span class="smaller">Sinister Staff</span>
+            </name>
+            <inner style="background-image: url(img/items/sinisterstaff.png);">
+                <damagetypes>
+                    <span>*</span>
+                    <span>smash</span>
+                </damagetypes>
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                    <both></both>
+                </usage>
+            </inner>
             <skill>
                 <skillslot></skillslot>
                 <skillslot></skillslot>
@@ -2311,6 +2382,34 @@
                 </usage>
             </inner>
         </slot>
+        <slot class="headgear">
+            <name>
+                <span class="smaller">Skull Helmet</span>
+            </name>
+            <inner style="background-image: url(img/items/skull.png);">
+                <damagetypes>
+                    <span>pain</span>
+                </damagetypes>
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                    <both></both>
+                </usage>
+            </inner>
+        </slot>
+        <slot class="headgear">
+            <name>
+                <span class="smaller">Tinfoil Hat</span>
+            </name>
+            <inner style="background-image: url(img/items/tinfoilhat.png);">
+                <damagetypes>
+                    <span>neural</span>
+                </damagetypes>
+                <usage>
+                    <durability></durability>
+                </usage>
+            </inner>
+        </slot>
         <slot class="armor">
             <name>
                 <span class="smaller">Kevlar Vest</span>
@@ -2546,6 +2645,9 @@
         document.querySelector("nav amount").textContent = document.querySelectorAll("slot").length;
         document.querySelectorAll("slot").forEach((element,i) => {
             element.setAttribute("index", i+1);
+            element.addEventListener("click",function(){
+                document.querySelector("#slots").value += `${i+1},`;
+            });
         });;
         function random(){
             const filters = getFilters();
@@ -2578,14 +2680,15 @@
         }
         
         function prep(){
-            const slotRange = document.querySelector("nav input").value;
+            const slotRange = document.querySelector("nav input#slots").value;
             document.querySelector("nav").remove();
             document.querySelector("body").style.justifyContent = "flex-start";
             
             const indexes = [];
             slotRange.split(",").forEach(range => {
                 const min = parseInt(range.split("-")[0]);
-                const max = parseInt(range.split("-")[1]);
+                var max = parseInt(range.split("-")[1]);
+                if(!max) max = min;
                 for (let index = min-1; index < max; index++) {
                     console.log(index);
                     if(indexes.indexOf(index) != -1) continue;

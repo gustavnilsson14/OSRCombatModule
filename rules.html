@@ -140,6 +140,9 @@
             border-bottom: 1px dotted #aaa;
             transition: 0.2s all;
         }
+        info-row:nth-child(2n){
+            background: #e5e5e5;
+        }
         info-row.result{
             border-right: 2px solid red;
             background: #fff;
@@ -430,7 +433,7 @@
             </box>
 
             <box class="x1-5">
-                <h3>Tactical action</h3>
+                <h3>Tactical action (TA)</h3>
                 <p>After determining the turn amount for the <i>round</i>, each combatant may take a <i>tactical action</i></p>
                 <p>Tactical actions resolve immediately, and simultaneously.</p>
                 
@@ -474,7 +477,7 @@
                     <info-row>
                         <inner>
                             <h4>Escape</h4>
-                            <span>To escape the combat, roll 2d8. If the result of is less than the distance to the closest enemy, plus the amount of rounds the combat has lasted, the combatant leaves the combat.</span>
+                            <span>To escape the combat, roll 2d8. If the result of is less than the distance to the closest enemy, plus the amount of rounds the combat has lasted times two, the combatant leaves the combat.</span>
                         </inner>
                     </info-row>
                     <info-row>
@@ -1779,7 +1782,7 @@
                     <info-row>
                         <inner>
                             <h4>Staggered</h4>
-                            <span>Cannot apply any force.</span>
+                            <span>The combatant cannot inflict critical damage.</span>
                         </inner>
                     </info-row>
                     <info-row>
@@ -1930,6 +1933,12 @@
                             <span>The combatant takes 1d6 neural damage at the start of each turn, +6 if weak to neural.</span>
                         </inner>
                     </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Paralysis</h4>
+                            <span>The combatant cannot move, take any action, or tactical action, until the end of the next round.</span>
+                        </inner>
+                    </info-row>
                 </info-list>
                   
                 
@@ -1976,7 +1985,7 @@
                     <info-row>
                         <inner>
                             <h4>Horns</h4>
-                            <span></span>
+                            <span>Grows each session</span>
                         </inner>
                     </info-row>
                     <info-row>
@@ -1988,19 +1997,19 @@
                     <info-row>
                         <inner>
                             <h4>Gills</h4>
-                            <span></span>
+                            <span>Breathe underwater</span>
                         </inner>
                     </info-row>
                     <info-row>
                         <inner>
                             <h4>Claws</h4>
-                            <span></span>
+                            <span>Grows each session</span>
                         </inner>
                     </info-row>
                     <info-row>
                         <inner>
                             <h4>Filter Sac</h4>
-                            <span></span>
+                            <span>Filters out aerosols and toxic fumes</span>
                         </inner>
                     </info-row>
                     <info-row>
@@ -2246,7 +2255,7 @@
                     <info-row>
                         <inner>
                             <h4>Fins</h4>
-                            <span></span>
+                            <span>You move naturally in water</span>
                         </inner>
                     </info-row>
                     <info-row>
@@ -2264,7 +2273,7 @@
                     <info-row>
                         <inner>
                             <h4>Mane</h4>
-                            <span></span>
+                            <span>You have a majestic horse, or lion mane</span>
                         </inner>
                     </info-row>
                     <info-row>
