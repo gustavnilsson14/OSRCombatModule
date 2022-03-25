@@ -12,6 +12,7 @@
     <script src="js/lastnames.js"></script>
     <script src="js/banditnames.js"></script>
     <script src="js/namegen.js"></script>
+    <script src="js/locationgen.js"></script>
     <style>
         .flex-right{
             display: flex; 
@@ -301,6 +302,11 @@
         ul.item-types li.stuff span::after{
             content: url(img/gear-solid.svg);
         }
+        info-list info-row button{
+            background: #ddd;
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
+        }
     </style>
 </head>
 <body>
@@ -311,6 +317,7 @@
         <a href="items.html">Items</a>
         <a href="vehicles.html">Vehicles</a>
         <a href="rules_sheet.html">Play</a>
+        <a href="generators.html">Generators</a>
     </nav>
     <container>
         <row>
@@ -359,8 +366,6 @@
                 <p>No battleground is the same as another, and unique rules will be present for each. Commonly, a battleground will, but is not constrained to, implement these rules</p>
                 <ul>
                     <li>How many combatants a tile can fit, or tile width</li>
-                    <li>How much speed is required to move one tile</li>
-                    <li>Ranged damage reduction due to rubble, cover, or poor line of sight</li>
                     <li>Is the area flammable</li>
                     <li>Is the area conductive</li>
                 </ul>
@@ -370,14 +375,10 @@
             <box>
                 <h4>Tile width</h4>
                 <p>The amount of combatants that can occupy a tile before blocking allied movement into the same tile.</p>
-                <h4>Move cost</h4>
-                <p>When moving to another tile, a combatant must spend this amount of movement speed before moving their character, accumulated across rounds and turns.</p>
-                <h4>Ranged damage reduction</h4>
-                <p>Ranged damage is reduced when vision is obscured by rubble, mist, or otherwise. Ranged damage can be reduced by one, or two dice. Which dice are removed is the combatants choice.</p>
                 <h4>Fire</h4>
                 <p>Certain areas are flammable. Wood, metal, and even brick burns given the right heat. When in a flammable area, using a tactical action while wielding the appropriate gear (tool, or weapon with light damage type) will light an adjacent tile on fire. The fire will spread to neighboring tiles at the start of every round, and will deal 1d8 light damage to any combatant on the same tile at the start of each turn. If a fire is particularly strong, it deals 1d12 light damage.</p>
                 <h4>Conductivity</h4>
-                <p>Metal areas, and bodies of water are conductive. Any volt damage dealt here will cause all combatants on the battleground to take 1d8 volt damage.</p>
+                <p>Metal areas, and bodies of water are conductive. Any volt damage dealt here will cause all combatants on the battleground to take 1d12 volt damage.</p>
             </box>
             <box class="x3">
                 <h3>Example battleground</h3>
@@ -391,17 +392,15 @@
                 <p>GM decides a range of 3~ tiles available for player characters, place minis on mat.</p>
                 <h4>Round lifecycle</h4>
                 <ol>
-                    <li>Handle battlemat features and combatant conditions</li>
+                    <li>Handle battlemat features</li>
                     <li>Decide amount of turns</li>
-                    <li>Planning movement and action</li>
                     <li>Take tactical action</li>
+                    <li>Planning movement and action</li>
                 </ol>
                 <h4>Turn lifecycle</h4>
                 <ol>
-                    <li>Handle battlemat features and combatant conditions</li>
-                    <li>Possible use of focus points</li>
+                    <li>Handle battlemat featuress</li>
                     <li>Move all combatants simultaneously.</li>
-                    <li>Stress equipment</li>
                     <li>Assists and defends</li>
                     <li>Ranged attack preparation</li>
                     <li>Melee and Ranged attacks</li>
@@ -434,14 +433,22 @@
 
             <box class="x1-5">
                 <h3>Tactical action (TA)</h3>
+                <p>Tactical actions are special actions which can be performed by all combatants, and allows combatants to adapt to an enemies strengths, or exploit their tactics.</p>
+                <p>All combatants may use the TA's listed below, but will also have special actions available to them.</p>
                 <p>After determining the turn amount for the <i>round</i>, each combatant may take a <i>tactical action</i></p>
                 <p>Tactical actions resolve immediately, and simultaneously.</p>
-                
+                <h4>Basic tactical actions</h4>
                 <info-list class="separator-pipes no-roll" style="counter-set: list 0;">
                     <info-row>
                         <inner>
-                            <h4>Dash</h4>
-                            <span>The combatant may move 1 tile, regardless of movement cost.</span>
+                            <h4>Aim</h4>
+                            <span>When attacking, choose a die and increase its result by 1 before rolling.</span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Brace</h4>
+                            <span>When attacked, choose a die and reduce its result by 1 after rolling.</span>
                         </inner>
                     </info-row>
                     <info-row>
@@ -452,26 +459,14 @@
                     </info-row>
                     <info-row>
                         <inner>
-                            <h4>Shrug</h4>
-                            <span>The shrug action allows the combatant to remove a condition they suffer from.</span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
                             <h4>Catch Breath</h4>
                             <span>Using the catch breath action increases your endurance by your level die.</span>
                         </inner>
                     </info-row>
                     <info-row>
                         <inner>
-                            <h4>Cast spell</h4>
-                            <span>The spell action allows a combatant to cast one of their spells, explained in detail below.</span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Boost</h4>
-                            <span>The boost action increases the <i>charge</i> of 2 of the combatants spells by 1. If the combatant only has 1 spell, the second point is forfeit.</span>
+                            <h4>Initiative</h4>
+                            <span>The initiative action increases <i>initiative threshold</i> by 1 when used by the player side, and reduces it by 1 when used by the enemy side</span>
                         </inner>
                     </info-row>
                     <info-row>
@@ -482,13 +477,23 @@
                     </info-row>
                     <info-row>
                         <inner>
+                            <h4>Boost</h4>
+                            <span>The boost action increases the <i>charge</i> of 2 of the combatants spells by 1. If the combatant only has 1 spell, the second point is forfeit.</span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Cast Spell</h4>
+                            <span>The cast spell action allows a combatant to cast one of their spells, explained in detail later this section.</span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
                             <h4>Kidnap</h4>
                             <span>Kidnap an unconscious enemy combatant! O_O</span>
                         </inner>
                     </info-row>
                 </info-list>
-                
-                <img src="img/monsters-weapons-blood-victory-wallpaper-preview.jpg" alt="">
             </box>
 
             <box class="x1-5">
@@ -551,8 +556,8 @@
                         </inner>
                     </info-row>
                 </info-list>
-                <h4>Focus</h4>
-                <p>All players has 1 point of Focus as combat starts. A point of focus can be used during a <i>round</i>, at the start of a <i>turn</i>, to set a new plan for the rest of their <i>round</i>.</p>
+                
+                <img src="img/monsters-weapons-blood-victory-wallpaper-preview.jpg" alt="">
             </box>
             
             <box>
@@ -698,7 +703,7 @@
                     </box>
                 </row>
                 <h4>Advantage</h4>
-                <p>When rolling damage with advantage, roll all dice twice and discard one of the results.</p>
+                <p>When rolling damage with advantage, any number of dice may be rerolled once, and the new result is the one used.</p>
             </box>
             <box class="x2">
                 <h4>Endurance</h4>
@@ -740,8 +745,8 @@
             </box>
             <box>
                 <h4>Armor value</h4>
-                <p>Characters and creatures are either unarmored, wear armor, or have natural armor.</p>
-                <p>When attacked, each die rolled for the attack is reduced by the <i>armor value</i> of the victim.</p>
+                <p>Characters and creatures are either unarmored, wear armor, or have natural armor. The type, and how much armor they have determine their <i>armor value</i></p>
+                <p>When attacked, each die rolled for the attack with a result less than or equal to the targets <i>armor value</i> deals no damage.</p>
                 <img src="img/armor.png" alt="">
             </box>
             <box class="x2">
@@ -749,7 +754,6 @@
                 <h4>Weaknesses</h4>
                 <p>All weapons deals damage of one or more damage types. All combatants have one or more weakness to these damage types. Figuring out an opponents weakness can be key to winning a battle</p>
                 <p>When dealing damage to an opponent with a damage type they are weak against this is considered <i>critical damage</i>. Dealing <i>critical damage</i> causes the attack to add another of the highest damage die to the attack.</p>
-                <p>Critical damage also allow the attacker to apply their condition.</p>
                 <h4>Damage types</h4>
                 <row class="internal">
                     <box class="no-border">
@@ -844,49 +848,6 @@
                 <p>Before any opposing combatant in a front can be the target of two attacks during the same turn, every enemy combatant must be the target of an attack. Only if your side of the front outnumber the other side, you can target the same target as one of your allies.</p>
                 <img src="img/apocalypse.jpg" alt="">
             </box>
-            <box>
-                <h3>Conditions</h3>
-                <p>Conditions apply negative effects to a combatant which last until the end of the combat, or until removed by the tactical action <i>shrug</i> or other effect.</p>
-                <p>Conditions are applied as a combatant is hit by a weapon who may apply a condition to them. To apply a condition, the attacker must meet the following;</p>
-                <ul>
-                    <li>Deal <i>critical damage</i> with the attack, OR</li>
-                    <li>Suffer one durability loss to their weapon before attempting the roll</li>
-                </ul>
-                <ul>
-                    <li>The attack must deal damage, AND</li>
-                    <li>No damage dice may show a 1, AND</li>
-                    <li>The combatant has not applied a condition earlier this combat round.</li>
-                </ul>
-                <p>There are 4 types of conditions, described below;</p>
-                <info-list class="separator-pipes no-roll" style="counter-set: list 0;">
-                    <info-row>
-                        <inner>
-                            <h4>Physical affliction</h4>
-                            <span>Affects the characters strength and speed.</span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Mental distress</h4>
-                            <span>Affects the characters decision making.</span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Elemental scourge</h4>
-                            <span>Deals damage over time and additional effects</span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Finesse effect</h4>
-                            <span>Applies an instant effect, and is not tracked.</span>
-                        </inner>
-                    </info-row>
-                </info-list>
-                <p>A list of all conditions by type, and their effects is found later on</p>
-                <img class="small" src="img/sick.jfif" alt="">
-            </box>
         </row>
 
         <row>
@@ -937,9 +898,11 @@
             </box>
             <box>
                 <h3>Item damage</h3>
-                <p>When an item is either used for somthing it is not intended for, suffers rough physical treatment, is partially or completely consumed, or due to certain combat actions and events, it takes damage.</p>
+                <p>When an item is either used for somthing it is not intended for, suffers rough physical treatment, is partially or completely consumed, or due to combat, it takes damage.</p>
                 <p>When an item takes damage, cross out the first durability or quality slot (starting from the top left) which is not yet filled in.</p>
                 <p>Some items, at the GM's discretion are not destroyed when all durability or quality slots are filled in, and may be recharged or refilled, although this is an exception</p>
+                <h4>Combat damage</h4>
+                <p>After combat, roll 1d6 for each item used that combat. If the die result is less than or equal to the amount of rounds, during which that it was used that combat, it loses one durability</p>
                 <h4>Repair</h4>
                 <p>Repairing a weapon may restore sturdy quality slots. Repairing a quality slot will take some time, and resources, usually worth around ~75% of what the quality slot would cost if new.</p>
             </box>
@@ -952,15 +915,10 @@
                             <li>Weapons add a damage die to each attack. Which die depends on their <i>damage rating</i></li>
                             <li>All weapons have a card, and needs to be held by a character to be used</li>
                             <li>Weapons have several damage types. If a weapon hits an enemy and has a damage type that combatant is weak against, it deals <i>critical damage</i></li>
-                            <li>All weapons can have one <i>condition</i> they may apply. These are not stated by the weapon cards, but added either randomly or at the discretion of the GM.</li>
                             <li>There are two types of weapons, <i>melee</i> and <i>ranged</i></li>
                             <li>Quality and effect increases the weapons <i>damage rating</i> by 1</li>
                             <li>A weapons skill is used to track the players skill swith the individual weapon.</li>
-                        </ul>
-                        <h4>Adding conditions</h4>
-                        <p>As the player characters aquire a new weapon, it will either be a prepared weapon which the GM has already decided on the condition it applies, or an unprepared weapon the GM did not account for.</p>
-                        <p>For weapons not prepared in advance, the GM decides on a condition type, and the player aquiring the weapon rolls a die on that condition types table to determine which condition the weapon applies.</p>
-                        <p>Note down which condition the weapon may apply on the weapon card.</p>     
+                        </ul>   
                     </box>
                     <box class="no-border">
                         <h4>Damage Rating</h4>
@@ -998,9 +956,9 @@
                                 </inner>
                             </info-row>
                         </info-list>
-                        <img src="img/weapons.jpg" alt="">
                     </box>
                 </row>
+                <img class="small" src="img/weapons.jpg" alt="">
                 
             </box>
             <box class="x2">
@@ -1014,7 +972,8 @@
                     <li>Armor occupying two card slots will occupy a characters body <i>body</i> item slots</li>
                 </ul>
                 <h4>Armor value</h4>
-                <p>The total <i>armor value</i> of all equipped protection is added together when reducing the effect of an attack. Each damage die is reduced by the total <i>armor value</i></p>
+                <p>The total <i>armor value</i> of all equipped protection is added together when resolving the effect of an attack.</p>
+                <p>Each damage die equal to or less than <i>armor value</i> has no effect</p>
                 <h4>Weakness mitigation</h4>
                 <p>All <i>damage types</i> listed with a protection will mitigate the wearers <i>weakness</i> to that damage type. Additionally, the wearer can never become weak to that damage type as long as they wear the armor.</p>
             </box>
@@ -1030,10 +989,10 @@
             <box>
                 <h2>Character creation</h2>
                 <p>First, to create a character requires you to make 3 rolls, one for each attribute, note them down on the character sheet.</p>
-                <p>Second, you should find, and note down the the three perks corresponding to your three individual attribute values.</p>
-                <p>Third, calculate your maximum endurance, and note that down on your character sheet. Formula is found below.</p>
-                <p>Forth, use the big roll button in the backgrounds section to determine your background</p>
-                <p>Fifth, roll for your characters weaknesses, explained below</p>
+                <p>Second, calculate your maximum endurance, and note that down on your character sheet. Formula is found below.</p>
+                <p>Third, use the big roll button in the backgrounds section to determine your background</p>
+                <p>Fourth, roll for your characters weaknesses, explained below</p>
+                <p>Fifth, pick one optional tactical action from the skills, or gambits table for your character. Then roll one random tactical action from the opposite table.</p>
                 <p>Sixth, buy your characters starting gear, also explained below.</p>
             </box>
             <box class="x2">
@@ -1074,269 +1033,6 @@
                     <li>Random mutations cost 4 points.</li>
                     <li>Purchase points can be spent as <i>experience</i> for the purpose of increaing the skill level of weapons</li>
                 </ul>
-            </box>
-            <box class="x3">
-                <h3>Perks</h3>
-
-                <h4>Strength Perks</h4>
-                <info-list class="separator-pipes" style="counter-set: list 1;">
-
-                    <info-row>
-                        <inner>
-                            <h4>Underestimated</h4><span>Initially not prioritized as either threat, or meal</span>
-                            
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Mental rage</h4><span>When taking critical damage, you gain a charge to a spell of your choice</span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Self preservation</h4><span>You can still use movement plan while unconscious</span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Chaos footwork</h4><span>If the plan is to stand ground and fire, dash moves two tiles instead of one.</span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Tactical retreat</h4><span>If the plan is to retreat and fire, mitigate one weakness for the round</span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Glorious charge</h4><span>If the plan is to charge and assist, increase speed by 1 for you and allies on the same tile</span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Paragon</h4><span>If the plan is to move to a tile and assist, gain 1 armor</span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Book it</h4><span>If the plan is to retreat and defend, your speed is increased by 2</span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Second wind</h4><span>If wounded, catch breath restores an additional 1d8 endurance</span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Vicious charge</h4><span>If the plan is to charge and melee, increase damage by 1d4</span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Get some!</h4><span>If the plan is to stand ground and fire, increase damage by 1d4</span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Brutal</h4><span>Random physical affliction. All your melee weapons will always have this condition</span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Hardy</h4><span>Extra 5 endurance * level</span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Controlled breathing</h4><span>If the plan is to stand ground and melee, catch breath restores 1d4 extra endurance</span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Vanguard</h4><span>If the plan is to stand ground and defend, gain 1 armor</span>
-                        </inner>
-                    </info-row>
-                </info-list>
-
-                <h4>Dexterity Perks</h4>
-                <info-list class="separator-pipes" style="counter-set: list 1;">
-                    <info-row>
-                        <inner>
-                            <h4>Lucky</h4>
-                            <span>Failed saves out of combat are less severe</span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Coping mechanisms</h4>
-                            <span> Permanently mitigate a weakness</span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Torpid</h4>
-                            <span>If at full endurance boost may put both charges on the same spell</span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Last legs</h4>
-                            <span>You can still use tactical actions while unconscious</span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Phalanx</h4>
-                            <span>If the plan is to stand ground and melee, gain 1 armor</span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Swift hands</h4>
-                            <span>If the plan is to move to a tile and assist, swap any number of items held in belt or hands for free</span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Quickness</h4>
-                            <span>If the plan is to retreat and fire, get a free dash tactical action at the start of next round.</span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Spearhead</h4>
-                            <span>If the plan is to charge and assist, increase the targets damage by 1d4</span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Parkour</h4>
-                            <span>If the plan is to retreat and defend, dodge 1 extra attack each turn</span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Survivor</h4>
-                            <span>If wounded, speed is increased by 1.</span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Riposte</h4>
-                            <span>When taking critical damage, make a free counter attack if defending</span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Centered</h4>
-                            <span>If at full endurance ranged damage is increased by 1d4</span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Callous</h4>
-                            <span>Random physical affliction. All your ranged weapons will always have this condition</span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Draw</h4>
-                            <span>If the plan is to stand ground and fire, fire the first two turns before needing to prepare</span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Precision</h4>
-                            <span>If the plan is to stand ground and melee, you are able to target any enemy when fighting in a front</span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Disengage</h4>
-                            <span>If the plan is to retreat and defend, escape die roll result is reduced by 2</span>
-                        </inner>
-                    </info-row>
-                </info-list>
-                
-                <h4>Willpower Perks</h4>
-                <info-list class="separator-pipes" style="counter-set: list 1;">
-                    <info-row>
-                        <inner>
-                            <h4>Resistant</h4><span>Magic deals half damage to you</span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Cowardly</h4><span>Roll 2d6 when attempting to escape</span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Opportunistic</h4><span>If the plan is to retreat and fire, get a free focus point, usable this round</span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Ragemage</h4><span>If the plan is to charge and melee, cast a spell for free, but forfeit the level damage die</span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Rush</h4><span>When taking critical damage, gain +1 speed for the rest of the round if retreating</span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Adrenaline rush</h4><span>You can still use actions while unconscious</span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Inspire</h4><span>If the plan is to move to a tile and assist, assist can be done at range</span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Fury</h4><span>If the plan is to charge and assist, get a single charge for one of your spells</span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Persist</h4><span>If the plan is to stand ground and defend, remove the last condition inflicted on you</span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Permanence</h4><span>If wounded, shrug removes 1 additional condition</span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Mastermind</h4><span>Get one free tactical action to use at the start of any round</span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Turbocharged</h4><span>If at full endurance spells cast are not exhausted</span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Bloodrage</h4><span>If wounded, melee damage is increased by 1d4</span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Specialist</h4><span>mental distress. All your spells will always have this condition</span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Tank</h4><span>If the plan is to stand ground and defend, you may choose to take any damage directed at allies on the same tile</span>
-                        </inner>
-                    </info-row>
-                </info-list>
             </box>
             
             <box class="x3" style="counter-set: list 5;">
@@ -1718,6 +1414,140 @@
         </row>
         
         
+        
+        <row>
+            <box class="x3 backgrounds-container">
+                <h2>Optional tactical actions</h2>
+                <row class="internal">
+                    <box class="no-border">
+                        <h4>Skills</h4>
+                        <info-list class="separator-pipes" style="counter-set: list 0;">
+                            <info-row>
+                                <inner>
+                                    <h4>Hunker down</h4>
+                                    <span>The combatant hunkers down, and cannot move during the round. During the round, the combatant takes no splash damage, and ranged attacks against them has no damage die.</span>
+                                </inner>
+                            </info-row>
+                            <info-row>
+                                <inner>
+                                    <h4>Knockback</h4>
+                                    <span>The combatant pushes one melee target backwards one tile</span>
+                                </inner>
+                            </info-row>
+                            <info-row>
+                                <inner>
+                                    <h4>Rage</h4>
+                                    <span>This round, the combatants melee attacks deal 1d4 extra damage</span>
+                                </inner>
+                            </info-row>
+                            <info-row>
+                                <inner>
+                                    <h4>Pierce</h4>
+                                    <span>one damage die ignores armor</span>
+                                </inner>
+                            </info-row>
+                            <info-row>
+                                <inner>
+                                    <h4>Dash</h4>
+                                    <span>Move a single tile</span>
+                                </inner>
+                            </info-row>
+                            <info-row>
+                                <inner>
+                                    <h4>Dual wield</h4>
+                                    <span>The combatant may add the off-hand weapons damage dice to attacks. Will not work with larger weapons.</span>
+                                </inner>
+                            </info-row>
+                            <info-row>
+                                <inner>
+                                    <h4>Inspire</h4>
+                                    <span>The combatant inpires a companion, who may use their unique TA</span>
+                                </inner>
+                            </info-row>
+                            <info-row>
+                                <inner>
+                                    <h4>Careful usage</h4>
+                                    <span>Reduces chance of armor and weapon breakage</span>
+                                </inner>
+                            </info-row>
+                            <info-row>
+                                <inner>
+                                    <h4>Relentless</h4>
+                                    <span>This round, an attack of the combatants choice gets advantage, prior to rolling.</span>
+                                </inner>
+                            </info-row>
+                            <info-row>
+                                <inner>
+                                    <h4>Hide</h4>
+                                    <span>The combatant becomes untargetable until in melee with an enemy, moving, taking tactical, or regular action, except for the boost, and catch breath TA's</span>
+                                </inner>
+                            </info-row>      
+                        </info-list>
+                    </box>
+                    
+                    <box class="no-border">
+                        <h4>Gambits</h4>
+                        <info-list class="separator-pipes" style="counter-set: list 0;">
+                            <info-row>
+                                <inner>
+                                    <h4>Grapple</h4>
+                                    <span>This round, the combatant forces a melee target to use the stand ground movement on a failed STR</span>
+                                </inner>
+                            </info-row>    
+                            <info-row>
+                                <inner>
+                                    <h4>Steal</h4>
+                                    <span>The combatant may steal a belt, or pack item from a melee target on a failed DEX</span>
+                                </inner>
+                            </info-row>    
+                            <info-row>
+                                <inner>
+                                    <h4>Goad</h4>
+                                    <span>The combatant goads an opponent. On a failed WIL, this round when the target does not attack the combatant, all their die results are reduced by 1</span>
+                                </inner>
+                            </info-row>    
+                            <info-row>
+                                <inner>
+                                    <h4>Break</h4>
+                                    <span>The combatant may target an enemy allowed by their current weaponry. On a successful STR, the target must choose an equipped armor or weapon which loses 1 durability</span>
+                                </inner>
+                            </info-row>    
+                            <info-row>
+                                <inner>
+                                    <h4>Feign death</h4>
+                                    <span>On a successful DEX the combatant appears dead, and will appear so until moving, taking tactical, or regular action</span>
+                                </inner>
+                            </info-row>    
+                            <info-row>
+                                <inner>
+                                    <h4>Intimidate</h4>
+                                    <span>The combatant intimidates any target. This round, each turn on a failed WIL, the target cannot move towards the combatant</span>
+                                </inner>
+                            </info-row>    
+                            <info-row>
+                                <inner>
+                                    <h4>Disarm</h4>
+                                    <span>The combatant targets a melee opponent. On a failed STR, the combatant chooses an item held by the target that they drop</span>
+                                </inner>
+                            </info-row>    
+                            <info-row>
+                                <inner>
+                                    <h4>Suppression</h4>
+                                    <span>If the combatant is using the ranged attack action. This round, each turn, the ranged attack target loses their movement on a failed DEX</span>
+                                </inner>
+                            </info-row>    
+                            <info-row>
+                                <inner>
+                                    <h4>Threaten</h4>
+                                    <span>The combatant chooses any target to threaten. The targets armor is reduced by 1 on a failed WIL</span>
+                                </inner>
+                            </info-row>    
+                        </info-list>
+                    </box>
+                </row>
+            </box>
+        </row>
+
         <row>
             <box>
                 <h2>Advancement</h2>
@@ -1732,249 +1562,10 @@
                     <li>1 Per game session, regardless of the session.</li>
                     <li>Making in-game player character plans prior to a session, communicating player agenda them to the GM.</li>
                     <li>Acting table secretary, taking notes on NPC's, locations, etc.</li>
-                    <li>Keeping track of conditions, turn order, hazards, and damage dealt to enemies during combat.</li>
+                    <li>Keeping track of rounds passed, turn order, hazards, and damage dealt to enemies during combat.</li>
                     <li>Taking an active part in irl game scheduling.</li>
                     <li>Bringing snacks to the table.</li>
                 </ul>
-            </box>
-        </row>
-        <row>
-            <box>
-                <h2>Conditions</h2>
-                <h4>Physical afflictions</h4>
-                <info-list class="separator-pipes" style="counter-set: list 0;">
-                    <info-row>
-                        <inner>
-                            <h4>Dazed</h4>
-                            <span>All attacks made have all their dice results reduced by 1, as if the lower number was rolled. Cannot reduce a die result below 1.</span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Weak</h4>
-                            <span>Highest damage die result becomes a one</span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Exhausted</h4>
-                            <span>Cannot attack with melee weapons</span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Distracted</h4>
-                            <span>Cannot attack with ranged weapons</span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Vulnerable</h4>
-                            <span>Armor reduced by 2</span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Stunned</h4>
-                            <span>The combatant cannot move or take action during the first turn of the round.</span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Staggered</h4>
-                            <span>The combatant cannot inflict critical damage.</span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Slowed</h4>
-                            <span>All tiles have a movement cost increased by 1 for the combatant</span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Bleeding</h4>
-                            <span>The combatant loses 1d10 endurance at the start of each round.</span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Mute</h4>
-                            <span>The combatant cannot use the assist action, or use spells.</span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Pinned down</h4>
-                            <span>The combatant changes movement plan to stand ground, and can only use stand ground. Cures hyper.</span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Maimed</h4>
-                            <span>The combatant drops whatever is in their off hand, and it is unusable while maimed.</span>
-                        </inner>
-                    </info-row>
-                </info-list>
-                
-
-                <h4>Mental distress</h4>
-                <info-list class="separator-pipes" style="counter-set: list 0;">
-                    <info-row>
-                        <inner>
-                            <h4>Terror</h4>
-                            <span>The combatant loses their skill damage die when attacking.</span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Sorrow</h4>
-                            <span>The combatant cannot use any tactical action except shrug.</span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Cowardice</h4>
-                            <span>The combatant falls unconscious immediately when suffering a wound.</span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Forgetful</h4>
-                            <span>The character may not use the equipment tactical action.</span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Hyper</h4>
-                            <span>The combatant cannot stand ground. Cures pinned down.</span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Confusion</h4>
-                            <span>The combatant can only choose the target of their movement, and action during their next planning, the type of movement and action will be randomized.</span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Taunted</h4>
-                            <span>The combatant loses their level damage die if attacking anyone else then the taunter.</span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Fear</h4>
-                            <span>The combatant changes movement plan to retreat.</span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Drained</h4>
-                            <span>The combatant cannot use the charge spell tactical action</span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Disconnected</h4>
-                            <span>The combatant loses the ability to cast spells</span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Anger</h4>
-                            <span>Cannot use focus</span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Tunnel vision</h4>
-                            <span>The combatant cannot use the defend action.</span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Berserk</h4>
-                            <span>The combatant will charge the next round and they add 1d4 to their damage with melee weapons</span>
-                        </inner>
-                    </info-row>
-                </info-list>
-
-                
-                <h4>Elemental scourges</h4>
-                <info-list class="separator-pipes" style="counter-set: list 0;">
-                    <info-row>
-                        <inner>
-                            <h4>Burning</h4>
-                            <span>The combatant takes 1d6 light damage at the start of each turn, +6 if weak to light.</span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Poisoned</h4>
-                            <span>The combatant takes 1d6 nuke damage at the start of each turn, +6 if weak to nuke.</span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Sickened</h4>
-                            <span>The combatant takes 1d6 ooze damage at the start of each turn, +6 if weak to ooze.</span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Electrocuted</h4>
-                            <span>The combatant takes 1d6 volt damage at the start of each turn, +6 if weak to volt.</span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Breakdown</h4>
-                            <span>The combatant takes 1d6 neural damage at the start of each turn, +6 if weak to neural.</span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Paralysis</h4>
-                            <span>The combatant cannot move, take any action, or tactical action, until the end of the next round.</span>
-                        </inner>
-                    </info-row>
-                </info-list>
-                  
-                
-                <h4>Finesse effects</h4>
-                <info-list class="separator-pipes" style="counter-set: list 0;">
-                    <info-row>
-                        <inner>
-                            <h4>Weapon break</h4>
-                            <span>The weapon in the target's main hand takes one point of damage to durability.</span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Armor break</h4>
-                            <span>The armor the target is wearing takes one point of damage to durability.</span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Disarm</h4>
-                            <span>The target drops the item in their main hand on the ground. Place it on their tile.</span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Knockback</h4>
-                            <span>The target is pushed back 2 tiles from the attacker.</span>
-                        </inner>
-                    </info-row>
-                    <info-row>
-                        <inner>
-                            <h4>Pierce</h4>
-                            <span>The attack ignores armor.</span>
-                        </inner>
-                    </info-row>
-                </info-list>
             </box>
         </row>
         <row>
@@ -2297,7 +1888,7 @@
                     <info-row>
                         <inner>
                             <h4>Moist</h4>
-                            <span>You are constantly slimy and slippery. You are immune to the <i>burning</i> condition</span>
+                            <span>You are constantly slimy and slippery.</span>
                         </inner>
                     </info-row>
                     <info-row>

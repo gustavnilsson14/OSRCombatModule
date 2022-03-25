@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/default.css">
+    <script src="js/malenames.js"></script>
+    <script src="js/femalenames.js"></script>
+    <script src="js/lastnames.js"></script>
+    <script src="js/banditnames.js"></script>
+    <script src="js/namegen.js"></script>
+    <script src="js/locationgen.js"></script>
+    <style>
+        container{
+            display: flex;
+            width: 40vw;
+            min-width: 500px;
+            margin: 0 auto;
+            flex-direction: column;
+        }
+        generators, generator{
+            display: flex;
+            margin: 0 auto;
+            flex-direction: column;
+        }
+        generators{
+            width: 100%;
+            border-top: 1px solid black;
+            border-left: 1px solid black;
+            border-right: 1px solid black;
+        }
+        generator{
+            border-bottom: 1px solid black;
+            width: calc(100% - 60px);
+            padding: 30px;
+        }
+        generator controls{
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        generator controls>*{
+            display: flex;
+            justify-content: center;
+            min-width: calc(33% - 11px);
+            flex: 1;
+            flex-grow: 1;
+        }
+        generator controls button{
+            min-width: 100%;
+        }
+        generator controls input{
+            display: flex;
+            padding: 0;
+        }
+        generator controls checkbox{
+            display: flex;
+            border-bottom: 1px dotted black;
+        }
+        h1,h2,h3,h4,h5,h6{
+            margin-top: 0px;
+        }
+        results {
+            overflow-x: hidden;
+        }
+        results *{
+            animation-name: slidein;
+            animation-duration: 0.5s;
+            padding-top: 0;
+            padding-bottom: 0;
+            margin-top: 0px;
+            margin-bottom: 0px;
+        }
+        @keyframes slidein {
+            from {
+                opacity: 0;
+                transform: translateX(10%);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0%);
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="rules.html">Rules</a>
+        <a href="battlemats/template.html">Battle</a>
+        <a href="sheet.html">Sheet</a>
+        <a href="items.html">Items</a>
+        <a href="vehicles.html">Vehicles</a>
+        <a href="rules_sheet.html">Play</a>
+        <a href="generators.html">Generators</a>
+    </nav>
+    <container>
+        
+        <generators>
+            <generator function="generateLocation">
+                <h2>Locations</h2>
+                <controls>
+                    <input class="amount" type="number" placeholder="Amount">
+                    <button>Generate</button>
+                </controls>
+                <results>
+
+                </results>
+            </generator>
+            <generator function="generateBattleFeature">
+                <h2>Battle features</h2>
+                <controls>
+                    <input class="amount" type="number" placeholder="Amount">
+                    <checkbox>
+                        <label for="any">any</label>
+                        <input id="any" type="checkbox">
+                    </checkbox>
+                    <checkbox>
+                        <label for="wilderness">wilderness</label>
+                        <input id="wilderness" type="checkbox">
+                    </checkbox>
+                    <checkbox>
+                        <label for="interior">interior</label>
+                        <input id="interior" type="checkbox">
+                    </checkbox>
+                    <checkbox>
+                        <label for="settlement">settlement</label>
+                        <input id="settlement" type="checkbox">
+                    </checkbox>
+                    <checkbox>
+                        <label for="metro">metro</label>
+                        <input id="metro" type="checkbox">
+                    </checkbox>
+                    <checkbox>
+                        <label for="ruins">ruins</label>
+                        <input id="ruins" type="checkbox">
+                    </checkbox>
+                    <checkbox>
+                        <label for="cave">cave</label>
+                        <input id="cave" type="checkbox">
+                    </checkbox>
+                    <checkbox>
+                        <label for="zone">zone</label>
+                        <input id="zone" type="checkbox">
+                    </checkbox>
+                    <button>Generate</button>
+                </controls>
+                <results>
+
+                </results>
+            </generator>
+        </generators>
+    </container>
+    
+</body>
+</html>
