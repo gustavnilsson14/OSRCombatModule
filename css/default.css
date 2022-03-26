@@ -29,8 +29,9 @@ nav{
     flex-direction: column;
     top: 0px;
     left: 0px;
-    width: 10vw;
-    height: 50vh;
+    width: 10%;
+    height: 100vh;
+    z-index: 99;
 }
 nav a{
     display: flex;

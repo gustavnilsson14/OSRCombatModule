@@ -7,12 +7,6 @@
     <title>Document</title>
     <link rel="stylesheet" href="css/default.css">
     <script src="js/rules.js"></script>
-    <script src="js/malenames.js"></script>
-    <script src="js/femalenames.js"></script>
-    <script src="js/lastnames.js"></script>
-    <script src="js/banditnames.js"></script>
-    <script src="js/namegen.js"></script>
-    <script src="js/locationgen.js"></script>
     <style>
         .flex-right{
             display: flex; 
@@ -312,7 +306,7 @@
 <body>
     <nav>
         <a href="rules.html">Rules</a>
-        <a href="battlemats/template.html">Battle</a>
+        <a href="battlemat.html">Battle</a>
         <a href="sheet.html">Sheet</a>
         <a href="items.html">Items</a>
         <a href="vehicles.html">Vehicles</a>
@@ -362,26 +356,37 @@
                 <p>Depending on the combatants perks and/or equipment, they may be able to move further, or ignore some rules regarding invalid movement. These rules are also designed for mainly grounded combat. Aerial combat, or underwater combat would have different rules for movement.</p>
             </box>
             <box>
-                <h3>Rules</h3>
-                <p>No battleground is the same as another, and unique rules will be present for each. Commonly, a battleground will, but is not constrained to, implement these rules</p>
-                <ul>
-                    <li>How many combatants a tile can fit, or tile width</li>
-                    <li>Is the area flammable</li>
-                    <li>Is the area conductive</li>
-                </ul>
-                <p>Apart from these variables, battlegrounds will also have features, such as vantage points, explosives, cover, doorways, and whatever the GM dreams up. The location of these features should be marked on the battleground, and their stats should be noted down in advance. How to interact with these features can vary, but mostly requires a tactical action.</p>
-                <img src="img/Acid.jpg" alt="">
+                <h3>Features</h3>
+                <p>Battlegrounds will have features, such as vantage points, explosives, cover, doorways, and whatever the GM dreams up. The location of these features should be marked on the battleground, and their stats should be noted down in advance. How to interact with these features can vary, but mostly requires a tactical action.</p>
             </box>
-            <box>
-                <h4>Tile width</h4>
-                <p>The amount of combatants that can occupy a tile before blocking allied movement into the same tile.</p>
-                <h4>Fire</h4>
-                <p>Certain areas are flammable. Wood, metal, and even brick burns given the right heat. When in a flammable area, using a tactical action while wielding the appropriate gear (tool, or weapon with light damage type) will light an adjacent tile on fire. The fire will spread to neighboring tiles at the start of every round, and will deal 1d8 light damage to any combatant on the same tile at the start of each turn. If a fire is particularly strong, it deals 1d12 light damage.</p>
-                <h4>Conductivity</h4>
-                <p>Metal areas, and bodies of water are conductive. Any volt damage dealt here will cause all combatants on the battleground to take 1d12 volt damage.</p>
-            </box>
-            <box class="x3">
-                <h3>Example battleground</h3>
+            <box class="x2">
+                <h4>Common features</h4>
+                <info-list class="separator-pipes no-roll" style="counter-set: list 0;">
+                    <info-row>
+                        <inner>
+                            <h4>Fire</h4>
+                            <span>Deals 1d10 light damage once per turn. Dies after 2 rounds, may spread</span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Conductivity</h4>
+                            <span>Volt damage on these areas arcs, and deals 2d6 extra volt damage to all on, or in the area.</span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Cold</h4>
+                            <span>Excessively cold areas will cause combatants suffering from hypothermia to, on a failed STR, forfeit their turn.</span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Darkness</h4>
+                            <span>Fighting in darkness, or while blind, will disallow the assist action. Also, on a failed WIL, the target for any attack will be random.</span>
+                        </inner>
+                    </info-row>
+                </info-list>
             </box>
         </row>
 
@@ -393,7 +398,7 @@
                 <h4>Round lifecycle</h4>
                 <ol>
                     <li>Handle battlemat features</li>
-                    <li>Decide amount of turns</li>
+                    <li>Roll for initiative, and set combat intensity</li>
                     <li>Take tactical action</li>
                     <li>Planning movement and action</li>
                 </ol>
@@ -423,10 +428,12 @@
             <box>
                 <h3>Rounds and Turns</h3>
                 <p>A round of combat is an amount of turns decided by both the fighting parties. A turn of combat is enough time for every combatant involved to move, and perform an action.</p>
-                
-                <h4>Commitment</h4>
-                <p>As a round of combat starts, the players must decide, and commit to how many turns they wish to fight, a number between 1-5. This is then offset by the enemy group's desired turn amount, and the average turn amount between the two is used, rounded in favor of the players.</p>
 
+                <h4>Commitment</h4>
+                <p>As a round of combat starts, the GM rolls 1d10 for initiative. If the result is below or equal to the initiative threshold, the players has it, if above the enemies have it</p>
+                <p>Turn amount starts at 3. After rolling for initiative,  the side which gets it chooses to increase, or decrease the turn amount by 1.</p>
+                <p>After determining turn amount, all combatants take tactical action, then plan for the round</p>
+                
                 <img src="img/hqdefault.jpg" alt="">
                 
             </box>
@@ -500,13 +507,14 @@
                 <h3>Planning</h3>
                 <p>At the start of each round, players plan what to do with the turns during the round.</p>
                 <p>This mainly consists of choosing where to attempt to move, which action to take and the target of said action.</p>
+                <p>The planning will decide what each combatant does each round, and cannot be changed during the round</p>
                 
                 <h4>Movement</h4>
                 <info-list class="separator-pipes no-roll" style="counter-set: list 0;">
                     <info-row>
                         <inner>
                             <h4>Move to tile</h4>
-                            <span>A character may attempt to move to a tile. They will try to move towards that tile each turn with their movement.</span>
+                            <span>A character may move towards a tile. They will move towards that tile every other turn.</span>
                         </inner>
                     </info-row>
                     <info-row>
@@ -546,7 +554,7 @@
                     <info-row>
                         <inner>
                             <h4>Defend</h4>
-                            <span>Causes the first attack each <i>turn</i> to miss, dealing no damage. <i>Mitigates</i> one <i>weakness</i></span>
+                            <span>Causes the first attack each <i>turn</i> to only deal its highest damage dice. <i>Mitigates</i> one <i>weakness</i></span>
                         </inner>
                     </info-row>
                     <info-row>
@@ -575,7 +583,7 @@
 
                         <p>Casting a spell consumes all its <i>charges</i>. Each charge spent adds another dice rolled for damage. The skill of the spell ranges from 1-5, and will improve the type of dice rolled, starting at 1d4 at 1 skill, ending at 1d12 at 5 skill. All spells cast adds the level damage dice to their damage.</p>
 
-                        <p>When combat starts, all combatants recieve a single charge for a spell off their choice. The standard way to gain extra charges is by using <i>charge</i> as their <i>tactical action</i>.</p>
+                        <p>When combat starts, all combatants recieve a single charge for a spell off their choice. The standard way to gain extra charges is by using <i>boost</i> as their <i>tactical action</i>.</p>
 
                         <p>After cast once, a spell cannot be used for the rest of the combat.</p>
                     </box>

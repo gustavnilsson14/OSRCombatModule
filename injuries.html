@@ -47,7 +47,7 @@
 <body>
     <nav>
         <a href="rules.html">Rules</a>
-        <a href="battlemats/template.html">Battle</a>
+        <a href="battlemat.html">Battle</a>
         <a href="sheet.html">Sheet</a>
         <a href="items.html">Items</a>
         <a href="vehicles.html">Vehicles</a>
@@ -169,6 +169,13 @@
                 if(indexes.indexOf(i) == -1) return;
                 slot.remove();
             });
+
+/*
+document.querySelectorAll("slot").forEach(x=>{
+
+        document.querySelector("container").appendChild(x.cloneNode(true));
+    }
+)*/
             
         }
     </script>

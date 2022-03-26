@@ -7,11 +7,15 @@
     <link rel="stylesheet" href="css/default.css">
     <title>Document</title>
     <style>
+        body{
+            display: flex;
+            justify-content: center;
+        }
         *{
             font-family: source;
         }
         a4-landscape{
-            margin: 0 auto;
+            
         }
         box{
             display: flex;
@@ -30,7 +34,7 @@
             margin-top: 6px;
         }
         p,li{
-            font-size:12px;
+            font-size:11px;
         }
         ol,ul{
             flex: none;
@@ -66,81 +70,75 @@
 <body>
     <nav>
         <a href="rules.html">Rules</a>
-        <a href="battlemats/template.html">Battle</a>
+        <a href="battlemat.html">Battle</a>
         <a href="sheet.html">Sheet</a>
         <a href="items.html">Items</a>
         <a href="vehicles.html">Vehicles</a>
         <a href="rules_sheet.html">Play</a>
+        <button onclick="prep()">Prep for print</button>
     </nav>
     <a4-landscape>
         <row>
             <box style="flex-grow: 0.5;">
                 <h3>Combat</h3>
                 <p>GM decides a range of 3~ tiles available for player characters, place minis on mat.</p>
-                <box>
-                    <h3>Round lifecycle</h3>
-                    <ol>
-                        <li>Handle battlemat features and combatant conditions</li>
-                        <li>Decide amount of turns</li>
-                        <li>Planning movement and action</li>
-                        <li>Take tactical action</li>
-                    </ol>
-                </box>
-                <box>
-                    <h3>Turn lifecycle</h3>
-                    <ol>
-                        <li>Handle battlemat features and combatant conditions</li>
-                        <li>Possible use of focus points</li>
-                        <li>Move all combatants simultaneously.</li>
-                        <li>Stress equipment</li>
-                        <li>Assists and defends</li>
-                        <li>Ranged attack preparation</li>
-                        <li>Melee and Ranged attacks</li>
-                    </ol>
-                </box>
+
+                <h3>Round lifecycle</h3>
+                <ol>
+                    <li>Handle battlemat features</li>
+                    <li>Roll for initiative, and set combat intensity</li>
+                    <li>Take tactical action</li>
+                    <li>Planning movement and action</li>
+                </ol>
+                <h3>Turn lifecycle</h3>
+                <ol>
+                    <li>Handle battlemat featuress</li>
+                    <li>Move all combatants simultaneously.</li>
+                    <li>Assists and defends</li>
+                    <li>Ranged attack preparation</li>
+                    <li>Melee and Ranged attacks</li>
+                </ol>
+                <h3>Combat end</h3>
+                <ol>
+                    <li>Handle equipment damage</li>
+                    <li>Restore endurance, half if wounded, full otherwise</li>
+                </ol>
+                <h3>Escape</h3>
+                <p>2d8 below distance to closest enemy + (rounds passed * 2)</p>
             </box>
             <box>
                 <row>
                     <box>
                         <h3>Tactical actions</h3>
                         <ul>
-                            <li>Dash</li>
-                            <li>Equipment</li>
-                            <li>Shrug</li>
-                            <li>Catch Breath</li>
-                            <li>Cast spell</li>
-                            <li>Boost</li>
+                            <li>Aim (more damage)</li>
+                            <li>Brace (more defense)</li>
+                            <li>Equipment (use stuff)</li>
+                            <li>Catch Breath (heal)</li>
+                            <li>Initiative</li>
                             <li>Escape</li>
+                            <li>Boost (power up spells)</li>
+                            <li>Cast Spell</li>
                             <li>Kidnap</li>
                         </ul>
                         <h3>Actions</h3>
                         <ul>
-                            <li>Melee attack</li>
-                            <li>Ranged attack</li>
-                            <li>Assist</li>
-                            <li>Defend</li>
+                            <li>Melee attack (each turn)</li>
+                            <li>Ranged attack (every odd turn)</li>
+                            <li>Assist (buff ally)</li>
+                            <li>Defend (suffer only highest damage die)</li>
                         </ul>
-                        <h3>Stress equipment</h3>
+                        <h3>Movement</h3>
                         <ul>
-                            <li>Weapon durability causes attack to ignore armor</li>
-                            <li>Armor durability</li>
+                            <li>Stand ground</li>
+                            <li>Move to tile, move every other turn</li>
+                            <li>Retreat, move back every turn</li>
+                            <li>Charge, move forward every turn</li>
                         </ul>
-                        <h3>Escape</h3>
-                        <p>2d8 below distance to closest enemy + (rounds passed * 2)</p>
                     </box>
                     <box>
                         <h3>Critical damage</h3>
                         <p>Add another of the highest die rolled for damage and add to the attack.</p>
-                        <h3>Conditions</h3>
-                        <ul>
-                            <li>Always add a condition to weapon when aquired</li>
-                            <li>One condition can be applied per weapon per round</li>
-                        </ul>
-                        <p>Conditions can be applied on attack when;</p>
-                        <ul>
-                            <li>Dealing critical damage</li>
-                            <li>Stressing the weapon</li>
-                        </ul>
                         <h3>Wounds and Injury</h3>
                         <ul>
                             <li>When wounded, max endurance is halved</li>
@@ -150,7 +148,13 @@
                             <li>Falling unconscious in combat</li>
                             <li>Taking injury out of combat</li>
                         </ul>
+                        <h3>Initiative</h3>
+                        <p>When rolling, if below threshold, initiative goes to players, otherwise to enemies</p>
+                        <h3>Turn amount</h3>
+                        <p>The side which wins initiative decides to keep the turn amount or to increase, or decrease it by 1</p>
+                        <p>Turn amount starts at 3, if it drops to 0, the combat is over and the side which has initiative escapes</p>
                     </box>
+                    
                 </row>
             </box>
         </row>
@@ -202,5 +206,12 @@
         </row>
     </a4-landscape>
     
+    <script>
+        
+        function prep(){
+            document.querySelector("nav").remove();
+            document.querySelector("body").style.justifyContent = "flex-start";
+        }
+    </script>
 </body>
 </html>

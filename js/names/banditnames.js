@@ -1,5 +1,6 @@
 function getBanditNames(){
-    return [
+    
+    var names = [
         "Arse",
         "Ass",
         "Asshat",
@@ -45,5 +46,7 @@ function getBanditNames(){
         "Screamer",
         "Sweet Jesus",
         "Twat"
-    ];
+    ]
+    
+    return names.map(x => `"${x}"`);
 }
