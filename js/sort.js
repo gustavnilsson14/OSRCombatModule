@@ -1,9 +1,8 @@
 /* Made with love by @fitri
  This is a component of my ReactJS project
  https://codepen.io/fitri/full/oWovYj/ */
- function enableDragSort(listClass) {
+  function enableDragSort(listClass) {
     document.querySelectorAll(`${listClass} .draggable`).forEach(element => {
-        console.log(element);
         enableDragItem(element);
     }); 
   }

@@ -48,5 +48,5 @@ function getBanditNames(){
         "Twat"
     ]
     
-    return names.map(x => `"${x}"`);
+    return names;
 }

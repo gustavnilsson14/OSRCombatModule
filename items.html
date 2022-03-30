@@ -82,6 +82,14 @@
             <label for="armor">armor</label>
             <input type="checkbox" name="armor" id="armor">
         </filter>
+        <filter>
+            <label for="cybernetics">cybernetics</label>
+            <input type="checkbox" name="cybernetics" id="cybernetics">
+        </filter>
+        <filter>
+            <label for="artifact">artifact</label>
+            <input type="checkbox" name="artifact" id="artifact">
+        </filter>
 
         <button onclick="prep()">Prep for print</button>
         <input id="slots" type="text" placeholder="slots (1-20)">
@@ -2297,7 +2305,7 @@
         </slot>
         <slot class="stuff">
             <name>
-                <span class="smaller">Ammo</span>
+                <span>Ammo</span>
             </name>
             <inner style="justify-content: space-between;background-image: url(img/items/ammo.png);">
                 <usage>
@@ -2662,6 +2670,281 @@
                     <durability></durability>
                     <durability></durability>
                     <both></both>
+                </usage>
+            </inner>
+        </slot>
+        
+        <slot class="cybernetics horizontal-image">
+            <name>
+                <span>Grappler</span>
+            </name>
+            <inner style="background-image: url(img/items/grapplehand.png);">
+                <damagetypes>
+                    <span>cut</span>
+                    <span>pain</span>
+                    <span>smash</span>
+                </damagetypes>
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                    <durability></durability>
+                    <durability></durability>
+                    <both></both>
+                </usage>
+            </inner>
+            <bodypart>hand</bodypart>
+        </slot>
+        <slot class="cybernetics">
+            <name>
+                <span class="small">Bionic Arm</span>
+            </name>
+            <inner style="background-image: url(img/items/bionicarm.png);">
+                <damagetypes>
+                    <span>pain</span>
+                    <span>smash</span>
+                </damagetypes>
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                    <durability></durability>
+                    <durability></durability>
+                    <both></both>
+                </usage>
+            </inner>
+            <bodypart>hand</bodypart>
+        </slot>
+        <slot class="cybernetics">
+            <name>
+                <span class="small">Bionic Leg</span>
+            </name>
+            <inner style="background-image: url(img/items/bionicleg.png);">
+                <damagetypes>
+                </damagetypes>
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                    <durability></durability>
+                    <durability></durability>
+                    <both></both>
+                </usage>
+            </inner>
+            <bodypart>belt</bodypart>
+        </slot>
+        <slot class="cybernetics">
+            <name>
+                <span class="small">Bionic Eye</span>
+            </name>
+            <inner style="background-image: url(img/items/bioniceye.png);">
+                <damagetypes>
+                </damagetypes>
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                    <durability></durability>
+                    <durability></durability>
+                    <both></both>
+                </usage>
+            </inner>
+            <bodypart>special</bodypart>
+        </slot>
+
+        <slot class="artifact">
+            <name>
+                <span>Polygel</span>
+            </name>
+            <inner style="background-image: url(img/items/polygel.png);">
+                <usage>
+                    <durability></durability>
+                </usage>
+            </inner>
+        </slot>
+        <slot class="artifact">
+            <name>
+                <span class="small">Bio-Scanner</span>
+            </name>
+            <inner style="background-image: url(img/items/bio-scanner.png);">
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                </usage>
+            </inner>
+        </slot>
+        <slot class="artifact">
+            <name>
+                <span class="smaller">Neuro-Animator</span>
+            </name>
+            <inner style="background-image: url(img/items/neuro-animator.png);">
+                <usage>
+                    <durability></durability>
+                </usage>
+            </inner>
+        </slot>
+        <slot class="artifact horizontal-image">
+            <name>
+                <span class="smaller">Gate Recoiler</span>
+            </name>
+            <inner style="background-image: url(img/items/teleport-thumb-1.jpg);">
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                </usage>
+            </inner>
+        </slot>
+        <slot class="artifact">
+            <name>
+                <span class="smaller">X-Ray Beam</span>
+            </name>
+            <inner style="background-image: url(img/items/x-ray.png);">
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                </usage>
+            </inner>
+        </slot>
+        <slot class="artifact">
+            <name>
+                <span class="smallest">Solar Condenser</span>
+            </name>
+            <inner style="background-image: url(img/items/solarcondenser.png);">
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                </usage>
+            </inner>
+        </slot>
+        <slot class="artifact">
+            <name>
+                <span class="smaller">Rocket Skates</span>
+            </name>
+            <inner style="background-image: url(img/items/rocketskates.png);">
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                </usage>
+            </inner>
+        </slot>
+        <slot class="artifact">
+            <name>
+                <span class="smallest">Foamcrete Dispenser</span>
+            </name>
+            <inner style="background-image: url(img/items/foamgel.png);">
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                </usage>
+            </inner>
+        </slot>
+        <slot class="artifact">
+            <name>
+                <span class="smallest">2-Dimensional Suit</span>
+            </name>
+            <inner style="background-image: url(img/items/2d.png);">
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                </usage>
+            </inner>
+        </slot>
+        <slot class="artifact">
+            <name>
+                <span class="small">Mag Boots</span>
+            </name>
+            <inner style="background-image: url(img/items/magboots.png);">
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                </usage>
+            </inner>
+        </slot>
+        <slot class="artifact">
+            <name>
+                <span class="smaller">Anti-Grav Boots</span>
+            </name>
+            <inner style="background-image: url(img/items/antigrav.png);">
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                </usage>
+            </inner>
+        </slot>
+        <slot class="artifact">
+            <name>
+                <span class="smaller">Copter Pack</span>
+            </name>
+            <inner style="background-image: url(img/items/copterpack.png);">
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                </usage>
+            </inner>
+        </slot>
+        <slot class="artifact">
+            <name>
+                <span class="smallest">Growgel Injector</span>
+            </name>
+            <inner style="background-image: url(img/items/growgel.png);">
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                </usage>
+            </inner>
+        </slot>
+        <slot class="artifact">
+            <name>
+                <span class="smaller">Slave Crown</span>
+            </name>
+            <inner style="background-image: url(img/items/slavecrown.png);">
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                </usage>
+            </inner>
+        </slot>
+        <slot class="artifact">
+            <name>
+                <span class="smaller">Laser Sculpter</span>
+            </name>
+            <inner style="background-image: url(img/items/lasersculpter.png);">
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                </usage>
+            </inner>
+        </slot>
+        <slot class="artifact">
+            <name>
+                <span class="smaller">Thermobaric Cell</span>
+            </name>
+            <inner style="background-image: url(img/items/thermobariccell.png);">
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                </usage>
+            </inner>
+        </slot>
+        <slot class="artifact">
+            <name>
+                <span class="smaller">Autodoc</span>
+            </name>
+            <inner style="background-image: url(img/items/autodoc.png);">
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                    <durability></durability>
+                </usage>
+            </inner>
+        </slot>
+        <slot class="artifact">
+            <name>
+                <span class="smaller">Lifeform sensor</span>
+            </name>
+            <inner style="background-image: url(img/items/lifeformsensor.png);">
+                <usage>
+                    <durability></durability>
+                    <durability></durability>
+                    <durability></durability>
+                    <durability></durability>
+                    <durability></durability>
                 </usage>
             </inner>
         </slot>

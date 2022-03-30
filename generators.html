@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="css/default.css">
-    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.1.0/mustache.min.js" integrity="sha512-WJoegbZkRk/oQbcp2Nm2JfgrHHyHdhaHns2g74rXFRxxy+E+syUWQCiZxSzGo0662p/GQEVXDkg6ImtSR60DHg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="js/enemies.js"></script>
     <script src="js/names/malenames.js"></script>
     <script src="js/names/femalenames.js"></script>
     <script src="js/names/lastnames.js"></script>
@@ -18,7 +19,6 @@
     <script src="js/sort.js"></script>
     <script src="js/locations.js"></script>
     <script src="js/battlefeatures.js"></script>
-    <script src="js/namegen.js"></script>
     <script src="js/generators.js"></script>
     <style>
         container{
@@ -89,13 +89,27 @@
         results {
             overflow-x: hidden;
         }
-        results *{
+        results>div{
             animation-name: slidein;
             animation-duration: 0.5s;
             padding-top: 0;
             padding-bottom: 0;
             margin-top: 0px;
             margin-bottom: 5px;
+        }
+        
+        results>div div{
+            margin-left: 10px;
+        }
+        
+        results index{
+            display: flex;
+            flex-direction: row;
+            gap: 5px;
+        }
+        results index *{
+            display: flex;
+            gap: 5px;
         }
         @keyframes slidein {
             from {
@@ -113,10 +127,112 @@
             color: transparent;
         }
         enemies{
+            margin-top: 20px;
             display: flex;
+            flex-direction: row;
+            gap: 20px;
+            flex-wrap: wrap;
         }
-        enemy{
+        enemies controls{
+            width: 100%;
             display: flex;
+            justify-content: center;
+        }
+        
+        enemy{
+            padding: 10px;
+            border: 1px solid black;
+            min-width: 200px;
+            flex: 1;
+            flex-grow: 1;
+            position: relative;
+        }
+        enemy *{
+            display: flex;
+            flex-direction: column;
+        }
+        enemy description{
+            border-bottom: 1px solid black;
+            padding-right: 10px;
+            padding-left: 10px;
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+            margin-left: -10px;
+            margin-right: -10px;
+        }
+        enemy row{
+            flex-direction: row;
+            
+            justify-content: space-around;
+        }
+        enemy row box{
+            margin: 0 10px;
+            flex: 1;
+            flex-grow: 1;
+        }
+        enemy .stats{
+            flex: 0.1;
+        }
+        enemy stat{
+            flex-direction: row;
+        }
+        enemy stat input{
+            width: 50px;
+        }
+        enemy .attacks{
+            flex: 1;
+        }
+        enemy attacks{
+            flex-direction: row;
+            gap: 5px;
+            flex-wrap: wrap;
+        }
+        enemy attacks attack{
+            border: 1px solid black;
+            padding: 5px;
+            min-width: 60px;
+            flex: 1;
+        }
+        enemy actions action{
+            flex-direction: column;
+        }
+        enemy weaknesses{
+            flex-direction: row;
+            justify-content: center;
+            gap: 5px;
+            padding: 5px 0px;
+        }
+        enemy weaknesses weakness{
+            text-transform: uppercase;
+        }
+        enemy actions {
+            gap: 10px;
+        }
+        enemy actions action h4{
+            text-align: center;
+        }
+        enemy actions action effect:first-letter{
+            text-transform: uppercase;
+        }
+        enemy h2{
+            text-align: center;
+        }
+        enemy h2,
+        enemy h3,
+        enemy h4,
+        enemy h5,
+        enemy h6{
+            margin-bottom: 2px;
+            padding:0px;
+            text-transform: uppercase;
+        }
+        enemy button.remove{
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            border-radius: 50%;
+            justify-content: center;
+            text-align: center;
         }
     </style>
 </head>
@@ -129,9 +245,14 @@
         <a href="vehicles.html">Vehicles</a>
         <a href="rules_sheet.html">Play</a>
         <a href="generators.html">Generators</a>
+        
+        <controls>
+            <input id="enemies" list="enemies_data">
+            <datalist id="enemies_data"></datalist>
+            <button id="add-enemy">ADD SELECTED</button>
+        </controls>
     </nav>
     <container>
-        
         <generators>
             <generator function="generateName">
                 <h2>Names</h2>
@@ -139,295 +260,148 @@
                     <input class="amount" type="number" placeholder="Amount">
                     
                     <checkbox class="draggable">
-                        <label for="maleFirstNames">maleFirstNames</label>
-                        <input id="maleFirstNames" type="checkbox">
+                        <label for="name_maleFirstNames">maleFirstNames</label>
+                        <input id="name_maleFirstNames" name="maleFirstNames" type="checkbox">
                     </checkbox>
                     <checkbox class="draggable">
-                        <label for="femaleFirstNames">femaleFirstNames</label>
-                        <input id="femaleFirstNames" type="checkbox">
+                        <label for="name_femaleFirstNames">femaleFirstNames</label>
+                        <input id="name_femaleFirstNames" name="femaleFirstNames" type="checkbox">
                     </checkbox>
                     <checkbox class="draggable">
-                        <label for="lastNames">lastNames</label>
-                        <input id="lastNames" type="checkbox">
+                        <label for="name_lastNames">lastNames</label>
+                        <input id="name_lastNames" name="lastNames" type="checkbox">
                     </checkbox>
                     <checkbox class="draggable">
-                        <label for="titles">titles</label>
-                        <input id="titles" type="checkbox">
+                        <label for="name_titles">titles</label>
+                        <input id="name_titles" name="titles" type="checkbox">
                     </checkbox>
                     <checkbox class="draggable">
-                        <label for="banditNames">banditNames</label>
-                        <input id="banditNames" type="checkbox">
+                        <label for="name_banditNames">banditNames</label>
+                        <input id="name_banditNames" name="banditNames" type="checkbox">
                     </checkbox>
                     <checkbox class="draggable">
-                        <label for="hipsterNames">hipsterNames</label>
-                        <input id="hipsterNames" type="checkbox">
+                        <label for="name_hipsterNames">hipsterNames</label>
+                        <input id="name_hipsterNames" name="hipsterNames" type="checkbox">
                     </checkbox>
                     
                     <button>Generate</button>
                 </controls>
-                <results>
-
-                </results>
+                <results></results>
             </generator>
             <generator function="generateLocation">
                 <h2>Locations</h2>
                 <controls>
                     <input class="amount" type="number" placeholder="Amount">
+                    <checkbox>
+                        <label for="location_any">any</label>
+                        <input id="location_any" name="any" type="checkbox">
+                    </checkbox>
+                    <checkbox>
+                        <label for="location_cityscape">cityscape</label>
+                        <input id="location_cityscape" name="cityscape" type="checkbox">
+                    </checkbox>
+                    <checkbox>
+                        <label for="location_metro">metro</label>
+                        <input id="location_metro" name="metro" type="checkbox">
+                    </checkbox>
+                    <checkbox>
+                        <label for="location_sewers">sewers</label>
+                        <input id="location_sewers" name="sewers" type="checkbox">
+                    </checkbox>
                     <button>Generate</button>
                 </controls>
-                <results>
-
-                </results>
+                <results></results>
             </generator>
             <generator function="generateBattleFeature">
                 <h2>Battle features</h2>
                 <controls>
                     <input class="amount" type="number" placeholder="Amount">
                     <checkbox>
-                        <label for="any">any</label>
-                        <input id="any" type="checkbox">
+                        <label for="battlefeature_any">any</label>
+                        <input id="battlefeature_any" name="any" type="checkbox">
                     </checkbox>
                     <checkbox>
-                        <label for="wilderness">wilderness</label>
-                        <input id="wilderness" type="checkbox">
+                        <label for="battlefeature_wilderness">wilderness</label>
+                        <input id="battlefeature_wilderness" name="wilderness" type="checkbox">
                     </checkbox>
                     <checkbox>
-                        <label for="interior">interior</label>
-                        <input id="interior" type="checkbox">
+                        <label for="battlefeature_interior">interior</label>
+                        <input id="battlefeature_interior" name="interior" type="checkbox">
                     </checkbox>
                     <checkbox>
-                        <label for="settlement">settlement</label>
-                        <input id="settlement" type="checkbox">
+                        <label for="battlefeature_settlement">settlement</label>
+                        <input id="battlefeature_settlement" name="settlement" type="checkbox">
                     </checkbox>
                     <checkbox>
-                        <label for="metro">metro</label>
-                        <input id="metro" type="checkbox">
+                        <label for="battlefeature_metro">metro</label>
+                        <input id="battlefeature_metro" name="metro" type="checkbox">
                     </checkbox>
                     <checkbox>
-                        <label for="ruins">ruins</label>
-                        <input id="ruins" type="checkbox">
+                        <label for="battlefeature_ruins">ruins</label>
+                        <input id="battlefeature_ruins" name="ruins" type="checkbox">
                     </checkbox>
                     <checkbox>
-                        <label for="cave">cave</label>
-                        <input id="cave" type="checkbox">
+                        <label for="battlefeature_cave">cave</label>
+                        <input id="battlefeature_cave" name="cave" type="checkbox">
                     </checkbox>
                     <checkbox>
-                        <label for="zone">zone</label>
-                        <input id="zone" type="checkbox">
+                        <label for="battlefeature_zone">zone</label>
+                        <input id="battlefeature_zone" name="zone" type="checkbox">
                     </checkbox>
                     <button>Generate</button>
                 </controls>
-                <results>
-
-                </results>
+                <results></results>
             </generator>
         </generators>
-        <!--
         <enemies>
-            <enemy>
-                <h4>
-            Demon spider
-        </h4>
-        <attack>
-            Bite 2-2-1 pain, nuke
-        </attack>
-        <tas>
-            TA’s
-            Spit: Allows melee attack to be ranged if stationary
-            Rappel: Allows moving anywhere on the battleground at the end of round, at the expense of no actions or movement
-            Phase shift: When hit by Nuke, Ooze, Volt, Burst, or Gun, the spider phases out of existence, and is unharmed
-            STR 4, DEX 14, WIL 9, EN 40, AV 1
-        </tas>
-        <weaknesses>
-            Weakness
-            <weakness>
-            smash
-        </weakness>
-    <weakness>
-            blast
-        </weakness>
-    <weakness>
-            pain
-        </weakness>
-    <weakness>
-            light
-        </weakness>
-            
-        </weaknesses>
-        </enemy>
-        <enemy>
-            Ooze zombie
-            Bite 2-1-1 pain, ooze
-            Punch 1-1-1 smash
-            TA’s
-            Ooze infection. Bites which deal damage, on failed STR cause sickness.
-            Rush. Charge movement is doubled each turn at the expense of not being able to attack.
-            STR 7, DEX 3, WIL 99, EN 34, AV 0
-            Weakness
-            cut
-            pain
-            smash
-            blast
-            light
-            nuke
-        </enemy>
-        <enemy>
-            
-            City bear level 1
-            Bite 3-2-1, pain, cut
-            Swipe 2-2-1, pain, smash
-            Bear arbalest 3-2-1, stab
-            TA’s
-            Roar. On a failed WIL enemies lose their movement and action in the first turn.
-            Bear charge. All bears on the same tile charge, moving twice the first turn.
-            Sharpen claws. Swipe deals 1d6 extra damage, but bear cannot move
-            STR 12, DEX 7, WIL 5, EN 56, AV 1
-            Weakness
-            stab
-            gun
-            burst
-            ooze
-            volt
-        </enemy>
-        <enemy>
-            
-            Evil Hornet
-            Sting 3-1-1, pain, nuke
-            Bite 2-2-1, pain
-            TA’s
-            Flight. Hornet moves anywhere on the map at the end of the round, but must stand ground during.
-            Ready poison. Sting attacks deal 1d4 extra damage
-            Evasive. Ranged attacks deal only the level die
-            STR 4, DEX 16, WIL 5, EN 34, AV 0
-            Weakness
-            smash
-            blast
-            light
-        </enemy>
-        <enemy>
-            
-            Roidrat
-            Smash 2-2-1, smash
-            Bite 2-2-1, pain
-            TA’s
-            Hulk jump. Move two tiles, and can pass enemies
-            Juice up. Increases smash damage by 1d4
-            STR 7, DEX 12, WIL 2, EN 30, AV 0
-            Weakness
-            cut
-            gun
-            burst
-            blast
-            volt
-        </enemy>
-        <enemy>
-            
-            Saurian
-            Spear 2-2-1, stab
-            Spear Throw 2-2-1, stab
-            Tail swipe 1-2-1, smash, pain
-            TA’s
-            Constrict. An enemy in melee cannot move on a failed STR
-            Slither. Move twice when charging if at least one opponent retreats.
-            Venom spit. One ranged opponent, on a failed DEX they take 2d4 ooze damage
-            Inner strength. Mitigate one weakness this round
-            STR 8, DEX 10, WIL 5, EN 48, AV 1
-            Weakness
-            gun
-            burst
-            volt
-            nuke
-            ooze
-        </enemy>
-        <enemy>
-            
-            Sluggan
-            Snail people, 1.2m in height, weigh around 100kg, 125 with their shells. Has four tendrils it uses as arms. They communicate telepathically at short range.
-            Spear 2-2-1, stab
-            Zap 2-2-1, volt, neural
-            TA’s
-            Vicious slappery. Their first melee attack, all enemies in melee make a DEX save except the original target. On fail they also take the damage.
-            Roll shape. When charging or retreating, move twice per turn. Cannot take action.
-            Mental surge. On failed WIL, enemy cannot assist or do ranged attack.
-            STR 6, DEX 5, WIL 12, EN 38, AV 2
-            Weakness
-            smash
-            salt deals 3d10 damage
-            volt
-            nuke
-            light
-        </enemy>
-        <enemy>
-            
-            Zone Eel
-            Zone eels are large, omnivorous beasts of the zone. They are commonly domesticated as mounts.
-            Bite 3-2-2, pain
-            TA’s
-            Constrict. On successful STR, constrict the enemy, who can escape with successful STR as a TA. Constricted cannot move, and eel can only melee attack constricted, with advantage.
-            Slither. Move twice.
-            Mount. If mounted, the zone eel cannot take TA. When mounted, both rider and mount take damage to endurance.
-            STR 10, DEX 12, WIL 5, EN 80, AV 0
-            Weakness
-            gun
-            burst
-            volt
-            light
-        </enemy>
-        <enemy>
-            
-            Agolzvuv
-            A giant mutated fly, carnivorous and vile, creeps up on you in guile, and dispatches you with style.
-            Bite 3-3-2, pain, ooze
-            Tendrils 1-2-2, pain, stab
-            TA’s
-            Aggressive Flight. Triple movement when charging, takes 1d8 more ranged damage if moving.
-            Tendril flurry. Land, then attack twice per turn with tendrils, and with advantage, cannot move.
-            Glare. On failed WIL, combatant is forced to retreat, and loses their skill die
-            Hardened regeneration. Gain 2 armor, regenerate 1d10 endurance per turn. Usable once.
-            STR 8, DEX 12, WIL 4, EN 122, AV 0
-            Weakness
-            gun
-            burst
-            cut
-            blast
-            light
-        </enemy>
-        <enemy>
-            
-            Thug
-            Makeshift pistol 3-1-1 gun
-            Cutter 3-1-1 cut, pain
-            STR 7, DEX 7, WIL 7, EN 50, AV 1
-            Weakness
-            pain
-            smash
-            gun
-            burst
-            blast
-            nuke
-        </enemy>
-        <enemy>
-            
-            Roller Thug
-            Baseball bat 1-3-1 smash
-            Wrist cannon 1-2-1 smash
-            TA’s
-            Trick blades. On successful DEX, move twice each round when charging or retreating. when arriving at target, deal 1d8 extra melee damage. On fail, no move, or attack first turn.
-            Dash
-            Goad. On failed WIL, enemy dice results reduced by 1 unless attacking combatant
-            STR 7, DEX 12, WIL 5, EN 50, AV 1
-            Weakness
-            stab
-            smash
-            gun
-            burst
-            blast
-            ooze
-        </enemy>
-            
-
+            <enemy-template style="display: none;">
+                <button class="remove">X</button>
+                <h2>{{name}}</h2>
+                <description>{{description}}</description>
+                <row>
+                    <box class="stats">
+                        <h3>Stats</h3>
+                        <stats>
+                            <stat>STR: {{stats.str}}</stat>
+                            <stat>DEX: {{stats.dex}}</stat>
+                            <stat>WIL: {{stats.wil}}</stat>
+                            <stat>EN: <input type="text" value="{{stats.en}}"></stat>
+                            <stat name="armor" value="{{stats.av}}">AV: {{stats.av}}</stat>
+                        </stats>
+                    </box>
+                    <box class="attacks">
+                        <h3>Attacks</h3>
+                        <attacks>
+                            {{#attacks}}
+                            <attack>
+                                <h5>{{name}}</h5>
+                                <damage>{{damage}}</damage>
+                                <damageTypes>
+                                {{#damageTypes}}
+                                    <damage-type>{{.}}</damage-type>
+                                {{/damageTypes}}
+                                </damageTypes>
+                            </attack>
+                            {{/attacks}}
+                        </attacks>
+                    </box>
+                </row>
+                <weaknesses>
+                    {{#weaknesses}}
+                    <weakness>{{.}}</weakness>
+                    {{/weaknesses}}
+                </weaknesses>
+                <actions>
+                    {{#actions}}
+                    <action>
+                        <h5>{{name}}</h5>
+                        <effect>{{effect}}</effect>
+                    </action>
+                    {{/actions}}
+                </actions>
+                
+            </enemy-template>
         </enemies>
-        -->
     </container>
     
 </body>

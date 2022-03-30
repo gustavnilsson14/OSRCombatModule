@@ -20,5 +20,5 @@ function getHipsterNames(){
         "Subcult",
     ];
     
-    return names.map(x => `"${x}"`);
+    return names;
 }

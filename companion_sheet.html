@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/default.css">
+    <link rel="stylesheet" href="css/item.css">
+    <link rel="stylesheet" href="css/sheet.css">
+    <title>Document</title>
+    <style>
+        container{
+            display: flex;
+            height: auto;
+            justify-items: flex-start;
+        }
+        stat{
+            height:13px;
+            display: flex;
+        }
+        stat name{
+            font-size: 13px;
+        }
+        row{
+            padding:0;
+        }
+        slot{
+            height: 112px;
+        }
+    </style>
+</head>
+<body>
+    <a4>
+        <container>
+            <row style="padding-top:0px;justify-content: flex-start;">
+                <box style="width:240px;display: flex;flex:none;flex-grow: none;flex-direction: column;">
+                    <stat>
+                        <name>Name</name>
+                        <separator></separator>
+                        <value></value>
+                    </stat>
+                    <stat>
+                        <name>Background</name>
+                        <separator></separator>
+                        <value></value>
+                    </stat>
+                    <stat>
+                        <name style="width: 40px;min-width:0px;">Level</name>
+                        <separator></separator>
+                        <value style="flex-grow: 0.66;"></value>
+                        <name style="width: 25px;min-width:0px;">EN</name>
+                        <value style="flex-grow: 0.5;"></value>
+                        <separator style="border-right: 1px solid black;"></separator>
+                        <value style="flex-grow: 0.5;"></value>
+                    </stat>
+                    <stat>
+                        <name>Tactical Action</name>
+                        <value></value>
+                    </stat>
+                    <stat>
+                        <value></value>
+                    </stat>
+                    <stat>
+                        <name>Weaknesses</name>
+                        <value></value>
+                    </stat>
+                    <stat>
+                        <value></value>
+                    </stat>
+                    <row class="internal wrap">
+                        <box class="no-border">
+                            <stat>
+                                <name>STR</name>
+                                <separator></separator>
+                                <value></value>
+                            </stat>
+                        </box>
+                        <box class="no-border">
+                            <stat>
+                                <name>DEX</name>
+                                <separator></separator>
+                                <value></value>
+                            </stat>
+                        </box>
+                        <box class="no-border">
+                            <stat>
+                                <name>WIL</name>
+                                <separator></separator>
+                                <value></value>
+                            </stat>
+                        </box>
+                    </row>
+                </box>
+                <box  style="width: 120px;display: flex;flex:none;flex-grow: none;">
+                    <slot style="height: 118px;">
+                        Main<br>Hand
+                        <skill>
+                            <skillslot></skillslot>
+                            <skillslot></skillslot>
+                            <skillslot></skillslot>
+                            <skillslot></skillslot>
+                            <skillslot></skillslot>
+                        </skill>
+                    </slot>
+                </box>
+                <box  style="width: 120px;display: flex;flex:none;flex-grow: none;">
+                    <slot style="height: 118px;">Body</slot>
+                </box>
+            </row>
+            <row>
+                <slot>Pack<br>6 Slots</slot> 
+                <slot>Belt</slot>
+                <slot>Off<br>Hand</slot>
+                <slot>Body</slot>
+            </row>
+        </container>
+        <container>
+            <row style="padding-top:0px;justify-content: flex-start;">
+                <box style="width:240px;display: flex;flex:none;flex-grow: none;flex-direction: column;">
+                    <stat>
+                        <name>Name</name>
+                        <separator></separator>
+                        <value></value>
+                    </stat>
+                    <stat>
+                        <name>Background</name>
+                        <separator></separator>
+                        <value></value>
+                    </stat>
+                    <stat>
+                        <name style="width: 40px;min-width:0px;">Level</name>
+                        <separator></separator>
+                        <value style="flex-grow: 0.66;"></value>
+                        <name style="width: 25px;min-width:0px;">EN</name>
+                        <value style="flex-grow: 0.5;"></value>
+                        <separator style="border-right: 1px solid black;"></separator>
+                        <value style="flex-grow: 0.5;"></value>
+                    </stat>
+                    <stat>
+                        <name>Tactical Action</name>
+                        <value></value>
+                    </stat>
+                    <stat>
+                        <value></value>
+                    </stat>
+                    <stat>
+                        <name>Weaknesses</name>
+                        <value></value>
+                    </stat>
+                    <stat>
+                        <value></value>
+                    </stat>
+                    <row class="internal wrap">
+                        <box class="no-border">
+                            <stat>
+                                <name>STR</name>
+                                <separator></separator>
+                                <value></value>
+                            </stat>
+                        </box>
+                        <box class="no-border">
+                            <stat>
+                                <name>DEX</name>
+                                <separator></separator>
+                                <value></value>
+                            </stat>
+                        </box>
+                        <box class="no-border">
+                            <stat>
+                                <name>WIL</name>
+                                <separator></separator>
+                                <value></value>
+                            </stat>
+                        </box>
+                    </row>
+                </box>
+                <box  style="width: 120px;display: flex;flex:none;flex-grow: none;">
+                    <slot style="height: 118px;">
+                        Main<br>Hand
+                        <skill>
+                            <skillslot></skillslot>
+                            <skillslot></skillslot>
+                            <skillslot></skillslot>
+                            <skillslot></skillslot>
+                            <skillslot></skillslot>
+                        </skill>
+                    </slot>
+                </box>
+                <box  style="width: 120px;display: flex;flex:none;flex-grow: none;">
+                    <slot style="height: 118px;">Body</slot>
+                </box>
+            </row>
+            <row>
+                <slot>Pack<br>6 Slots</slot> 
+                <slot>Belt</slot>
+                <slot>Off<br>Hand</slot>
+                <slot>Body</slot>
+            </row>
+        </container>
+        <container>
+            <row style="padding-top:0px;justify-content: flex-start;">
+                <box style="width:240px;display: flex;flex:none;flex-grow: none;flex-direction: column;">
+                    <stat>
+                        <name>Name</name>
+                        <separator></separator>
+                        <value></value>
+                    </stat>
+                    <stat>
+                        <name>Background</name>
+                        <separator></separator>
+                        <value></value>
+                    </stat>
+                    <stat>
+                        <name style="width: 40px;min-width:0px;">Level</name>
+                        <separator></separator>
+                        <value style="flex-grow: 0.66;"></value>
+                        <name style="width: 25px;min-width:0px;">EN</name>
+                        <value style="flex-grow: 0.5;"></value>
+                        <separator style="border-right: 1px solid black;"></separator>
+                        <value style="flex-grow: 0.5;"></value>
+                    </stat>
+                    <stat>
+                        <name>Tactical Action</name>
+                        <value></value>
+                    </stat>
+                    <stat>
+                        <value></value>
+                    </stat>
+                    <stat>
+                        <name>Weaknesses</name>
+                        <value></value>
+                    </stat>
+                    <stat>
+                        <value></value>
+                    </stat>
+                    <row class="internal wrap">
+                        <box class="no-border">
+                            <stat>
+                                <name>STR</name>
+                                <separator></separator>
+                                <value></value>
+                            </stat>
+                        </box>
+                        <box class="no-border">
+                            <stat>
+                                <name>DEX</name>
+                                <separator></separator>
+                                <value></value>
+                            </stat>
+                        </box>
+                        <box class="no-border">
+                            <stat>
+                                <name>WIL</name>
+                                <separator></separator>
+                                <value></value>
+                            </stat>
+                        </box>
+                    </row>
+                </box>
+                <box  style="width: 120px;display: flex;flex:none;flex-grow: none;">
+                    <slot style="height: 118px;">
+                        Main<br>Hand
+                        <skill>
+                            <skillslot></skillslot>
+                            <skillslot></skillslot>
+                            <skillslot></skillslot>
+                            <skillslot></skillslot>
+                            <skillslot></skillslot>
+                        </skill>
+                    </slot>
+                </box>
+                <box  style="width: 120px;display: flex;flex:none;flex-grow: none;">
+                    <slot style="height: 118px;">Body</slot>
+                </box>
+            </row>
+            <row>
+                <slot>Pack<br>6 Slots</slot> 
+                <slot>Belt</slot>
+                <slot>Off<br>Hand</slot>
+                <slot>Body</slot>
+            </row>
+        </container>
+    </a4>
+</body>
+</html>

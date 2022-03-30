@@ -93,6 +93,13 @@ slot inner damagetypes span{
     font-size: 18px;
     text-align: left;
 }
+slot bodypart{
+    position: absolute;
+    font-size: 18px;
+    bottom: 0px;
+    left: 50%;
+    transform: translateX(-50%);
+}
 slot inner usage{
     text-align: right;
     line-height: 10px;
@@ -203,6 +210,24 @@ slot name::before{
 }
 .stuff name::before{
     content: url(../img/gear-solid.svg);
+}
+.artifact name::before{
+    content: "";
+    background-image: url(../img/artifact.png);
+    height: 31px;
+    width: 31px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.cybernetics name::before{
+    content: "";
+    background-image: url(../img/cybernetics.png);
+    height: 31px;
+    width: 31px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 skill{
     display: flex;
