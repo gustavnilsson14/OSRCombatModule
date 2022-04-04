@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/default.css">
+    <script>        
+        document.onreadystatechange = function () {
+            if (document.readyState != "complete") return;
+            const params = new Proxy(new URLSearchParams(window.location.search), {
+                    get: (searchParams, prop) => searchParams.get(prop),
+                });
+                document.querySelector('img').src = `./img/enemies/${params.img}`;
+                document.querySelector('h1').innerHTML = params.name;
+        };
+    </script>
+    <style>
+        body{
+            background-image: radial-gradient(white,black);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background-repeat: no-repeat;
+            height: 100vh;
+        }
+        img{
+            display: flex;
+            justify-content: center;
+            height: 50vh;
+            filter: drop-shadow(20px 20px 20px rgba(0,0,0,1));
+            margin: 0 auto;
+        }
+        h1{
+            position: absolute;
+            font-family: 'medula';
+            left: 50%;
+            top: 20px;
+            transform: translateX(-50%) translateY(-50%);
+            font-size: 5rem;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+    <h1></h1>
+    <img src="" alt="">
+</body>
+</html>

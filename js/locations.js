@@ -1,5 +1,29 @@
 
 function getLocationObject(){
+    var fightersOfNote = [
+        "Blade, zone cyborg",
+        "Killswitch, drone striker",
+        "Law, lone star",
+        "Beetle, the titan shell",
+        "Bonesaw, bloatlord butcher",
+        "Spring Fist, the monk",
+        "Zigzag Zoran, the elusive",
+        "Nightowl",
+        "Hot Stuff, sexy assasin",
+    ];
+    var raceDrivers = [
+        "Grizzly Jamboree, mechanic City Bear",
+        "Ultra, defunct android racing AI",
+        "Cassian Quark, propulsion engineer",
+        "Pure Nitro, famous eel rider",
+        "Cherry Chase, of the valley",
+        "Jhonny Proto, bike-human cyborg",
+        "Bomber, the warlord",
+        "Dawn of the Drift"
+    ];
+    var banditsOfNote = [
+        ""
+    ];
     return{
         any:{
             "Originally a":[
@@ -93,7 +117,11 @@ function getLocationObject(){
                 "Bus Station",
                 "Train Station",
                 "Cat Cafe",
-                
+                "Plaza",
+                "Outdoor market",
+                "Dojo",
+                "Boxing gym",
+                "Gym"
             ],
             "Currently a":[
                 {
@@ -162,6 +190,40 @@ function getLocationObject(){
                         "Jellies",
                         "Roid rats",
                         "Albino Boarians",
+                    ],
+                    "Hoard":[
+                        "Stuff",
+                    ]
+                },
+                {
+                    "Name":[
+                        "Blood sport arena",
+                    ],
+                    "Fighters": [
+                        new GetSomeArray(fightersOfNote,3)
+                    ],
+                    "Hoard":[
+                        "Stuff",
+                    ]
+                },
+                {
+                    "Name":[
+                        "Race Track",
+                    ],
+                    "Patrons of note":[
+                        new GetSomeArray(raceDrivers,2),
+                    ],
+                    "Hoard":[
+                        "Stuff",
+                    ]
+                },
+                {
+                    "Name":[
+                        "Gambling den",
+                        "Dogfighting pit",
+                    ],
+                    "Patrons of note":[
+                        new GetSomeArray([...fightersOfNote,...raceDrivers],5),
                     ],
                     "Hoard":[
                         "Stuff",
@@ -281,7 +343,6 @@ function getLocationObject(){
                         "Ooze cultists",
                     ],
                 },
-                
             ]
         },
         metro:{

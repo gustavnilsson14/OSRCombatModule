@@ -36,7 +36,7 @@ function getEnemies(){
             "actions":[
                 {
                     "name":"psychic vortex",
-                    "effect": "Roll 1d4, usable on a 4. Creates a phychic vortex on a tile. Passing through, or ending a turn inside the vortex deals 2d4 neural damage. When damaged, on failed WIL, immediately stops, and cannot exit the vortex until spending a TA to exit.",
+                    "effect": "Creates a phychic vortex on a tile. Passing through, or ending a turn inside the vortex deals 2d4 neural damage. When damaged, on failed WIL, immediately stops, and cannot exit the vortex until spending a TA to exit. Recharges on a 4",
                 },
                 {
                     "name":"drain power",
@@ -465,7 +465,7 @@ function getEnemies(){
                 },
                 {
                     "name": "Hoot",
-                    "effect": "On successful WIL, deal 2d4 neural damage to an enemy",
+                    "effect": "On successful WIL, deal 2d4 neural damage to an enemy, and they lose their next Tactical action",
                 },
                 {
                     "name": "Hooooooooot",
@@ -519,6 +519,383 @@ function getEnemies(){
                 {
                     "name": "Superior dash",
                     "effect": "Move two tiles",
+                },
+            ]
+        },
+        {
+            "name": "Thug",
+            "description": "A thug. Uses advanced tactics, prone to kidnapping.",
+            "stats":{
+                "str": 5,
+                "dex": 5,
+                "wil": 5,
+                "en": 45,
+                "av": 0,
+            },
+            "weaknesses":[
+                "pain",
+                "smash",
+                "gun",
+                "burst",
+                "blast",
+                "nuke",
+            ],
+            "attacks":[
+                {
+                    "name":"Makeshift pistol",
+                    "damage": "3-1-1",
+                    "damage types": [
+                        "gun",
+                    ]
+                },
+                {
+                    "name":"Cutter ",
+                    "damage": "3-1-1",
+                    "damage types": [
+                        "cut",
+                        "pain",
+                    ]
+                },
+            ],
+            "actions":[
+                {
+                    "name": "Cower",
+                    "effect": "The combatant cannot move or attack, but suffers only the level die from ranged damage",
+                },
+                {
+                    "name": "Relentless",
+                    "effect": "This round, an attack of the combatants choice gets advantage, prior to rolling",
+                },
+            ]
+        },
+        {
+            "name": "Coeurl",
+            "description": "A giant mutated cat with long, radioactive tentacles instead of whiskers.",
+            "image": 'coeurl.png',
+            "stats":{
+                "str": 10,
+                "dex": 15,
+                "wil": 4,
+                "en": 120,
+                "av": 1,
+            },
+            "weaknesses":[
+                "stab",
+                "cut",
+                "blast",
+                "volt",
+                "neural",
+            ],
+            "attacks":[
+                {
+                    "name":"Shred",
+                    "damage": "3-3-3",
+                    "damage types": [
+                        "cut",
+                        "pain"
+                    ]
+                },
+                {
+                    "name":"Tentacle Clap",
+                    "damage": "3-3-3",
+                    "damage types": [
+                        "nuke",
+                        "light"
+                    ]
+                },
+            ],
+            "actions":[
+                {
+                    "name": "Pounce",
+                    "effect": "Move into melee with any enemy between 2 or 3 tiles away. On failed STR, enemy takes 1d10 pain damage and suffer knockback",
+                },
+                {
+                    "name": "on the hunt",
+                    "effect": "Coeurl move twice as fast when charging if an enemy is retreating",
+                },
+                {
+                    "name": "Flash",
+                    "effect": "Coeurk move twice as fast when charging if an enemy is retreating",
+                },
+            ]
+        },
+        {
+            "name": "Roidrat",
+            "description": "A mutated, angry rat, with an overdeveloped muscular structure.",
+            "image": 'rat2.png',
+            "stats":{
+                "str": 7,
+                "dex": 10,
+                "wil": 2,
+                "en": 30,
+                "av": 0,
+            },
+            "weaknesses":[
+                "cut",
+                "gun",
+                "burst",
+                "blast",
+                "volt",
+            ],
+            "attacks":[
+                {
+                    "name":"Smash",
+                    "damage": "2-1-1",
+                    "damage types": [
+                        "smash"
+                    ]
+                },
+                {
+                    "name":"Bite",
+                    "damage": "2-1-1",
+                    "damage types": [
+                        "pain"
+                    ]
+                },
+            ],
+            "actions":[
+                {
+                    "name": "Hulk jump",
+                    "effect": "Move into melee with any enemy between 2 or 3 tiles away. On failed STR, enemy takes 1d4 smash damage and suffer knockback",
+                },
+                {
+                    "name": "Frenzy",
+                    "effect": "When using the stand ground movement, gain 1d6 extra melee damage. Recharges on a 4.",
+                },
+            ]
+        },
+        {
+            "name": "Zone eel",
+            "description": "Zone eels are large, omnivorous beasts of the zone. They are commonly domesticated as mounts.",
+            "image": 'eel.png',
+            "stats":{
+                "str": 10,
+                "dex": 12,
+                "wil": 5,
+                "en": 80,
+                "av": 0,
+            },
+            "weaknesses":[
+                "gun",
+                "burst",
+                "volt",
+                "light",
+            ],
+            "attacks":[
+                {
+                    "name":"Bite",
+                    "damage": "3-2-2",
+                    "damage types": [
+                        "pain"
+                    ]
+                },
+            ],
+            "actions":[
+                {
+                    "name": "Constrict",
+                    "effect": "On successful STR, constrict the enemy, who can escape with successful STR as a TA. Constricted cannot move, and eel can only melee attack constricted, with advantage.",
+                },
+                {
+                    "name": "Slither",
+                    "effect": "Move twice.",
+                },
+                {
+                    "name": "Mount",
+                    "effect": "If mounted, the zone eel cannot take TA. When mounted, both rider and mount take damage to endurance. Unless mounted, the eel will act on instinct.",
+                },
+            ]
+        },
+        {
+            "name": "Agolvuz",
+            "description": "A giant mutated fly, carnivorous and vile, creeps up on you in guile, and dispatches you with style.",
+            "image": 'agolvuz.png',
+            "stats":{
+                "str": 8,
+                "dex": 12,
+                "wil": 4,
+                "en": 122,
+                "av": 0,
+            },
+            "weaknesses":[
+                "gun",
+                "burst",
+                "cut",
+                "blast",
+                "light",
+            ],
+            "attacks":[
+                {
+                    "name":"Bite",
+                    "damage": "3-3-2",
+                    "damage types": [
+                        "pain",
+                        "ooze",
+                    ]
+                },
+                {
+                    "name":"Tendrils",
+                    "damage": "1-2-2",
+                    "damage types": [
+                        "pain",
+                        "stab",
+                        "cut",
+                    ]
+                },
+            ],
+            "actions":[
+                {
+                    "name": "Aggressive Flight",
+                    "effect": "Triple movement when charging, takes 1d8 more ranged damage if moving.",
+                },
+                {
+                    "name": "Tendril flurry",
+                    "effect": "Target a melee enemy, and attack twice per turn with tendrils. Cannot set movement plan, but follows the target to always stay in melee range. Recharges on 4.",
+                },
+                {
+                    "name": "Glare",
+                    "effect": "On failed WIL, combatant is forced to retreat, and loses their skill die",
+                },
+                {
+                    "name": "Hardened regeneration",
+                    "effect": "Gain 2 armor, regenerate 1d10 endurance per turn. Usable once.",
+                },
+            ]
+        },
+        {
+            "name": "Lapagerien",
+            "description": "A mutated and sentient Lapageria rose bush. Has a vile, meaty, rotting inside and sludges forward like a snail on this ooze.",
+            "image": 'lapagerien.png',
+            "stats":{
+                "str": 9,
+                "dex": 2,
+                "wil": 4,
+                "en": 74,
+                "av": 0,
+            },
+            "weaknesses":[
+                "cut",
+                "nuke",
+                "light",
+            ],
+            "attacks":[
+                {
+                    "name":"Shoot Thorn",
+                    "damage": "2-2-1",
+                    "damage types": [
+                        "gun",
+                        "stab",
+                        "ooze",
+                    ]
+                },
+                {
+                    "name":"Slashing vines",
+                    "damage": "2-2-1",
+                    "damage types": [
+                        "pain",
+                        "cut",
+                        "ooze",
+                    ]
+                },
+            ],
+            "actions":[
+                {
+                    "name": "Vine pull",
+                    "effect": "Target an enemy at range. On a failed DEX, that enemy is pull two tiles towards the Lapagerien",
+                },
+                {
+                    "name": "Radioactive Slime",
+                    "effect": "Any tile the Lapagerien starts its turn on is covered by slime. Any combatant susceptile to nuke damage, take 1d6 nuke damage when starting their turn on the slime.",
+                },
+            ]
+        },
+        {
+            "name": "Albino Boarian",
+            "description": "A giant mutated albino boar. They are hornless, but have retractable bone spears on their front legs, which they also use as hands. They are omnivores",
+            "image": 'boarians.jpg',
+            "stats":{
+                "str": 16,
+                "dex": 6,
+                "wil": 4,
+                "en": 74,
+                "av": 2,
+            },
+            "weaknesses":[
+                "cut",
+                "light",
+            ],
+            "attacks":[
+                {
+                    "name":"Bone spear",
+                    "damage": "3-2-2",
+                    "damage types": [
+                        "pain",
+                        "stab",
+                        "smash",
+                    ]
+                },
+                {
+                    "name":"Slashing vines",
+                    "damage": "2-2-2",
+                    "damage types": [
+                        "pain",
+                        "cut",
+                        "nuke",
+                    ]
+                },
+            ],
+            "actions":[
+                {
+                    "name": "Trample",
+                    "effect": "Can only be used if not in melee. Cannot take action. Increases charge speed to two tiles and allows the boarian to trample enemies the run over. Trampled enemies take 6d6 smash damage.",
+                },
+            ]
+        },
+        {
+            "name": "Sluggan",
+            "description": "Snail people, 1.2m in height, weigh around 100kg, 125 with their shells. Has four tendrils it uses as arms. They communicate telepathically at short range.",
+            "image": "sluggan.png",
+            "stats":{
+                "str": 6,
+                "dex": 5,
+                "wil": 12,
+                "en": 38,
+                "av": 2,
+            },
+            "weaknesses":[
+                "smash",
+                "salt*",
+                "nuke",
+                "light",
+            ],
+            "attacks":[
+                {
+                    "name":"Spear",
+                    "damage": "2-2-1",
+                    "damage types": [
+                        "stab",
+                    ]
+                },
+                {
+                    "name":"Zap",
+                    "damage": "2-2-1",
+                    "damage types": [
+                        "volt",
+                        "neural",
+                    ]
+                },
+            ],
+            "actions":[
+                {
+                    "name": "Vicious slappery",
+                    "effect": "Their first melee attack, all enemies in melee make a DEX save except the original target. On fail they also take the damage.",
+                },
+                {
+                    "name": "Roll shape",
+                    "effect": "When charging or retreating, move twice per turn. Cannot take action.",
+                },
+                {
+                    "name": "Mental surge",
+                    "effect": "On failed WIL, enemy cannot assist or do ranged attack.",
                 },
             ]
         },

@@ -3,7 +3,26 @@ document.onreadystatechange = function () {
     if (document.readyState != "complete") return;
     
     bindEnemiesSelect();
-
+    var timeSpentButton = document.querySelector('#time-spent-button');
+    var interval;
+    timeSpentButton.addEventListener('click', function(){
+        if (timeSpentButton.getAttribute('on') == "true") {
+            timeSpentButton.setAttribute('on', "false");
+            clearInterval(interval);
+            timeSpentButton.innerHTML = "START COMBAT TIMER";
+            return;
+        }
+        timeSpentButton.innerHTML = "STOP COMBAT TIMER";
+        timeSpentButton.setAttribute('on', "true");
+        var display = document.querySelector('#time-spent')
+        var start = new Date();
+        display.innerHTML = new Date(start.getTime() - start.getTime()).toUTCString().split(' ')[4];
+        interval = setInterval(() => {
+            var now = new Date();
+            console.log(now.getTimezoneOffset());
+            display.innerHTML = new Date(now.getTime() - start.getTime()).toUTCString().split(' ')[4];
+        }, 1000);
+    });
     document.querySelectorAll('generator').forEach(generator => {
         generator.querySelectorAll('controls').forEach(controls => {
             var generatorFunction = eval(generator.getAttribute('function'));
@@ -47,6 +66,9 @@ function addNewEnemy(enemy){
     var template = document.querySelector("enemy-template");
     var output = Mustache.render(template.innerHTML, enemy);
     var enemyElement = createElement("enemy", output);
+    if (!enemy.image) {
+        enemyElement.querySelector("a").remove();
+    }
     document.querySelector("enemies").appendChild(enemyElement);
     enemyElement.querySelector("button.remove").addEventListener('click',function(){
         enemyElement.remove();
@@ -100,7 +122,7 @@ function getRandomNumber(min, max){
 }
 function getResultDict(data, filter){
     if (typeof(data) == "string") return data;
-    if (data instanceof GetAllArray) return data.list;
+    if (data instanceof GeneratorArray) return data.getList();
     var result = {};
     Object.keys(data).forEach(index => {
         if(!!filter)
@@ -111,29 +133,34 @@ function getResultDict(data, filter){
     return result;
 }
 function handleResultDictIndex(innerData){
-    if(innerData instanceof GetAllArray) return innerData;
+    if(innerData instanceof GeneratorArray) return innerData;
     if(Array.isArray(innerData)) return getResultDict(getRandomFrom(innerData));
     if(typeof(innerData) == "object") return getResultDict(innerData);
     if(typeof(innerData) == "string") return innerData;
 }
 function createDictDom(container, data){
     var element = createElement("div");
+    element.classList.add('inner');
     container.appendChild(element);
-    if(data instanceof GetAllArray){
-        getValue(data).forEach(index => {
+    if(data instanceof GeneratorArray){
+        console.log("data instanceof GeneratorArray");
+        data.getList().forEach(index => {
             element.appendChild(createElement("value", index));
         });
         return;
     }
+    //console.log(data);
+    if (!!!data) return;
     Object.keys(data).forEach(index => {
         var indexElement = createElement("index");
+        console.log(index, data[index]);
         element.appendChild(indexElement);
         if(getValue(data[index]) != null){
-            indexElement.appendChild(createElement("key", `${index}: `));
+            indexElement.appendChild(createElement("key", `${index[0].toUpperCase() + index.substring(1)}: `));
             indexElement.appendChild(createElement("value", getValue(data[index])));
             return;
         }
-        indexElement.appendChild(createElement("key", `${index}`));
+        indexElement.appendChild(createElement("key", `${index[0].toUpperCase() + index.substring(1)}`));
         createDictDom(element,data[index]);
     });
 }
@@ -143,14 +170,34 @@ function createElement(type = "p", content = ""){
     return p;
 }
 function getValue(val){
-    if(val instanceof GetAllArray) return val.list;
     if(val instanceof WeightedValue) return val.val;
     if(typeof(val) == "string") return val;
     return null;
 }
-class GetAllArray{
+class GeneratorArray{
     constructor(list){
         this.list = list;
+    }
+    getList(){
+        return [];
+    }
+}
+class GetAllArray extends GeneratorArray{
+    constructor(list){
+        super(list);
+    }
+    getList(){
+        return this.list;
+    }
+}
+class GetSomeArray extends GeneratorArray{
+    constructor(list, amount){
+        super(list);
+        this.amount = amount;
+    }
+    getList(){
+        this.list.sort(() => 0.5 - Math.random());
+        return this.list.slice(0, this.amount);
     }
 }
 class WeightedValue{

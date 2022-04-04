@@ -212,3 +212,6 @@ box.f33 p{
 .volt{
     background-image: url(../img/static.png);
 }
+datalist{
+    display: none !important;
+}

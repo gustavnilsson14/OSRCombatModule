@@ -211,6 +211,9 @@ slot name::before{
 .stuff name::before{
     content: url(../img/gear-solid.svg);
 }
+.explosive name::before{
+    content: url(../img/bomb.svg);
+}
 .artifact name::before{
     content: "";
     background-image: url(../img/artifact.png);

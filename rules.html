@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Massive Apocalypse</title>
     <link rel="stylesheet" href="css/default.css">
     <script src="js/rules.js"></script>
     <style>
@@ -301,6 +301,13 @@
             border-top-left-radius: 10px;
             border-bottom-left-radius: 10px;
         }
+        h1{
+            padding-top: 50px;
+        }
+        h1 span{
+            color: #555;
+            font-size: 18px;
+        }
     </style>
 </head>
 <body>
@@ -314,9 +321,8 @@
         <a href="generators.html">Generators</a>
     </nav>
     <container>
-        <row>
-            <h1 style="width: 100%;">Combat module alpha</h1>
-        </row>
+            <h1 style="width: 100%;">Massive Apocalypse<br><span>A combat system for, or hack of Into the Odd</span></h1>
+        
         <row>
             <box>
                 <p>Combat happens when people disagree violently, and is resolved in the following way, usually involving bruises, blood, and death.</p>
@@ -387,6 +393,24 @@
                         </inner>
                     </info-row>
                 </info-list>
+            </box>
+            <box class="x3">
+                <h3>Example Battleground</h3>
+                <row class="internal">
+                    <box class="no-border">
+                        <p>To use the 1d battlemat feature the only thing your group needs is;</p>
+                        <ul>
+                            <li>13 (or more) tiles in a line, represented on a paper</li>
+                            <li>Miniatures (or tokens) to represent the players and the enemies</li>
+                            <li>Tokens (or beautifully crafted props) to, represent battleground features</li>
+                        </ul>
+                        <p>The players would start on the left side, and the enemies on the right, as explained above.</p>
+                        <p>Battleground features and hazard tokens should be positioned on the bottom border of the battlemat, and their effects explained to the players, if applicable.</p>
+                    </box>
+                    <box class="no-border">
+                        <img style="margin-top:14px;" src="img/battlemat_example.png" alt="">
+                    </box>
+                </row>
             </box>
         </row>
 
@@ -1029,13 +1053,13 @@
                 <ul>
                     <li>1 Water, containing 3 liters. A character drinks 1 liter per day, and water is also currency.</li>
                     <li>1 Rations</li>
-                    <li>The characters amount of weaknesses times 4 as <i>purchase points</i></li>
+                    <li>The characters amount of weaknesses times 5 as <i>purchase points</i></li>
                 </ul>
 
                 <h4>Purchase points</h4>
                 <p>These only exist in character creation, and allows the character to buy gear. The prices are;</p>
                 <ul>
-                    <li>Weapons and armor cost 1 point per durability, 2 per effect, and 3 per quality.</li>
+                    <li>Weapons and armor cost 1 point per durability, 3 per effect, and 4 per quality.</li>
                     <li>Tools cost 2 points if generally useful, 1 if non-impactful.</li>
                     <li>Spells cost 6 points.</li>
                     <li>Random mutations cost 4 points.</li>

@@ -83,6 +83,9 @@
         generator controls checkbox input{
             flex-grow: 1;
         }
+        nav controls input{
+            width: 100%;
+        }
         h1,h2,h3,h4,h5,h6{
             margin-top: 0px;
         }
@@ -198,12 +201,14 @@
         }
         enemy weaknesses{
             flex-direction: row;
+            flex-wrap: wrap;
             justify-content: center;
             gap: 5px;
             padding: 5px 0px;
         }
         enemy weaknesses weakness{
             text-transform: uppercase;
+            font-size: 14px;
         }
         enemy actions {
             gap: 10px;
@@ -213,6 +218,18 @@
         }
         enemy actions action effect:first-letter{
             text-transform: uppercase;
+        }
+        enemy enemy-image{
+            margin-top: 20px;
+            width: 100%;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-image: radial-gradient(white,black);
+        }
+        enemy enemy-image img{
+            padding: 40px;
+            filter: drop-shadow(20px 20px 20px rgba(0,0,0,1));
         }
         enemy h2{
             text-align: center;
@@ -234,6 +251,10 @@
             justify-content: center;
             text-align: center;
         }
+        div.inner{
+            display: flex;
+            flex-direction: column;
+        }
     </style>
 </head>
 <body>
@@ -250,6 +271,8 @@
             <input id="enemies" list="enemies_data">
             <datalist id="enemies_data"></datalist>
             <button id="add-enemy">ADD SELECTED</button>
+            <button id="time-spent-button">START COMBAT TIMER</button>
+            <span id="time-spent"></span>
         </controls>
     </nav>
     <container>
@@ -399,7 +422,11 @@
                     </action>
                     {{/actions}}
                 </actions>
-                
+                <a target="_blank" href="./enemy_image.html?img={{image}}&name={{name}}">
+                    <enemy-image>
+                        <img src="./img/enemies/{{image}}" alt="">
+                    </enemy-image>
+                </a>
             </enemy-template>
         </enemies>
     </container>
