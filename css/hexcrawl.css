@@ -48,10 +48,12 @@ row{
     flex-grow: none;
     justify-content: center;
 }
+row hex{
+    background-image: url(../img/map/gravel.jpg);
+}
 row hex,
 row hex::after,
 row hex::before{
-    background-image: url(../img/map/gravel.jpg);
     width: 140px;
     height: 80px;
     position: relative;
@@ -67,12 +69,13 @@ row hex::before{
     content: "";
     position: absolute;
     left: -1px;
+    background-image: inherit;
 }
 row hex:hover,
 row hex:hover::after,
 row hex:hover::before {
     z-index: 1001;
-    background: #eee;
+    background: #eee !important;
 }
 row hex::after{
     transform: rotateZ(60deg);
@@ -139,7 +142,7 @@ row hex.selected,
 row hex.selected::after,
 row hex.selected::before{
     z-index: 999;
-    background: #efe;
+    background: #efe !important;
     border-right: 1px solid green;
     border-left: 1px solid green;
 }
@@ -173,7 +176,8 @@ clouds{
     animation: cloudPan 15s;
     animation-iteration-count: infinite;
 }
-icons{
+icons,
+textures{
     display: flex;
     overflow-x: hidden;
     overflow-y: scroll;
@@ -181,15 +185,17 @@ icons{
     flex-wrap: wrap;
     justify-content: center;
     width: 100%;
-    height: 200px;
+    height: 100px;
     gap: 5px;
 }
-icons icon-inner {
+icons icon-inner,
+textures texture-inner {
     display: flex;
     flex-direction: row;
     justify-content: center;
 }
-icons icon-img {
+icons icon-img,
+textures texture-img {
     cursor: pointer;
     border: 1px dotted black;
     width: 50px;

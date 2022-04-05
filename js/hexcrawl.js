@@ -1,24 +1,27 @@
 var selectedHex;
-var selectedIcon;
 
 var nav;
 var mapViewport;
 var mapContainer;
 var selectedHexContainer;
 var iconsContainer;
+var texturesContainer;
 
 var rowTemplate;
 var hexTemplate;
 var iconTemplate;
+var textureTemplate;
 document.onreadystatechange = function () {
     if (document.readyState != "complete") return;
     selectedHexContainer = document.querySelector('selected-hex');
     mapViewport = document.querySelector('map');
     mapContainer = document.querySelector('map-inner');
     iconsContainer = document.querySelector('icons');
+    texturesContainer = document.querySelector('textures');
     rowTemplate = document.querySelector("#row-template");
     hexTemplate = document.querySelector("#hex-template");
     iconTemplate = document.querySelector("#icon-template");
+    textureTemplate = document.querySelector("#texture-template");
     nav = document.querySelector("nav");
 
     document.addEventListener('click', deSelectHex);
@@ -26,6 +29,7 @@ document.onreadystatechange = function () {
         e.stopPropagation();
     });
     populateIconControls();
+    populateTextureControls();
     bindDataControls();
     bindHexDetailsControls();
     bindExpand();
@@ -107,22 +111,21 @@ function showHexDetails(hex){
     positionField.innerHTML = `${hex.getAttribute('posx')}:${hex.getAttribute('posy')}`;
 }
 function bindHexDetailsControls(){
-    /*var iconInput = document.querySelector('input[icon-select]');
-
-    iconInput.addEventListener("click", function(){
-        iconInput.value = "";
-    });
-    iconInput.addEventListener("change", () => {
-        if(!selectedHex) return;
-        selectedHex.setAttribute('icon', iconInput.value);
-        renderHex(selectedHex);
-    });*/
     var iconButtons = document.querySelectorAll('icon-img:not(.template)');
     iconButtons.forEach(iconButton => {
         iconButton.addEventListener('click',() => {
             if(!selectedHex) return;
             console.log(iconButton.style);
             selectedHex.setAttribute('icon', iconButton.style.backgroundImage);
+            renderHex(selectedHex);   
+        });
+    });
+    var textureButtons = document.querySelectorAll('texture-img:not(.template)');
+    textureButtons.forEach(textureButton => {
+        textureButton.addEventListener('click',() => {
+            if(!selectedHex) return;
+            console.log(textureButton.style);
+            selectedHex.setAttribute('texture', textureButton.style.backgroundImage);
             renderHex(selectedHex);   
         });
     });
@@ -137,6 +140,7 @@ function bindHexDetailsControls(){
 function renderHex(hex){
     hex.querySelector('name').innerHTML = hex.getAttribute('name');
     renderIcon(hex);
+    hex.style.backgroundImage = hex.getAttribute('texture');
 }
 function renderIcon(hex){
     var icon = hex.getAttribute('icon');
@@ -162,10 +166,11 @@ function appendAndPrepend(template, container){
         'bottom':bottom
     }
 }
-function cloneTemplate(template){
+function cloneTemplate(template, container = null){
     var newNode = template.cloneNode(true);
     newNode.removeAttribute("id", "");
     newNode.removeAttribute("class", "");
+    if(container) container.appendChild(newNode);
     return newNode;
 }
 function unloadPage(){ 
@@ -177,9 +182,14 @@ function bindDataControls(){
 }
 function populateIconControls(){
     getIcons().forEach(icon => {
-        var iconElement = cloneTemplate(iconTemplate);
+        var iconElement = cloneTemplate(iconTemplate,iconsContainer);
         iconElement.querySelector("icon-img").style.backgroundImage = `url(img/map/${icon})`;
-        iconsContainer.appendChild(iconElement);
+    });
+}
+function populateTextureControls(){
+    getTextures().forEach(texture => {
+        var textureElement = cloneTemplate(textureTemplate,texturesContainer);
+        textureElement.querySelector("texture-img").style.backgroundImage = `url(img/map/${texture})`;
     });
 }
 function exportData(){

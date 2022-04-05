@@ -12,6 +12,17 @@
     <script src="./js/hexcrawl.js"></script>
 </head>
 <body>
+    <row id="row-template" class="template"></row>
+    <icon id="icon-template" class="template">
+        <icon-inner>
+            <icon-img></icon-img>
+        </icon-inner>
+    </icon>
+    <texture id="texture-template" class="template">
+        <texture-inner>
+            <texture-img></texture-img>
+        </texture-inner>
+    </texture>
     <nav>
         <a href="rules.html">Rules</a>
         <a href="battlemat.html">Battle</a>
@@ -26,18 +37,15 @@
             <icons>
 
             </icons>
+            <textures>
+
+            </textures>
         </selected-hex>
         <button id="expand">EXPAND</button>
         <button id="export">EXPORT</button>
         <button id="import">IMPORT</button>
         <textarea id="import-data"></textarea>
     </nav>
-    <row id="row-template" class="template"></row>
-    <icon id="icon-template" class="template">
-        <icon-inner>
-            <icon-img></icon-img>
-        </icon-inner>
-    </icon>
     <hex id="hex-template" class="template">
         <inner>
             <icon></icon>

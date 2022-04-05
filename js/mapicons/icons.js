@@ -13,3 +13,9 @@ function getIcons(){
         'warehouse2.png',
     ];
 }
+function getTextures(){
+    return [
+        'gravel.jpg',
+        'desert.jpg',
+    ];
+}
