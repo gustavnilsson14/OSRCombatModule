@@ -50,7 +50,7 @@ function bindEnemiesSelect(){
     var select = document.querySelector("#enemies_data");
     var input = document.querySelector("#enemies");
     getEnemies().forEach(enemy => {
-        var option = createElement("option", enemy.name);
+        var option = createTag("option", enemy.name);
         option.setAttribute("name", enemy.name);
         select.appendChild(option);
     });
@@ -65,7 +65,7 @@ function bindEnemiesSelect(){
 function addNewEnemy(enemy){
     var template = document.querySelector("enemy-template");
     var output = Mustache.render(template.innerHTML, enemy);
-    var enemyElement = createElement("enemy", output);
+    var enemyElement = createTag("enemy", output);
     if (!enemy.image) {
         enemyElement.querySelector("a").remove();
     }
@@ -105,104 +105,31 @@ function generateName(container, data){
         var names = allNames[namesIndex];
         resultNames.push(names[Math.floor(Math.random()*names.length)]);
     });
-    container.appendChild(createElement('p', resultNames.join(" ")));
-}
-function getRandomIndex(list){
-    return getRandomNumber(0,list.length);
-}
-function getRandomFrom(list){
-    var newList = [...list].map(value => {
-        if(value instanceof WeightedValue) return Array(value.weight).fill(value.value);
-        return value;
-    }).flat();
-    return newList[getRandomIndex(newList)];
-}
-function getRandomNumber(min, max){
-    return Math.floor((Math.random()*Math.floor(max-min)))+min;
-}
-function getResultDict(data, filter){
-    if (typeof(data) == "string") return data;
-    if (data instanceof GeneratorArray) return data.getList();
-    var result = {};
-    Object.keys(data).forEach(index => {
-        if(!!filter)
-            if(!filter[index]) return;
-        var innerData = data[index];
-        result[index] = handleResultDictIndex(innerData);
-    });
-    return result;
-}
-function handleResultDictIndex(innerData){
-    if(innerData instanceof GeneratorArray) return innerData;
-    if(Array.isArray(innerData)) return getResultDict(getRandomFrom(innerData));
-    if(typeof(innerData) == "object") return getResultDict(innerData);
-    if(typeof(innerData) == "string") return innerData;
+    container.appendChild(createTag('p', resultNames.join(" ")));
 }
 function createDictDom(container, data){
-    var element = createElement("div");
+    var element = createTag("div");
     element.classList.add('inner');
     container.appendChild(element);
     if(data instanceof GeneratorArray){
         console.log("data instanceof GeneratorArray");
         data.getList().forEach(index => {
-            element.appendChild(createElement("value", index));
+            element.appendChild(createTag("value", index));
         });
         return;
     }
     //console.log(data);
     if (!!!data) return;
     Object.keys(data).forEach(index => {
-        var indexElement = createElement("index");
+        var indexElement = createTag("index");
         console.log(index, data[index]);
         element.appendChild(indexElement);
         if(getValue(data[index]) != null){
-            indexElement.appendChild(createElement("key", `${index[0].toUpperCase() + index.substring(1)}: `));
-            indexElement.appendChild(createElement("value", getValue(data[index])));
+            indexElement.appendChild(createTag("key", `${index[0].toUpperCase() + index.substring(1)}: `));
+            indexElement.appendChild(createTag("value", getValue(data[index])));
             return;
         }
-        indexElement.appendChild(createElement("key", `${index[0].toUpperCase() + index.substring(1)}`));
+        indexElement.appendChild(createTag("key", `${index[0].toUpperCase() + index.substring(1)}`));
         createDictDom(element,data[index]);
     });
-}
-function createElement(type = "p", content = ""){
-    const p = document.createElement(type);
-    p.innerHTML = content;
-    return p;
-}
-function getValue(val){
-    if(val instanceof WeightedValue) return val.val;
-    if(typeof(val) == "string") return val;
-    return null;
-}
-class GeneratorArray{
-    constructor(list){
-        this.list = list;
-    }
-    getList(){
-        return [];
-    }
-}
-class GetAllArray extends GeneratorArray{
-    constructor(list){
-        super(list);
-    }
-    getList(){
-        return this.list;
-    }
-}
-class GetSomeArray extends GeneratorArray{
-    constructor(list, amount){
-        super(list);
-        this.amount = amount;
-    }
-    getList(){
-        this.list.sort(() => 0.5 - Math.random());
-        return this.list.slice(0, this.amount);
-    }
-}
-class WeightedValue{
-    constructor(weight, value){
-        this.weight = weight;
-        this.value = value;
-    }
 }

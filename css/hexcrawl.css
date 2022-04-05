@@ -1,0 +1,244 @@
+:root{
+    --gap: 6px;
+    --half-gap: 3px;
+}
+body{
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+}
+nav{
+    width: 15vw;
+}
+map-frame{
+    position: relative;
+    overflow: hidden;
+    border: 1px solid black;
+    width: 70vw;
+    height: calc(100vh - 2px);
+}
+map{
+    display: block;
+    gap: var(--gap);
+    counter-set: row-no 0;
+    width: 70vw;
+    height: 100vh;
+    overflow-x: scroll;
+    overflow-y: scroll;
+}
+map-inner{
+    top: 0px;
+    left: 0px;
+    position: relative;
+    display: inline-block;
+    padding: 1000px;
+    transform: rotateX(45deg);
+    justify-content: center;
+    flex-direction: column;
+}
+row{
+    counter-increment: row-no;
+    z-index: counter(row-no);
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    height: 126px;
+    gap: var(--gap);
+    flex: none;
+    flex-grow: none;
+    justify-content: center;
+}
+row hex,
+row hex::after,
+row hex::before{
+    background-image: url(../img/map/gravel.jpg);
+    width: 140px;
+    height: 80px;
+    position: relative;
+    transition: 0.2s all;
+    display: flex;
+    border-right: 1px dotted;
+    border-left: 1px dotted;
+    border-color: black;
+    animation: hexIn 1.5s;
+}
+row hex::after,
+row hex::before{
+    content: "";
+    position: absolute;
+    left: -1px;
+}
+row hex:hover,
+row hex:hover::after,
+row hex:hover::before {
+    z-index: 1001;
+    background: #eee;
+}
+row hex::after{
+    transform: rotateZ(60deg);
+    animation: hexIn60 1.5s;
+}
+row hex::before{
+    transform: rotateZ(-60deg);
+    animation: hexIn-60 1.5s;
+}
+row hex.selected,
+row hex:hover{
+    transform: scale(1.2);
+}
+row hex inner{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    transform: scaleY(1.5);
+    pointer-events: none;
+}
+row hex:hover inner{
+    z-index: 1002;
+}
+row hex inner icon,
+row hex inner shadow{
+    position: absolute;
+    width: 70%;
+    height: 130%;
+    left: 50%;
+    top: 75%;
+    transform: translateX(-50%) translateY(-100%);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    z-index: -1;
+}
+row hex inner shadow{
+    transform: translateX(-0%) translateY(-100%) skew(-46deg, 0deg);
+    filter: brightness(0) blur(3px);
+    opacity: 0.2;
+    z-index: -2;
+}
+row hex inner name{
+    position: absolute;
+    bottom: 0px;
+    left: 50%;
+    white-space: nowrap;
+    transform: translateX(-50%);
+    font-family: medula;
+    color: black;
+    background-color: rgba(255,255,255,0.75);
+    border-radius: 5px;
+    padding: 0px 3px;
+    font-size: 28px;
+    transition: 0.5s all;
+    text-transform: uppercase;
+}
+row hex:hover inner name{
+    transform: translateX(-50%) translateY(-5px) scale(1.3);
+    background-color: rgba(0,0,0,0);
+}
+row hex.selected,
+row hex.selected::after,
+row hex.selected::before{
+    z-index: 999;
+    background: #efe;
+    border-right: 1px solid green;
+    border-left: 1px solid green;
+}
+row hex.selected inner name{
+    transform: translateX(-50%) translateY(-5px) scale(1.3);
+    background-color: rgba(0,0,0,0);
+}
+.template{
+    display: none;
+}
+selected-hex{
+    display: none;
+}
+selected-hex.visible{
+    display: flex;
+    flex-direction: column;
+    pointer-events: all;
+}
+clouds{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background-image: url(../img/map/clouds.png);
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    opacity: 0.1;
+    background-size: 500%;
+    pointer-events: none;
+    filter: blur(20px);
+    animation: cloudPan 15s;
+    animation-iteration-count: infinite;
+}
+icons{
+    display: flex;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    height: 200px;
+    gap: 5px;
+}
+icons icon-inner {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+icons icon-img {
+    cursor: pointer;
+    border: 1px dotted black;
+    width: 50px;
+    height: 50px;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+@keyframes cloudPan {
+    0%{
+        filter: blur(10px);
+        transform: rotate(0deg);
+    }
+    50%{
+        filter: blur(30px);
+        transform: rotate(15deg);
+    }
+    100%{
+        filter: blur(10px);
+        transform: rotate(0deg);
+    }
+}
+@keyframes hexIn {
+    from{
+        transform: rotate(720deg) scale(0);
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+        transform: rotate(0deg) scale(1);
+    }
+}
+@keyframes hexIn-60 {
+    from{
+        transform: rotate(720deg) scale(0);
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+        transform: rotate(-60deg) scale(1);
+    }
+}
+@keyframes hexIn60 {
+    from{
+        transform: rotate(720deg) scale(0);
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+        transform: rotate(60deg) scale(1);
+    }
+}
