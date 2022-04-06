@@ -1,58 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="css/default.css">
-    <link rel="stylesheet" href="css/hexcrawl.css">
+    <link rel="stylesheet" href="css/default.css" />
+    <link rel="stylesheet" href="css/hexcrawl.css" />
     <script src="./js/helpers.js"></script>
     <script src="./js/mapicons/icons.js"></script>
     <script src="./js/hexcrawl.js"></script>
-</head>
-<body>
+  </head>
+  <body>
     <row id="row-template" class="template"></row>
     <icon id="icon-template" class="template">
-        <icon-inner>
-            <icon-img></icon-img>
-        </icon-inner>
+      <icon-inner>
+        <icon-img></icon-img>
+      </icon-inner>
     </icon>
     <texture id="texture-template" class="template">
-        <texture-inner>
-            <texture-img></texture-img>
-        </texture-inner>
+      <texture-inner>
+        <texture-img></texture-img>
+      </texture-inner>
     </texture>
     <nav>
-        <button id="expand">EXPAND</button>
-        <button id="export">EXPORT</button>
-        <button id="import">IMPORT</button>
-        <textarea id="import-data"></textarea>
-        <selected-hex>
-            <pos></pos>
-            <input name-input placeholder="Tile title">
-            <icons>
+      <button id="expand">EXPAND</button>
+      <button id="export">EXPORT</button>
+      <button id="import">IMPORT</button>
+      <textarea id="import-data"></textarea>
+      <selected-hex>
+        <h4>Position: <pos></pos></h4>
 
-            </icons>
-            <textures>
+        <label for="tile-name"><h4>Title</h4></label>
+        <input id="tile-name" name-input placeholder="Tile title" />
 
-            </textures>
-        </selected-hex>
+        <h4>Icon</h4>
+        <icons> </icons>
+        <h4>Texture</h4>
+        <textures> </textures>
+      </selected-hex>
     </nav>
     <hex id="hex-template" class="template">
-        <inner>
-            <icon></icon>
-            <shadow></shadow>
-            <name></name>
-        </inner>
+      <inner>
+        <icon></icon>
+        <shadow></shadow>
+        <name></name>
+      </inner>
     </hex>
     <map-frame>
-        <map>
-            <clouds></clouds>
-            <map-inner>
-                
-            </map-inner>
-        </map>
+      <map>
+        <clouds></clouds>
+        <map-inner> </map-inner>
+      </map>
     </map-frame>
-</body>
+  </body>
 </html>
