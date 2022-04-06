@@ -28,6 +28,7 @@ document.onreadystatechange = function () {
     nav.addEventListener('click', (e) => {
         e.stopPropagation();
     });
+    createDefaultGrid();
     populateIconControls();
     populateTextureControls();
     bindDataControls();
@@ -36,6 +37,12 @@ document.onreadystatechange = function () {
     animateClouds();
     bindHexes();
     centerView();
+}
+function createDefaultGrid(){
+    var firstRow = cloneTemplate(rowTemplate, mapContainer);
+    var firstHex = cloneTemplate(hexTemplate, firstRow);
+    firstHex.setAttribute('texture', getRandomFrom(getTextures()));
+    renderHex(firstHex);
 }
 function animateClouds(){
     var clouds = document.querySelector('clouds');
@@ -48,19 +55,47 @@ function animateClouds(){
     },1000/30);
 }
 function bindExpand(){
-    document.querySelector('#expand').addEventListener('click',function(){
-        var currentRows = document.querySelectorAll('row:not(.template)');
-        currentRows.forEach(row => {
-            appendAndPrepend(hexTemplate, row);
-        });
-        var rowAmount = parseInt(currentRows.length/2)
-        var newRows = appendAndPrepend(rowTemplate, mapContainer);
-        var hexAmount = rowAmount+2;
-        appendAmount(hexTemplate, newRows.top, hexAmount);
-        appendAmount(hexTemplate, newRows.bottom, hexAmount);
-        bindHexes();
-        centerView();
+    document.querySelector('#expand').addEventListener('click', expand);
+}
+function expand(){
+    var newHexes = [];
+    var currentRows = document.querySelectorAll('row:not(.template)');
+    currentRows.forEach(row => {
+        var obj = appendAndPrepend(hexTemplate, row);
+        newHexes.push(obj.top);
+        newHexes.push(obj.bottom);
     });
+    var rowAmount = parseInt(currentRows.length/2)
+    var newRows = appendAndPrepend(rowTemplate, mapContainer);
+    var hexAmount = rowAmount+2;
+    newHexes = [...newHexes, ...appendAmount(hexTemplate, newRows.top, hexAmount)];
+    newHexes = [...newHexes, ...appendAmount(hexTemplate, newRows.bottom, hexAmount)];
+    bindHexes();
+    centerView();
+    newHexes.forEach(newHex => {
+        var parent = getNewHexParent(newHexes, newHex);
+        var texture = parent.getAttribute('texture');
+        if(getRandomNumber(0,10) > 8) texture = getRandomFrom(getTextures());
+        newHex.setAttribute('texture', texture);
+        renderHex(newHex);
+    });
+}
+function getNewHexParent(newHexes, newHex){
+    var pos = {
+        x: parseInt(newHex.getAttribute('posx')),
+        y: parseInt(newHex.getAttribute('posy'))
+    }
+    var neighbors = [];
+    for (let x = -1; x < 2; x++) {
+        for (let y = -1; y < 2; y++) {
+            var neighbor = document.querySelector(`hex[posx="${pos.x + x}"][posy="${pos.y + y}"]`);
+            if (!neighbor) continue;
+            if (neighbor == newHex) continue;
+            if (newHexes.indexOf(neighbor) != -1) continue;
+            neighbors.push(neighbor);
+        }
+    }
+    return getRandomFrom(neighbors);
 }
 function centerView(behaviour = "auto"){
     var hex = selectedHex;
@@ -109,24 +144,40 @@ function showHexDetails(hex){
     nameInput.value = hex.getAttribute('name');
     var positionField = selectedHexContainer.querySelector('pos');
     positionField.innerHTML = `${hex.getAttribute('posx')}:${hex.getAttribute('posy')}`;
+    selectHexGraphicsButtons(hex);
+    
+}
+function selectHexGraphicsButtons(hex){
+    selectedHexContainer.querySelectorAll('.selected').forEach(element => {
+        element.classList.remove('selected');
+    });
+    var selectedIcon = selectedHexContainer.querySelector(`icon[path="${hex.getAttribute('icon')}"]`);
+    if(selectedIcon) selectedIcon.classList.add('selected');
+    var selectedTexture = selectedHexContainer.querySelector(`texture[path="${hex.getAttribute('texture')}"]`);
+    if(selectedTexture) selectedTexture.classList.add('selected');
+    
 }
 function bindHexDetailsControls(){
-    var iconButtons = document.querySelectorAll('icon-img:not(.template)');
+    var iconButtons = document.querySelectorAll('icon:not(.template)');
     iconButtons.forEach(iconButton => {
         iconButton.addEventListener('click',() => {
             if(!selectedHex) return;
-            console.log(iconButton.style);
-            selectedHex.setAttribute('icon', iconButton.style.backgroundImage);
+            var current = iconsContainer.querySelector('.selected');
+            if(current) current.classList.remove('selected');
+            iconButton.classList.add('selected');
+            selectedHex.setAttribute('icon', iconButton.getAttribute('path'));
             renderHex(selectedHex);   
         });
     });
-    var textureButtons = document.querySelectorAll('texture-img:not(.template)');
+    var textureButtons = document.querySelectorAll('texture:not(.template)');
     textureButtons.forEach(textureButton => {
         textureButton.addEventListener('click',() => {
             if(!selectedHex) return;
-            console.log(textureButton.style);
-            selectedHex.setAttribute('texture', textureButton.style.backgroundImage);
-            renderHex(selectedHex);   
+            var current = texturesContainer.querySelector('.selected');
+            if(current) current.classList.remove('selected');
+            textureButton.classList.add('selected');
+            selectedHex.setAttribute('texture', textureButton.getAttribute('path'));
+            renderHex(selectedHex);
         });
     });
     var nameInput = document.querySelector('input[name-input]');
@@ -140,21 +191,25 @@ function bindHexDetailsControls(){
 function renderHex(hex){
     hex.querySelector('name').innerHTML = hex.getAttribute('name');
     renderIcon(hex);
-    hex.style.backgroundImage = hex.getAttribute('texture');
+    hex.style.backgroundImage = `url(img/map/${hex.getAttribute('texture')})`;
 }
 function renderIcon(hex){
     var icon = hex.getAttribute('icon');
     if (!icon) return;
     var iconContainer = hex.querySelector('icon');
     var shadowContainer = hex.querySelector('shadow');
-    iconContainer.style.backgroundImage = icon;
-    shadowContainer.style.backgroundImage = icon;
+    iconContainer.style.backgroundImage = `url(img/map/${icon})`;
+    shadowContainer.style.backgroundImage = `url(img/map/${icon})`;
 }
 
 function appendAmount(template, container, amount){
+    var newItems = [];
     for (let i = 0; i < amount; i++) {
-        container.appendChild(cloneTemplate(template));
+        var newItem = cloneTemplate(template);
+        newItems.push(newItem);
+        container.appendChild(newItem);
     }
+    return newItems;
 }
 function appendAndPrepend(template, container){
     var top = cloneTemplate(template);
@@ -184,12 +239,14 @@ function populateIconControls(){
     getIcons().forEach(icon => {
         var iconElement = cloneTemplate(iconTemplate,iconsContainer);
         iconElement.querySelector("icon-img").style.backgroundImage = `url(img/map/${icon})`;
+        iconElement.setAttribute('path', icon);
     });
 }
 function populateTextureControls(){
     getTextures().forEach(texture => {
         var textureElement = cloneTemplate(textureTemplate,texturesContainer);
         textureElement.querySelector("texture-img").style.backgroundImage = `url(img/map/${texture})`;
+        textureElement.setAttribute('path', texture);
     });
 }
 function exportData(){

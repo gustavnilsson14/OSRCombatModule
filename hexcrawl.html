@@ -24,13 +24,10 @@
         </texture-inner>
     </texture>
     <nav>
-        <a href="rules.html">Rules</a>
-        <a href="battlemat.html">Battle</a>
-        <a href="sheet.html">Sheet</a>
-        <a href="items.html">Items</a>
-        <a href="vehicles.html">Vehicles</a>
-        <a href="rules_sheet.html">Play</a>
-        <a href="generators.html">Generators</a>
+        <button id="expand">EXPAND</button>
+        <button id="export">EXPORT</button>
+        <button id="import">IMPORT</button>
+        <textarea id="import-data"></textarea>
         <selected-hex>
             <pos></pos>
             <input name-input placeholder="Tile title">
@@ -41,10 +38,6 @@
 
             </textures>
         </selected-hex>
-        <button id="expand">EXPAND</button>
-        <button id="export">EXPORT</button>
-        <button id="import">IMPORT</button>
-        <textarea id="import-data"></textarea>
     </nav>
     <hex id="hex-template" class="template">
         <inner>
@@ -57,15 +50,7 @@
         <map>
             <clouds></clouds>
             <map-inner>
-                <row>
-                    <hex>
-                        <inner>
-                            <icon></icon>
-                            <shadow></shadow>
-                            <name></name>
-                        </inner>
-                    </hex>
-                </row>
+                
             </map-inner>
         </map>
     </map-frame>

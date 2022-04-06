@@ -834,12 +834,10 @@ function getEnemies(){
                     ]
                 },
                 {
-                    "name":"Slashing vines",
+                    "name":"Headbutt",
                     "damage": "2-2-2",
                     "damage types": [
-                        "pain",
-                        "cut",
-                        "nuke",
+                        "smash",
                     ]
                 },
             ],
@@ -847,6 +845,7 @@ function getEnemies(){
                 {
                     "name": "Trample",
                     "effect": "Can only be used if not in melee. Cannot take action. Increases charge speed to two tiles and allows the boarian to trample enemies the run over. Trampled enemies take 6d6 smash damage.",
+                    
                 },
             ]
         },
