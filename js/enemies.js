@@ -704,7 +704,7 @@ function getEnemies() {
     },
     {
       name: "Squid",
-      description: "Squid are large amphibious carnivores, hunting along coastlines and mixed-water river deltas. It has elastic tentacles which stretch unnaturally.",
+      description: "Squid are large amphibious apex predators, hunting alone along coastlines and mixed-water river deltas. It has elastic tentacles which stretch unnaturally.",
       image: "amphisquid.png",
       stats: {
         str: 20,
@@ -716,14 +716,9 @@ function getEnemies() {
       weaknesses: ["cut", "volt", "nuke", "light"],
       attacks: [
         {
-          name: "Spear",
-          damage: "2-2-1",
-          "damage types": ["stab"],
-        },
-        {
-          name: "Zap",
-          damage: "2-2-1",
-          "damage types": ["volt", "neural"],
+          name: "Slap",
+          damage: "3-3-3",
+          "damage types": ["smash, pain"],
         },
       ],
       actions: [
@@ -733,11 +728,15 @@ function getEnemies() {
         },
         {
           name: "Devour",
-          effect: "The squid consumes one melee opponent which is also grappled. The devoured victim becomes unconscious, and takes 2d4 ooze damage each turn. The squid regurgitates the devoured victim if ",
+          effect: "The squid consumes one melee opponent which is also grappled. The devoured victim becomes unconscious, and takes 2d4 ooze damage each turn. The squid regurgitates the devoured victim if it takes critical damage.",
         },
         {
-          name: "Mental surge",
-          effect: "On failed WIL, enemy cannot assist or do ranged attack.",
+          name: "Harden",
+          effect: "Gain 1 armor, and mitigate 1 weakness.",
+        },
+        {
+          name: "Massive slappery",
+          effect: "When using slap, enemies on the same tile as the target, and the target, suffer knockback on a failed STR.",
         },
       ],
     },
