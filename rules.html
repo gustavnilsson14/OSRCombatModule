@@ -217,34 +217,34 @@
             border-radius: 20px;
             margin-top: 8px;
             position: relative;
-            height: 350px;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
         }
-        .black-bg img{
-            object-fit: contain;
-            object-position: left;
-            padding: 40px 40px 40px 10px;
-            width: calc(100% - 80px);
-            height: calc(100% - 80px);
-        }
-        .black-bg:last-child img{
-            padding: 40px 10px 40px 40px;
-            object-position: right;
+        .black-bg background-image{
+            display: flex;
+            flex-direction: column;
+            align-self: center;
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            width: 50%;
+            height: 80%;
         }
         .black-bg text{
-            position: absolute;
             display: flex;
+            flex-direction: column;
+            justify-content: center;
             text-align: right;
-            top: 10px;
-            right: 20px;
-            width: calc(100% - 40px);
-            height: calc(100% - 20px);
+            padding: 20px;
+            width: calc(50%);
         }
         .black-bg:last-child text{
             text-align: left;
-            left: 30px;
         }
         .black-bg text p{
             font-size: 14px;
+            margin: 0;
         }
         gear{
             display: flex;
@@ -1079,10 +1079,10 @@
                 <h3>Wastelander</h3>
                 <row class="internal">
                     <box class="no-border black-bg">
-                        <img src="img/wastelander-removebg-preview.png" alt="">
+                        <background-image style="background-image:url(img/wastelander-removebg-preview.png)"></background-image>
                         <text>
-                            <p>Life is difficult across the desert wastes of the new world, yet finds a way. <br> The few resources here are <br> under constant threat from <br> brigands and bandits, due to <br>their difficulty to protect,<br> but also their <br>value. Apart from raids, <br>denizens of the wastes also<br> have to deal with feral cacti<br>, great antlions, and shellslugs, <br>all dangerous wildlife.<br>
-                            Old, heavily custom built<br> motorized vehicles are the <br>common way of transportation here.<br>They are sturdy and can take <br>the sand without a problem.
+                            <p>Life is difficult across the desert wastes of the new world, yet finds a way.  The few resources here are  under constant threat from  brigands and bandits, due to their difficulty to protect, but also their value. Apart from raids, denizens of the wastes also have to deal with feral cacti, great antlions, and shellslugs, all dangerous wildlife.
+                            Old, heavily custom built motorized vehicles are the common way of transportation here.They are sturdy and can take the sand without a problem.
                             </p>
                         </text>
                     </box>
@@ -1226,14 +1226,14 @@
                             </info-row>
                         </info-list>
                     </box>
-                    <box class="no-border black-bg">
-                        <img src="img/scavenger-removebg-preview.png" alt="">  
+                    <box class="no-border black-bg"> 
                         <text>
                             <p>
-                                The people living in the cities of the old world are commonly known as scavengers, or scavs for short. They are quite<br> sceptical of outsiders of their <br>small tribes, but form tight <br>loyalties and friendships once <br>they accept new blood. Scrap, <br>doodads and trash is plenty<br> in the ruins, so resources<br> are plenty for crafting. <br>
-                                Food, and drinking water is<br> more scarce as the soil is bad <br>for farming, and water usually <br>floods then flows off. <br> Stockpiled food also has a tendency <br>to attract roidrats, jellies, or raids from Saurian tribes.
+                                The people living in the cities of the old world are commonly known as scavengers, or scavs for short. They are quite sceptical of outsiders of their small tribes, but form tight loyalties and friendships once they accept new blood. Scrap, doodads and trash is plenty in the ruins, so resources are plenty for crafting. 
+                                Food, and drinking water is more scarce as the soil is bad for farming, and water usually floods then flows off.  Stockpiled food also has a tendency to attract roidrats, jellies, or raids from Saurian tribes.
                             </p>
                         </text>  
+                        <background-image style="background-image:url(img/scavenger-removebg-preview.png)"></background-image>
                     </box>
                 </row>
             </box>
@@ -1242,9 +1242,9 @@
                 <h3>Conclave</h3>
                 <row class="internal">
                     <box class="no-border black-bg">
-                        <img src="img/civvie-removebg-preview.png" alt="">    
+                        <background-image style="background-image:url(img/civvie-removebg-preview.png)"></background-image>
                         <text>
-                            <p>Where you find good soil, clean groundwater, and less contaminants, you  will find <br>that small authoritarian settlements <br>form naturally, which are commonly <br>called conclaves. These vary in <br>alignment when it comes to ethics,<br> but always strictly enforce their<br> laws. Many conclaves are indifferent <br>of outsiders, viewing them as lower <br>caste, and of less value than the<br> conclave citizens. While heavily <br>onset by raiders, conclaves are <br>usually equipped for the task, <br>with quality defenses prepared for <br>the inevitable invasions.</p>
+                            <p>Where you find good soil, clean groundwater, and less contaminants, you  will find that small authoritarian settlements form naturally, which are commonly called conclaves. These vary in alignment when it comes to ethics, but always strictly enforce their laws. Many conclaves are indifferent of outsiders, viewing them as lower caste, and of less value than the conclave citizens. While heavily onset by raiders, conclaves are usually equipped for the task, with quality defenses prepared for the inevitable invasions.</p>
                         </text>
                     </box>
                     <box class="no-border">
@@ -1338,11 +1338,11 @@
                             </info-row>
                         </info-list>
                     </box>
-                    <box class="no-border black-bg">
-                        <img src="img/zone.png" alt="">    
+                    <box class="no-border black-bg">   
                         <text>
-                            <p>Traveling the radioactive, toxic, and barren zones of the new world is a dangerous life. Here you find the bravest <br> explorers, most pious believers, <br> and a lot of mentally deranged <br> people, as well as mutants <br> and dangerous artificial <br> demigods of the old world. <br> The zone has neither clean <br> food or water, but the most <br> valuable, and curious <br> artifacts. Venture too deep <br> and you will find the <br> Deadlands, where you will die <br> to heavy radiation, test <br> dummies, or the feared Chrome pyramid.</p>
+                            <p>Traveling the radioactive, toxic, and barren zones of the new world is a dangerous life. Here you find the bravest  explorers, most pious believers,  and a lot of mentally deranged  people, as well as mutants  and dangerous artificial  demigods of the old world.  The zone has neither clean  food or water, but the most  valuable, and curious  artifacts. Venture too deep  and you will find the  Deadlands, where you will die  to heavy radiation, test  dummies, or the feared Chrome pyramid.</p>
                         </text>
+                        <background-image style="background-image:url(img/zone.png)"></background-image>
                     </box>
                 </row>
             </box>
@@ -1351,9 +1351,9 @@
                 <h3>Swamp People</h3>
                 <row class="internal">
                     <box class="no-border black-bg">
-                        <img src="img/the-great-escape-andre-harris-removebg-preview.png" alt="">  
+                        <background-image style="background-image:url(img/the-great-escape-andre-harris-removebg-preview.png)"></background-image>
                         <text>
-                            <p>The sour swamps of the new world are brimming with life adapted to the new conditions. Swamp People live and in some manner thrive here, a generally spiritual yet <br>rough group. The Swamp People’s <br>primary trait is their relation<br> to, and handling of the wildlife <br> in the new world swamps, which <br>also in many cases is their <br>livelihood. To the outsider, the <br>swamp is often a deathtrap. Many<br> creatures here lay in ambush,<br> and a failure to read the signs<br> will cause a wanderer to be either <br>consumed by swamp kelp, captured by <br>the gators, eaten by ticks, crayfish, or leeches, or to just drown in a whirlpool.</p>
+                            <p>The sour swamps of the new world are brimming with life adapted to the new conditions. Swamp People live and in some manner thrive here, a generally spiritual yet rough group. The Swamp People’s primary trait is their relation to, and handling of the wildlife  in the new world swamps, which also in many cases is their livelihood. To the outsider, the swamp is often a deathtrap. Many creatures here lay in ambush, and a failure to read the signs will cause a wanderer to be either consumed by swamp kelp, captured by the gators, eaten by ticks, crayfish, or leeches, or to just drown in a whirlpool.</p>
                         </text>  
                     </box>
                     <box class="no-border">
@@ -1426,10 +1426,10 @@
                     </box>
                     
                     <box class="no-border black-bg">
-                        <img src="img/android-removebg-preview.png" alt="">  
                         <text>
-                            <p>Sentient remnants of the old world, super quality at their time, but after centuries without repairs are a dying kind. Androids are self replicating given the conditions to do so, but after the collapse this has not been so. Severed from the network, the local auxiliary AI’s took over the individual android bodies, as the decades <br> passed by they evolved<br> into individuals. <br>Usually, androids <br>are met with <br>courtesy, but <br>restraint. Many humans either push <br>them away, or try to exploit them. Few friendship bonds are formed with androids, even though it is certainly possible.</p>
+                            <p>Sentient remnants of the old world, super quality at their time, but after centuries without repairs are a dying kind. Androids are self replicating given the conditions to do so, but after the collapse this has not been so. Severed from the network, the local auxiliary AI’s took over the individual android bodies, as the decades  passed by they evolved into individuals. Usually, androids are met with courtesy, but restraint. Many humans either push them away, or try to exploit them. Few friendship bonds are formed with androids, even though it is certainly possible.</p>
                         </text>  
+                        <background-image style="background-image:url(img/android-removebg-preview.png)"></background-image>
                     </box>
                 </row>
             </box>
@@ -1438,9 +1438,9 @@
                 <h3>Synthetic</h3>
                 <row class="internal">
                     <box class="no-border black-bg">
-                        <img src="img/synthetic-removebg-preview.png" alt="">   
+                        <background-image style="background-image:url(img/synthetic-removebg-preview.png)"></background-image>   
                         <text>
-                            <p>Designer made, ageless, and peerless. Synthetic humans are amazing creatures, yet they more than often suffer from <br>a lack of direction. If this is <br>a byproduct of their long lifespan,<br> or if they were made this way<br> anyone who could say is long <br>since dead. Synthetics are <br>normally shun as soulless and <br>unpredictable, which is <br>sometimes all too correct. <br>Those who are not, may <br>grow to lead groups or <br>settlements to great <br>futures, but these are <br>few indeed. Prone to madness and <br>depression, most synthetics wander alone.</p>
+                            <p>Designer made, ageless, and peerless. Synthetic humans are amazing creatures, yet they more than often suffer from a lack of direction. If this is a byproduct of their long lifespan, or if they were made this way anyone who could say is long since dead. Synthetics are normally shun as soulless and unpredictable, which is sometimes all too correct. Those who are not, may grow to lead groups or settlements to great futures, but these are few indeed. Prone to madness and depression, most synthetics wander alone.</p>
                         </text> 
                     </box>
                     <box class="no-border">
