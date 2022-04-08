@@ -27,7 +27,7 @@
       <button id="expand">EXPAND</button>
       <button id="export">EXPORT</button>
       <button id="import">IMPORT</button>
-      <textarea id="import-data"></textarea>
+      <textarea id="import-data" placeholder="data to import"></textarea>
       <selected-hex>
         <h4>Position: <pos></pos></h4>
 
@@ -55,6 +55,15 @@
       </inner>
     </hex>
     <map-frame>
+      <instructions>
+        <ul>
+          <li>click to select tile</li>
+          <li>shift-click to select multiple tiles</li>
+          <li>use expand to create more tiles</li>
+          <li>export copies map data to your clipboard</li>
+          <li>import creates map from datain the textarea underneath</li>
+        </ul>
+      </instructions>
       <map>
         <clouds></clouds>
         <map-inner> </map-inner>
