@@ -1,4 +1,4 @@
-var selectedHex;
+var selectedHexes;
 
 var nav;
 var mapViewport;
@@ -13,6 +13,7 @@ var iconTemplate;
 var textureTemplate;
 document.onreadystatechange = function () {
   if (document.readyState != "complete") return;
+  selectedHexes = [];
   selectedHexContainer = document.querySelector("selected-hex");
   mapViewport = document.querySelector("map");
   mapContainer = document.querySelector("map-inner");
@@ -98,7 +99,7 @@ function getNewHexParent(newHexes, newHex) {
   return getRandomFrom(neighbors);
 }
 function centerView(behaviour = "auto") {
-  var hex = selectedHex;
+  var hex = getFirstSelectedHex();
   if (!hex) hex = document.querySelector('hex[posx="0"][posy="0"]');
   hex.scrollIntoView({
     behavior: behaviour,
@@ -118,7 +119,7 @@ function bindHexes() {
       hex.setAttribute("posY", currentRowIndex);
       var hexLambda = (e) => {
         e.stopPropagation();
-        onHexSelected(hex);
+        onHexSelected(hex, e.shiftKey);
       };
       hex.removeEventListener("click", hexLambda);
       hex.addEventListener("click", hexLambda);
@@ -126,17 +127,24 @@ function bindHexes() {
     currentRowIndex++;
   });
 }
-function onHexSelected(hex) {
-  deSelectHex();
-  selectedHex = hex;
-  selectedHex.classList.add("selected");
+function getFirstSelectedHex() {
+  if (selectedHexes.length > 0) return selectedHexes[0];
+  return null;
+}
+function onHexSelected(hex, multiSelect) {
+  if (!multiSelect) deSelectHex();
+  if (selectedHexes.indexOf(hex) != -1) return;
+  selectedHexes.push(hex);
+  hex.classList.add("selected");
   showHexDetails(hex);
   centerView("smooth");
 }
 function deSelectHex() {
-  if (!selectedHex) return;
   selectedHexContainer.classList.remove("visible");
-  selectedHex.classList.remove("selected");
+  selectedHexes.forEach((hex) => {
+    hex.classList.remove("selected");
+  });
+  selectedHexes = [];
 }
 function showHexDetails(hex) {
   selectedHexContainer.classList.add("visible");
@@ -159,36 +167,56 @@ function bindHexDetailsControls() {
   var iconButtons = document.querySelectorAll("icon:not(.template)");
   iconButtons.forEach((iconButton) => {
     iconButton.addEventListener("click", () => {
-      if (!selectedHex) return;
       var current = iconsContainer.querySelector(".selected");
       if (current) current.classList.remove("selected");
       iconButton.classList.add("selected");
-      selectedHex.setAttribute("icon", iconButton.getAttribute("path"));
-      renderHex(selectedHex);
+      selectedHexes.forEach((hex) => {
+        hex.setAttribute("icon", iconButton.getAttribute("path"));
+        renderHex(hex);
+      });
     });
   });
   var textureButtons = document.querySelectorAll("texture:not(.template)");
   textureButtons.forEach((textureButton) => {
     textureButton.addEventListener("click", () => {
-      if (!selectedHex) return;
       var current = texturesContainer.querySelector(".selected");
       if (current) current.classList.remove("selected");
       textureButton.classList.add("selected");
-      selectedHex.setAttribute("texture", textureButton.getAttribute("path"));
-      renderHex(selectedHex);
+      selectedHexes.forEach((hex) => {
+        hex.setAttribute("texture", textureButton.getAttribute("path"));
+        renderHex(hex);
+      });
     });
   });
   var nameInput = document.querySelector("input[name-input]");
   nameInput.addEventListener("input", () => {
-    if (!selectedHex) return;
-    selectedHex.setAttribute("name", nameInput.value);
-    renderHex(selectedHex);
+    selectedHexes.forEach((hex) => {
+      hex.setAttribute("name", nameInput.value);
+      renderHex(hex);
+    });
+  });
+  var tintInput = document.querySelector("input[tint-input]");
+  tintInput.addEventListener("input", () => {
+    selectedHexes.forEach((hex) => {
+      hex.setAttribute("tint", tintInput.value);
+      renderHex(hex);
+    });
+  });
+  var tintOpacityInput = document.querySelector("input[tint-opacity-input]");
+  tintOpacityInput.addEventListener("input", () => {
+    selectedHexes.forEach((hex) => {
+      hex.setAttribute("tint-opacity", tintOpacityInput.value);
+      renderHex(hex);
+    });
   });
 }
 
 function renderHex(hex) {
   hex.querySelector("name").innerHTML = hex.getAttribute("name");
   renderIcon(hex);
+  var tint = hex.querySelector("tint");
+  tint.style.backgroundColor = hex.getAttribute("tint");
+  tint.style.opacity = hex.getAttribute("tint-opacity");
   hex.style.backgroundImage = `url(img/map/${hex.getAttribute("texture")})`;
 }
 function renderIcon(hex) {

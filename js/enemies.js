@@ -26,7 +26,8 @@ function getEnemies() {
       actions: [
         {
           name: "psychic vortex",
-          effect: "Creates a phychic vortex on a tile. Passing through, or ending a turn inside the vortex deals 2d4 neural damage. When damaged, on failed WIL, immediately stops, and cannot exit the vortex until spending a TA to exit. Recharges on a 4",
+          effect:
+            "Creates a phychic vortex on a tile. Passing through, or ending a turn inside the vortex deals 2d4 neural damage. When damaged, on failed WIL, immediately stops, and cannot exit the vortex until spending a TA to exit. Recharges on a 4",
         },
         {
           name: "drain power",
@@ -68,7 +69,8 @@ function getEnemies() {
       actions: [
         {
           name: "blindsight",
-          effect: "The moledog uses its heightened secondary senses to anticipate, and evade danger. It cannot attack, but ranged attacks deal one less dice of the dogs choosing",
+          effect:
+            "The moledog uses its heightened secondary senses to anticipate, and evade danger. It cannot attack, but ranged attacks deal one less dice of the dogs choosing",
         },
         {
           name: "burrow",
@@ -268,7 +270,8 @@ function getEnemies() {
       actions: [
         {
           name: "Lightning Strike",
-          effect: "Roll 1d4, usable on 4. At the end of the round, a lightning strikes a tile. Combatants on that tile, and adjacent ones take dealing 3d6 volt, and blast damage on a failed DEX.",
+          effect:
+            "Roll 1d4, usable on 4. At the end of the round, a lightning strikes a tile. Combatants on that tile, and adjacent ones take dealing 3d6 volt, and blast damage on a failed DEX.",
         },
         {
           name: "Stasis",
@@ -280,7 +283,8 @@ function getEnemies() {
         },
         {
           name: "Static field",
-          effect: "Roll 1d4, usable on 3. A single tile becomes filled with static electricity. At the start of turn, or when entering, combatants inside take 2d4 volt damage",
+          effect:
+            "Roll 1d4, usable on 3. A single tile becomes filled with static electricity. At the start of turn, or when entering, combatants inside take 2d4 volt damage",
         },
       ],
     },
@@ -357,7 +361,8 @@ function getEnemies() {
       actions: [
         {
           name: "Attach",
-          effect: "Attach to a melee enemy on failed DEX, moving with them. Beak, and tentacle attacks have advantage, and enemy can only melee attack the owltopus.",
+          effect:
+            "Attach to a melee enemy on failed DEX, moving with them. Beak, and tentacle attacks have advantage, and enemy can only melee attack the owltopus.",
         },
         {
           name: "Hoot",
@@ -399,7 +404,8 @@ function getEnemies() {
       actions: [
         {
           name: "Trick blades",
-          effect: "On successful DEX, move twice each round when charging or retreating. when arriving at target, deal 1d8 extra melee damage. On fail, no move, or attack first turn.",
+          effect:
+            "On successful DEX, move twice each round when charging or retreating. when arriving at target, deal 1d8 extra melee damage. On fail, no move, or attack first turn.",
         },
         {
           name: "Superior dash",
@@ -537,7 +543,8 @@ function getEnemies() {
       actions: [
         {
           name: "Constrict",
-          effect: "On successful STR, constrict the enemy, who can escape with successful STR as a TA. Constricted cannot move, and eel can only melee attack constricted, with advantage.",
+          effect:
+            "On successful STR, constrict the enemy, who can escape with successful STR as a TA. Constricted cannot move, and eel can only melee attack constricted, with advantage.",
         },
         {
           name: "Slither",
@@ -545,7 +552,8 @@ function getEnemies() {
         },
         {
           name: "Mount",
-          effect: "If mounted, the zone eel cannot take TA. When mounted, both rider and mount take damage to endurance. Unless mounted, the eel will act on instinct.",
+          effect:
+            "If mounted, the zone eel cannot take TA. When mounted, both rider and mount take damage to endurance. Unless mounted, the eel will act on instinct.",
         },
       ],
     },
@@ -580,7 +588,8 @@ function getEnemies() {
         },
         {
           name: "Tendril flurry",
-          effect: "Target a melee enemy, and attack twice per turn with tendrils. Cannot set movement plan, but follows the target to always stay in melee range. Recharges on 4.",
+          effect:
+            "Target a melee enemy, and attack twice per turn with tendrils. Cannot set movement plan, but follows the target to always stay in melee range. Recharges on 4.",
         },
         {
           name: "Glare",
@@ -623,13 +632,15 @@ function getEnemies() {
         },
         {
           name: "Radioactive Slime",
-          effect: "Any tile the Lapagerien starts its turn on is covered by slime. Any combatant susceptile to nuke damage, take 1d6 nuke damage when starting their turn on the slime.",
+          effect:
+            "Any tile the Lapagerien starts its turn on is covered by slime. Any combatant susceptile to nuke damage, take 1d6 nuke damage when starting their turn on the slime.",
         },
       ],
     },
     {
       name: "Albino Boarian",
-      description: "A giant mutated albino boar. They are hornless, but have retractable bone spears on their front legs, which they also use as hands. They are omnivores",
+      description:
+        "A giant mutated albino boar. They are hornless, but have retractable bone spears on their front legs, which they also use as hands. They are omnivores",
       image: "boarians.jpg",
       stats: {
         str: 16,
@@ -654,13 +665,15 @@ function getEnemies() {
       actions: [
         {
           name: "Trample",
-          effect: "Can only be used if not in melee. Cannot take action. Increases charge speed to two tiles and allows the boarian to trample enemies the run over. Trampled enemies take 6d6 smash damage.",
+          effect:
+            "Can only be used if not in melee. Cannot take action. Increases charge speed to two tiles and allows the boarian to trample enemies the run over. Trampled enemies take 6d6 smash damage.",
         },
       ],
     },
     {
       name: "Sluggan",
-      description: "Snail people, 1.2m in height, weigh around 100kg, 125 with their shells. Has four tendrils it uses as arms. They communicate telepathically at short range.",
+      description:
+        "Snail people, 1.2m in height, weigh around 100kg, 125 with their shells. Has four tendrils it uses as arms. They communicate telepathically at short range.",
       image: "sluggan.png",
       stats: {
         str: 6,
@@ -704,7 +717,8 @@ function getEnemies() {
     },
     {
       name: "Squid",
-      description: "Squid are large amphibious apex predators, hunting alone along coastlines and mixed-water river deltas. It has elastic tentacles which stretch unnaturally.",
+      description:
+        "Squid are large amphibious apex predators, hunting alone along coastlines and mixed-water river deltas. It has elastic tentacles which stretch unnaturally.",
       image: "amphisquid.png",
       stats: {
         str: 20,
@@ -724,11 +738,136 @@ function getEnemies() {
       actions: [
         {
           name: "Grapple",
-          effect: "The squid can grapple an opponent at range. Each turn while grappled, the victim is pulled towards the squid, and cannot take tactical action. At the start of each round, on successful DEX, the victim slithers loose. If the squid takes critical damage, its grip loosens, and the victim escapes. The squid can only grapple one opponent. Recharges on 4",
+          effect:
+            "The squid can grapple an opponent at range. Each turn while grappled, the victim is pulled towards the squid, and cannot take tactical action. At the start of each round, on successful DEX, the victim slithers loose. If the squid takes critical damage, its grip loosens, and the victim escapes. The squid can only grapple one opponent. Recharges on 4",
         },
         {
           name: "Devour",
-          effect: "The squid consumes one melee opponent which is also grappled. The devoured victim becomes unconscious, and takes 2d4 ooze damage each turn. The squid regurgitates the devoured victim if it takes critical damage.",
+          effect:
+            "The squid consumes one melee opponent which is also grappled. The devoured victim becomes unconscious, and takes 2d4 ooze damage each turn. The squid regurgitates the devoured victim if it takes critical damage.",
+        },
+        {
+          name: "Harden",
+          effect: "Gain 1 armor, and mitigate 1 weakness.",
+        },
+        {
+          name: "Massive slappery",
+          effect: "When using slap, enemies on the same tile as the target, and the target, suffer knockback on a failed STR.",
+        },
+      ],
+    },
+    {
+      name: "Great angler",
+      description:
+        "Squid are large amphibious apex predators, hunting alone along coastlines and mixed-water river deltas. It has elastic tentacles which stretch unnaturally.",
+      image: "angler.png",
+      stats: {
+        str: 20,
+        dex: 8,
+        wil: 2,
+        en: 182,
+        av: 1,
+      },
+      weaknesses: ["cut", "volt", "nuke", "light"],
+      attacks: [
+        {
+          name: "Slap",
+          damage: "3-3-3",
+          "damage types": ["smash, pain"],
+        },
+      ],
+      actions: [
+        {
+          name: "Grapple",
+          effect:
+            "The squid can grapple an opponent at range. Each turn while grappled, the victim is pulled towards the squid, and cannot take tactical action. At the start of each round, on successful DEX, the victim slithers loose. If the squid takes critical damage, its grip loosens, and the victim escapes. The squid can only grapple one opponent. Recharges on 4",
+        },
+        {
+          name: "Devour",
+          effect:
+            "The squid consumes one melee opponent which is also grappled. The devoured victim becomes unconscious, and takes 2d4 ooze damage each turn. The squid regurgitates the devoured victim if it takes critical damage.",
+        },
+        {
+          name: "Harden",
+          effect: "Gain 1 armor, and mitigate 1 weakness.",
+        },
+        {
+          name: "Massive slappery",
+          effect: "When using slap, enemies on the same tile as the target, and the target, suffer knockback on a failed STR.",
+        },
+      ],
+    },
+    {
+      name: "Angoliant",
+      description:
+        "Squid are large amphibious apex predators, hunting alone along coastlines and mixed-water river deltas. It has elastic tentacles which stretch unnaturally.",
+      image: "angolian.png",
+      stats: {
+        str: 20,
+        dex: 8,
+        wil: 2,
+        en: 182,
+        av: 1,
+      },
+      weaknesses: ["cut", "volt", "nuke", "light"],
+      attacks: [
+        {
+          name: "Slap",
+          damage: "3-3-3",
+          "damage types": ["smash, pain"],
+        },
+      ],
+      actions: [
+        {
+          name: "Grapple",
+          effect:
+            "The squid can grapple an opponent at range. Each turn while grappled, the victim is pulled towards the squid, and cannot take tactical action. At the start of each round, on successful DEX, the victim slithers loose. If the squid takes critical damage, its grip loosens, and the victim escapes. The squid can only grapple one opponent. Recharges on 4",
+        },
+        {
+          name: "Devour",
+          effect:
+            "The squid consumes one melee opponent which is also grappled. The devoured victim becomes unconscious, and takes 2d4 ooze damage each turn. The squid regurgitates the devoured victim if it takes critical damage.",
+        },
+        {
+          name: "Harden",
+          effect: "Gain 1 armor, and mitigate 1 weakness.",
+        },
+        {
+          name: "Massive slappery",
+          effect: "When using slap, enemies on the same tile as the target, and the target, suffer knockback on a failed STR.",
+        },
+      ],
+    },
+    {
+      name: "Massive Landwhale",
+      description:
+        "Squid are large amphibious apex predators, hunting alone along coastlines and mixed-water river deltas. It has elastic tentacles which stretch unnaturally.",
+      image: "landwhale.png",
+      stats: {
+        str: 20,
+        dex: 8,
+        wil: 2,
+        en: 182,
+        av: 1,
+      },
+      weaknesses: ["cut", "volt", "nuke", "light"],
+      attacks: [
+        {
+          name: "Slap",
+          damage: "3-3-3",
+          "damage types": ["smash, pain"],
+        },
+      ],
+      actions: [
+        {
+          name: "Grapple",
+          effect:
+            "The squid can grapple an opponent at range. Each turn while grappled, the victim is pulled towards the squid, and cannot take tactical action. At the start of each round, on successful DEX, the victim slithers loose. If the squid takes critical damage, its grip loosens, and the victim escapes. The squid can only grapple one opponent. Recharges on 4",
+        },
+        {
+          name: "Devour",
+          effect:
+            "The squid consumes one melee opponent which is also grappled. The devoured victim becomes unconscious, and takes 2d4 ooze damage each turn. The squid regurgitates the devoured victim if it takes critical damage.",
         },
         {
           name: "Harden",

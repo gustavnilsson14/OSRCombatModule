@@ -1,0 +1,239 @@
+container {
+  display: flex;
+  width: 40vw;
+  min-width: 500px;
+  margin: 0 auto;
+  flex-direction: column;
+}
+generators,
+generator {
+  display: flex;
+  margin: 0 auto;
+  flex-direction: column;
+}
+generators {
+  width: 100%;
+  border-top: 1px solid black;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+}
+generator {
+  border-bottom: 1px solid black;
+  width: calc(100% - 60px);
+  padding: 30px;
+}
+generator controls {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+generator controls > * {
+  display: flex;
+  justify-content: center;
+  min-width: calc(33% - 11px);
+  flex: 1;
+  flex-grow: 1;
+}
+generator controls button {
+  min-width: 100%;
+}
+generator controls input {
+  display: flex;
+  padding: 0;
+}
+generator controls checkbox {
+  display: flex;
+  border: 1px dotted black;
+  justify-content: space-between;
+  padding: 2px;
+  max-width: calc(33% - 11px);
+}
+generator controls checkbox * {
+  height: 100%;
+  margin: 0;
+  display: flex;
+}
+generator controls checkbox label {
+  flex-grow: 1;
+}
+generator controls checkbox input {
+  flex-grow: 1;
+}
+nav controls input {
+  width: 100%;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 0px;
+}
+results {
+  overflow-x: hidden;
+}
+results > div {
+  animation-name: slidein;
+  animation-duration: 0.5s;
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-top: 0px;
+  margin-bottom: 5px;
+}
+
+results > div div {
+  margin-left: 10px;
+}
+
+results index {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+}
+results index * {
+  display: flex;
+  gap: 5px;
+}
+@keyframes slidein {
+  from {
+    opacity: 0;
+    transform: translateX(10%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+}
+.drag-sort-active {
+  background: transparent;
+  color: transparent;
+}
+enemies {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+enemies controls {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+enemy {
+  padding: 10px;
+  border: 1px solid black;
+  min-width: 200px;
+  flex: 1;
+  flex-grow: 1;
+  position: relative;
+}
+enemy * {
+  display: flex;
+  flex-direction: column;
+}
+enemy description {
+  border-bottom: 1px solid black;
+  padding-right: 10px;
+  padding-left: 10px;
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+  margin-left: -10px;
+  margin-right: -10px;
+}
+enemy row {
+  flex-direction: row;
+
+  justify-content: space-around;
+}
+enemy row box {
+  margin: 0 10px;
+  flex: 1;
+  flex-grow: 1;
+}
+enemy .stats {
+  flex: 0.1;
+}
+enemy stat {
+  flex-direction: row;
+}
+enemy stat input {
+  width: 50px;
+}
+enemy .attacks {
+  flex: 1;
+}
+enemy attacks {
+  flex-direction: row;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+enemy attacks attack {
+  border: 1px solid black;
+  padding: 5px;
+  min-width: 60px;
+  flex: 1;
+}
+enemy actions action {
+  flex-direction: column;
+}
+enemy weaknesses {
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 5px;
+  padding: 5px 0px;
+}
+enemy weaknesses weakness {
+  text-transform: uppercase;
+  font-size: 14px;
+}
+enemy actions {
+  gap: 10px;
+}
+enemy actions action h4 {
+  text-align: center;
+}
+enemy actions action effect:first-letter {
+  text-transform: uppercase;
+}
+enemy enemy-image {
+  margin-top: 20px;
+  width: 100%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: radial-gradient(white, black);
+}
+enemy enemy-image img {
+  padding: 40px;
+  filter: drop-shadow(20px 20px 20px rgba(0, 0, 0, 1));
+}
+enemy h2 {
+  text-align: center;
+}
+enemy h2,
+enemy h3,
+enemy h4,
+enemy h5,
+enemy h6 {
+  margin-bottom: 2px;
+  padding: 0px;
+  text-transform: uppercase;
+}
+enemy button.remove {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border-radius: 50%;
+  justify-content: center;
+  text-align: center;
+}
+div.inner {
+  display: flex;
+  flex-direction: column;
+}

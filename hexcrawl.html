@@ -32,7 +32,13 @@
         <h4>Position: <pos></pos></h4>
 
         <label for="tile-name"><h4>Title</h4></label>
-        <input id="tile-name" name-input placeholder="Tile title" />
+        <input id="tile-name" name-input placeholder="Title" />
+
+        <label for="tile-tint"><h4>Tint</h4></label>
+        <input type="color" id="tile-tint" tint-input placeholder="Tint" />
+
+        <label for="tile-tint-opacity"><h4>Tint Opacity</h4></label>
+        <input step="0.1" type="number" min="0" max="1" value="0" id="tile-tint-opacity" tint-opacity-input placeholder="Tint" />
 
         <h4>Icon</h4>
         <icons> </icons>
@@ -41,6 +47,7 @@
       </selected-hex>
     </nav>
     <hex id="hex-template" class="template">
+      <tint></tint>
       <inner>
         <icon></icon>
         <shadow></shadow>

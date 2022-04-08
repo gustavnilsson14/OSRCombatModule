@@ -20,10 +20,7 @@ function getLocationObject() {
     "Bomber, the warlord",
     "Dawn of the Drift",
   ];
-  var syntheticWanderers = [
-    "Surge Donovan, mage hunter",
-    "Koid, mercenary loner",
-  ];
+  var syntheticWanderers = ["Surge Donovan, mage hunter", "Koid, mercenary loner", "Trinket, artifact peddler", "Influx, plague doctor"];
   var androidWanderers = [
     "Bmo, sentient gaming droid",
     "Jack, electrical utility droid",
@@ -123,6 +120,8 @@ function getLocationObject() {
         "Dojo",
         "Boxing gym",
         "Gym",
+        "Pizzeria",
+        "Coffeeshop",
       ],
       "Currently a": [
         {
@@ -132,13 +131,7 @@ function getLocationObject() {
         },
         {
           Name: ["Hideout", "Fortress"],
-          "Inhabited by": [
-            "Raiders",
-            "Brigands",
-            "Mercenaries",
-            "Gogo gang",
-            "Roller thugs",
-          ],
+          "Inhabited by": ["Raiders", "Brigands", "Mercenaries", "Gogo gang", "Roller thugs"],
           "Current Endeavor": [
             "Out on mission",
             "Preparing mission",
@@ -179,20 +172,12 @@ function getLocationObject() {
         },
         {
           Name: ["Gambling den", "Dogfighting pit"],
-          "Patrons of note": [
-            new GetSomeArray([...fightersOfNote, ...raceDrivers], 5),
-          ],
+          "Patrons of note": [new GetSomeArray([...fightersOfNote, ...raceDrivers], 5)],
           Hoard: ["Stuff"],
         },
         {
           Name: ["Crater", "Military base", "Research lab"],
-          "Inhabited by": [
-            "Saurians",
-            "Sluggan explorers",
-            "Dormant androids",
-            "Strakers",
-            "Abandoned",
-          ],
+          "Inhabited by": ["Saurians", "Sluggan explorers", "Dormant androids", "Strakers", "Abandoned"],
           Hazard: ["Radiation", "Ooze", "Structural integrity"],
           Valuables: ["Artifacts", "Cybernetics", "Weapons", "Water reserve"],
         },
@@ -202,11 +187,7 @@ function getLocationObject() {
         {
           Name: ["Farm"],
           Produce: ["Fruit", "Roaches"],
-          "Current problem": [
-            "Kidnapped help",
-            "Disease",
-            "Sick family member",
-          ],
+          "Current problem": ["Kidnapped help", "Disease", "Sick family member"],
           Demeanor: ["Cautious", "Afraid", "Confident", "Hopeless"],
         },
         {
@@ -215,14 +196,7 @@ function getLocationObject() {
         },
         {
           Name: ["Shanty Town", "Settlement", "City"],
-          "Inhabited by": [
-            "Scavs",
-            "Scavs",
-            "Depriveds",
-            "Depriveds",
-            "Bandits",
-            "Sluggan",
-          ],
+          "Inhabited by": ["Scavs", "Scavs", "Depriveds", "Depriveds", "Bandits", "Sluggan"],
           Livelyhood: [
             "Farming",
             "Canned food scavenging",
@@ -237,14 +211,8 @@ function getLocationObject() {
             "Healthcare",
             "Chemistry and medicine",
           ],
-          "Current Event": [
-            "Hanging",
-            "Preparation for raid",
-            "Recent murder investigation",
-            "Expedition preparation",
-            "Riots",
-            "Leadership coup",
-          ],
+          "Current Event": ["Hanging", "Preparation for raid", "Recent murder investigation", "Expedition preparation", "Riots", "Leadership coup"],
+          Disposition: ["Hostile", "Sinister", "Deceptive", "Guarded", "Indifferent", "Cooperative", "Welcoming"],
         },
         {
           Name: ["Conclave"],
@@ -285,11 +253,7 @@ function getLocationObject() {
         {
           Name: "Rest stop",
           "Other visitors": [new WeightedValue(4, "None"), "Metroes", "Scavs"],
-          Resources: [
-            new WeightedValue(7, "None"),
-            new WeightedValue(2, "Stuff"),
-            "Weapon",
-          ],
+          Resources: [new WeightedValue(7, "None"), new WeightedValue(2, "Stuff"), "Weapon"],
         },
       ],
     },

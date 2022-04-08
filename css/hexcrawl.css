@@ -64,9 +64,25 @@ row hex {
   background-image: url(../img/map/gravel.jpg);
   filter: drop-shadow(3px 3px 3px #000);
 }
+row hex tint {
+  z-index: 999;
+  opacity: 0.5;
+}
+row hex:hover tint,
+row hex.selected tint {
+  opacity: 0 !important;
+}
+row hex tint::after,
+row hex tint::before {
+  background-color: inherit;
+  opacity: inherit;
+}
 row hex,
 row hex::after,
-row hex::before {
+row hex::before,
+row hex tint,
+row hex tint::after,
+row hex tint::before {
   width: 140px;
   height: 80px;
   position: relative;
@@ -78,7 +94,9 @@ row hex::before {
   animation: hexIn 1.5s;
 }
 row hex::after,
-row hex::before {
+row hex::before,
+row hex tint::after,
+row hex tint::before {
   content: "";
   position: absolute;
   left: -1px;
@@ -90,11 +108,13 @@ row hex:hover::before {
   z-index: 1001;
   background: #eee !important;
 }
-row hex::after {
+row hex::after,
+row hex tint::after {
   transform: rotateZ(60deg);
   animation: hexIn60 1.5s;
 }
-row hex::before {
+row hex::before,
+row hex tint::before {
   transform: rotateZ(-60deg);
   animation: hexIn-60 1.5s;
 }
@@ -169,6 +189,8 @@ row hex.selected inner name {
   transform: translateX(-50%) translateY(-5px) scale(1.3);
   background-color: rgba(0, 0, 0, 0);
 }
+row hex tint {
+}
 .template {
   display: none;
 }
@@ -179,7 +201,8 @@ selected-hex.visible {
   display: flex;
   flex-direction: column;
   pointer-events: all;
-  justify-content: center;
+  justify-content: flex-start;
+  height: 91vh;
 }
 selected-hex input {
   display: flex;
@@ -213,7 +236,8 @@ textures {
   flex-wrap: wrap;
   justify-content: center;
   width: calc(100% -2px);
-  height: 30vh;
+
+  flex: 1;
   gap: 5px;
   border: 1px solid black;
   margin-bottom: 5px;
