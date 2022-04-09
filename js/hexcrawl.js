@@ -29,6 +29,7 @@ document.onreadystatechange = function () {
   nav.addEventListener("click", (e) => {
     e.stopPropagation();
   });
+  bindToggles();
   createDefaultGrid();
   populateIconControls();
   populateTextureControls();
@@ -60,7 +61,7 @@ function bindExpand() {
 }
 function expand() {
   var newHexes = [];
-  var currentRows = document.querySelectorAll("row:not(.template)");
+  var currentRows = document.querySelectorAll("map row:not(.template)");
   currentRows.forEach((row) => {
     var obj = appendAndPrepend(hexTemplate, row);
     newHexes.push(obj.top);
@@ -108,8 +109,8 @@ function centerView(behaviour = "auto") {
   });
 }
 function bindHexes() {
-  var rows = document.querySelectorAll("row");
-  var currentRowIndex = Math.floor(rows.length / 2) - rows.length;
+  var rows = document.querySelectorAll("map row");
+  var currentRowIndex = Math.ceil(rows.length / 2) - rows.length;
   rows.forEach((row) => {
     var hexes = row.querySelectorAll("hex");
     var currentHexIndex = Math.floor(hexes.length / 2) - hexes.length;
@@ -148,11 +149,14 @@ function deSelectHex() {
 }
 function showHexDetails(hex) {
   selectedHexContainer.classList.add("visible");
-  var nameInput = selectedHexContainer.querySelector("input[name-input]");
+  displayHexProperties(hex);
+  /*var nameInput = selectedHexContainer.querySelector("input[name-input]");
   nameInput.value = hex.getAttribute("name");
   var positionField = selectedHexContainer.querySelector("pos");
   positionField.innerHTML = `${hex.getAttribute("posx")}:${hex.getAttribute("posy")}`;
-  selectHexGraphicsButtons(hex);
+  var descriptionField = selectedHexContainer.querySelector("textarea");
+  descriptionField.value = hex.getAttribute("description");
+  */ selectHexGraphicsButtons(hex);
 }
 function selectHexGraphicsButtons(hex) {
   selectedHexContainer.querySelectorAll(".selected").forEach((element) => {
@@ -188,26 +192,28 @@ function bindHexDetailsControls() {
       });
     });
   });
-  var nameInput = document.querySelector("input[name-input]");
-  nameInput.addEventListener("input", () => {
+  selectedHexContainer.querySelectorAll("[property]").forEach((p) => bindHexProperty(p));
+}
+function bindHexProperty(property) {
+  property.addEventListener("input", () => {
     selectedHexes.forEach((hex) => {
-      hex.setAttribute("name", nameInput.value);
+      hex.setAttribute(property.getAttribute("id"), property.value);
       renderHex(hex);
     });
   });
-  var tintInput = document.querySelector("input[tint-input]");
-  tintInput.addEventListener("input", () => {
-    selectedHexes.forEach((hex) => {
-      hex.setAttribute("tint", tintInput.value);
-      renderHex(hex);
-    });
-  });
-  var tintOpacityInput = document.querySelector("input[tint-opacity-input]");
-  tintOpacityInput.addEventListener("input", () => {
-    selectedHexes.forEach((hex) => {
-      hex.setAttribute("tint-opacity", tintOpacityInput.value);
-      renderHex(hex);
-    });
+}
+var x;
+function displayHexProperties(hex) {
+  var properties = selectedHexContainer.querySelectorAll("[property]");
+  properties.forEach((property) => {
+    switch (property.getAttribute("display")) {
+      case "innerHTML":
+        property.innerHTML = hex.getAttribute(property.getAttribute("id"));
+        break;
+      default:
+        property.value = hex.getAttribute(property.getAttribute("id"));
+        break;
+    }
   });
 }
 
@@ -285,7 +291,7 @@ function populateTextureControls() {
 }
 function exportData() {
   var data = { rows: [] };
-  var rows = document.querySelectorAll("row:not(.template)");
+  var rows = document.querySelectorAll("map row:not(.template)");
   rows.forEach((row) => {
     var rowData = { hexes: [] };
     var hexes = row.querySelectorAll("hex");
@@ -325,5 +331,33 @@ function getElementData(element) {
     data[attribute.name] = attribute.value;
   });
   return data;
+}
+function bindToggles() {
+  document.querySelectorAll("[toggle]").forEach((toggle) => {
+    var toggleClass = toggle.getAttribute("toggle");
+    var toggleState = toggle.hasAttribute("on");
+    if (!toggleClass) return;
+    if (toggleState) toggle.classList.toggle(toggleClass);
+    toggleTargets(toggle, toggleState);
+    toggle.addEventListener("click", function () {
+      toggleState = !toggleState;
+      toggleClassOn(toggle, toggleState, toggleClass);
+      toggleTargets(toggle, toggleState);
+    });
+  });
+}
+function toggleTargets(toggle, toggleState) {
+  var targets = document.querySelectorAll(toggle.getAttribute("targets"));
+  var toggleClass = toggle.getAttribute("toggle");
+  targets.forEach((target) => {
+    toggleClassOn(target, toggleState, toggleClass);
+  });
+}
+function toggleClassOn(target, state, toggleClass) {
+  if (state) {
+    target.classList.add(toggleClass);
+    return;
+  }
+  target.classList.remove(toggleClass);
 }
 window.onbeforeunload = unloadPage;

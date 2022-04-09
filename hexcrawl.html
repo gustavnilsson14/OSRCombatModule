@@ -23,22 +23,30 @@
         <texture-img></texture-img>
       </texture-inner>
     </texture>
-    <nav>
+    <nav class="in">
+      <button on class="chevronToggle" toggle="in" targets="nav"></button>
       <button id="expand">EXPAND</button>
       <button id="export">EXPORT</button>
       <button id="import">IMPORT</button>
       <textarea id="import-data" placeholder="data to import"></textarea>
       <selected-hex>
-        <h4>Position: <pos></pos></h4>
+        <h4>Position <pos display="innerHTML" property id="posx"></pos>:<pos display="innerHTML" property id="posy"></pos></h4>
 
         <label for="tile-name"><h4>Title</h4></label>
-        <input id="tile-name" name-input placeholder="Title" />
+        <input id="tile-name" property placeholder="Title" />
+        <row>
+          <box>
+            <h4>Description</h4>
+            <textarea property id="description"></textarea>
+          </box>
+          <box>
+            <label for="tile-tint"><h4>Tint</h4></label>
+            <input property type="color" id="tile-tint" placeholder="Tint" />
 
-        <label for="tile-tint"><h4>Tint</h4></label>
-        <input type="color" id="tile-tint" tint-input placeholder="Tint" />
-
-        <label for="tile-tint-opacity"><h4>Tint Opacity</h4></label>
-        <input step="0.1" type="number" min="0" max="1" value="0" id="tile-tint-opacity" tint-opacity-input placeholder="Tint" />
+            <label for="tile-tint-opacity"><h4>Tint Opacity</h4></label>
+            <input property step="0.1" type="number" min="0" max="1" value="0" id="tile-tint-opacity" placeholder="Tint" />
+          </box>
+        </row>
 
         <h4>Icon</h4>
         <icons> </icons>

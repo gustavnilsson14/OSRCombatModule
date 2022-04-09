@@ -8,7 +8,24 @@ body {
   height: 100vh;
 }
 nav {
-  width: 15vw;
+  flex: 0 1 0;
+  min-width: 24px;
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  transition: 0.3s all;
+}
+nav > *:not(button[toggle]) {
+  opacity: 0;
+  pointer-events: none;
+}
+nav.in > *:not(button[toggle]) {
+  opacity: 1;
+  pointer-events: all;
+}
+nav.in {
+  flex: 0.6 1 0;
 }
 p,
 h1,
@@ -25,16 +42,17 @@ map {
   display: block;
   gap: var(--gap);
   counter-set: row-no 0;
-  width: 70vw;
+  width: 100%;
   height: 100vh;
   overflow-x: scroll;
   overflow-y: scroll;
 }
 map-frame {
+  display: flex;
   position: relative;
   overflow: hidden;
   border: 1px solid black;
-  width: 70vw;
+  flex: 1 1 0;
   height: calc(100vh - 2px);
   background: #ddd;
 }
@@ -56,11 +74,18 @@ map-inner {
   flex-direction: column;
 }
 row {
-  counter-increment: row-no;
-  z-index: counter(row-no);
   display: flex;
   flex-direction: row;
   position: relative;
+}
+box {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 0;
+}
+map row {
+  counter-increment: row-no;
+  z-index: counter(row-no);
   height: 126px;
   gap: var(--gap);
   flex: none;
@@ -196,28 +221,29 @@ row hex.selected inner name {
   transform: translateX(-50%) translateY(-5px) scale(1.3);
   background-color: rgba(0, 0, 0, 0);
 }
-row hex tint {
-}
 .template {
   display: none;
 }
 selected-hex {
   display: none;
 }
-selected-hex.visible {
+selected-hex {
   display: flex;
   flex-direction: column;
   pointer-events: all;
   justify-content: flex-start;
-  height: 91vh;
+  min-height: 0;
+  flex: 1 1 0;
 }
 selected-hex input {
-  display: flex;
   align-self: center;
   padding: 10px;
   font-family: source;
   font-size: 18px;
   width: 80%;
+}
+selected-hex textarea {
+  flex: 1 1 0;
 }
 clouds {
   position: absolute;
@@ -243,7 +269,6 @@ textures {
   flex-wrap: wrap;
   justify-content: center;
   width: calc(100% -2px);
-
   flex: 1;
   gap: 5px;
   border: 1px solid black;
@@ -270,6 +295,17 @@ icons .selected icon-inner,
 textures .selected texture-inner {
   background-color: #dfd;
   border: 3px solid green;
+}
+button[toggle] {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+}
+button.chevronToggle::before {
+  content: ">";
+}
+button.chevronToggle.in::before {
+  content: "<";
 }
 @keyframes cloudPan {
   0% {
