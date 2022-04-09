@@ -227,7 +227,7 @@ row hex.selected inner name {
 selected-hex {
   display: none;
 }
-selected-hex {
+selected-hex.visible {
   display: flex;
   flex-direction: column;
   pointer-events: all;

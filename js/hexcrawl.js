@@ -218,12 +218,12 @@ function displayHexProperties(hex) {
 }
 
 function renderHex(hex) {
-  hex.querySelector("name").innerHTML = hex.getAttribute("name");
-  renderIcon(hex);
+  hex.querySelector("name").innerHTML = hex.getAttribute("tile-name");
   var tint = hex.querySelector("tint");
-  tint.style.backgroundColor = hex.getAttribute("tint");
-  tint.style.opacity = hex.getAttribute("tint-opacity");
+  tint.style.backgroundColor = hex.getAttribute("tile-tint");
+  tint.style.opacity = hex.getAttribute("tile-tint-opacity");
   hex.style.backgroundImage = `url(img/map/${hex.getAttribute("texture")})`;
+  renderIcon(hex);
 }
 function renderIcon(hex) {
   var iconPath = hex.getAttribute("icon");
@@ -338,7 +338,6 @@ function bindToggles() {
     var toggleState = toggle.hasAttribute("on");
     if (!toggleClass) return;
     if (toggleState) toggle.classList.toggle(toggleClass);
-    toggleTargets(toggle, toggleState);
     toggle.addEventListener("click", function () {
       toggleState = !toggleState;
       toggleClassOn(toggle, toggleState, toggleClass);
