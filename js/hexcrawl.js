@@ -29,6 +29,7 @@ document.onreadystatechange = function () {
   nav.addEventListener("click", (e) => {
     e.stopPropagation();
   });
+  bindGrabScroll();
   bindToggles();
   createDefaultGrid();
   populateIconControls();
@@ -118,12 +119,7 @@ function bindHexes() {
       currentHexIndex++;
       hex.setAttribute("posX", currentHexIndex);
       hex.setAttribute("posY", currentRowIndex);
-      var hexLambda = (e) => {
-        e.stopPropagation();
-        onHexSelected(hex, e.shiftKey);
-      };
-      hex.removeEventListener("click", hexLambda);
-      hex.addEventListener("click", hexLambda);
+      bindHexEvents(hex);
     });
     currentRowIndex++;
   });
@@ -131,6 +127,27 @@ function bindHexes() {
 function getFirstSelectedHex() {
   if (selectedHexes.length > 0) return selectedHexes[0];
   return null;
+}
+function bindHexEvents(hex) {
+  var hexInner = hex.querySelector("inner");
+  var hexClickLambda = (e) => {
+    e.stopPropagation();
+    onHexSelected(hex, e.shiftKey);
+  };
+  var hexMouseOverLambda = (e) => {
+    e.stopPropagation();
+    hex.classList.add("hover");
+  };
+  var hexMouseOutLambda = (e) => {
+    e.stopPropagation();
+    hex.classList.remove("hover");
+  };
+  hex.removeEventListener("click", hexClickLambda);
+  hex.addEventListener("click", hexClickLambda);
+  hexInner.removeEventListener("mouseover", hexMouseOverLambda);
+  hexInner.addEventListener("mouseover", hexMouseOverLambda);
+  hexInner.removeEventListener("mouseout", hexMouseOutLambda);
+  hexInner.addEventListener("mouseout", hexMouseOutLambda);
 }
 function onHexSelected(hex, multiSelect) {
   if (!multiSelect) deSelectHex();
@@ -150,13 +167,7 @@ function deSelectHex() {
 function showHexDetails(hex) {
   selectedHexContainer.classList.add("visible");
   displayHexProperties(hex);
-  /*var nameInput = selectedHexContainer.querySelector("input[name-input]");
-  nameInput.value = hex.getAttribute("name");
-  var positionField = selectedHexContainer.querySelector("pos");
-  positionField.innerHTML = `${hex.getAttribute("posx")}:${hex.getAttribute("posy")}`;
-  var descriptionField = selectedHexContainer.querySelector("textarea");
-  descriptionField.value = hex.getAttribute("description");
-  */ selectHexGraphicsButtons(hex);
+  selectHexGraphicsButtons(hex);
 }
 function selectHexGraphicsButtons(hex) {
   selectedHexContainer.querySelectorAll(".selected").forEach((element) => {
@@ -220,9 +231,10 @@ function displayHexProperties(hex) {
 function renderHex(hex) {
   hex.querySelector("name").innerHTML = hex.getAttribute("tile-name");
   var tint = hex.querySelector("tint");
+  var texture = hex.querySelector("texture");
   tint.style.backgroundColor = hex.getAttribute("tile-tint");
   tint.style.opacity = hex.getAttribute("tile-tint-opacity");
-  hex.style.backgroundImage = `url(img/map/${hex.getAttribute("texture")})`;
+  texture.style.backgroundImage = `url(img/map/${hex.getAttribute("texture")})`;
   renderIcon(hex);
 }
 function renderIcon(hex) {
@@ -358,5 +370,30 @@ function toggleClassOn(target, state, toggleClass) {
     return;
   }
   target.classList.remove(toggleClass);
+}
+function bindGrabScroll() {
+  var grabbing = false;
+  mapViewport.addEventListener("mousedown", (e) => {
+    e.stopPropagation();
+    console.log(e);
+    grabbing = true;
+  });
+  var zoom = 1;
+  mapViewport.addEventListener("wheel", (e) => {
+    e.preventDefault();
+    console.log(e);
+    var multiplier = e.deltaY > 0 ? 0.95 : 1.05;
+    zoom *= multiplier;
+    //var xOffset = mapViewport.getBoundingClientRect().x;
+    mapContainer.style.transform = `scale(${zoom})`;
+  });
+  document.addEventListener("mouseup", () => {
+    grabbing = false;
+  });
+  document.addEventListener("mousemove", (e) => {
+    if (!grabbing) return;
+    mapViewport.scrollTop -= e.movementY;
+    mapViewport.scrollLeft -= e.movementX;
+  });
 }
 window.onbeforeunload = unloadPage;

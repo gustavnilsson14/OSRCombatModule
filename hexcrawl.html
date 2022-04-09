@@ -55,12 +55,24 @@
       </selected-hex>
     </nav>
     <hex id="hex-template" class="template">
-      <tint></tint>
-      <inner>
+      <texture-container>
+        <right-tilt class="tile-mask">
+          <left-tilt class="tile-mask">
+            <vertical class="tile-mask">
+              <inner>
+                <texture></texture>
+                <tint></tint>
+                <ui></ui>
+              </inner>
+            </vertical>
+          </left-tilt>
+        </right-tilt>
+      </texture-container>
+      <content-container>
         <icon></icon>
         <shadow></shadow>
         <name></name>
-      </inner>
+      </content-container>
     </hex>
     <map-frame>
       <instructions>

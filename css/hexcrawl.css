@@ -46,6 +46,7 @@ map {
   height: 100vh;
   overflow-x: scroll;
   overflow-y: scroll;
+  cursor: grab;
 }
 map-frame {
   display: flex;
@@ -59,6 +60,10 @@ map-frame {
 map-frame instructions {
   position: absolute;
   display: block;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   font-size: 12px;
   z-index: 99999;
   pointer-events: none;
@@ -69,7 +74,6 @@ map-inner {
   position: relative;
   display: inline-block;
   padding: 1000px;
-  transform: rotateX(45deg);
   justify-content: center;
   flex-direction: column;
 }
@@ -86,87 +90,88 @@ box {
 map row {
   counter-increment: row-no;
   z-index: counter(row-no);
-  height: 126px;
+  height: 90px;
   gap: var(--gap);
   flex: none;
   flex-grow: none;
   justify-content: center;
-}
-row hex {
-  background-image: url(../img/map/gravel.jpg);
-  filter: drop-shadow(3px 3px 3px #000);
-}
-row hex tint {
-  z-index: 999;
-  opacity: 0.5;
-}
-row hex:hover tint,
-row hex.selected tint {
-  opacity: 0 !important;
-}
-row hex tint::after,
-row hex tint::before {
-  background-color: inherit;
-  opacity: inherit;
-}
-row hex,
-row hex::after,
-row hex::before,
-row hex tint,
-row hex tint::after,
-row hex tint::before {
-  width: 140px;
-  height: 80px;
-  position: relative;
-  transition: 0.2s all;
-  display: flex;
-  border-right: 1px dotted;
-  border-left: 1px dotted;
-  border-color: black;
-  animation: hexIn 1.5s;
-}
-row hex::after,
-row hex::before,
-row hex tint::after,
-row hex tint::before {
-  content: "";
-  position: absolute;
-  left: -1px;
-  background-image: inherit;
-}
-row hex:hover,
-row hex:hover::after,
-row hex:hover::before {
-  z-index: 1001;
-  background: #eee !important;
-}
-row hex::after,
-row hex tint::after {
-  transform: rotateZ(60deg);
-  animation: hexIn60 1.5s;
-}
-row hex::before,
-row hex tint::before {
-  transform: rotateZ(-60deg);
-  animation: hexIn-60 1.5s;
-}
-row hex.selected,
-row hex:hover {
-  transform: scale(1.2);
-}
-row hex inner {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  z-index: 1000;
-  transform: scaleY(1.5);
   pointer-events: none;
 }
-row hex:hover inner {
-  z-index: 1002;
+map row * {
+  pointer-events: none;
 }
-row hex inner icon,
-row hex inner shadow {
+hex {
+  display: inline;
+  position: relative;
+  height: 170px;
+  width: 135px;
+  filter: drop-shadow(3px 3px 3px #000);
+  transform: scale(1);
+  animation: hexIn 1s;
+  transition: 0.5s all;
+  cursor: pointer;
+}
+hex * {
+  transition: 0.5s all;
+}
+hex.hover,
+hex.selected {
+  z-index: 9;
+  transform: scale(1.2);
+}
+hex .tile-mask {
+  overflow: hidden;
+}
+hex .tile-mask,
+hex texture-container,
+hex content-container {
+  display: inline;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+hex content-container {
+  pointer-events: none;
+  transform: translateY(-25px);
+}
+hex texture-container {
+  transform: rotateX(45deg);
+}
+hex vertical {
+  transform: rotateZ(60deg);
+}
+hex right-tilt {
+  transform: rotateZ(60deg);
+}
+hex left-tilt {
+  transform: rotateZ(-120deg);
+}
+hex inner {
+  display: block;
+  width: 200%;
+  height: 100%;
+  transform: translateX(-25%);
+  pointer-events: all;
+}
+hex vertical inner:hover {
+  transform: translateX(-25%);
+}
+hex inner * {
+  display: block;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+hex vertical inner ui {
+  opacity: 0;
+  background: #efe;
+}
+hex.selected vertical inner ui,
+hex.hover vertical inner ui {
+  opacity: 0.5;
+}
+row hex icon,
+row hex shadow {
   position: absolute;
   width: 70%;
   height: 130%;
@@ -176,23 +181,23 @@ row hex inner shadow {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: bottom;
-  z-index: -1;
+  z-index: 1;
 }
-row hex inner shadow {
-  transform: translateX(-0%) translateY(-100%) skew(-46deg, 0deg);
+row hex shadow {
+  transform: translateX(50%) translateY(-100%) skew(-46deg, 0deg);
   filter: brightness(0) blur(3px);
   opacity: 0.2;
-  z-index: -2;
+  z-index: 0;
 }
-row hex inner icon.animate {
+row hex icon.animate {
   animation: iconRender 0.5s;
 }
-row hex inner shadow.animate {
+row hex shadow.animate {
   animation: shadowRender 0.5s;
 }
-row hex inner name {
+row hex name {
   position: absolute;
-  bottom: 0px;
+  bottom: 10px;
   left: 50%;
   white-space: nowrap;
   transform: translateX(-50%);
@@ -202,23 +207,14 @@ row hex inner name {
   border-radius: 5px;
   padding: 0px 3px;
   font-size: 28px;
-  transition: 0.5s all;
   text-transform: uppercase;
 }
-row hex:hover inner name {
-  transform: translateX(-50%) translateY(-5px) scale(1.3);
+row hex:hover name {
+  transform: translateX(-50%) translateY(-8px) scale(1.3);
   background-color: rgba(0, 0, 0, 0);
 }
-row hex.selected,
-row hex.selected::after,
-row hex.selected::before {
-  z-index: 999;
-  background: #efe !important;
-  border-right: 1px solid green;
-  border-left: 1px solid green;
-}
-row hex.selected inner name {
-  transform: translateX(-50%) translateY(-5px) scale(1.3);
+row hex.selected name {
+  transform: translateX(-50%) translateY(-8px) scale(1.3);
   background-color: rgba(0, 0, 0, 0);
 }
 .template {
@@ -331,26 +327,6 @@ button.chevronToggle.in::before {
     transform: rotate(0deg) scale(1);
   }
 }
-@keyframes hexIn-60 {
-  from {
-    transform: rotate(720deg) scale(0);
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-    transform: rotate(-60deg) scale(1);
-  }
-}
-@keyframes hexIn60 {
-  from {
-    transform: rotate(720deg) scale(0);
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-    transform: rotate(60deg) scale(1);
-  }
-}
 
 @keyframes iconRender {
   0% {
@@ -365,11 +341,11 @@ button.chevronToggle.in::before {
 
 @keyframes shadowRender {
   0% {
-    transform: translateX(-0%) translateY(-150%) skew(-46deg, 0deg) scale(0.4);
+    transform: translateX(50%) translateY(-150%) skew(-46deg, 0deg) scale(0.4);
     opacity: 0;
   }
   100% {
-    transform: translateX(-0%) translateY(-100%) skew(-46deg, 0deg) scale(1);
+    transform: translateX(50%) translateY(-100%) skew(-46deg, 0deg) scale(1);
     opacity: 0.2;
   }
 }
