@@ -1,108 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/default.css">
-    <link rel="stylesheet" href="./css/battlemat-template.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/default.css" />
+    <link rel="stylesheet" href="./css/battlemat-template.css" />
     <title>Document</title>
     <script>
-        function prep(){
-            document.querySelector("nav").remove();
-            document.querySelector("body").style.justifyContent = "flex-start";
-        }
-        function switchImageAndText(){
-            var image = document.querySelector("#image").value;
-            var position = document.querySelector("#position").value;
-            var size = document.querySelector("#size").value;
-            var title = document.querySelector("#title").value;
-            if(!!image) document.querySelector("a4-landscape").style.backgroundImage = `url(./img/battleground/${document.querySelector("#image").value})`;
-            if(!!position) document.querySelector("a4-landscape").style.backgroundPosition = position;
-            if(!!size) document.querySelector("a4-landscape").style.backgroundSize = size;
-            if(!!title) document.querySelector("location").innerHTML = title;
-        }
+      function prep() {
+        document.querySelector("nav").remove();
+        document.querySelector("body").style.justifyContent = "flex-start";
+      }
+      function switchImageAndText() {
+        var image = document.querySelector("#image").value;
+        var position = document.querySelector("#position").value;
+        var size = document.querySelector("#size").value;
+        var title = document.querySelector("#title").value;
+        if (!!image)
+          document.querySelector("a4-landscape").style.backgroundImage = `url(./img/battleground/${document.querySelector("#image").value})`;
+        if (!!position) document.querySelector("a4-landscape").style.backgroundPosition = position;
+        if (!!size) document.querySelector("a4-landscape").style.backgroundSize = size;
+        if (!!title) document.querySelector("location").innerHTML = title;
+      }
     </script>
-</head>
-<body>
+  </head>
+  <body>
     <nav>
-        <a href="rules.html">Rules</a>
-        <a href="battlemat.html">Battle</a>
-        <a href="sheet.html">Sheet</a>
-        <a href="items.html">Items</a>
-        <a href="vehicles.html">Vehicles</a>
-        <a href="rules_sheet.html">Play</a>
-        <a href="generators.html">Generators</a>
-        <div>
-            <label for="title">Title</label>
-            <input id="title" type="text" placeholder="Title">
-        </div>
-        <div>
-            <label for="image">Image</label>
-            <input id="image" type="text" placeholder="Image" list="images">
-            <datalist id="images">
-                <option>biolab.jpg</option>
-                <option>wastelands.jpg</option>
-                <option>mall.jpg</option>
-            </datalist>
-        </div>
-        <div>
-            <label for="position">Position</label>
-            <input id="position" type="text" placeholder="Position">
-        </div>
-        <div>
-            <label for="size">Size</label>
-            <input id="size" type="text" placeholder="Size">
-        </div>
-        
-        
-        
-        <button onclick="switchImageAndText()">Switch Image and Text</button>
-        <button onclick="prep()">Prep for print</button>
+      <a href="rules.html">Rules</a>
+      <a href="battlemat.html">Battle</a>
+      <a href="sheet.html">Sheet</a>
+      <a href="items.html">Items</a>
+      <a href="vehicles.html">Vehicles</a>
+      <a href="rules_sheet.html">Play</a>
+
+      <div>
+        <label for="title">Title</label>
+        <input id="title" type="text" placeholder="Title" />
+      </div>
+      <div>
+        <label for="image">Image</label>
+        <input id="image" type="text" placeholder="Image" list="images" />
+        <datalist id="images">
+          <option>biolab.jpg</option>
+          <option>wastelands.jpg</option>
+          <option>mall.jpg</option>
+        </datalist>
+      </div>
+      <div>
+        <label for="position">Position</label>
+        <input id="position" type="text" placeholder="Position" />
+      </div>
+      <div>
+        <label for="size">Size</label>
+        <input id="size" type="text" placeholder="Size" />
+      </div>
+
+      <button onclick="switchImageAndText()">Switch Image and Text</button>
+      <button onclick="prep()">Prep for print</button>
     </nav>
-    <a4-landscape style="background-image: url(./img/battleground/amazing-tree-bridges.jpg);">
-        <row>
-            <tile>
-                <tile-slot></tile-slot>
-            </tile>
-            <tile>
-                <tile-slot></tile-slot>
-            </tile>
-            <tile>
-                <tile-slot></tile-slot>
-            </tile>
-            <tile>
-                <tile-slot></tile-slot>
-            </tile>
-            <tile>
-                <tile-slot></tile-slot>
-            </tile>
-            <tile>
-                <tile-slot></tile-slot>
-            </tile>
-            <tile>
-                <tile-slot></tile-slot>
-            </tile>
-            <tile>
-                <tile-slot></tile-slot>
-            </tile>
-            <tile>
-                <tile-slot></tile-slot>
-            </tile>
-            <tile>
-                <tile-slot></tile-slot>
-            </tile>
-            <tile>
-                <tile-slot></tile-slot>
-            </tile>
-            <tile>
-                <tile-slot></tile-slot>
-            </tile>
-            <tile>
-                <tile-slot></tile-slot>
-            </tile>
-        </row>
-        <location>Mangroove Bridge</location>
+    <a4-landscape style="background-image: url(./img/battleground/amazing-tree-bridges.jpg)">
+      <row>
+        <tile>
+          <tile-slot></tile-slot>
+        </tile>
+        <tile>
+          <tile-slot></tile-slot>
+        </tile>
+        <tile>
+          <tile-slot></tile-slot>
+        </tile>
+        <tile>
+          <tile-slot></tile-slot>
+        </tile>
+        <tile>
+          <tile-slot></tile-slot>
+        </tile>
+        <tile>
+          <tile-slot></tile-slot>
+        </tile>
+        <tile>
+          <tile-slot></tile-slot>
+        </tile>
+        <tile>
+          <tile-slot></tile-slot>
+        </tile>
+        <tile>
+          <tile-slot></tile-slot>
+        </tile>
+        <tile>
+          <tile-slot></tile-slot>
+        </tile>
+        <tile>
+          <tile-slot></tile-slot>
+        </tile>
+        <tile>
+          <tile-slot></tile-slot>
+        </tile>
+        <tile>
+          <tile-slot></tile-slot>
+        </tile>
+      </row>
+      <location>Mangroove Bridge</location>
     </a4-landscape>
-</body>
+  </body>
 </html>
