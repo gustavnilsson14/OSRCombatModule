@@ -300,6 +300,7 @@ function populateControlType(template, container, images, controlType) {
 }
 function getAssetPath(asset) {
   if (asset.indexOf("http") == 0) return asset;
+  if (asset.indexOf("file:/") == 0) return asset;
   return `img/map/${asset}`;
 }
 function bindDataControls() {
