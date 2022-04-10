@@ -11,6 +11,9 @@ var rowTemplate;
 var hexTemplate;
 var iconTemplate;
 var textureTemplate;
+
+var iconImages;
+var textureImages;
 document.onreadystatechange = function () {
   if (document.readyState != "complete") return;
   selectedHexes = [];
@@ -25,6 +28,9 @@ document.onreadystatechange = function () {
   textureTemplate = document.querySelector("#texture-template");
   nav = document.querySelector("nav");
 
+  iconImages = getIcons();
+  textureImages = getTextures();
+
   document.addEventListener("click", deSelectHex);
   nav.addEventListener("click", (e) => {
     e.stopPropagation();
@@ -32,14 +38,14 @@ document.onreadystatechange = function () {
   bindGrabScroll();
   bindToggles();
   createDefaultGrid();
-  populateIconControls();
-  populateTextureControls();
+  populateImageControls();
   bindDataControls();
   bindHexDetailsControls();
   bindExpand();
   animateClouds();
   bindHexes();
   centerView();
+  bindAddAssetControls();
 };
 function createDefaultGrid() {
   var firstRow = cloneTemplate(rowTemplate, mapContainer);
@@ -180,38 +186,33 @@ function selectHexGraphicsButtons(hex) {
 }
 function bindHexDetailsControls() {
   var iconButtons = document.querySelectorAll("icon:not(.template)");
-  iconButtons.forEach((iconButton) => {
-    iconButton.addEventListener("click", () => {
-      var current = iconsContainer.querySelector(".selected");
-      if (current) current.classList.remove("selected");
-      iconButton.classList.add("selected");
-      selectedHexes.forEach((hex) => {
-        hex.setAttribute("icon", iconButton.getAttribute("path"));
-        renderHex(hex);
-      });
-    });
-  });
   var textureButtons = document.querySelectorAll("texture:not(.template)");
-  textureButtons.forEach((textureButton) => {
-    textureButton.addEventListener("click", () => {
-      var current = texturesContainer.querySelector(".selected");
-      if (current) current.classList.remove("selected");
-      textureButton.classList.add("selected");
-      selectedHexes.forEach((hex) => {
-        hex.setAttribute("texture", textureButton.getAttribute("path"));
-        renderHex(hex);
-      });
-    });
-  });
+  bindImageButtons(iconButtons, iconsContainer, "icon");
+  bindImageButtons(textureButtons, texturesContainer, "texture");
   selectedHexContainer.querySelectorAll("[property]").forEach((p) => bindHexProperty(p));
 }
+function bindImageButtons(buttons, siblingsContainer, attributeToSet) {
+  buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+      var current = siblingsContainer.querySelector(".selected");
+      if (current) current.classList.remove("selected");
+      button.classList.add("selected");
+      selectedHexes.forEach((hex) => {
+        hex.setAttribute(attributeToSet, button.getAttribute("path"));
+        renderHex(hex);
+      });
+    });
+  });
+}
 function bindHexProperty(property) {
-  property.addEventListener("input", () => {
+  var inputLambda = () => {
     selectedHexes.forEach((hex) => {
       hex.setAttribute(property.getAttribute("id"), property.value);
       renderHex(hex);
     });
-  });
+  };
+  property.removeEventListener("input", inputLambda);
+  property.addEventListener("input", inputLambda);
 }
 var x;
 function displayHexProperties(hex) {
@@ -243,8 +244,8 @@ function renderIcon(hex) {
   var icon = hex.querySelector("icon");
   var shadow = hex.querySelector("shadow");
   if (icon.style.backgroundImage.indexOf(iconPath) != -1) return;
-  icon.style.backgroundImage = `url(img/map/${iconPath})`;
-  shadow.style.backgroundImage = `url(img/map/${iconPath})`;
+  icon.style.backgroundImage = `url(${getAssetPath(iconPath)})`;
+  shadow.style.backgroundImage = `url(${getAssetPath(iconPath)})`;
 
   icon.classList.add("animate");
   shadow.classList.add("animate");
@@ -283,26 +284,31 @@ function cloneTemplate(template, container = null) {
 function unloadPage() {
   return "You have unsaved changes on this page. Do you want to leave this page and discard your changes or stay on this page?";
 }
+function populateImageControls() {
+  populateControlType(iconTemplate, iconsContainer, iconImages, "icon");
+  populateControlType(textureTemplate, texturesContainer, textureImages, "texture");
+  bindHexDetailsControls();
+}
+function populateControlType(template, container, images, controlType) {
+  container.innerHTML = "";
+  images.forEach((image) => {
+    var element = cloneTemplate(template, container);
+    var path = getAssetPath(image);
+    console.log(path);
+    element.querySelector(`${controlType}-img`).style.backgroundImage = `url(${path})`;
+    element.setAttribute("path", path);
+  });
+}
+function getAssetPath(asset) {
+  if (asset.indexOf("http") == 0) return asset;
+  return `img/map/${asset}`;
+}
 function bindDataControls() {
   document.querySelector("#export").addEventListener("click", exportData);
   document.querySelector("#import").addEventListener("click", importData);
 }
-function populateIconControls() {
-  getIcons().forEach((icon) => {
-    var iconElement = cloneTemplate(iconTemplate, iconsContainer);
-    iconElement.querySelector("icon-img").style.backgroundImage = `url(img/map/${icon})`;
-    iconElement.setAttribute("path", icon);
-  });
-}
-function populateTextureControls() {
-  getTextures().forEach((texture) => {
-    var textureElement = cloneTemplate(textureTemplate, texturesContainer);
-    textureElement.querySelector("texture-img").style.backgroundImage = `url(img/map/${texture})`;
-    textureElement.setAttribute("path", texture);
-  });
-}
 function exportData() {
-  var data = { rows: [] };
+  var data = { rows: [], icons: iconImages, textures: textureImages };
   var rows = document.querySelectorAll("map row:not(.template)");
   rows.forEach((row) => {
     var rowData = { hexes: [] };
@@ -329,7 +335,11 @@ function importData() {
     });
     mapContainer.appendChild(newRow);
   });
+  iconImages = data.icons;
+  textureImages = data.textures;
   bindHexes();
+  populateIconControls();
+  populateTextureControls();
 }
 function setElementData(element, data) {
   for (const [key, value] of Object.entries(data)) {
@@ -371,6 +381,21 @@ function toggleClassOn(target, state, toggleClass) {
   }
   target.classList.remove(toggleClass);
 }
+function bindAddAssetControls() {
+  var assetInputField = document.querySelector("#add-asset");
+  document.querySelectorAll(".add-asset").forEach((button) => {
+    button.addEventListener("click", function () {
+      var assetType = button.getAttribute("type");
+      if (assetType == "icon") return addAsset(iconImages, assetInputField.value);
+      return addAsset(textureImages, assetInputField.value);
+    });
+  });
+}
+function addAsset(list, asset) {
+  list.push(asset);
+  populateImageControls();
+  bindHexDetailsControls();
+}
 function bindGrabScroll() {
   var grabbing = false;
   mapViewport.addEventListener("mousedown", (e) => {
@@ -384,7 +409,6 @@ function bindGrabScroll() {
     console.log(e);
     var multiplier = e.deltaY > 0 ? 0.95 : 1.05;
     zoom *= multiplier;
-    //var xOffset = mapViewport.getBoundingClientRect().x;
     mapContainer.style.transform = `scale(${zoom})`;
   });
   document.addEventListener("mouseup", () => {

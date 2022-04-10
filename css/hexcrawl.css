@@ -286,6 +286,9 @@ textures texture-img {
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
+  font-size: 42px;
+  font-weight: bold;
+  text-align: center;
 }
 icons .selected icon-inner,
 textures .selected texture-inner {
