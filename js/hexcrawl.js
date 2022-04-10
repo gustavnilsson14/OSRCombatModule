@@ -301,6 +301,7 @@ function populateControlType(template, container, images, controlType) {
 function getAssetPath(asset) {
   if (asset.indexOf("http") == 0) return asset;
   if (asset.indexOf("file:/") == 0) return asset;
+  if (asset.indexOf("img/map/") == 0) return asset;
   return `img/map/${asset}`;
 }
 function bindDataControls() {
@@ -338,8 +339,7 @@ function importData() {
   iconImages = data.icons;
   textureImages = data.textures;
   bindHexes();
-  populateIconControls();
-  populateTextureControls();
+  populateImageControls();
 }
 function setElementData(element, data) {
   for (const [key, value] of Object.entries(data)) {
