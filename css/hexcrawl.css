@@ -319,12 +319,10 @@ button.chevronToggle.in::before {
 }
 @keyframes hexIn {
   from {
-    transform: rotate(720deg) scale(0);
-    opacity: 0;
+    transform: rotateY(90deg);
   }
   to {
-    opacity: 1;
-    transform: rotate(0deg) scale(1);
+    transform: rotateY(0deg);
   }
 }
 
