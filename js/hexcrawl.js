@@ -235,7 +235,7 @@ function renderHex(hex) {
   var texture = hex.querySelector("texture");
   tint.style.backgroundColor = hex.getAttribute("tile-tint");
   tint.style.opacity = hex.getAttribute("tile-tint-opacity");
-  texture.style.backgroundImage = `url(img/map/${hex.getAttribute("texture")})`;
+  texture.style.backgroundImage = `url(${getAssetPath(hex.getAttribute("texture"))})`;
   renderIcon(hex);
 }
 function renderIcon(hex) {
@@ -246,7 +246,6 @@ function renderIcon(hex) {
   if (icon.style.backgroundImage.indexOf(iconPath) != -1) return;
   icon.style.backgroundImage = `url(${getAssetPath(iconPath)})`;
   shadow.style.backgroundImage = `url(${getAssetPath(iconPath)})`;
-
   icon.classList.add("animate");
   shadow.classList.add("animate");
   setTimeout(() => {
