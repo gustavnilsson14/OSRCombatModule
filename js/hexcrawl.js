@@ -328,7 +328,7 @@ function exportData() {
 function importData() {
   var data = document.querySelector("#import-data").value;
   if (!data) data = getCookie("data");
-  console.log(data);
+  if (!data) return;
   data = JSON.parse(data);
   mapContainer.innerHTML = "";
 
