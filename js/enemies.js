@@ -759,7 +759,7 @@ function getEnemies() {
     {
       name: "Great angler",
       description:
-        "Squid are large amphibious apex predators, hunting alone along coastlines and mixed-water river deltas. It has elastic tentacles which stretch unnaturally.",
+        "Great anglers are horrible monsters, mutated anglerfish which dwell in moist, semisubmerged caverns or pits. The enjoy human flesh, and eats any who stumbles into its lair.",
       image: "angler.png",
       stats: {
         str: 20,
@@ -800,7 +800,7 @@ function getEnemies() {
     {
       name: "Angoliant",
       description:
-        "Squid are large amphibious apex predators, hunting alone along coastlines and mixed-water river deltas. It has elastic tentacles which stretch unnaturally.",
+        "Giant, amphibious angler fish, mutated in a manner which allows them to speak, and granting them a higher level of intelligence than most other creatures. Angoliants are considered evil by civilized folk. They enjoy human flesh, but also to toy with their prey.",
       image: "angolian.png",
       stats: {
         str: 20,
@@ -841,8 +841,49 @@ function getEnemies() {
     {
       name: "Massive Landwhale",
       description:
-        "Squid are large amphibious apex predators, hunting alone along coastlines and mixed-water river deltas. It has elastic tentacles which stretch unnaturally.",
+        "Landwhales exist on a different foodchain, as they are monolithic creatures. Landwhales have an unnatural fear of humans, and if startled may trample or destroy huge swathes of land.",
       image: "landwhale.png",
+      stats: {
+        str: 20,
+        dex: 8,
+        wil: 2,
+        en: 182,
+        av: 1,
+      },
+      weaknesses: ["cut", "volt", "nuke", "light"],
+      attacks: [
+        {
+          name: "Slap",
+          damage: "3-3-3",
+          "damage types": ["smash, pain"],
+        },
+      ],
+      actions: [
+        {
+          name: "Grapple",
+          effect:
+            "The squid can grapple an opponent at range. Each turn while grappled, the victim is pulled towards the squid, and cannot take tactical action. At the start of each round, on successful DEX, the victim slithers loose. If the squid takes critical damage, its grip loosens, and the victim escapes. The squid can only grapple one opponent. Recharges on 4",
+        },
+        {
+          name: "Devour",
+          effect:
+            "The squid consumes one melee opponent which is also grappled. The devoured victim becomes unconscious, and takes 2d4 ooze damage each turn. The squid regurgitates the devoured victim if it takes critical damage.",
+        },
+        {
+          name: "Harden",
+          effect: "Gain 1 armor, and mitigate 1 weakness.",
+        },
+        {
+          name: "Massive slappery",
+          effect: "When using slap, enemies on the same tile as the target, and the target, suffer knockback on a failed STR.",
+        },
+      ],
+    },
+    {
+      name: "Sky Centipede",
+      description:
+        "Giant flying centipedes which live up high seemingly defying gravity. The live sky centipede never lands, but crashes only as it dies. A dead sky centipede turns hollow quick as its meat rots swiftly, but its shell hardens immensely.",
+      image: "skycentipede.png",
       stats: {
         str: 20,
         dex: 8,

@@ -323,11 +323,11 @@ function exportData() {
   });
   var dataString = JSON.stringify(data);
   navigator.clipboard.writeText(dataString);
-  document.cookie = `data=${dataString}`;
+  saveDataToCookies(dataString);
 }
 function importData() {
   var data = document.querySelector("#import-data").value;
-  if (!data) data = getCookie("data");
+  if (!data) data = readDataFromCookies();
   if (!data) return;
   data = JSON.parse(data);
   mapContainer.innerHTML = "";
@@ -346,6 +346,24 @@ function importData() {
   textureImages = data.textures;
   bindHexes();
   populateImageControls();
+}
+function saveDataToCookies(dataString) {
+  var size = 1000;
+  const numChunks = Math.ceil(str.length / size);
+  for (let i = 0, o = 0; i < numChunks; ++i, o += size) {
+    document.cookie = `data${i}=${dataString.substr(o, size)}`;
+  }
+}
+function readDataFromCookies() {
+  var i = 0;
+  var data = "";
+  var currentData = getCookie(`data${i}`);
+  while (currentData) {
+    data = data + currentData;
+    i++;
+    currentData = getCookie(`data${i}`);
+  }
+  return data;
 }
 function setElementData(element, data) {
   for (const [key, value] of Object.entries(data)) {
