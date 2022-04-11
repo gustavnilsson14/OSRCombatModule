@@ -321,10 +321,14 @@ function exportData() {
     });
     data.rows.push(rowData);
   });
-  navigator.clipboard.writeText(JSON.stringify(data));
+  var dataString = JSON.stringify(data);
+  navigator.clipboard.writeText(dataString);
+  document.cookie = `data=${dataString}`;
 }
 function importData() {
   var data = document.querySelector("#import-data").value;
+  if (!data) data = getCookie("data");
+  console.log(data);
   data = JSON.parse(data);
   mapContainer.innerHTML = "";
 
