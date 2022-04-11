@@ -351,17 +351,17 @@ function saveDataToCookies(dataString) {
   var size = 1000;
   const numChunks = Math.ceil(dataString.length / size);
   for (let i = 0, o = 0; i < numChunks; ++i, o += size) {
-    document.cookie = `data${i}=${dataString.substr(o, size)}`;
+    document.cookie = `data${i.toString()}=${dataString.substr(o, size)}`;
   }
 }
 function readDataFromCookies() {
   var i = 0;
   var data = "";
-  var currentData = getCookie(`data${i}`);
+  var currentData = getCookie(`data${i.toString()}`);
   while (currentData) {
     data = data + currentData;
     i++;
-    currentData = getCookie(`data${i}`);
+    currentData = getCookie(`data${i.toString()}`);
   }
   return data;
 }
