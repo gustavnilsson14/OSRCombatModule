@@ -1,6 +1,7 @@
 function getIcons() {
   return [
     "house1.png",
+    "hospital.png",
     "fort1.png",
     "radar1.png",
     "ruin1.png",
@@ -13,8 +14,9 @@ function getIcons() {
     "warehouse1.png",
     "warehouse2.png",
     "warehouse3.png",
+    "watertower.png",
   ];
 }
 function getTextures() {
-  return ["gravel.jpg", "desert.jpg", "zone.jpg", "dirt.jpg", "pavement.jpg", "wasteland.jpg"];
+  return ["gravel.jpg", "desert.jpg", "mud.png", "rocky.jpg", "toxic.jpg", "zone.jpg", "dirt.jpg", "pavement.jpg", "wasteland.jpg"];
 }

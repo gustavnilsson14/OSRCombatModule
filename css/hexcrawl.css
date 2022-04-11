@@ -137,6 +137,10 @@ hex content-container {
 hex texture-container {
   transform: rotateX(45deg);
 }
+hex texture-container texture {
+  background-size: contain;
+}
+
 hex vertical {
   transform: rotateZ(60deg);
 }

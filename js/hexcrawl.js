@@ -1,3 +1,5 @@
+var minZoom = 0.36;
+
 var selectedHexes;
 
 var nav;
@@ -69,6 +71,7 @@ function bindExpand() {
 function expand() {
   var newHexes = [];
   var currentRows = document.querySelectorAll("map row:not(.template)");
+  var randomness = document.querySelector("#randomness");
   currentRows.forEach((row) => {
     var obj = appendAndPrepend(hexTemplate, row);
     newHexes.push(obj.top);
@@ -84,7 +87,7 @@ function expand() {
   newHexes.forEach((newHex) => {
     var parent = getNewHexParent(newHexes, newHex);
     var texture = parent.getAttribute("texture");
-    if (getRandomNumber(0, 10) > 8) texture = getRandomFrom(getTextures());
+    if (Math.random() < parseFloat(randomness.value)) texture = getRandomFrom(getTextures());
     newHex.setAttribute("texture", texture);
     renderHex(newHex);
   });
@@ -293,7 +296,6 @@ function populateControlType(template, container, images, controlType) {
   images.forEach((image) => {
     var element = cloneTemplate(template, container);
     var path = getAssetPath(image);
-    console.log(path);
     element.querySelector(`${controlType}-img`).style.backgroundImage = `url(${path})`;
     element.setAttribute("path", path);
   });
@@ -400,15 +402,14 @@ function bindGrabScroll() {
   var grabbing = false;
   mapViewport.addEventListener("mousedown", (e) => {
     e.stopPropagation();
-    console.log(e);
     grabbing = true;
   });
   var zoom = 1;
   mapViewport.addEventListener("wheel", (e) => {
     e.preventDefault();
-    console.log(e);
     var multiplier = e.deltaY > 0 ? 0.95 : 1.05;
     zoom *= multiplier;
+    if (zoom < minZoom) zoom = minZoom;
     mapContainer.style.transform = `scale(${zoom})`;
   });
   document.addEventListener("mouseup", () => {

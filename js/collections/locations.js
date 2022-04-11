@@ -71,6 +71,8 @@ function getLocationObject() {
         "Church",
         "Power plant",
         "Water treatment",
+        "Water tower",
+        "Reservoir",
         "Oil and gas refinery",
         "Chemical plant",
         "Medtech lab",
