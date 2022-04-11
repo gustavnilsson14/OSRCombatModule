@@ -349,7 +349,7 @@ function importData() {
 }
 function saveDataToCookies(dataString) {
   var size = 1000;
-  const numChunks = Math.ceil(str.length / size);
+  const numChunks = Math.ceil(dataString.length / size);
   for (let i = 0, o = 0; i < numChunks; ++i, o += size) {
     document.cookie = `data${i}=${dataString.substr(o, size)}`;
   }
