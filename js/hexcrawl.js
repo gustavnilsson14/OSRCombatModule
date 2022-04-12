@@ -52,8 +52,9 @@ document.onreadystatechange = function () {
 function createDefaultGrid() {
   var firstRow = cloneTemplate(rowTemplate, mapContainer);
   var firstHex = cloneTemplate(hexTemplate, firstRow);
-  firstHex.setAttribute("texture", getRandomFrom(getTextures()));
+  firstHex.setAttribute("texture", getAssetPath(getRandomFrom(getTextures())));
   renderHex(firstHex);
+  setHexPositions();
 }
 function animateClouds() {
   var clouds = document.querySelector("clouds");
@@ -82,8 +83,7 @@ function expand() {
   var hexAmount = rowAmount + 2;
   newHexes = [...newHexes, ...appendAmount(hexTemplate, newRows.top, hexAmount)];
   newHexes = [...newHexes, ...appendAmount(hexTemplate, newRows.bottom, hexAmount)];
-  bindHexes();
-  centerView();
+  setHexPositions();
   newHexes.forEach((newHex) => {
     var parent = getNewHexParent(newHexes, newHex);
     var texture = parent.getAttribute("texture");
@@ -91,22 +91,26 @@ function expand() {
     newHex.setAttribute("texture", texture);
     renderHex(newHex);
   });
+  bindHexes();
+  centerView();
+}
+function getHexNeighbors(hex) {
+  var x = parseInt(hex.getAttribute("posx"));
+  var y = parseInt(hex.getAttribute("posy"));
+  return [
+    document.querySelector(`hex[posx="${x - 1}"][posy="${y - 1}"]`),
+    document.querySelector(`hex[posx="${x + 1}"][posy="${y - 1}"]`),
+    document.querySelector(`hex[posx="${x - 2}"][posy="${y}"]`),
+    document.querySelector(`hex[posx="${x + 2}"][posy="${y}"]`),
+    document.querySelector(`hex[posx="${x - 1}"][posy="${y + 1}"]`),
+    document.querySelector(`hex[posx="${x + 1}"][posy="${y + 1}"]`),
+  ].filter((x) => x != null);
 }
 function getNewHexParent(newHexes, newHex) {
-  var pos = {
-    x: parseInt(newHex.getAttribute("posx")),
-    y: parseInt(newHex.getAttribute("posy")),
-  };
-  var neighbors = [];
-  for (let x = -1; x < 2; x++) {
-    for (let y = -1; y < 2; y++) {
-      var neighbor = document.querySelector(`hex[posx="${pos.x + x}"][posy="${pos.y + y}"]`);
-      if (!neighbor) continue;
-      if (neighbor == newHex) continue;
-      if (newHexes.indexOf(neighbor) != -1) continue;
-      neighbors.push(neighbor);
-    }
-  }
+  neighbors = getHexNeighbors(newHex).filter((neighbor) => {
+    if (newHexes.indexOf(neighbor) != -1) return false;
+    return true;
+  });
   return getRandomFrom(neighbors);
 }
 function centerView(behaviour = "auto") {
@@ -118,21 +122,43 @@ function centerView(behaviour = "auto") {
     inline: "center",
   });
 }
-function bindHexes() {
+function setHexPositions() {
   var rows = document.querySelectorAll("map row");
-  var currentRowIndex = Math.ceil(rows.length / 2) - rows.length;
+  var posY = Math.ceil(rows.length / 2) - rows.length;
   rows.forEach((row) => {
     var hexes = row.querySelectorAll("hex");
-    var currentHexIndex = Math.floor(hexes.length / 2) - hexes.length;
+    var posX = getCorrectedHexStartX(posY, hexes);
     hexes.forEach((hex) => {
-      currentHexIndex++;
-      hex.setAttribute("posX", currentHexIndex);
-      hex.setAttribute("posY", currentRowIndex);
-      bindHexEvents(hex);
+      hex.setAttribute("posX", posX);
+      hex.setAttribute("posY", posY);
+      posX += 2;
     });
-    currentRowIndex++;
+    posY++;
   });
 }
+function bindHexes() {
+  document.querySelectorAll("map hex").forEach((hex) => {
+    setNeighborClasses(hex);
+    bindHexEvents(hex);
+  });
+}
+function getCorrectedHexStartX(posY, hexes) {
+  if (posY % 2 == 0) return -(hexes.length - 1);
+  return -hexes.length + 1;
+}
+function setNeighborClasses(hex) {
+  getHexNeighbors(hex).forEach((neighbor) => {
+    if (!neighbor) return;
+    var posDiff = {
+      x: parseInt(parseInt(neighbor.getAttribute("posX") - hex.getAttribute("posX"))),
+      y: parseInt(neighbor.getAttribute("posY")) - parseInt(hex.getAttribute("posY")),
+    };
+    hex.removeAttribute(`neighbor${posDiff.x}_${posDiff.y}`);
+    if (!neighbor.getAttribute("tile-is-city")) return;
+    hex.setAttribute(`neighbor${posDiff.x}_${posDiff.y}`, true);
+  });
+}
+
 function getFirstSelectedHex() {
   if (selectedHexes.length > 0) return selectedHexes[0];
   return null;
@@ -210,20 +236,26 @@ function bindImageButtons(buttons, siblingsContainer, attributeToSet) {
 function bindHexProperty(property) {
   var inputLambda = () => {
     selectedHexes.forEach((hex) => {
-      hex.setAttribute(property.getAttribute("id"), property.value);
+      hex.setAttribute(property.getAttribute("id"), getPropertyValue(property));
       renderHex(hex);
     });
   };
   property.removeEventListener("input", inputLambda);
   property.addEventListener("input", inputLambda);
 }
-var x;
+function getPropertyValue(property) {
+  if (property.getAttribute("type")) return property.checked;
+  return property.value;
+}
 function displayHexProperties(hex) {
   var properties = selectedHexContainer.querySelectorAll("[property]");
   properties.forEach((property) => {
     switch (property.getAttribute("display")) {
       case "innerHTML":
         property.innerHTML = hex.getAttribute(property.getAttribute("id"));
+        break;
+      case "checkbox":
+        property.checked = hex.getAttribute(property.getAttribute("id"));
         break;
       default:
         property.value = hex.getAttribute(property.getAttribute("id"));
@@ -240,6 +272,10 @@ function renderHex(hex) {
   tint.style.opacity = hex.getAttribute("tile-tint-opacity");
   texture.style.backgroundImage = `url(${getAssetPath(hex.getAttribute("texture"))})`;
   renderIcon(hex);
+  setNeighborClasses(hex);
+  getHexNeighbors(hex).forEach((neighbor) => {
+    setNeighborClasses(neighbor);
+  });
 }
 function renderIcon(hex) {
   var iconPath = hex.getAttribute("icon");
@@ -323,11 +359,11 @@ function exportData() {
   });
   var dataString = JSON.stringify(data);
   navigator.clipboard.writeText(dataString);
-  saveDataToCookies(dataString);
+  document.cookie = `data=${dataString}`;
 }
 function importData() {
   var data = document.querySelector("#import-data").value;
-  if (!data) data = readDataFromCookies();
+  if (!data) data = getCookie("data");
   if (!data) return;
   data = JSON.parse(data);
   mapContainer.innerHTML = "";
@@ -346,24 +382,6 @@ function importData() {
   textureImages = data.textures;
   bindHexes();
   populateImageControls();
-}
-function saveDataToCookies(dataString) {
-  var size = 1000;
-  const numChunks = Math.ceil(dataString.length / size);
-  for (let i = 0, o = 0; i < numChunks; ++i, o += size) {
-    document.cookie = `data${i.toString()}=${dataString.substr(o, size)}`;
-  }
-}
-function readDataFromCookies() {
-  var i = 0;
-  var data = "";
-  var currentData = getCookie(`data${i.toString()}`);
-  while (currentData) {
-    data = data + currentData;
-    i++;
-    currentData = getCookie(`data${i.toString()}`);
-  }
-  return data;
 }
 function setElementData(element, data) {
   for (const [key, value] of Object.entries(data)) {
