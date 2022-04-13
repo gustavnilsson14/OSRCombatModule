@@ -26,3 +26,9 @@ function getIcons() {
 function getTextures() {
   return ["gravel.jpg", "desert.jpg", "mud.png", "rocky.jpg", "toxic.jpg", "zone.jpg", "dirt.jpg", "pavement.jpg", "wasteland.jpg"];
 }
+function getCityBuildings() {
+  return ["apartments1.png", "apartments2.png"];
+}
+function getWaterTexture() {
+  return "water.png";
+}

@@ -196,18 +196,23 @@ row hex cluster {
   position: relative;
   display: none;
 }
-row hex[tile-is-city="true"] cluster {
-  display: block;
-}
 row hex cluster-image {
   position: absolute;
   display: none;
-  width: 36px;
+  width: 40px;
   height: 60px;
-  background-image: url(../img/map/apartments1.png);
   transform: translateX(-50%) translateY(-100%);
-  background-size: cover;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: bottom;
   z-index: 2;
+}
+row hex[tile-type="water"] cluster-image {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  transform: translateX(-50%) translateY(-75%);
+  background-size: cover;
 }
 row hex cluster-image:first-child {
   display: block;

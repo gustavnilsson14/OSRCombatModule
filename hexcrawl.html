@@ -50,8 +50,13 @@
           <box>
             <h4>Description</h4>
             <textarea property id="description"></textarea>
-            <label for="tile-is-city"><h4>Is City</h4></label>
-            <input property display="checkbox" type="checkbox" id="tile-is-city" />
+
+            <input property display="radio" type="radio" id="landmark" name="tile-type" val="landmark" checked />
+            <label for="landmark">Landmark</label>
+            <input property display="radio" type="radio" id="city" name="tile-type" val="city" />
+            <label for="city">City</label>
+            <input property display="radio" type="radio" id="water" name="tile-type" val="water" />
+            <label for="water">Water</label>
           </box>
           <box>
             <label for="tile-tint"><h4>Tint</h4></label>
@@ -68,7 +73,7 @@
         <textures> </textures>
       </selected-hex>
     </nav>
-    <hex id="hex-template" class="template">
+    <hex id="hex-template" class="template" tile-type="landmark">
       <texture-container>
         <right-tilt class="tile-mask">
           <left-tilt class="tile-mask">

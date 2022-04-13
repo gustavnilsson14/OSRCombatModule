@@ -16,6 +16,8 @@ var textureTemplate;
 
 var iconImages;
 var textureImages;
+var clusterBuildingImages;
+
 document.onreadystatechange = function () {
   if (document.readyState != "complete") return;
   selectedHexes = [];
@@ -32,6 +34,7 @@ document.onreadystatechange = function () {
 
   iconImages = getIcons();
   textureImages = getTextures();
+  clusterBuildingImages = getCityBuildings();
 
   document.addEventListener("click", deSelectHex);
   nav.addEventListener("click", (e) => {
@@ -147,6 +150,7 @@ function getCorrectedHexStartX(posY, hexes) {
   return -hexes.length + 1;
 }
 function setNeighborClasses(hex) {
+  var hexType = hex.getAttribute("tile-type");
   getHexNeighbors(hex).forEach((neighbor) => {
     if (!neighbor) return;
     var posDiff = {
@@ -154,11 +158,11 @@ function setNeighborClasses(hex) {
       y: parseInt(neighbor.getAttribute("posY")) - parseInt(hex.getAttribute("posY")),
     };
     hex.removeAttribute(`neighbor${posDiff.x}_${posDiff.y}`);
-    if (!neighbor.getAttribute("tile-is-city")) return;
+    if (!neighbor.hasAttribute("tile-type")) return;
+    if (neighbor.getAttribute("tile-type") != hexType) return;
     hex.setAttribute(`neighbor${posDiff.x}_${posDiff.y}`, true);
   });
 }
-
 function getFirstSelectedHex() {
   if (selectedHexes.length > 0) return selectedHexes[0];
   return null;
@@ -236,15 +240,20 @@ function bindImageButtons(buttons, siblingsContainer, attributeToSet) {
 function bindHexProperty(property) {
   var inputLambda = () => {
     selectedHexes.forEach((hex) => {
-      hex.setAttribute(property.getAttribute("id"), getPropertyValue(property));
+      hex.setAttribute(getPropertyKey(property), getPropertyValue(property));
       renderHex(hex);
     });
   };
   property.removeEventListener("input", inputLambda);
   property.addEventListener("input", inputLambda);
 }
+function getPropertyKey(property) {
+  if (property.getAttribute("type") == "radio") return property.getAttribute("name");
+  return property.getAttribute("id");
+}
 function getPropertyValue(property) {
-  if (property.getAttribute("type")) return property.checked;
+  if (property.getAttribute("type") == "checkbox") return property.checked;
+  if (property.getAttribute("type") == "radio") return property.getAttribute("val");
   return property.value;
 }
 function displayHexProperties(hex) {
@@ -256,6 +265,9 @@ function displayHexProperties(hex) {
         break;
       case "checkbox":
         property.checked = hex.getAttribute(property.getAttribute("id"));
+        break;
+      case "radio":
+        property.checked = hex.getAttribute(property.getAttribute("name")) == property.getAttribute("val");
         break;
       default:
         property.value = hex.getAttribute(property.getAttribute("id"));
@@ -272,6 +284,7 @@ function renderHex(hex) {
   tint.style.opacity = hex.getAttribute("tile-tint-opacity");
   texture.style.backgroundImage = `url(${getAssetPath(hex.getAttribute("texture"))})`;
   renderIcon(hex);
+  renderCluster(hex);
   setNeighborClasses(hex);
   getHexNeighbors(hex).forEach((neighbor) => {
     setNeighborClasses(neighbor);
@@ -291,6 +304,28 @@ function renderIcon(hex) {
     icon.classList.remove("animate");
     shadow.classList.remove("animate");
   }, 600);
+}
+function renderCluster(hex) {
+  if (!handleClusterVisibility(hex)) return;
+  hex.querySelectorAll("cluster-image").forEach((clusterImage) => {
+    var image = getClusterImageByType(hex.getAttribute("tile-type"));
+    clusterImage.style.backgroundImage = `url(${image})`;
+  });
+}
+function handleClusterVisibility(hex) {
+  if (!hex.hasAttribute("tile-type")) return false;
+  var clusterType = hex.getAttribute("tile-type");
+  if (clusterType == "landmark") {
+    hex.querySelector("cluster").style.display = "none";
+    return false;
+  }
+  hex.querySelector("cluster").style.display = "block";
+  return true;
+}
+function getClusterImageByType(type) {
+  if (type == "city") return getAssetPath(getRandomFrom(clusterBuildingImages));
+  if (type == "water") return getAssetPath(getWaterTexture());
+  return "";
 }
 
 function appendAmount(template, container, amount) {
