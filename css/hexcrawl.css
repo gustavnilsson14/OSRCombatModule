@@ -212,6 +212,9 @@ row hex cluster-image {
   background-position: bottom;
   z-index: 2;
 }
+row hex[tile-type="city"] cluster-image {
+  filter: drop-shadow(10px -5px 5px rgba(0, 0, 0, 0.5));
+}
 row hex[tile-type="water"] cluster-image {
   width: 60px;
   height: 60px;
