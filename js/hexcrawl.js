@@ -267,13 +267,11 @@ function hexAttributeChanged(hex, key, value) {
   displayTileTypeOptionControls(value);
 }
 function displayTileTypeOptionControls(tileType) {
-  selectedHexContainer.querySelectorAll("tile-type-options").forEach((options) => {
+  selectedHexContainer.querySelectorAll("tile-type-options box").forEach((options) => {
     options.style.display = "none";
+    if (!options.hasAttribute(tileType)) return;
+    options.style.display = "flex";
   });
-  var optionsContainer = selectedHexContainer.querySelector(`tile-type-options[${tileType}]`);
-  if (!optionsContainer) return;
-  console.log(`tile-type-options[${tileType}]`, selectedHexContainer.querySelector(`tile-type-options[${tileType}]`));
-  selectedHexContainer.querySelector(`tile-type-options[${tileType}]`).style.display = "flex";
 }
 function getPropertyKey(property) {
   if (property.getAttribute("type") == "radio") return property.getAttribute("name");
