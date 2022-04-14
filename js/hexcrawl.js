@@ -45,7 +45,6 @@ document.onreadystatechange = function () {
   createDefaultGrid();
   populateImageControls();
   bindDataControls();
-  bindHexDetailsControls();
   bindExpand();
   animateClouds();
   bindHexes();
@@ -221,31 +220,60 @@ function bindHexDetailsControls() {
   var iconButtons = document.querySelectorAll("icon:not(.template)");
   var textureButtons = document.querySelectorAll("texture:not(.template)");
   bindImageButtons(iconButtons, iconsContainer, "icon");
-  bindImageButtons(textureButtons, texturesContainer, "texture");
-  selectedHexContainer.querySelectorAll("[property]").forEach((p) => bindHexProperty(p));
+  bindImageButtons(textureButtons, texturesContainer, "texture", false);
+  bindHexProperties();
 }
-function bindImageButtons(buttons, siblingsContainer, attributeToSet) {
+function bindImageButtons(buttons, siblingsContainer, attributeToSet, canDeselect = true) {
   buttons.forEach((button) => {
-    button.addEventListener("click", () => {
-      var current = siblingsContainer.querySelector(".selected");
-      if (current) current.classList.remove("selected");
-      button.classList.add("selected");
+    var buttonClickLambda = () => {
+      handleImageButtonSelection(button, siblingsContainer, canDeselect);
       selectedHexes.forEach((hex) => {
-        hex.setAttribute(attributeToSet, button.getAttribute("path"));
+        var path = button.getAttribute("path");
+        if (!button.classList.contains("selected")) path = "";
+        hexAttributeChanged(hex, attributeToSet, path);
         renderHex(hex);
       });
-    });
+    };
+    button.removeEventListener("click", buttonClickLambda);
+    button.addEventListener("click", buttonClickLambda);
   });
+}
+function handleImageButtonSelection(button, siblingsContainer, canDeselect) {
+  var current = siblingsContainer.querySelector(".selected");
+  if (!current) {
+    button.classList.add("selected");
+    return;
+  }
+  if (current) current.classList.remove("selected");
+  if (current == button && canDeselect) return;
+  button.classList.add("selected");
+}
+function bindHexProperties() {
+  selectedHexContainer.querySelectorAll("[property]").forEach((p) => bindHexProperty(p));
 }
 function bindHexProperty(property) {
   var inputLambda = () => {
     selectedHexes.forEach((hex) => {
-      hex.setAttribute(getPropertyKey(property), getPropertyValue(property));
+      hexAttributeChanged(hex, getPropertyKey(property), getPropertyValue(property));
       renderHex(hex);
     });
   };
   property.removeEventListener("input", inputLambda);
   property.addEventListener("input", inputLambda);
+}
+function hexAttributeChanged(hex, key, value) {
+  hex.setAttribute(key, value);
+  if (key != "tile-type") return;
+  displayTileTypeOptionControls(value);
+}
+function displayTileTypeOptionControls(tileType) {
+  selectedHexContainer.querySelectorAll("tile-type-options").forEach((options) => {
+    options.style.display = "none";
+  });
+  var optionsContainer = selectedHexContainer.querySelector(`tile-type-options[${tileType}]`);
+  if (!optionsContainer) return;
+  console.log(`tile-type-options[${tileType}]`, selectedHexContainer.querySelector(`tile-type-options[${tileType}]`));
+  selectedHexContainer.querySelector(`tile-type-options[${tileType}]`).style.display = "flex";
 }
 function getPropertyKey(property) {
   if (property.getAttribute("type") == "radio") return property.getAttribute("name");
@@ -292,18 +320,23 @@ function renderHex(hex) {
 }
 function renderIcon(hex) {
   var iconPath = hex.getAttribute("icon");
-  if (!iconPath) return;
   var icon = hex.querySelector("icon");
   var shadow = hex.querySelector("shadow");
+  if (!iconPath) return setImageUrlValue(icon, shadow, iconPath);
   if (icon.style.backgroundImage.indexOf(iconPath) != -1) return;
-  icon.style.backgroundImage = `url(${getAssetPath(iconPath)})`;
-  shadow.style.backgroundImage = `url(${getAssetPath(iconPath)})`;
+  setImageUrlValue(icon, shadow, iconPath);
   icon.classList.add("animate");
   shadow.classList.add("animate");
   setTimeout(() => {
     icon.classList.remove("animate");
     shadow.classList.remove("animate");
   }, 600);
+}
+function setImageUrlValue(icon, shadow, path) {
+  var value = "";
+  if (path) value = `url(${getAssetPath(path)})`;
+  icon.style.backgroundImage = value;
+  shadow.style.backgroundImage = value;
 }
 function renderCluster(hex) {
   if (!handleClusterVisibility(hex)) return;

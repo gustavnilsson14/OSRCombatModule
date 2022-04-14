@@ -1,10 +1,20 @@
 function getIcons() {
   return [
     "apartments1.png",
+    "cabin.png",
+    "cabin2.png",
     "house1.png",
     "hospital.png",
     "forest.png",
     "fort1.png",
+    "factory1.png",
+    "factory2.png",
+    "factory3.png",
+    "modern1.png",
+    "modern2.png",
+    "modern3.png",
+    "modern4.png",
+    "modern5.png",
     "mountain.png",
     "radar1.png",
     "ruin1.png",
@@ -27,7 +37,20 @@ function getTextures() {
   return ["gravel.jpg", "desert.jpg", "mud.png", "rocky.jpg", "toxic.jpg", "zone.jpg", "dirt.jpg", "pavement.jpg", "wasteland.jpg"];
 }
 function getCityBuildings() {
-  return ["apartments1.png", "apartments2.png"];
+  return [
+    "apartments1.png",
+    "apartments2.png",
+    "cabin.png",
+    "cabin2.png",
+    "factory1.png",
+    "factory2.png",
+    "factory3.png",
+    "modern1.png",
+    "modern2.png",
+    "modern3.png",
+    "modern4.png",
+    "modern5.png",
+  ];
 }
 function getWaterTexture() {
   return "water.png";

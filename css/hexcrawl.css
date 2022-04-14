@@ -187,6 +187,11 @@ row hex cluster {
   background-repeat: no-repeat;
   background-position: bottom;
   z-index: 1;
+  display: none;
+}
+row hex[tile-type="landmark"] icon,
+row hex[tile-type="landmark"] shadow {
+  display: block;
 }
 row hex cluster {
   width: 0px;
@@ -304,6 +309,24 @@ selected-hex input {
 selected-hex textarea {
   flex: 1 1 0;
 }
+selected-hex row.tile-type {
+  flex: 0 0 0;
+}
+selected-hex row.tile-type label {
+  flex-direction: column;
+  flex: 1 1 0;
+}
+selected-hex row.tile-type label,
+selected-hex row.tile-type span,
+selected-hex row.tile-type input {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+selected-hex row.tile-type label:hover {
+  text-decoration: underline;
+}
+
 clouds {
   position: absolute;
   top: 0px;
@@ -319,6 +342,12 @@ clouds {
   animation: cloudPan 15s;
   animation-iteration-count: infinite;
 }
+tile-type-options {
+  display: flex;
+  flex: 3 0 0;
+
+  overflow: hidden;
+}
 icons,
 textures {
   display: flex;
@@ -326,30 +355,37 @@ textures {
   overflow-y: scroll;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: flex-start;
+  align-content: flex-start;
   width: calc(100% -2px);
   flex: 1;
   gap: 5px;
   border: 1px solid black;
   margin-bottom: 5px;
 }
+icons icon,
+textures texture {
+  display: flex;
+  flex-direction: column;
+  flex: 0 1 0;
+}
 icons icon-inner,
 textures texture-inner {
+  cursor: pointer;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   padding: 3px;
   border: 3px dotted black;
 }
 icons icon-img,
 textures texture-img {
-  cursor: pointer;
+  display: flex;
   width: 50px;
   height: 50px;
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
-  font-size: 42px;
   font-weight: bold;
   text-align: center;
 }

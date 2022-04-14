@@ -43,20 +43,12 @@
       <input id="add-asset" type="text" placeholder="texture or icon url" />
       <selected-hex>
         <h4>Position <pos display="innerHTML" property id="posx"></pos>:<pos display="innerHTML" property id="posy"></pos></h4>
-
         <label for="tile-name"><h4>Title</h4></label>
         <input id="tile-name" property placeholder="Title" />
-        <row>
+        <row style="max-height: 125px">
           <box>
             <h4>Description</h4>
             <textarea property id="description"></textarea>
-
-            <input property display="radio" type="radio" id="landmark" name="tile-type" val="landmark" checked />
-            <label for="landmark">Landmark</label>
-            <input property display="radio" type="radio" id="city" name="tile-type" val="city" />
-            <label for="city">City</label>
-            <input property display="radio" type="radio" id="water" name="tile-type" val="water" />
-            <label for="water">Water</label>
           </box>
           <box>
             <label for="tile-tint"><h4>Tint</h4></label>
@@ -66,11 +58,35 @@
             <input property step="0.1" type="number" min="0" max="1" value="0" id="tile-tint-opacity" placeholder="Tint" />
           </box>
         </row>
-
-        <h4>Icon</h4>
-        <icons> </icons>
-        <h4>Texture</h4>
-        <textures> </textures>
+        <h3>Tile type</h3>
+        <row class="tile-type">
+          <label for="landmark">
+            <span>Landmark</span>
+            <input property display="radio" type="radio" id="landmark" name="tile-type" val="landmark" checked />
+          </label>
+          <label for="city">
+            <span>City</span>
+            <input property display="radio" type="radio" id="city" name="tile-type" val="city" />
+          </label>
+          <box>
+            <label for="water">
+              <span>Water</span>
+              <input property display="radio" type="radio" id="water" name="tile-type" val="water" />
+            </label>
+          </box>
+        </row>
+        <tile-type-options landmark>
+          <row>
+            <box>
+              <h4>Icon</h4>
+              <icons> </icons>
+            </box>
+            <box>
+              <h4>Texture</h4>
+              <textures> </textures>
+            </box>
+          </row>
+        </tile-type-options>
       </selected-hex>
     </nav>
     <hex id="hex-template" class="template" tile-type="landmark">
