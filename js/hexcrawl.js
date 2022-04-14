@@ -264,9 +264,10 @@ function bindHexProperty(property) {
 function hexAttributeChanged(hex, key, value) {
   hex.setAttribute(key, value);
   if (key != "tile-type") return;
-  displayTileTypeOptionControls(value);
+  displayTileTypeOptionControls(hex);
 }
-function displayTileTypeOptionControls(tileType) {
+function displayTileTypeOptionControls(hex) {
+  var tileType = hex.getAttribute("tile-type");
   selectedHexContainer.querySelectorAll("tile-type-options box").forEach((options) => {
     options.style.display = "none";
     if (!options.hasAttribute(tileType)) return;
@@ -300,6 +301,7 @@ function displayHexProperties(hex) {
         break;
     }
   });
+  displayTileTypeOptionControls(hex);
 }
 
 function renderHex(hex) {
