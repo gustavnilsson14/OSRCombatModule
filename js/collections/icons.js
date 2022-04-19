@@ -33,6 +33,9 @@ function getIcons() {
     "Untitled.png",
   ];
 }
+function getWaterIcons() {
+  return ["bridge1.png", "bridge2.png"];
+}
 function getTextures() {
   return ["gravel.jpg", "desert.jpg", "mud.png", "rocky.jpg", "toxic.jpg", "zone.jpg", "dirt.jpg", "pavement.jpg", "wasteland.jpg"];
 }

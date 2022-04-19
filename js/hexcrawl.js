@@ -7,6 +7,7 @@ var mapViewport;
 var mapContainer;
 var selectedHexContainer;
 var iconsContainer;
+var waterIconsContainer;
 var texturesContainer;
 
 var rowTemplate;
@@ -15,6 +16,7 @@ var iconTemplate;
 var textureTemplate;
 
 var iconImages;
+var waterIconImages;
 var textureImages;
 var clusterBuildingImages;
 var hexPositions = {
@@ -33,6 +35,7 @@ document.onreadystatechange = function () {
   mapViewport = document.querySelector("map");
   mapContainer = document.querySelector("map-inner");
   iconsContainer = document.querySelector("icons");
+  waterIconsContainer = document.querySelector("water-icons");
   texturesContainer = document.querySelector("textures");
   rowTemplate = document.querySelector("#row-template");
   hexTemplate = document.querySelector("#hex-template");
@@ -41,6 +44,7 @@ document.onreadystatechange = function () {
   nav = document.querySelector("nav");
 
   iconImages = getIcons();
+  waterIconImages = getWaterIcons();
   textureImages = getTextures();
   clusterBuildingImages = getCityBuildings();
 
@@ -239,9 +243,11 @@ function selectHexGraphicsButtons(hex) {
   if (selectedTexture) selectedTexture.classList.add("selected");
 }
 function bindHexDetailsControls() {
-  var iconButtons = document.querySelectorAll("icon:not(.template)");
-  var textureButtons = document.querySelectorAll("texture:not(.template)");
+  var iconButtons = document.querySelectorAll("icons icon");
+  var waterIconButtons = document.querySelectorAll("water-icons icon");
+  var textureButtons = document.querySelectorAll("textures texture");
   bindImageButtons(iconButtons, iconsContainer, "icon");
+  bindImageButtons(waterIconButtons, waterIconsContainer, "water-icon");
   bindImageButtons(textureButtons, texturesContainer, "texture", false);
   bindHexProperties();
 }
@@ -336,17 +342,18 @@ function renderHex(hex) {
   tint.style.backgroundColor = hex.getAttribute("tile-tint");
   tint.style.opacity = hex.getAttribute("tile-tint-opacity");
   texture.style.backgroundImage = `url(${getAssetPath(hex.getAttribute("texture"))})`;
-  renderIcon(hex);
+  renderIcon(hex, "icon");
+  renderIcon(hex, "water-icon");
   renderCluster(hex);
   setNeighborClasses(hex);
   getHexNeighbors(hex).forEach((neighbor) => {
     setNeighborClasses(neighbor);
   });
 }
-function renderIcon(hex) {
-  var iconPath = hex.getAttribute("icon");
-  var icon = hex.querySelector("icon");
-  var shadow = hex.querySelector("shadow");
+function renderIcon(hex, iconType) {
+  var iconPath = hex.getAttribute(iconType);
+  var icon = hex.querySelector(iconType);
+  var shadow = hex.querySelector(`${iconType}-shadow`);
   if (!iconPath) return setImageUrlValue(icon, shadow, iconPath);
   if (icon.style.backgroundImage.indexOf(iconPath) != -1) return;
   setImageUrlValue(icon, shadow, iconPath);
@@ -416,6 +423,7 @@ function unloadPage() {
 }
 function populateImageControls() {
   populateControlType(iconTemplate, iconsContainer, iconImages, "icon");
+  populateControlType(iconTemplate, waterIconsContainer, waterIconImages, "icon");
   populateControlType(textureTemplate, texturesContainer, textureImages, "texture");
   bindHexDetailsControls();
 }

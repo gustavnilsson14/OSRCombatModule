@@ -240,7 +240,8 @@ hex.hover vertical inner ui {
   opacity: 0.5;
 }
 row hex icon,
-row hex shadow,
+row hex water-icon,
+row hex .shadow,
 row hex cluster {
   position: absolute;
   width: 80%;
@@ -254,8 +255,17 @@ row hex cluster {
   z-index: 1;
   display: none;
 }
+row hex water-icon,
+row hex water-icon-shadow {
+  left: 50%;
+  top: 85%;
+}
 row hex[tile-type="landmark"] icon,
-row hex[tile-type="landmark"] shadow {
+row hex[tile-type="landmark"] icon-shadow {
+  display: block;
+}
+row hex[tile-type="water"] water-icon,
+row hex[tile-type="water"] water-icon-shadow {
   display: block;
 }
 row hex cluster {
@@ -318,7 +328,7 @@ row hex[neighbor-2_0] cluster-image:nth-child(5) {
   display: block;
 }
 
-row hex shadow {
+row hex .shadow {
   transform: translateX(0%) translateY(-100%) skew(-46deg, 0deg);
   filter: brightness(0) blur(3px);
   opacity: 0.2;
@@ -417,6 +427,7 @@ tile-type-options {
   overflow: hidden;
 }
 icons,
+water-icons,
 textures {
   display: flex;
   overflow-x: hidden;
@@ -432,12 +443,14 @@ textures {
   margin-bottom: 5px;
 }
 icons icon,
+water-icons icon,
 textures texture {
   display: flex;
   flex-direction: column;
   flex: 0 1 0;
 }
 icons icon-inner,
+water-icons icon-inner,
 textures texture-inner {
   cursor: pointer;
   display: flex;
@@ -447,6 +460,7 @@ textures texture-inner {
   border: 3px dotted black;
 }
 icons icon-img,
+water-icons icon-img,
 textures texture-img {
   display: flex;
   width: 50px;
@@ -458,6 +472,7 @@ textures texture-img {
   text-align: center;
 }
 icons .selected icon-inner,
+water-icons .selected icon-inner,
 textures .selected texture-inner {
   background-color: #dfd;
   border: 3px solid green;
