@@ -90,8 +90,7 @@ box {
 map row {
   counter-increment: row-no;
   z-index: counter(row-no);
-  height: 90px;
-  gap: var(--gap);
+  height: 0px;
   flex: none;
   flex-grow: none;
   justify-content: center;
@@ -102,10 +101,9 @@ map row * {
 }
 hex {
   display: inline;
-  position: relative;
+  position: absolute;
   height: 170px;
   width: 135px;
-  filter: drop-shadow(3px 3px 3px #000);
   transform: scale(1);
   animation: hexIn 1s;
   transition: 0.5s all;
@@ -136,19 +134,86 @@ hex content-container {
 }
 hex texture-container {
   transform: rotateX(45deg);
+  filter: drop-shadow(3px 3px 3px #000);
 }
 hex texture-container texture {
   background-size: contain;
 }
 
-hex vertical {
-  transform: rotateZ(60deg);
-}
+hex vertical,
 hex right-tilt {
   transform: rotateZ(60deg);
 }
 hex left-tilt {
   transform: rotateZ(-120deg);
+}
+hex texture-container river-container {
+  width: 50%;
+  height: 50%;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  display: none;
+}
+hex texture-container river-container right-tilt left-tilt horizontal {
+  transform: rotateZ(60deg);
+  width: 100% !important;
+  height: 100% !important;
+}
+hex river-container right-tilt {
+  transform: rotateZ(60deg) !important;
+}
+hex river-container left-tilt {
+  transform: rotateZ(-120deg) !important;
+}
+hex river-container river {
+  background-image: url(../img/map/water.png);
+  background-size: 100%;
+  animation: water-move 10s ease-in-out;
+  animation-iteration-count: infinite;
+}
+hex[tile-type="water"] texture-container river-container:first-child {
+  display: block;
+}
+hex[tile-type="water"][neighbor-1_-1] texture-container river-container:nth-child(2) {
+  display: block;
+}
+hex[tile-type="water"][neighbor1_-1] texture-container river-container:nth-child(3) {
+  display: block;
+}
+hex[tile-type="water"][neighbor-1_1] texture-container river-container:nth-child(4) {
+  display: block;
+}
+hex[tile-type="water"][neighbor1_1] texture-container river-container:nth-child(5) {
+  display: block;
+}
+hex[tile-type="water"][neighbor-2_0] texture-container river-container:nth-child(6) {
+  display: block;
+}
+hex[tile-type="water"][neighbor2_0] texture-container river-container:nth-child(7) {
+  display: block;
+}
+hex texture-container river-container:nth-child(2) {
+  left: 41%;
+  top: 24%;
+}
+hex texture-container river-container:nth-child(3) {
+  left: 59%;
+  top: 24%;
+}
+hex texture-container river-container:nth-child(4) {
+  left: 41%;
+  top: 75%;
+}
+hex texture-container river-container:nth-child(5) {
+  left: 59%;
+  top: 75%;
+}
+hex texture-container river-container:nth-child(6) {
+  left: 34%;
+}
+hex texture-container river-container:nth-child(7) {
+  left: 65%;
 }
 hex inner {
   display: block;
@@ -215,12 +280,11 @@ row hex cluster-image {
 row hex[tile-type="city"] cluster-image {
   filter: drop-shadow(10px -5px 5px rgba(0, 0, 0, 0.5));
 }
-row hex[tile-type="water"] cluster-image {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  transform: translateX(-50%) translateY(-75%);
-  background-size: cover;
+row hex[texture="img/map/water.png"] inner texture {
+  animation: water-hex-move 10s ease-in-out;
+  background-size: 75%;
+  transform: rotateZ(180deg);
+  animation-iteration-count: infinite;
 }
 row hex cluster-image:first-child {
   display: block;
@@ -253,6 +317,7 @@ row hex[neighbor-2_0] cluster-image:nth-child(5) {
   left: -45px;
   display: block;
 }
+
 row hex shadow {
   transform: translateX(0%) translateY(-100%) skew(-46deg, 0deg);
   filter: brightness(0) blur(3px);
@@ -450,5 +515,28 @@ button.chevronToggle.in::before {
   100% {
     transform: translateX(0%) translateY(-100%) skew(-46deg, 0deg) scale(1);
     opacity: 0.2;
+  }
+}
+
+@keyframes water-move {
+  0% {
+    background-position: 0%;
+  }
+  50% {
+    background-position: 30% 600%;
+  }
+  100% {
+    background-position: 0%;
+  }
+}
+@keyframes water-hex-move {
+  0% {
+    background-position: 0%;
+  }
+  50% {
+    background-position: -10% -5%;
+  }
+  100% {
+    background-position: 0%;
   }
 }

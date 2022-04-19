@@ -52,6 +52,3 @@ function getCityBuildings() {
     "modern5.png",
   ];
 }
-function getWaterTexture() {
-  return "water.png";
-}

@@ -17,6 +17,14 @@ var textureTemplate;
 var iconImages;
 var textureImages;
 var clusterBuildingImages;
+var hexPositions = {
+  "-1_-1": [-0.66, -1],
+  "1_-1": [0.66, -1],
+  "-2_0": [-1, 0],
+  "2_0": [1, 0],
+  "-1_1": [-0.66, 1],
+  "1_1": [0.66, 1],
+};
 
 document.onreadystatechange = function () {
   if (document.readyState != "complete") return;
@@ -55,8 +63,8 @@ function createDefaultGrid() {
   var firstRow = cloneTemplate(rowTemplate, mapContainer);
   var firstHex = cloneTemplate(hexTemplate, firstRow);
   firstHex.setAttribute("texture", getAssetPath(getRandomFrom(getTextures())));
-  renderHex(firstHex);
   setHexPositions();
+  renderHex(firstHex);
 }
 function animateClouds() {
   var clouds = document.querySelector("clouds");
@@ -97,16 +105,28 @@ function expand() {
   centerView();
 }
 function getHexNeighbors(hex) {
-  var x = parseInt(hex.getAttribute("posx"));
-  var y = parseInt(hex.getAttribute("posy"));
+  var pos = getHexPosition(hex);
   return [
-    document.querySelector(`hex[posx="${x - 1}"][posy="${y - 1}"]`),
-    document.querySelector(`hex[posx="${x + 1}"][posy="${y - 1}"]`),
-    document.querySelector(`hex[posx="${x - 2}"][posy="${y}"]`),
-    document.querySelector(`hex[posx="${x + 2}"][posy="${y}"]`),
-    document.querySelector(`hex[posx="${x - 1}"][posy="${y + 1}"]`),
-    document.querySelector(`hex[posx="${x + 1}"][posy="${y + 1}"]`),
+    document.querySelector(`hex[posx="${pos.x - 1}"][posy="${pos.y - 1}"]`),
+    document.querySelector(`hex[posx="${pos.x + 1}"][posy="${pos.y - 1}"]`),
+    document.querySelector(`hex[posx="${pos.x - 2}"][posy="${pos.y}"]`),
+    document.querySelector(`hex[posx="${pos.x + 2}"][posy="${pos.y}"]`),
+    document.querySelector(`hex[posx="${pos.x - 1}"][posy="${pos.y + 1}"]`),
+    document.querySelector(`hex[posx="${pos.x + 1}"][posy="${pos.y + 1}"]`),
+
+    document.querySelector(`hex[posx="${pos.x - 3}"][posy="${pos.y - 1}"]`),
+    document.querySelector(`hex[posx="${pos.x + 3}"][posy="${pos.y - 1}"]`),
+    document.querySelector(`hex[posx="${pos.x}"][posy="${pos.y - 2}"]`),
+    document.querySelector(`hex[posx="${pos.x}"][posy="${pos.y + 2}"]`),
+    document.querySelector(`hex[posx="${pos.x - 3}"][posy="${pos.y + 1}"]`),
+    document.querySelector(`hex[posx="${pos.x + 3}"][posy="${pos.y + 1}"]`),
   ].filter((x) => x != null);
+}
+function getHexPosition(hex) {
+  return {
+    x: parseInt(hex.getAttribute("posx")),
+    y: parseInt(hex.getAttribute("posy")),
+  };
 }
 function getNewHexParent(newHexes, newHex) {
   neighbors = getHexNeighbors(newHex).filter((neighbor) => {
@@ -152,9 +172,11 @@ function setNeighborClasses(hex) {
   var hexType = hex.getAttribute("tile-type");
   getHexNeighbors(hex).forEach((neighbor) => {
     if (!neighbor) return;
+    var hexPos = getHexPosition(hex);
+    var neighborPos = getHexPosition(neighbor);
     var posDiff = {
-      x: parseInt(parseInt(neighbor.getAttribute("posX") - hex.getAttribute("posX"))),
-      y: parseInt(neighbor.getAttribute("posY")) - parseInt(hex.getAttribute("posY")),
+      x: neighborPos.x - hexPos.x,
+      y: neighborPos.y - hexPos.y,
     };
     hex.removeAttribute(`neighbor${posDiff.x}_${posDiff.y}`);
     if (!neighbor.hasAttribute("tile-type")) return;
@@ -306,6 +328,9 @@ function displayHexProperties(hex) {
 
 function renderHex(hex) {
   hex.querySelector("name").innerHTML = hex.getAttribute("tile-name");
+  var pos = getHexPosition(hex);
+  hex.style.left = `${pos.x * 72}px`;
+  hex.style.top = `${pos.y * 90}px`;
   var tint = hex.querySelector("tint");
   var texture = hex.querySelector("texture");
   tint.style.backgroundColor = hex.getAttribute("tile-tint");
@@ -348,16 +373,15 @@ function renderCluster(hex) {
 function handleClusterVisibility(hex) {
   if (!hex.hasAttribute("tile-type")) return false;
   var clusterType = hex.getAttribute("tile-type");
-  if (clusterType == "landmark") {
-    hex.querySelector("cluster").style.display = "none";
-    return false;
+  if (clusterType == "city") {
+    hex.querySelector("cluster").style.display = "block";
+    return true;
   }
-  hex.querySelector("cluster").style.display = "block";
-  return true;
+  hex.querySelector("cluster").style.display = "none";
+  return false;
 }
 function getClusterImageByType(type) {
   if (type == "city") return getAssetPath(getRandomFrom(clusterBuildingImages));
-  if (type == "water") return getAssetPath(getWaterTexture());
   return "";
 }
 
