@@ -1,0 +1,3181 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css"
+      integrity="sha384-jLKHWM3JRmfMU0A5x5AkjWkw/EYfGUAGagvnfryNV3F9VqM98XiIH7VBGVoxVSc7"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="css/default.css" />
+    <style>
+      :root {
+        --tile-width: 4;
+        --tile-squared: 120px;
+      }
+      body {
+        flex-direction: row;
+      }
+      container {
+        width: calc(calc(var(--tile-squared) + 1px) * var(--tile-width));
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      span {
+        position: relative;
+      }
+      .quality-prefilled::after {
+        position: absolute;
+        content: "";
+        top: 0px;
+        right: 4.5px;
+        transform: rotateZ(45deg);
+        border-left: 2px solid black;
+        height: 13px;
+      }
+      slot {
+        border-top: 0px solid black !important;
+        border-left: 0px solid black !important;
+        border: 1px dotted black !important;
+        margin-left: -1px;
+        margin-top: -1px;
+      }
+    </style>
+    <link rel="stylesheet" href="css/item.css" />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.1.0/mustache.min.js"
+      integrity="sha512-WJoegbZkRk/oQbcp2Nm2JfgrHHyHdhaHns2g74rXFRxxy+E+syUWQCiZxSzGo0662p/GQEVXDkg6ImtSR60DHg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    <script src="js/collections/items.js"></script>
+  </head>
+  <body>
+    <nav>
+      <a href="rules.html">Rules</a>
+      <a href="battlemat.html">Battle</a>
+      <a href="sheet.html">Sheet</a>
+      <a href="items.html">Items</a>
+      <a href="vehicles.html">Vehicles</a>
+
+      <button onclick="random()">Roll</button>
+      <label for=""></label>
+      <filter>
+        <label for="melee">melee</label>
+        <input type="checkbox" name="melee" id="melee" />
+      </filter>
+      <filter>
+        <label for="ranged">ranged</label>
+        <input type="checkbox" name="ranged" id="ranged" />
+      </filter>
+      <filter>
+        <label for="stuff">stuff</label>
+        <input type="checkbox" name="stuff" id="stuff" />
+      </filter>
+      <filter>
+        <label for="magic">magic</label>
+        <input type="checkbox" name="magic" id="magic" />
+      </filter>
+      <filter>
+        <label for="headgear">headgear</label>
+        <input type="checkbox" name="headgear" id="headgear" />
+      </filter>
+      <filter>
+        <label for="shield">shield</label>
+        <input type="checkbox" name="shield" id="shield" />
+      </filter>
+      <filter>
+        <label for="armor">armor</label>
+        <input type="checkbox" name="armor" id="armor" />
+      </filter>
+      <filter>
+        <label for="cybernetics">cybernetics</label>
+        <input type="checkbox" name="cybernetics" id="cybernetics" />
+      </filter>
+      <filter>
+        <label for="artifact">artifact</label>
+        <input type="checkbox" name="artifact" id="artifact" />
+      </filter>
+
+      <button onclick="prep()">Prep for print</button>
+      <input id="slots" type="text" placeholder="slots (1-20)" />
+      <amount></amount>
+    </nav>
+    <slot id="slot-template" style="display: none" class="{{type}} {{size}} {{horizontal}}">
+      <name>
+        <span>{{name}}</span>
+      </name>
+      <inner style="background-image: url({{image}})">
+        <damagetypes>
+          {{#damageTypes}}
+          <span>{{.}}</span>
+          {{/damageTypes}}
+        </damagetypes>
+        <usage>
+          {{#usage}}
+          <span class="{{.}}"></span>
+          {{/usage}}
+        </usage>
+      </inner>
+      {{#hasSkill}}
+      <skill>
+        <skillslot></skillslot>
+        <skillslot></skillslot>
+        <skillslot></skillslot>
+        <skillslot></skillslot>
+        <skillslot></skillslot>
+      </skill>
+      {{/hasSkill}}
+    </slot>
+    <container>
+      <slot class="melee physical">
+        <name>
+          <span>Knife</span>
+        </name>
+        <inner style="background-image: url(img/items/knife.jpg)">
+          <damagetypes>
+            <span>cut</span>
+            <span>stab</span>
+          </damagetypes>
+          <usage>
+            <durability></durability>
+            <both></both>
+            <both></both>
+          </usage>
+        </inner>
+
+        <skill>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+        </skill>
+      </slot>
+
+      <slot class="melee physical">
+        <name>
+          <span class="small">Crude spear</span>
+        </name>
+        <inner style="background-image: url(img/items/spear.stone_512.png)">
+          <damagetypes>
+            <span>stab</span>
+          </damagetypes>
+          <usage>
+            <both></both>
+            <damage></damage>
+          </usage>
+        </inner>
+
+        <skill>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+        </skill>
+      </slot>
+
+      <slot class="melee physical">
+        <name>
+          <span class="small">Nunchaku</span>
+        </name>
+        <inner style="background-image: url(img/items/nunchucks.png)">
+          <damagetypes>
+            <span>smash</span>
+          </damagetypes>
+          <usage>
+            <durability></durability>
+            <durability></durability>
+            <both></both>
+          </usage>
+        </inner>
+
+        <skill>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+        </skill>
+      </slot>
+
+      <slot class="melee physical">
+        <name>
+          <span class="small">Harpoon</span>
+        </name>
+        <inner style="background-image: url(img/items/harpoon.png)">
+          <damagetypes>
+            <span>stab</span>
+            <span>pain</span>
+          </damagetypes>
+          <usage>
+            <durability></durability>
+            <durability></durability>
+            <both></both>
+            <both></both>
+          </usage>
+        </inner>
+
+        <skill>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+        </skill>
+      </slot>
+
+      <slot class="melee physical">
+        <name>
+          <span class="small">Wooden Club</span>
+        </name>
+        <inner style="background-image: url(img/items/club.png)">
+          <damagetypes>
+            <span>smash</span>
+          </damagetypes>
+          <usage>
+            <durability></durability>
+            <both></both>
+          </usage>
+        </inner>
+
+        <skill>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+        </skill>
+      </slot>
+
+      <slot class="melee physical">
+        <name>
+          <span>Hammer</span>
+        </name>
+        <inner style="background-image: url(img/items/hammer.png)">
+          <damagetypes>
+            <span>smash</span>
+          </damagetypes>
+          <usage>
+            <both></both>
+            <both></both>
+          </usage>
+        </inner>
+
+        <skill>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+        </skill>
+      </slot>
+
+      <slot class="melee physical">
+        <name>
+          <span>Cutter</span>
+        </name>
+        <inner style="background-image: url(img/items/cutter.png)">
+          <damagetypes>
+            <span>cut</span>
+            <span>pain</span>
+          </damagetypes>
+          <usage>
+            <both></both>
+            <both></both>
+            <damage></damage>
+          </usage>
+        </inner>
+
+        <skill>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+        </skill>
+      </slot>
+
+      <slot class="melee physical">
+        <name>
+          <span>Machete</span>
+        </name>
+        <inner style="background-image: url(img/items/machete.png)">
+          <damagetypes>
+            <span>cut</span>
+            <span>stab</span>
+          </damagetypes>
+          <usage>
+            <both></both>
+            <durability></durability>
+            <both></both>
+            <durability></durability>
+            <both></both>
+          </usage>
+        </inner>
+
+        <skill>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+        </skill>
+      </slot>
+
+      <slot class="melee physical">
+        <name>
+          <span>Torch</span>
+        </name>
+        <inner style="background-image: url(img/items/torch.png)">
+          <damagetypes>
+            <span>light</span>
+            <span>smash</span>
+          </damagetypes>
+          <usage>
+            <durability></durability>
+            <both></both>
+          </usage>
+        </inner>
+
+        <skill>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+        </skill>
+      </slot>
+
+      <slot class="melee physical horizontal-image">
+        <name>
+          <span class="small">Lumber Axe</span>
+        </name>
+        <inner style="background-image: url(img/items/hatchet.png)">
+          <damagetypes>
+            <span>cut</span>
+            <span>smash</span>
+          </damagetypes>
+          <usage>
+            <durability></durability>
+            <both></both>
+            <both></both>
+            <both></both>
+          </usage>
+        </inner>
+
+        <skill>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+        </skill>
+      </slot>
+
+      <slot class="melee physical">
+        <name>
+          <span class="smaller">Shovel</span>
+        </name>
+        <inner style="background-image: url(img/items/shovel.png)">
+          <damagetypes>
+            <span>cut</span>
+            <span>smash</span>
+          </damagetypes>
+          <usage>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+            <both></both>
+          </usage>
+        </inner>
+
+        <skill>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+        </skill>
+      </slot>
+
+      <slot class="melee physical">
+        <name>
+          <span class="smaller">Huge Wrench</span>
+        </name>
+        <inner style="background-image: url(img/items/wrench.png)">
+          <damagetypes>
+            <span>smash</span>
+          </damagetypes>
+          <usage class="second-row">
+            <durability></durability>
+            <durability></durability>
+          </usage>
+          <usage>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+            <both></both>
+          </usage>
+        </inner>
+
+        <skill>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+        </skill>
+      </slot>
+      <slot class="melee physical horizontal-image">
+        <name>
+          <span>Sword</span>
+        </name>
+        <inner style="background-image: url(img/items/sword.png)">
+          <damagetypes>
+            <span>cut</span>
+            <span>stab</span>
+          </damagetypes>
+          <usage class="second-row">
+            <durability></durability>
+            <both></both>
+          </usage>
+          <usage>
+            <both></both>
+            <durability></durability>
+            <both></both>
+            <durability></durability>
+            <both></both>
+          </usage>
+        </inner>
+
+        <skill>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+        </skill>
+      </slot>
+      <slot class="melee physical horizontal-image">
+        <name>
+          <span>Whip</span>
+        </name>
+        <inner style="background-image: url(img/items/whip.png)">
+          <damagetypes>
+            <span>pain</span>
+          </damagetypes>
+          <usage>
+            <both></both>
+            <both></both>
+          </usage>
+        </inner>
+
+        <skill>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+        </skill>
+      </slot>
+      <slot class="melee physical">
+        <name>
+          <span>Tazer</span>
+        </name>
+        <inner style="background-image: url(img/items/tazer.png)">
+          <damagetypes>
+            <span>volt</span>
+            <span>pain</span>
+          </damagetypes>
+          <usage>
+            <both></both>
+            <both></both>
+          </usage>
+        </inner>
+
+        <skill>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+        </skill>
+      </slot>
+      <slot class="melee physical">
+        <name>
+          <span class="smaller">Giant Crucifix</span>
+        </name>
+        <inner style="background-image: url(img/items/cross.png)">
+          <damagetypes>
+            <span>light</span>
+            <span>smash</span>
+          </damagetypes>
+          <usage>
+            <durability></durability>
+            <both></both>
+            <durability></durability>
+            <both></both>
+          </usage>
+        </inner>
+
+        <skill>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+        </skill>
+      </slot>
+      <slot class="melee physical">
+        <name>
+          <span class="smaller">Bolt Stunner</span>
+        </name>
+        <inner style="background-image: url(img/items/boltstunner.png)">
+          <damagetypes>
+            <span>gun</span>
+          </damagetypes>
+          <usage>
+            <both></both>
+            <both></both>
+            <durability></durability>
+            <damage></damage>
+          </usage>
+        </inner>
+
+        <skill>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+        </skill>
+      </slot>
+      <slot class="melee physical">
+        <name>
+          <span class="smaller">Meat Cleaver</span>
+        </name>
+        <inner style="background-image: url(img/items/cleaver.png)">
+          <damagetypes>
+            <span>cut</span>
+          </damagetypes>
+          <usage>
+            <durability></durability>
+            <durability></durability>
+            <both></both>
+            <both></both>
+          </usage>
+        </inner>
+
+        <skill>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+        </skill>
+      </slot>
+      <slot class="melee physical">
+        <name>
+          <span class="small">Screwdriver</span>
+        </name>
+        <inner style="background-image: url(img/items/screwdriver.png)">
+          <damagetypes>
+            <span>stab</span>
+          </damagetypes>
+          <usage>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+            <both></both>
+          </usage>
+        </inner>
+
+        <skill>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+        </skill>
+      </slot>
+      <slot class="melee physical">
+        <name>
+          <span>Crowbar</span>
+        </name>
+        <inner style="background-image: url(img/items/crowbar.png)">
+          <damagetypes>
+            <span>smash</span>
+          </damagetypes>
+          <usage class="second-row">
+            <durability></durability>
+            <durability></durability>
+          </usage>
+          <usage>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+            <both></both>
+            <both></both>
+          </usage>
+        </inner>
+
+        <skill>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+        </skill>
+      </slot>
+      <slot class="melee physical">
+        <name>
+          <span>Tire Iron</span>
+        </name>
+        <inner style="background-image: url(img/items/tireiron.jfif)">
+          <damagetypes>
+            <span>smash</span>
+          </damagetypes>
+          <usage class="second-row">
+            <durability></durability>
+          </usage>
+          <usage>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+            <both></both>
+          </usage>
+        </inner>
+
+        <skill>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+        </skill>
+      </slot>
+      <slot class="melee physical">
+        <name>
+          <span class="small">Climbing Pick</span>
+        </name>
+        <inner style="background-image: url(img/items/icepick.png)">
+          <damagetypes>
+            <span>stab</span>
+          </damagetypes>
+          <usage>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+            <both></both>
+            <both></both>
+          </usage>
+        </inner>
+
+        <skill>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+        </skill>
+      </slot>
+      <slot class="melee physical">
+        <name>
+          <span class="small">Baseball Bat</span>
+        </name>
+        <inner style="background-image: url(img/items/bat.png)">
+          <damagetypes>
+            <span>smash</span>
+          </damagetypes>
+          <usage>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+            <both></both>
+          </usage>
+        </inner>
+
+        <skill>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+        </skill>
+      </slot>
+
+      <slot class="melee physical">
+        <name>
+          <span class="small">Hockey Club</span>
+        </name>
+        <inner style="background-image: url(img/items/hockey.jpg)">
+          <damagetypes>
+            <span>smash</span>
+          </damagetypes>
+          <usage>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+            <both></both>
+          </usage>
+        </inner>
+
+        <skill>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+        </skill>
+      </slot>
+      <slot class="melee physical">
+        <name>
+          <span class="small">Chainsaw</span>
+        </name>
+        <inner style="background-image: url(img/items/chainsaw.png)">
+          <damagetypes>
+            <span>cut</span>
+            <span>pain</span>
+          </damagetypes>
+          <usage class="second-row">
+            <both></both>
+          </usage>
+          <usage>
+            <both></both>
+            <durability></durability>
+            <durability></durability>
+            <damage></damage>
+            <damage></damage>
+          </usage>
+        </inner>
+
+        <skill>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+        </skill>
+      </slot>
+      <slot class="melee physical">
+        <name>
+          <span class="small">Chainsword</span>
+        </name>
+        <inner style="background-image: url(img/items/chainsword.png)">
+          <damagetypes>
+            <span>cut</span>
+            <span>pain</span>
+          </damagetypes>
+          <usage class="second-row">
+            <both></both>
+            <both></both>
+          </usage>
+          <usage>
+            <both></both>
+            <durability></durability>
+            <durability></durability>
+            <damage></damage>
+            <damage></damage>
+          </usage>
+        </inner>
+
+        <skill>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+        </skill>
+      </slot>
+      <slot class="melee physical horizontal-image">
+        <name>
+          <span class="small">Vibroblade</span>
+        </name>
+        <inner style="background-image: url(img/items/vibroblade.png)">
+          <damagetypes>
+            <span>cut</span>
+          </damagetypes>
+          <usage class="second-row">
+            <durability></durability>
+            <both></both>
+            <durability></durability>
+            <both></both>
+            <both></both>
+          </usage>
+          <usage>
+            <both></both>
+            <durability></durability>
+            <both></both>
+            <durability></durability>
+            <damage></damage>
+          </usage>
+        </inner>
+
+        <skill>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+        </skill>
+      </slot>
+      <slot class="melee physical horizontal-image">
+        <name>
+          <span class="smaller">Necro Cleaver</span>
+        </name>
+        <inner style="background-image: url(img/items/chainaxe.png)">
+          <damagetypes>
+            <span>cut</span>
+            <span>pain</span>
+          </damagetypes>
+          <usage>
+            <both></both>
+            <durability></durability>
+            <both></both>
+            <both></both>
+          </usage>
+        </inner>
+
+        <skill>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+        </skill>
+      </slot>
+      <slot class="melee physical">
+        <name>
+          <span class="smaller">Necro Bleeder</span>
+        </name>
+        <inner style="background-image: url(img/items/necrobleeder.png)">
+          <damagetypes>
+            <span>stab</span>
+            <span>pain</span>
+          </damagetypes>
+          <usage>
+            <durability></durability>
+            <durability></durability>
+            <both></both>
+            <both></both>
+          </usage>
+        </inner>
+
+        <skill>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+        </skill>
+      </slot>
+      <slot class="melee physical">
+        <name>
+          <span class="smaller">Gator Blade</span>
+        </name>
+        <inner style="background-image: url(img/items/gatorblade.png)">
+          <damagetypes>
+            <span>cut</span>
+            <span>stab</span>
+          </damagetypes>
+          <usage>
+            <both></both>
+            <both></both>
+            <durability></durability>
+            <both></both>
+            <both></both>
+          </usage>
+        </inner>
+
+        <skill>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+        </skill>
+      </slot>
+      <slot class="melee physical">
+        <name>
+          <span class="smaller">Pots and Pans</span>
+        </name>
+        <inner style="background-image: url(img/items/potsnpans.png)">
+          <damagetypes>
+            <span>smash</span>
+          </damagetypes>
+          <usage>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+          </usage>
+        </inner>
+
+        <skill>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+        </skill>
+      </slot>
+      <slot class="melee physical">
+        <name>
+          <span class="smaller">Flashlight</span>
+        </name>
+        <inner style="background-image: url(img/items/flashlight.png)">
+          <damagetypes>
+            <span>smash</span>
+          </damagetypes>
+          <usage>
+            <durability></durability>
+            <durability></durability>
+          </usage>
+        </inner>
+
+        <skill>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+        </skill>
+      </slot>
+      <slot class="melee physical">
+        <name>
+          <span>Rope</span>
+        </name>
+        <inner style="background-image: url(img/items/rope.png)">
+          <damagetypes>
+            <span>pain</span>
+          </damagetypes>
+          <usage>
+            <durability></durability>
+            <durability></durability>
+          </usage>
+        </inner>
+
+        <skill>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+        </skill>
+      </slot>
+      <slot class="melee physical">
+        <name>
+          <span>Chain</span>
+        </name>
+        <inner style="background-image: url(img/items/grade-30-proof-coil-chain.jpg)">
+          <damagetypes>
+            <span>smash</span>
+            <span>pain</span>
+          </damagetypes>
+          <usage>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+          </usage>
+        </inner>
+
+        <skill>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+        </skill>
+      </slot>
+      <slot class="melee physical">
+        <name>
+          <span class="smaller">Portable Ladder</span>
+        </name>
+        <inner style="background-image: url(img/items/ladder.png)">
+          <damagetypes>
+            <span>smash</span>
+          </damagetypes>
+          <usage>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+          </usage>
+        </inner>
+
+        <skill>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+        </skill>
+      </slot>
+      <slot class="melee physical">
+        <name>
+          <span class="smaller">Army Knife</span>
+        </name>
+        <inner style="background-image: url(img/items/swissknife.png)">
+          <damagetypes>
+            <span>smash</span>
+            <span>stab</span>
+            <span>cut</span>
+            <span>pain</span>
+          </damagetypes>
+          <usage>
+            <durability></durability>
+            <durability></durability>
+          </usage>
+        </inner>
+
+        <skill>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+        </skill>
+      </slot>
+      <slot class="melee physical">
+        <name>
+          <span>2x4</span>
+        </name>
+        <inner style="background-image: url(img/items/2x4Cedarklbs.jpg)">
+          <damagetypes>
+            <span>smash</span>
+          </damagetypes>
+          <usage>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+          </usage>
+        </inner>
+
+        <skill>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+        </skill>
+      </slot>
+      <slot class="melee physical">
+        <name>
+          <span class="small">Extinguisher</span>
+        </name>
+        <inner style="background-image: url(img/items/extinguisher.png)">
+          <damagetypes>
+            <span>smash</span>
+          </damagetypes>
+          <usage>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+          </usage>
+        </inner>
+
+        <skill>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+        </skill>
+      </slot>
+      <slot class="melee physical">
+        <name>
+          <span class="small">Bear Trap</span>
+        </name>
+        <inner style="background-image: url(img/items/beartrap.png)">
+          <damagetypes>
+            <span>*</span>
+            <span>cut</span>
+            <span>pain</span>
+            <span>smash</span>
+          </damagetypes>
+          <usage>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+          </usage>
+        </inner>
+
+        <skill>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+        </skill>
+      </slot>
+      <slot class="melee physical horizontal-image">
+        <name>
+          <span class="small">Bolt Cutter</span>
+        </name>
+        <inner style="background-image: url(img/items/boltcutter.png)">
+          <damagetypes>
+            <span>smash</span>
+          </damagetypes>
+          <usage>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+            <both></both>
+          </usage>
+        </inner>
+
+        <skill>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+        </skill>
+      </slot>
+      <slot class="melee physical">
+        <name>
+          <span class="small">Pure Staff</span>
+        </name>
+        <inner style="background-image: url(img/items/purestaff.png)">
+          <damagetypes>
+            <span>*</span>
+            <span>smash</span>
+          </damagetypes>
+          <usage>
+            <durability></durability>
+            <durability></durability>
+            <both></both>
+          </usage>
+        </inner>
+        <skill>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+        </skill>
+      </slot>
+      <slot class="melee physical">
+        <name>
+          <span class="smaller">Sinister Staff</span>
+        </name>
+        <inner style="background-image: url(img/items/sinisterstaff.png)">
+          <damagetypes>
+            <span>*</span>
+            <span>smash</span>
+          </damagetypes>
+          <usage>
+            <durability></durability>
+            <durability></durability>
+            <both></both>
+          </usage>
+        </inner>
+        <skill>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+        </skill>
+      </slot>
+
+      <slot class="ranged physical horizontal-image">
+        <name>
+          <span class="small">Crossbow</span>
+        </name>
+        <inner style="background-image: url(img/items/crossbow.png)">
+          <damagetypes>
+            <span>stab</span>
+          </damagetypes>
+          <usage>
+            <durability></durability>
+            <durability></durability>
+            <both></both>
+            <damage></damage>
+          </usage>
+        </inner>
+
+        <skill>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+        </skill>
+      </slot>
+      <slot class="ranged physical">
+        <name>
+          <span class="smaller">Gator Bowgun</span>
+        </name>
+        <inner style="background-image: url(img/items/gator-bowgun.png)">
+          <damagetypes>
+            <span>stab</span>
+            <span>smash</span>
+          </damagetypes>
+          <usage>
+            <durability></durability>
+            <both></both>
+            <durability></durability>
+            <damage></damage>
+          </usage>
+        </inner>
+
+        <skill>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+        </skill>
+      </slot>
+      <slot class="ranged physical">
+        <name>
+          <span class="small">Wrist Cannon</span>
+        </name>
+        <inner style="background-image: url(img/items/slingshot.png)">
+          <damagetypes>
+            <span>smash</span>
+          </damagetypes>
+          <usage>
+            <durability></durability>
+            <durability></durability>
+            <both></both>
+          </usage>
+        </inner>
+
+        <skill>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+        </skill>
+      </slot>
+      <slot class="ranged physical">
+        <name>
+          <span class="smaller">Throwing knives</span>
+        </name>
+        <inner style="background-image: url(img/items/knives.png)">
+          <damagetypes>
+            <span>stab</span>
+          </damagetypes>
+          <usage>
+            <durability></durability>
+            <durability></durability>
+            <both></both>
+            <both></both>
+          </usage>
+        </inner>
+
+        <skill>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+        </skill>
+      </slot>
+      <slot class="ranged physical">
+        <name>
+          <span class="smaller">Compound Bow</span>
+        </name>
+        <inner style="background-image: url(img/items/bow.png)">
+          <damagetypes>
+            <span>stab</span>
+          </damagetypes>
+          <usage>
+            <durability></durability>
+            <both></both>
+            <damage></damage>
+          </usage>
+        </inner>
+
+        <skill>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+        </skill>
+      </slot>
+
+      <slot class="ranged physical horizontal-image">
+        <name>
+          <span class="smaller">Makeshift Pistol</span>
+        </name>
+        <inner style="background-image: url(img/items/makeshiftpistol.png)">
+          <damagetypes>
+            <span>gun</span>
+          </damagetypes>
+          <usage>
+            <both></both>
+            <damage></damage>
+            <damage></damage>
+          </usage>
+        </inner>
+
+        <skill>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+        </skill>
+      </slot>
+
+      <slot class="ranged physical">
+        <name>
+          <span>Beretta</span>
+        </name>
+        <inner style="background-image: url(img/items/beretta.png)">
+          <damagetypes>
+            <span>gun</span>
+          </damagetypes>
+          <usage>
+            <both></both>
+            <both></both>
+            <damage></damage>
+          </usage>
+        </inner>
+
+        <skill>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+        </skill>
+      </slot>
+      <slot class="ranged physical">
+        <name>
+          <span>Magnum</span>
+        </name>
+        <inner style="background-image: url(img/items/magnus.png)">
+          <damagetypes>
+            <span>gun</span>
+          </damagetypes>
+          <usage>
+            <both></both>
+            <durability></durability>
+            <both></both>
+            <damage></damage>
+          </usage>
+        </inner>
+
+        <skill>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+        </skill>
+      </slot>
+      <slot class="ranged physical">
+        <name>
+          <span class="small">Hand Cannon</span>
+        </name>
+        <inner style="background-image: url(img/items/handcannon.png)">
+          <damagetypes>
+            <span>gun</span>
+          </damagetypes>
+          <usage>
+            <durability></durability>
+            <both></both>
+            <both></both>
+            <damage></damage>
+          </usage>
+        </inner>
+
+        <skill>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+        </skill>
+      </slot>
+      <slot class="ranged physical horizontal-image">
+        <name>
+          <span>Shotgun</span>
+        </name>
+        <inner style="background-image: url(img/items/shotgun.png)">
+          <damagetypes>
+            <span>gun</span>
+            <span>blast</span>
+          </damagetypes>
+          <usage>
+            <durability></durability>
+            <both></both>
+            <both></both>
+            <damage></damage>
+          </usage>
+        </inner>
+
+        <skill>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+        </skill>
+      </slot>
+      <slot class="ranged physical horizontal-image">
+        <name>
+          <span class="small">Winchester</span>
+        </name>
+        <inner style="background-image: url(img/items/winchester.png)">
+          <damagetypes>
+            <span>gun</span>
+          </damagetypes>
+          <usage>
+            <durability></durability>
+            <both></both>
+            <both></both>
+            <damage></damage>
+            <damage></damage>
+          </usage>
+        </inner>
+
+        <skill>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+        </skill>
+      </slot>
+
+      <slot class="ranged physical">
+        <name>
+          <span>Tec 9</span>
+        </name>
+        <inner style="background-image: url(img/items/tec9.png)">
+          <damagetypes>
+            <span>gun</span>
+            <span>burst</span>
+          </damagetypes>
+          <usage>
+            <durability></durability>
+            <both></both>
+            <damage></damage>
+            <damage></damage>
+            <damage></damage>
+          </usage>
+        </inner>
+
+        <skill>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+        </skill>
+      </slot>
+      <slot class="ranged physical">
+        <name>
+          <span>Scorpion</span>
+        </name>
+        <inner style="background-image: url(img/items/scorpion.png)">
+          <damagetypes>
+            <span>gun</span>
+            <span>burst</span>
+          </damagetypes>
+          <usage>
+            <durability></durability>
+            <both></both>
+            <both></both>
+            <damage></damage>
+            <damage></damage>
+          </usage>
+        </inner>
+
+        <skill>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+        </skill>
+      </slot>
+      <slot class="ranged physical horizontal-image">
+        <name>
+          <span>M-16</span>
+        </name>
+        <inner style="background-image: url(img/items/m16.png)">
+          <damagetypes>
+            <span>gun</span>
+            <span>burst</span>
+          </damagetypes>
+          <usage>
+            <durability></durability>
+            <both></both>
+            <both></both>
+            <both></both>
+            <damage></damage>
+          </usage>
+        </inner>
+
+        <skill>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+        </skill>
+      </slot>
+      <slot class="ranged physical horizontal-image">
+        <name>
+          <span>AK47</span>
+        </name>
+        <inner style="background-image: url(img/items/ak47.png)">
+          <damagetypes>
+            <span>gun</span>
+            <span>burst</span>
+          </damagetypes>
+          <usage class="second-row">
+            <durability></durability>
+          </usage>
+          <usage>
+            <durability></durability>
+            <both></both>
+            <both></both>
+            <both></both>
+            <both></both>
+          </usage>
+        </inner>
+
+        <skill>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+        </skill>
+      </slot>
+      <slot class="ranged physical horizontal-image">
+        <name>
+          <span class="small">M29-LMG</span>
+        </name>
+        <inner style="background-image: url(img/items/PEO_M249_Para_ACOG.jpg)">
+          <damagetypes>
+            <span>burst</span>
+          </damagetypes>
+          <usage class="second-row">
+            <both></both>
+            <both></both>
+            <durability></durability>
+          </usage>
+          <usage>
+            <both></both>
+            <durability></durability>
+            <both></both>
+            <damage></damage>
+            <damage></damage>
+          </usage>
+        </inner>
+
+        <skill>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+        </skill>
+      </slot>
+      <slot class="ranged physical horizontal-image">
+        <name>
+          <span class="smaller">Autocannon</span>
+        </name>
+        <inner style="background-image: url(img/items/Autocannon_Vraks.webp)">
+          <damagetypes>
+            <span>gun</span>
+            <span>pain</span>
+            <span>burst</span>
+          </damagetypes>
+          <usage class="second-row">
+            <durability></durability>
+            <durability></durability>
+            <both></both>
+          </usage>
+          <usage>
+            <both></both>
+            <both></both>
+            <both></both>
+            <both></both>
+            <both></both>
+          </usage>
+        </inner>
+
+        <skill>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+        </skill>
+      </slot>
+      <slot class="ranged physical horizontal-image">
+        <name>
+          <span class="smaller">Megiddo Mortar</span>
+        </name>
+        <inner style="background-image: url(img/items/megiddo.png)">
+          <damagetypes>
+            <span>blast</span>
+            <span>light</span>
+          </damagetypes>
+          <usage class="second-row">
+            <durability></durability>
+            <durability></durability>
+            <both></both>
+            <both></both>
+          </usage>
+          <usage>
+            <both></both>
+            <both></both>
+            <both></both>
+            <damage></damage>
+            <damage></damage>
+          </usage>
+        </inner>
+
+        <skill>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+        </skill>
+      </slot>
+      <slot class="ranged horizontal-image">
+        <name>
+          <span class="small">Nailgun</span>
+        </name>
+        <inner style="background-image: url(img/items/nailgun_01.png14672430-033D-4D2C-858B-E5B447482AF8Large-removebg-preview.png)">
+          <damagetypes>
+            <span>pain</span>
+            <span>stab</span>
+          </damagetypes>
+          <usage>
+            <durability></durability>
+            <durability></durability>
+            <both></both>
+            <damage></damage>
+          </usage>
+        </inner>
+
+        <skill>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+        </skill>
+      </slot>
+      <slot class="ranged horizontal-image">
+        <name>
+          <span class="small">Necro Rifle</span>
+        </name>
+        <inner style="background-image: url(img/items/hellrifle.png)">
+          <damagetypes>
+            <span>gun</span>
+            <span>stab</span>
+          </damagetypes>
+          <usage>
+            <durability></durability>
+            <both></both>
+            <both></both>
+            <damage></damage>
+          </usage>
+        </inner>
+
+        <skill>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+        </skill>
+      </slot>
+      <slot class="ranged horizontal-image">
+        <name>
+          <span class="smaller">Necro Repeater</span>
+        </name>
+        <inner style="background-image: url(img/items/necrorepeater.png)">
+          <damagetypes>
+            <span>gun</span>
+            <span>stab</span>
+            <span>burst</span>
+          </damagetypes>
+          <usage>
+            <durability></durability>
+            <both></both>
+            <both></both>
+            <both></both>
+            <damage></damage>
+          </usage>
+        </inner>
+
+        <skill>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+        </skill>
+      </slot>
+      <slot class="ranged horizontal-image">
+        <name>
+          <span class="smaller">Bear Arbalest</span>
+        </name>
+        <inner style="background-image: url(img/items/bearbalest.png)">
+          <damagetypes>
+            <span>pain</span>
+            <span>stab</span>
+          </damagetypes>
+          <usage>
+            <durability></durability>
+            <durability></durability>
+            <both></both>
+            <damage></damage>
+          </usage>
+        </inner>
+
+        <skill>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+        </skill>
+      </slot>
+
+      <slot class="explosive">
+        <name>
+          <span class="small">Frag grenade</span>
+        </name>
+        <inner style="justify-content: space-between; background-image: url(img/items/grenade.png)">
+          <damagetypes>
+            <span>blast</span>
+          </damagetypes>
+          <usage class="second-row">
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+          </usage>
+          <usage>
+            <damage></damage>
+            <damage></damage>
+            <damage></damage>
+            <damage></damage>
+            <damage></damage>
+          </usage>
+        </inner>
+        <skill>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+        </skill>
+      </slot>
+
+      <slot class="explosive">
+        <name>
+          <span class="smallest">Molotov Cocktail</span>
+        </name>
+        <inner style="justify-content: space-between; background-image: url(img/items/molotov.png)">
+          <damagetypes>
+            <span>*</span>
+            <span>light</span>
+          </damagetypes>
+          <usage class="second-row">
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+          </usage>
+          <usage>
+            <damage></damage>
+            <damage></damage>
+          </usage>
+        </inner>
+        <skill>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+        </skill>
+      </slot>
+
+      <slot class="magic">
+        <name>
+          <span class="smaller">Shock</span>
+        </name>
+        <inner style="background-image: url(img/items/bolt.png), url(img/items/rune.png); background-size: 50%, 60%">
+          <damagetypes>
+            <span>volt</span>
+          </damagetypes>
+        </inner>
+
+        <skill>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+        </skill>
+      </slot>
+      <slot class="magic">
+        <name>
+          <span class="smaller">Aneurysm</span>
+        </name>
+        <inner style="background-image: url(img/items/brainbleed.png), url(img/items/rune.png); background-size: 50%, 60%">
+          <damagetypes>
+            <span>neural</span>
+          </damagetypes>
+        </inner>
+
+        <skill>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+        </skill>
+      </slot>
+      <slot class="magic">
+        <name>
+          <span class="smaller">Vile Mutagen</span>
+        </name>
+        <inner
+          style="
+            background-image: url(img/items/cancer-delande-celler-iStock-removebg-preview.png), url(img/items/rune.png);
+            background-size: 50%, 60%;
+          "
+        >
+          <damagetypes>
+            <span>ooze</span>
+          </damagetypes>
+        </inner>
+
+        <skill>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+        </skill>
+      </slot>
+      <slot class="magic">
+        <name>
+          <span class="smaller">Enflame</span>
+        </name>
+        <inner style="background-image: url(img/items/enflame.png), url(img/items/rune.png); background-size: 40%, 60%">
+          <damagetypes>
+            <span>light</span>
+          </damagetypes>
+        </inner>
+
+        <skill>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+        </skill>
+      </slot>
+      <slot class="magic">
+        <name>
+          <span class="smaller">Irradiate</span>
+        </name>
+        <inner style="background-image: url(img/items/Plutonium_pellet-removebg-preview.png), url(img/items/rune.png); background-size: 50%, 60%">
+          <damagetypes>
+            <span>ooze</span>
+          </damagetypes>
+        </inner>
+
+        <skill>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+        </skill>
+      </slot>
+
+      <slot class="stuff">
+        <name>
+          <span>Rations</span>
+        </name>
+        <inner style="background-image: url(img/items/rations.png)">
+          <usage>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+          </usage>
+        </inner>
+      </slot>
+      <slot class="stuff">
+        <name>
+          <span class="small">Fresh Fruits</span>
+        </name>
+        <inner style="background-image: url(img/items/frutas_4-removebg-preview.png)">
+          <usage>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+          </usage>
+        </inner>
+      </slot>
+      <slot class="stuff">
+        <name>
+          <span>Water</span>
+        </name>
+        <inner style="background-image: url(img/items/aqua.jpg)">
+          <usage>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+          </usage>
+        </inner>
+      </slot>
+      <slot class="stuff">
+        <name>
+          <span>Caprisun</span>
+        </name>
+        <inner style="background-image: url(img/items/caprisun.jpg)">
+          <usage>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+          </usage>
+        </inner>
+      </slot>
+      <slot class="stuff">
+        <name>
+          <span>Nails</span>
+        </name>
+        <inner style="background-image: url(img/items/nails.png)">
+          <usage>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+          </usage>
+        </inner>
+      </slot>
+      <slot class="stuff">
+        <name>
+          <span>Adhesive</span>
+        </name>
+        <inner style="background-image: url(img/items/adhesive.png)">
+          <usage>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+          </usage>
+        </inner>
+      </slot>
+      <slot class="stuff">
+        <name>
+          <span>Tape</span>
+        </name>
+        <inner style="background-image: url(img/items/tape.png)">
+          <usage>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+          </usage>
+        </inner>
+      </slot>
+      <slot class="stuff">
+        <name>
+          <span class="small">Copper Wire</span>
+        </name>
+        <inner style="background-image: url(img/items/copperwire.png)">
+          <usage>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+          </usage>
+        </inner>
+      </slot>
+      <slot class="stuff">
+        <name>
+          <span>Sensors</span>
+        </name>
+        <inner style="background-image: url(img/items/sensors.png)">
+          <usage>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+          </usage>
+        </inner>
+      </slot>
+      <slot class="stuff">
+        <name>
+          <span>Timer</span>
+        </name>
+        <inner style="background-image: url(img/items/timer.png)">
+          <usage>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+          </usage>
+        </inner>
+      </slot>
+      <slot class="stuff">
+        <name>
+          <span>Remote</span>
+        </name>
+        <inner style="background-image: url(img/items/remote.png)">
+          <usage>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+          </usage>
+        </inner>
+      </slot>
+      <slot class="stuff">
+        <name>
+          <span>Medicine</span>
+        </name>
+        <inner style="background-image: url(img/items/meds.png)">
+          <usage>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+          </usage>
+        </inner>
+      </slot>
+      <slot class="stuff">
+        <name>
+          <span class="small">First Aid Kit</span>
+        </name>
+        <inner style="background-image: url(img/items/aidkit.png)">
+          <usage>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+          </usage>
+        </inner>
+      </slot>
+      <slot class="stuff horizontal-image">
+        <name>
+          <span class="smallest">Inflatable Boat</span>
+        </name>
+        <inner style="background-image: url(img/items/boat.png)">
+          <usage>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+          </usage>
+        </inner>
+      </slot>
+      <slot class="stuff">
+        <name>
+          <span class="small">Car Battery</span>
+        </name>
+        <inner style="background-image: url(img/items/carbattery.png)">
+          <usage>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+          </usage>
+        </inner>
+      </slot>
+      <slot class="stuff">
+        <name>
+          <span class="small">Cigarettes</span>
+        </name>
+        <inner style="background-image: url(img/items/cigarettes.png)">
+          <usage>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+          </usage>
+        </inner>
+      </slot>
+      <slot class="stuff">
+        <name>
+          <span class="small">Matches</span>
+        </name>
+        <inner style="background-image: url(img/items/matches.png)">
+          <usage>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+          </usage>
+        </inner>
+      </slot>
+      <slot class="stuff">
+        <name>
+          <span class="small">Gasoline</span>
+        </name>
+        <inner style="background-image: url(img/items/gasoline.png)">
+          <usage>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+          </usage>
+        </inner>
+      </slot>
+      <slot class="stuff">
+        <name>
+          <span class="small">Car Parts</span>
+        </name>
+        <inner style="background-image: url(img/items/carparts.png)">
+          <usage>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+          </usage>
+        </inner>
+      </slot>
+      <slot class="stuff">
+        <name>
+          <span class="smaller">Geiger Counter</span>
+        </name>
+        <inner style="background-image: url(img/items/geiger.jpg)">
+          <usage>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+          </usage>
+        </inner>
+      </slot>
+      <slot class="stuff">
+        <name>
+          <span class="smaller">Portable Still</span>
+        </name>
+        <inner style="background-image: url(img/items/still.jpg)">
+          <usage>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+          </usage>
+        </inner>
+      </slot>
+      <slot class="stuff">
+        <name>
+          <span>Tent</span>
+        </name>
+        <inner style="background-image: url(img/items/tent.jpg)">
+          <usage>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+          </usage>
+        </inner>
+      </slot>
+      <slot class="stuff">
+        <name>
+          <span>Vials</span>
+        </name>
+        <inner style="background-image: url(img/items/vials.png)">
+          <usage>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+          </usage>
+        </inner>
+      </slot>
+      <slot class="stuff">
+        <name>
+          <span>Acid</span>
+        </name>
+        <inner style="background-image: url(img/items/acid.webp)">
+          <usage>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+          </usage>
+        </inner>
+      </slot>
+      <slot class="stuff">
+        <name>
+          <span>Chemicals</span>
+        </name>
+        <inner style="background-image: url(img/items/ricca-solvents-removebg-preview.png)">
+          <usage>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+          </usage>
+        </inner>
+      </slot>
+      <slot class="stuff">
+        <name>
+          <span>Parachute</span>
+        </name>
+        <inner style="background-image: url(img/items/download.jpg)">
+          <usage>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+          </usage>
+        </inner>
+      </slot>
+      <slot class="stuff">
+        <name>
+          <span class="smaller">Office Supplies</span>
+        </name>
+        <inner style="background-image: url(img/items/office.png)">
+          <usage>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+          </usage>
+        </inner>
+      </slot>
+      <slot class="stuff">
+        <name>
+          <span class="small">Explosives</span>
+        </name>
+        <inner style="background-image: url(img/items/explosives.png)">
+          <usage>
+            <durability></durability>
+            <durability></durability>
+          </usage>
+        </inner>
+      </slot>
+      <slot class="stuff">
+        <name>
+          <span class="small">Chewing Gum</span>
+        </name>
+        <inner style="background-image: url(img/items/chewinggum.png)">
+          <usage>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+          </usage>
+        </inner>
+      </slot>
+      <slot class="stuff">
+        <name>
+          <span class="small">Bucket</span>
+        </name>
+        <inner style="background-image: url(img/items/bucket.png)">
+          <usage>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+          </usage>
+        </inner>
+      </slot>
+      <slot class="stuff">
+        <name>
+          <span class="small">Steak</span>
+        </name>
+        <inner style="background-image: url(img/items/Ribeye_Steak_Lip-on-removebg-preview.png)">
+          <usage>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+          </usage>
+        </inner>
+      </slot>
+      <slot class="stuff">
+        <name>
+          <span class="smaller">Water Dispenser</span>
+        </name>
+        <inner style="background-image: url(img/items/water.png)">
+          <usage>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+          </usage>
+        </inner>
+      </slot>
+      <slot class="stuff">
+        <name>
+          <span class="smaller">Paper Money</span>
+        </name>
+        <inner style="background-image: url(img/items/history-of-paper-money-removebg-preview.png)">
+          <usage>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+          </usage>
+        </inner>
+      </slot>
+      <slot class="stuff">
+        <name>
+          <span class="smaller">Regeneratium</span>
+        </name>
+        <inner style="background-image: url(img/items/syringe.medical_512-removebg-preview.png)">
+          <usage>
+            <durability></durability>
+            <durability></durability>
+          </usage>
+        </inner>
+      </slot>
+      <slot class="stuff">
+        <name>
+          <span class="smaller">Amphetamines</span>
+        </name>
+        <inner style="background-image: url(img/items/amphetamine.png)">
+          <usage>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+          </usage>
+        </inner>
+      </slot>
+      <slot class="stuff">
+        <name>
+          <span class="smaller">Hallucinogens</span>
+        </name>
+        <inner style="background-image: url(img/items/lsd.png)">
+          <usage>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+          </usage>
+        </inner>
+      </slot>
+      <slot class="stuff">
+        <name>
+          <span class="smaller">Opioids</span>
+        </name>
+        <inner style="background-image: url(img/items/Opium-100glas-removebg-preview.png)">
+          <usage>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+          </usage>
+        </inner>
+      </slot>
+      <slot class="stuff">
+        <name>
+          <span class="smaller">Booze</span>
+        </name>
+        <inner style="background-image: url(img/items/bottle-of-booze-700-189084535-removebg-preview.png)">
+          <usage>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+          </usage>
+        </inner>
+      </slot>
+      <slot class="stuff">
+        <name>
+          <span>Ammo</span>
+        </name>
+        <inner style="justify-content: space-between; background-image: url(img/items/ammo.png)">
+          <usage>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+          </usage>
+          <usage>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+          </usage>
+        </inner>
+      </slot>
+      <slot class="stuff">
+        <name>
+          <span>Binoculars</span>
+        </name>
+        <inner style="justify-content: space-between; background-image: url(img/items/binoculars.png)">
+          <usage>
+            <durability></durability>
+            <durability></durability>
+          </usage>
+        </inner>
+      </slot>
+      <slot class="stuff">
+        <name>
+          <span class="smallest">Expandable Solar</span>
+        </name>
+        <inner style="justify-content: space-between; background-image: url(img/items/solar.png)">
+          <usage>
+            <durability></durability>
+            <durability></durability>
+          </usage>
+        </inner>
+      </slot>
+      <slot class="stuff">
+        <name>
+          <span class="smallest">Expandable Turbine</span>
+        </name>
+        <inner style="justify-content: space-between; background-image: url(img/items/windturbine.png)">
+          <usage>
+            <durability></durability>
+            <durability></durability>
+          </usage>
+        </inner>
+      </slot>
+      <slot class="stuff">
+        <name>
+          <span class="smallest">Burner Generator</span>
+        </name>
+        <inner style="justify-content: space-between; background-image: url(img/items/generator.png)">
+          <usage>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+          </usage>
+        </inner>
+      </slot>
+
+      <slot class="headgear">
+        <name>
+          <span class="smaller">Hockey Mask</span>
+        </name>
+        <inner style="background-image: url(img/items/hocketmask.png)">
+          <damagetypes>
+            <span>smash</span>
+          </damagetypes>
+          <usage>
+            <durability></durability>
+            <durability></durability>
+            <both></both>
+          </usage>
+        </inner>
+      </slot>
+      <slot class="headgear">
+        <name>
+          <span class="smaller">Road Helmet</span>
+        </name>
+        <inner style="background-image: url(img/items/motorbikehelmet.jfif)">
+          <damagetypes>
+            <span>smash</span>
+          </damagetypes>
+          <usage>
+            <durability></durability>
+            <durability></durability>
+            <both></both>
+          </usage>
+        </inner>
+      </slot>
+      <slot class="headgear">
+        <name>
+          <span class="smaller">Bike Helmet</span>
+        </name>
+        <inner style="background-image: url(img/items/bikehelmet.jpg)">
+          <damagetypes>
+            <span>smash</span>
+          </damagetypes>
+          <usage>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+          </usage>
+        </inner>
+      </slot>
+      <slot class="headgear">
+        <name>
+          <span class="smaller">Hardhat</span>
+        </name>
+        <inner style="background-image: url(img/items/hardhat.jpg)">
+          <damagetypes>
+            <span>smash</span>
+          </damagetypes>
+          <usage>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+          </usage>
+        </inner>
+      </slot>
+      <slot class="headgear">
+        <name>
+          <span class="smaller">Gas Mask</span>
+        </name>
+        <inner style="background-image: url(img/items/gasmask.jpg)">
+          <damagetypes>
+            <span>ooze</span>
+          </damagetypes>
+          <usage>
+            <durability></durability>
+            <durability></durability>
+          </usage>
+        </inner>
+      </slot>
+      <slot class="headgear">
+        <name>
+          <span class="smaller">Goggles</span>
+        </name>
+        <inner style="background-image: url(img/items/goggles.png)">
+          <damagetypes>
+            <span>*</span>
+          </damagetypes>
+          <usage>
+            <durability></durability>
+            <durability></durability>
+          </usage>
+        </inner>
+      </slot>
+      <slot class="headgear">
+        <name>
+          <span class="smaller">Skull Helmet</span>
+        </name>
+        <inner style="background-image: url(img/items/skull.png)">
+          <damagetypes>
+            <span>pain</span>
+          </damagetypes>
+          <usage>
+            <durability></durability>
+            <durability></durability>
+            <both></both>
+          </usage>
+        </inner>
+      </slot>
+      <slot class="headgear">
+        <name>
+          <span class="smaller">Tinfoil Hat</span>
+        </name>
+        <inner style="background-image: url(img/items/tinfoilhat.png)">
+          <damagetypes>
+            <span>neural</span>
+          </damagetypes>
+          <usage>
+            <durability></durability>
+          </usage>
+        </inner>
+      </slot>
+      <slot class="armor">
+        <name>
+          <span class="smaller">Kevlar Vest</span>
+        </name>
+        <inner style="background-image: url(img/items/kevlar.jpg)">
+          <damagetypes>
+            <span>gun</span>
+          </damagetypes>
+          <usage>
+            <durability></durability>
+            <durability></durability>
+            <both></both>
+          </usage>
+        </inner>
+      </slot>
+      <slot class="armor">
+        <name>
+          <span class="smaller">Hockey Armor</span>
+        </name>
+        <inner style="background-image: url(img/items/hockeyarmor.png)">
+          <damagetypes>
+            <span>smash</span>
+          </damagetypes>
+          <usage>
+            <durability></durability>
+            <durability></durability>
+            <both></both>
+          </usage>
+        </inner>
+      </slot>
+      <slot class="armor">
+        <name>
+          <span class="smaller">Leather Vest</span>
+        </name>
+        <inner style="background-image: url(img/items/leather.png)">
+          <damagetypes>
+            <span>pain</span>
+          </damagetypes>
+          <usage>
+            <durability></durability>
+            <durability></durability>
+            <both></both>
+          </usage>
+        </inner>
+      </slot>
+      <slot class="armor">
+        <name>
+          <span class="smaller">Metal Plate</span>
+        </name>
+        <inner style="background-image: url(img/items/metalplate-removebg-preview.png)">
+          <damagetypes>
+            <span>cut</span>
+          </damagetypes>
+          <usage>
+            <durability></durability>
+            <durability></durability>
+            <both></both>
+          </usage>
+        </inner>
+      </slot>
+      <slot class="shield">
+        <name>
+          <span class="smaller">Riot Shield</span>
+        </name>
+        <inner style="background-image: url(img/items/riotshield.jfif)">
+          <damagetypes>
+            <span>blast</span>
+          </damagetypes>
+          <usage>
+            <durability></durability>
+            <durability></durability>
+            <both></both>
+          </usage>
+        </inner>
+      </slot>
+      <slot class="shield">
+        <name>
+          <span class="smaller">Stop Sign</span>
+        </name>
+        <inner style="background-image: url(img/items/stopshield.jpg)">
+          <damagetypes>
+            <span>stab</span>
+          </damagetypes>
+          <usage>
+            <durability></durability>
+            <durability></durability>
+            <both></both>
+          </usage>
+        </inner>
+      </slot>
+      <slot class="shield">
+        <name>
+          <span class="smaller">Planks with Grip</span>
+        </name>
+        <inner style="background-image: url(img/items/plank.png)">
+          <damagetypes>
+            <span>volt</span>
+          </damagetypes>
+          <usage>
+            <durability></durability>
+            <both></both>
+          </usage>
+        </inner>
+      </slot>
+
+      <slot class="armor x2">
+        <name>
+          <span class="smaller">Marine Armor</span>
+        </name>
+        <inner style="background-image: url(img/items/armor-combat.png)">
+          <damagetypes>
+            <span>burst</span>
+            <span>blast</span>
+          </damagetypes>
+          <usage>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+            <both></both>
+            <both></both>
+          </usage>
+        </inner>
+      </slot>
+      <slot class="armor x2">
+        <name>
+          <span class="smaller">Combat Armor</span>
+        </name>
+        <inner style="background-image: url(img/items/combat-armor.jfif)">
+          <damagetypes>
+            <span>nuke</span>
+            <span>light</span>
+          </damagetypes>
+          <usage>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+            <both></both>
+            <both></both>
+          </usage>
+        </inner>
+      </slot>
+      <slot class="armor x2">
+        <name>
+          <span class="smaller">Bull Armor</span>
+        </name>
+        <inner style="background-image: url(img/items/poweredarmor.jpg)">
+          <damagetypes>
+            <span>ooze</span>
+            <span>neural</span>
+          </damagetypes>
+          <usage>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+            <both></both>
+            <both></both>
+          </usage>
+        </inner>
+      </slot>
+      <slot class="armor x2">
+        <name>
+          <span class="smaller">Shell Armor</span>
+        </name>
+        <inner style="background-image: url(img/items/shellarmor.png)">
+          <damagetypes>
+            <span>gun</span>
+            <span>light</span>
+          </damagetypes>
+          <usage>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+            <both></both>
+            <both></both>
+          </usage>
+        </inner>
+      </slot>
+      <slot class="armor x2">
+        <name>
+          <span class="smaller">Hazmat Suit</span>
+        </name>
+        <inner style="background-image: url(img/items/hazmat.png)">
+          <damagetypes>
+            <span>*</span>
+            <span>ooze</span>
+            <span>nuke</span>
+            <span>volt</span>
+          </damagetypes>
+          <usage>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+          </usage>
+        </inner>
+      </slot>
+      <slot class="armor x2">
+        <name>
+          <span class="smaller">Camouflage</span>
+        </name>
+        <inner style="background-image: url(img/items/kamouflage-och-maskering-ghillie-suit-woodland-44574-f1-removebg-preview.png)">
+          <damagetypes>
+            <span>*</span>
+            <span>pain</span>
+          </damagetypes>
+          <usage>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+          </usage>
+        </inner>
+      </slot>
+      <slot class="armor x2">
+        <name>
+          <span class="smaller">Arctic Gear</span>
+        </name>
+        <inner style="background-image: url(img/items/arctic.png)">
+          <damagetypes>
+            <span>*</span>
+            <span>cut</span>
+            <span>smash</span>
+          </damagetypes>
+          <usage>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+            <both></both>
+          </usage>
+        </inner>
+      </slot>
+
+      <slot class="cybernetics horizontal-image">
+        <name>
+          <span>Grappler</span>
+        </name>
+        <inner style="background-image: url(img/items/grapplehand.png)">
+          <damagetypes>
+            <span>cut</span>
+            <span>pain</span>
+            <span>smash</span>
+          </damagetypes>
+          <usage>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+            <both></both>
+          </usage>
+        </inner>
+        <bodypart>hand</bodypart>
+      </slot>
+      <slot class="cybernetics">
+        <name>
+          <span class="small">Bionic Arm</span>
+        </name>
+        <inner style="background-image: url(img/items/bionicarm.png)">
+          <damagetypes>
+            <span>pain</span>
+            <span>smash</span>
+          </damagetypes>
+          <usage>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+            <both></both>
+          </usage>
+        </inner>
+        <bodypart>hand</bodypart>
+      </slot>
+      <slot class="cybernetics">
+        <name>
+          <span class="small">Bionic Leg</span>
+        </name>
+        <inner style="background-image: url(img/items/bionicleg.png)">
+          <damagetypes> </damagetypes>
+          <usage>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+            <both></both>
+          </usage>
+        </inner>
+        <bodypart>belt</bodypart>
+      </slot>
+      <slot class="cybernetics">
+        <name>
+          <span class="small">Bionic Eye</span>
+        </name>
+        <inner style="background-image: url(img/items/bioniceye.png)">
+          <damagetypes> </damagetypes>
+          <usage>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+            <both></both>
+          </usage>
+        </inner>
+        <bodypart>special</bodypart>
+      </slot>
+
+      <slot class="artifact">
+        <name>
+          <span>Polygel</span>
+        </name>
+        <inner style="background-image: url(img/items/polygel.png)">
+          <usage>
+            <durability></durability>
+          </usage>
+        </inner>
+      </slot>
+      <slot class="artifact">
+        <name>
+          <span class="small">Bio-Scanner</span>
+        </name>
+        <inner style="background-image: url(img/items/bio-scanner.png)">
+          <usage>
+            <durability></durability>
+            <durability></durability>
+          </usage>
+        </inner>
+      </slot>
+      <slot class="artifact">
+        <name>
+          <span class="smaller">Neuro-Animator</span>
+        </name>
+        <inner style="background-image: url(img/items/neuro-animator.png)">
+          <usage>
+            <durability></durability>
+          </usage>
+        </inner>
+      </slot>
+      <slot class="artifact horizontal-image">
+        <name>
+          <span class="smaller">Gate Recoiler</span>
+        </name>
+        <inner style="background-image: url(img/items/teleport-thumb-1.jpg)">
+          <usage>
+            <durability></durability>
+            <durability></durability>
+          </usage>
+        </inner>
+      </slot>
+      <slot class="artifact">
+        <name>
+          <span class="smaller">X-Ray Beam</span>
+        </name>
+        <inner style="background-image: url(img/items/x-ray.png)">
+          <usage>
+            <durability></durability>
+            <durability></durability>
+          </usage>
+        </inner>
+      </slot>
+      <slot class="artifact">
+        <name>
+          <span class="smallest">Solar Condenser</span>
+        </name>
+        <inner style="background-image: url(img/items/solarcondenser.png)">
+          <usage>
+            <durability></durability>
+            <durability></durability>
+          </usage>
+        </inner>
+      </slot>
+      <slot class="artifact">
+        <name>
+          <span class="smaller">Rocket Skates</span>
+        </name>
+        <inner style="background-image: url(img/items/rocketskates.png)">
+          <usage>
+            <durability></durability>
+            <durability></durability>
+          </usage>
+        </inner>
+      </slot>
+      <slot class="artifact">
+        <name>
+          <span class="smallest">Foamcrete Dispenser</span>
+        </name>
+        <inner style="background-image: url(img/items/foamgel.png)">
+          <usage>
+            <durability></durability>
+            <durability></durability>
+          </usage>
+        </inner>
+      </slot>
+      <slot class="artifact">
+        <name>
+          <span class="smallest">2-Dimensional Suit</span>
+        </name>
+        <inner style="background-image: url(img/items/2d.png)">
+          <usage>
+            <durability></durability>
+            <durability></durability>
+          </usage>
+        </inner>
+      </slot>
+      <slot class="artifact">
+        <name>
+          <span class="small">Mag Boots</span>
+        </name>
+        <inner style="background-image: url(img/items/magboots.png)">
+          <usage>
+            <durability></durability>
+            <durability></durability>
+          </usage>
+        </inner>
+      </slot>
+      <slot class="artifact">
+        <name>
+          <span class="smaller">Anti-Grav Boots</span>
+        </name>
+        <inner style="background-image: url(img/items/antigrav.png)">
+          <usage>
+            <durability></durability>
+            <durability></durability>
+          </usage>
+        </inner>
+      </slot>
+      <slot class="artifact">
+        <name>
+          <span class="smaller">Copter Pack</span>
+        </name>
+        <inner style="background-image: url(img/items/copterpack.png)">
+          <usage>
+            <durability></durability>
+            <durability></durability>
+          </usage>
+        </inner>
+      </slot>
+      <slot class="artifact">
+        <name>
+          <span class="smallest">Growgel Injector</span>
+        </name>
+        <inner style="background-image: url(img/items/growgel.png)">
+          <usage>
+            <durability></durability>
+            <durability></durability>
+          </usage>
+        </inner>
+      </slot>
+      <slot class="artifact">
+        <name>
+          <span class="smaller">Slave Crown</span>
+        </name>
+        <inner style="background-image: url(img/items/slavecrown.png)">
+          <usage>
+            <durability></durability>
+            <durability></durability>
+          </usage>
+        </inner>
+      </slot>
+      <slot class="artifact">
+        <name>
+          <span class="smaller">Laser Sculpter</span>
+        </name>
+        <inner style="background-image: url(img/items/lasersculpter.png)">
+          <usage>
+            <durability></durability>
+            <durability></durability>
+          </usage>
+        </inner>
+      </slot>
+      <slot class="artifact">
+        <name>
+          <span class="smaller">Thermobaric Cell</span>
+        </name>
+        <inner style="background-image: url(img/items/thermobariccell.png)">
+          <usage>
+            <durability></durability>
+            <durability></durability>
+          </usage>
+        </inner>
+      </slot>
+      <slot class="artifact">
+        <name>
+          <span class="smaller">Autodoc</span>
+        </name>
+        <inner style="background-image: url(img/items/autodoc.png)">
+          <usage>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+          </usage>
+        </inner>
+      </slot>
+      <slot class="artifact">
+        <name>
+          <span class="smaller">Lifeform sensor</span>
+        </name>
+        <inner style="background-image: url(img/items/lifeformsensor.png)">
+          <usage>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+            <durability></durability>
+          </usage>
+        </inner>
+      </slot>
+    </container>
+    <script>
+      document.querySelector("nav amount").textContent = document.querySelectorAll("slot").length;
+      document.querySelectorAll("slot").forEach((element, i) => {
+        element.setAttribute("index", i + 1);
+        element.addEventListener("click", function () {
+          document.querySelector("#slots").value += `${i + 1},`;
+        });
+      });
+
+      function scrape() {
+        var result = [];
+        document.querySelectorAll("slot").forEach((slot) => {
+          var name = slot.querySelector("name").innerText;
+          var type = slot.classList[0];
+          var size = slot.classList.contains("x2");
+          var horizontal = slot.classList.contains("horizontal-image");
+          var usage = [];
+          slot.querySelectorAll("usage *").forEach((u) => {
+            if (u.tagName == "DURABILITY") usage.push(u.tagName);
+            if (u.tagName == "BOTH") usage.push("QUALITY");
+            if (u.tagName == "DAMAGE") usage.push("EFFECT");
+          });
+          usage = usage.reverse();
+          var hasSkill = !!slot.querySelector("skill");
+          var damageTypes = [];
+          slot.querySelectorAll("damagetypes span").forEach((damageType) => {
+            damageTypes.push(damageType.innerText);
+          });
+          image = slot.querySelector("inner").style.backgroundImage.slice(4, -1).replace(/"/g, "");
+          result.push({
+            name: name,
+            type: type,
+            usage: usage,
+            damageTypes: damageTypes,
+            hasSkill: hasSkill,
+            size: size,
+            horizontal: horizontal,
+            image: image,
+          });
+        });
+        console.log(result);
+      }
+
+      function random() {
+        const filters = getFilters();
+        const slots = getSlotsByFilters(getFilters());
+        slots.forEach((slot) => {
+          slot.classList.remove("result");
+        });
+        const dieRoll = Math.floor(Math.random() * slots.length);
+        slots[dieRoll].classList.add("result");
+        slots[dieRoll].scrollIntoView({
+          behavior: "smooth", // Defines the transition animation. default: auto
+          block: "center", // Defines vertical alignment. default: start
+        });
+      }
+      function getFilters() {
+        const filters = [];
+        document.querySelectorAll("filter").forEach((filter) => {
+          if (!filter.querySelector("input").checked) return;
+          filters.push(filter.querySelector("input").getAttribute("name"));
+        });
+        return filters;
+      }
+      function getSlotsByFilters(filters) {
+        if (filters.length == 0) return document.querySelectorAll("slot");
+        var slots = [];
+        filters.forEach((filter) => {
+          slots = [...slots, ...document.querySelectorAll(`slot.${filter}`)];
+        });
+        return slots;
+      }
+
+      function prep() {
+        const slotRange = document.querySelector("nav input#slots").value;
+        document.querySelector("nav").remove();
+        document.querySelector("body").style.justifyContent = "flex-start";
+
+        const indexes = [];
+        slotRange.split(",").forEach((range) => {
+          const min = parseInt(range.split("-")[0]);
+          var max = parseInt(range.split("-")[1]);
+          if (!max) max = min;
+          for (let index = min - 1; index < max; index++) {
+            console.log(index);
+            if (indexes.indexOf(index) != -1) continue;
+            indexes.push(index);
+          }
+        });
+
+        document.querySelectorAll("slot").forEach((slot, i) => {
+          if (indexes.indexOf(i) != -1) return;
+          slot.remove();
+        });
+      }
+    </script>
+  </body>
+</html>

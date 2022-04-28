@@ -1,250 +1,280 @@
-
-slot.x2{
-    height: calc(var(--tile-squared) * 2);
+slot.x2 {
+  height: calc(var(--tile-squared) * 2);
 }
-slot *{
-    font-family: 'medula';
-    font-weight: 400;
-    text-transform: uppercase;
-    font-size:14px;
+slot * {
+  font-family: "medula";
+  font-weight: 400;
+  text-transform: uppercase;
+  font-size: 14px;
 }
-slot name{
-    display: flex;
-    flex-direction: row;
-    height:35px;
-    background: white;
-    border-bottom: 1px solid black;
-    justify-content: space-between;
-    padding: 0 5px;
+slot name {
+  display: flex;
+  flex-direction: row;
+  height: 35px;
+  background: white;
+  border-bottom: 1px solid black;
+  justify-content: space-between;
+  padding: 0 5px;
 }
-slot name span{
-    font-size: 28px;
-    line-height: 38px;
-    width: 80%;
-    text-align: left;
-    margin-left: 5px;
-    white-space: nowrap;
+slot name span {
+  font-size: 28px;
+  line-height: 38px;
+  width: 80%;
+  text-align: left;
+  margin-left: 5px;
+  white-space: nowrap;
 }
-slot name span.small{
-    font-size: 24px;
-    line-height: 38px;
+slot name span.small {
+  font-size: 24px;
+  line-height: 38px;
 }
-slot name span.smaller{
-    font-size: 20px;
-    line-height: 38px;
+slot name span.smaller {
+  font-size: 20px;
+  line-height: 38px;
 }
-slot name span.smallest{
-    font-size: 16px;
-    line-height: 38px;
+slot name span.smallest {
+  font-size: 16px;
+  line-height: 38px;
 }
-slot skill{
-    display: flex;
-    height: 10px;
-    flex-direction: row;
-    border-top: 1px solid black;
+slot skill {
+  display: flex;
+  height: 10px;
+  flex-direction: row;
+  border-top: 1px solid black;
 }
-slot skill slot{
-    display: flex;
-    flex: 1;
-    flex-grow: 1;
-    border-right: 1px solid black;
+slot skill slot {
+  display: flex;
+  flex: 1;
+  flex-grow: 1;
+  border-right: 1px solid black;
 }
-slot skill slot:last-child{
-    border-right: 0;
+slot skill slot:last-child {
+  border-right: 0;
 }
-slot inner{
-    display: flex;
-    flex-direction: row;
-    flex-grow: 1;
-    position: relative;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: auto 80%;
+slot inner {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+  position: relative;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: auto 80%;
 }
-slot.x2 inner{
-    margin: 10px;
-    background-size: auto 70%;
+slot.x2 inner {
+  margin: 10px;
+  background-size: auto 70%;
 }
 slot.horizontal-image inner {
-    background-size: 80% auto;
+  background-size: 80% auto;
 }
-slot.x2.horizontal-image inner{
-    margin: 10px;
-    background-size: 70% auto;
+slot.x2.horizontal-image inner {
+  margin: 10px;
+  background-size: 70% auto;
 }
-slot inner span{
-    font-size: 10px;
-    text-transform: lowercase;
+slot inner span {
+  font-size: 10px;
+  text-transform: lowercase;
 }
 slot inner damagetypes,
-slot inner usage{
-    display: flex;
-    flex-direction: column;
+slot inner usage {
+  display: flex;
+  flex-direction: column;
 }
-slot inner damagetypes{
-    justify-content: flex-end;
-    flex-grow: 1;
-    flex: 1;
-    margin-left: 2px;
+slot inner damagetypes {
+  justify-content: flex-end;
+  flex-grow: 1;
+  flex: 1;
+  margin-left: 2px;
 }
-slot inner damagetypes span{
-    justify-content: flex-end;
-    text-transform: uppercase;
-    font-size: 18px;
-    text-align: left;
+slot inner damagetypes span {
+  justify-content: flex-end;
+  text-transform: uppercase;
+  font-size: 18px;
+  text-align: left;
 }
-slot bodypart{
-    position: absolute;
-    font-size: 18px;
-    bottom: 0px;
-    left: 50%;
-    transform: translateX(-50%);
+slot bodypart {
+  position: absolute;
+  font-size: 18px;
+  bottom: 0px;
+  left: 50%;
+  transform: translateX(-50%);
 }
-slot inner usage{
-    text-align: right;
-    line-height: 10px;
-    justify-content: flex-end;
-    row-gap: 3px;
-    margin-bottom: 3px;
-    margin-left: 3px;
+slot inner usage {
+  text-align: right;
+  line-height: 10px;
+  justify-content: flex-end;
+  row-gap: 3px;
+  margin-bottom: 3px;
+  margin-left: 3px;
 }
-slot inner usage.second-row{
-    flex-direction: column-reverse;
-    margin-top: 2px;
-    margin-right: -3px;
+slot inner usage.second-row {
+  flex-direction: column-reverse;
+  margin-top: 2px;
+  margin-right: -3px;
 }
-slot inner usage span{
-    font-size: 18px;
-    font-family: 'source';
-    font-weight: 100;
+slot inner usage span {
+  font-size: 18px;
+  font-family: "source";
+  font-weight: 100;
 }
-slot inner usage *{
-    display: flex;
-    border: 2px solid black;
-    width: 7px;
-    height: 7px;
-    align-self: flex-end;
-    margin-right: 2px;
+slot inner usage * {
+  display: flex;
+  border: 2px solid black;
+  width: 7px;
+  height: 7px;
+  align-self: flex-end;
+  margin-right: 2px;
 }
-slot inner usage durability{
-    border: 0;
-    border-style: dashed;
-    width: 11px;
-    height: 11px;
+slot inner usage * {
+  position: absolute;
 }
-slot inner usage durability::before{
-    content: url(../img/corners.svg);
-    width: 100%;
-    height: 100%;
+slot inner usage *:nth-child(2) {
+  bottom: 16px;
 }
-slot inner usage damage{
-    border: 0;
-    position: relative;
-    width: 11px;
-    height: 11px;
-    
+slot inner usage *:nth-child(3) {
+  bottom: 30px;
 }
-slot inner usage damage::before{
-    content: "+";
-    position: absolute;
-    font-size: 36px;
-    font-weight: 400;
-    top: 0px;
-    right: 0.5px;
+slot inner usage *:nth-child(4) {
+  bottom: 44px;
 }
-slot inner usage both{
-    border-radius: 50%;
+slot inner usage *:nth-child(5) {
+  bottom: 58px;
 }
-slot inner armor{
-    display: flex;
-    background-image: url(../img/shield.svg);
-    background-repeat: no-repeat;
-    background-size: contain;
-    width: 20px;
-    height: 20px;
-    line-height: 20px;
-    font-size: 16px;
-    flex-grow: 1;
-    padding-left:8px;
+slot inner usage *:nth-child(6) {
+  bottom: 58px;
+  right: 13px;
+}
+slot inner usage *:nth-child(7) {
+  bottom: 44px;
+  right: 13px;
+}
+slot inner usage *:nth-child(8) {
+  bottom: 30px;
+  right: 13px;
+}
+slot inner usage *:nth-child(9) {
+  bottom: 16px;
+  right: 13px;
+}
+slot inner usage *:nth-child(10) {
+  right: 13px;
+}
+slot inner usage span.DURABILITY {
+  border: 0;
+  border-style: dashed;
+  width: 11px;
+  height: 11px;
+}
+slot inner usage span.DURABILITY::before {
+  content: url(../img/corners.svg);
+  width: 100%;
+  height: 100%;
+}
+slot inner usage span.EFFECT {
+  border: 0;
+  width: 11px;
+  height: 11px;
+}
+slot inner usage span.EFFECT::before {
+  content: "+";
+  position: relative;
+  font-size: 24px;
+  font-weight: 400;
+  top: 0px;
+  right: 1.5px;
+}
+slot inner usage span.QUALITY {
+  border-radius: 50%;
+}
+slot inner armor {
+  display: flex;
+  background-image: url(../img/shield.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  font-size: 16px;
+  flex-grow: 1;
+  padding-left: 8px;
 }
 
-slot{
-    font-size: 20px;
-    display: flex;
-    width:119px;
-    height:119px;
-    position: relative;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-    border-top: 1px solid black;
-    border-left: 1px solid black;
+slot {
+  font-size: 20px;
+  display: flex;
+  width: 119px;
+  height: 119px;
+  position: relative;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  border-top: 1px solid black;
+  border-left: 1px solid black;
 }
-slot.result name{
-    background:#ccc;
+slot.result name {
+  background: #ccc;
 }
-slot name::before{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    flex: 1;
-    margin-top: 4px;
+slot name::before {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1;
+  margin-top: 4px;
 }
-.melee name::before{
-    content: url(../img/blades.svg);
+.melee name::before {
+  content: url(../img/blades.svg);
 }
-.ranged name::before{
-    content: url(../img/gun-solid.svg);
+.ranged name::before {
+  content: url(../img/gun-solid.svg);
 }
-.magic name::before{
-    content: url(../img/meleespell.svg);
+.magic name::before {
+  content: url(../img/meleespell.svg);
 }
-.headgear name::before{
-    content: url(../img/jason-mask.svg);
+.headgear name::before {
+  content: url(../img/jason-mask.svg);
 }
-.armor name::before{
-    content: url(../img/armor.svg);
+.armor name::before {
+  content: url(../img/armor.svg);
 }
-.shield name::before{
-    content: url(../img/shield-solid.svg);
+.shield name::before {
+  content: url(../img/shield-solid.svg);
 }
-.stuff name::before{
-    content: url(../img/gear-solid.svg);
+.stuff name::before {
+  content: url(../img/gear-solid.svg);
 }
-.explosive name::before{
-    content: url(../img/bomb.svg);
+.explosive name::before {
+  content: url(../img/bomb.svg);
 }
-.artifact name::before{
-    content: "";
-    background-image: url(../img/artifact.png);
-    height: 31px;
-    width: 31px;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
+.artifact name::before {
+  content: "";
+  background-image: url(../img/artifact.png);
+  height: 31px;
+  width: 31px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
-.cybernetics name::before{
-    content: "";
-    background-image: url(../img/cybernetics.png);
-    height: 31px;
-    width: 31px;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
+.cybernetics name::before {
+  content: "";
+  background-image: url(../img/cybernetics.png);
+  height: 31px;
+  width: 31px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
-skill{
-    display: flex;
-    flex-direction: row;
-    width: 119px;
-    height: 15px;
-    bottom: 0px;
+skill {
+  display: flex;
+  flex-direction: row;
+  width: 119px;
+  height: 15px;
+  bottom: 0px;
 }
-skill skillslot{
-    display: flex;
-    flex: 1;
-    flex-grow: 1;
-    height: 100%;
-    border: 1px solid black;
-    border-bottom: 0px;
-    
+skill skillslot {
+  display: flex;
+  flex: 1;
+  flex-grow: 1;
+  height: 100%;
+  border: 1px solid black;
+  border-bottom: 0px;
 }

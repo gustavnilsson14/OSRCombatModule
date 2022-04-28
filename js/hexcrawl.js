@@ -2,23 +2,11 @@ var minZoom = 0.36;
 
 var selectedHexes;
 
-var nav;
-var mapViewport;
-var mapContainer;
-var selectedHexContainer;
-var iconsContainer;
-var waterIconsContainer;
-var texturesContainer;
+var nav, mapViewport, mapContainer, selectedHexContainer, iconsContainer, waterIconsContainer, texturesContainer;
 
-var rowTemplate;
-var hexTemplate;
-var iconTemplate;
-var textureTemplate;
+var rowTemplate, hexTemplate, iconTemplate, textureTemplate;
 
-var iconImages;
-var waterIconImages;
-var textureImages;
-var clusterBuildingImages;
+var iconImages, waterIconImages, textureImages, clusterBuildingImages, clusterForestImages;
 var hexPositions = {
   "-1_-1": [-0.66, -1],
   "1_-1": [0.66, -1],
@@ -43,10 +31,11 @@ document.onreadystatechange = function () {
   textureTemplate = document.querySelector("#texture-template");
   nav = document.querySelector("nav");
 
-  iconImages = getIcons();
-  waterIconImages = getWaterIcons();
-  textureImages = getTextures();
+  iconImages = getIcons().sort();
+  waterIconImages = getWaterIcons().sort();
+  textureImages = getTextures().sort();
   clusterBuildingImages = getCityBuildings();
+  clusterForestImages = getTrees();
 
   document.addEventListener("click", deSelectHex);
   nav.addEventListener("click", (e) => {
@@ -54,15 +43,17 @@ document.onreadystatechange = function () {
   });
   bindGrabScroll();
   bindToggles();
+  animateClouds();
+  setup();
+};
+function setup() {
   createDefaultGrid();
   populateImageControls();
-  bindDataControls();
   bindExpand();
-  animateClouds();
   bindHexes();
   centerView();
   bindAddAssetControls();
-};
+}
 function createDefaultGrid() {
   var firstRow = cloneTemplate(rowTemplate, mapContainer);
   var firstHex = cloneTemplate(hexTemplate, firstRow);
@@ -117,13 +108,35 @@ function getHexNeighbors(hex) {
     document.querySelector(`hex[posx="${pos.x + 2}"][posy="${pos.y}"]`),
     document.querySelector(`hex[posx="${pos.x - 1}"][posy="${pos.y + 1}"]`),
     document.querySelector(`hex[posx="${pos.x + 1}"][posy="${pos.y + 1}"]`),
-
-    document.querySelector(`hex[posx="${pos.x - 3}"][posy="${pos.y - 1}"]`),
-    document.querySelector(`hex[posx="${pos.x + 3}"][posy="${pos.y - 1}"]`),
-    document.querySelector(`hex[posx="${pos.x}"][posy="${pos.y - 2}"]`),
-    document.querySelector(`hex[posx="${pos.x}"][posy="${pos.y + 2}"]`),
-    document.querySelector(`hex[posx="${pos.x - 3}"][posy="${pos.y + 1}"]`),
-    document.querySelector(`hex[posx="${pos.x + 3}"][posy="${pos.y + 1}"]`),
+  ].filter((x) => x != null);
+}
+function getHexNeighborPositions(hex) {
+  var pos = getHexPosition(hex);
+  return [
+    {
+      x: pos.x - 1,
+      y: pos.y - 1,
+    },
+    {
+      x: pos.x + 1,
+      y: pos.y - 1,
+    },
+    {
+      x: pos.x - 2,
+      y: pos.y,
+    },
+    {
+      x: pos.x + 2,
+      y: pos.y,
+    },
+    {
+      x: pos.x - 1,
+      y: pos.y + 1,
+    },
+    {
+      x: pos.x + 1,
+      y: pos.y + 1,
+    },
   ].filter((x) => x != null);
 }
 function getHexPosition(hex) {
@@ -173,20 +186,23 @@ function getCorrectedHexStartX(posY, hexes) {
   return -hexes.length + 1;
 }
 function setNeighborClasses(hex) {
-  var hexType = hex.getAttribute("tile-type");
-  getHexNeighbors(hex).forEach((neighbor) => {
-    if (!neighbor) return;
+  getHexNeighborPositions(hex).forEach((neighborPos) => {
+    if (!neighborPos) return;
     var hexPos = getHexPosition(hex);
-    var neighborPos = getHexPosition(neighbor);
     var posDiff = {
       x: neighborPos.x - hexPos.x,
       y: neighborPos.y - hexPos.y,
     };
-    hex.removeAttribute(`neighbor${posDiff.x}_${posDiff.y}`);
-    if (!neighbor.hasAttribute("tile-type")) return;
-    if (neighbor.getAttribute("tile-type") != hexType) return;
-    hex.setAttribute(`neighbor${posDiff.x}_${posDiff.y}`, true);
+    var neighbor = document.querySelector(`hex[posx="${neighborPos.x}"][posy="${neighborPos.y}"]`);
+    hex.setAttribute(`n${posDiff.x}_${posDiff.y}`, 1);
+    if (!neighbor) return;
+    if (matchTileType(hex, neighbor)) return;
+    hex.removeAttribute(`n${posDiff.x}_${posDiff.y}`);
   });
+}
+function matchTileType(hex, neighbor) {
+  if (!neighbor.hasAttribute("tile-type")) return false;
+  return neighbor.getAttribute("tile-type") == hex.getAttribute("tile-type");
 }
 function getFirstSelectedHex() {
   if (selectedHexes.length > 0) return selectedHexes[0];
@@ -384,11 +400,16 @@ function handleClusterVisibility(hex) {
     hex.querySelector("cluster").style.display = "block";
     return true;
   }
+  if (clusterType == "forest") {
+    hex.querySelector("cluster").style.display = "block";
+    return true;
+  }
   hex.querySelector("cluster").style.display = "none";
   return false;
 }
 function getClusterImageByType(type) {
   if (type == "city") return getAssetPath(getRandomFrom(clusterBuildingImages));
+  if (type == "forest") return getAssetPath(getRandomFrom(clusterForestImages));
   return "";
 }
 
@@ -442,31 +463,59 @@ function getAssetPath(asset) {
   if (asset.indexOf("img/map/") == 0) return asset;
   return `img/map/${asset}`;
 }
-function bindDataControls() {
-  document.querySelector("#export").addEventListener("click", exportData);
-  document.querySelector("#import").addEventListener("click", importData);
-}
-function exportData() {
-  var data = { rows: [], icons: iconImages, textures: textureImages };
-  var rows = document.querySelectorAll("map row:not(.template)");
-  rows.forEach((row) => {
-    var rowData = { hexes: [] };
-    var hexes = row.querySelectorAll("hex");
-    hexes.forEach((hex) => {
-      rowData.hexes.push(getElementData(hex));
-    });
-    data.rows.push(rowData);
-  });
-  var dataString = JSON.stringify(data);
+async function exportData(button) {
+  var dataString = JSON.stringify(getData());
   navigator.clipboard.writeText(dataString);
-  document.cookie = `data=${dataString}`;
+  await buttonFeedback(button);
 }
-function importData() {
-  var data = document.querySelector("#import-data").value;
-  if (!data) data = getCookie("data");
-  if (!data) return;
-  data = JSON.parse(data);
+async function importData(button) {
+  var data = await navigator.clipboard.readText();
+  try {
+    data = JSON.parse(data);
+  } catch (e) {
+    await buttonFeedback(button, "warning", 1500);
+    return;
+  }
   mapContainer.innerHTML = "";
+  parseData(data);
+  await buttonFeedback(button);
+}
+async function save(button) {
+  window.localStorage.map = JSON.stringify(getData());
+  await buttonFeedback(button);
+}
+async function load(button) {
+  var data;
+  try {
+    data = JSON.parse(window.localStorage.map);
+  } catch (e) {
+    await buttonFeedback(button, "warning", 1500);
+    return;
+  }
+  mapContainer.innerHTML = "";
+  parseData(data);
+  await buttonFeedback(button);
+}
+async function clearData(button) {
+  if (button.classList.contains("commit-to-clear")) {
+    button.classList.remove("commit-to-clear");
+    button.innerText = "CLEAR";
+    window.localStorage.map = "";
+    mapContainer.innerHTML = "";
+    setup();
+    return;
+  }
+  button.classList.add("commit-to-clear");
+  button.innerText = "REALLY CLEAR YOUR DATA?";
+  await sleep(3000);
+  if (button.classList.contains("commit-to-clear")) {
+    button.classList.remove("commit-to-clear");
+    button.innerText = "CLEAR";
+  }
+}
+function parseData(data) {
+  iconImages = [...new Set([...data.icons, ...getIcons()])].sort();
+  textureImages = [...new Set([...data.textures, ...getTextures()])].sort();
 
   data.rows.forEach((row) => {
     var newRow = cloneTemplate(rowTemplate);
@@ -478,13 +527,44 @@ function importData() {
     });
     mapContainer.appendChild(newRow);
   });
-  iconImages = data.icons;
-  textureImages = data.textures;
   bindHexes();
   populateImageControls();
 }
+async function buttonFeedback(button, className = "success", timeout = 500) {
+  button.classList.add(`btn-${className}`);
+  await sleep(timeout);
+  button.classList.remove(`btn-${className}`);
+}
+function getData() {
+  var data = { rows: [], icons: iconImages, textures: textureImages };
+  var rows = document.querySelectorAll("map row:not(.template)");
+  rows.forEach((row) => {
+    var rowData = { hexes: [] };
+    var hexes = row.querySelectorAll("hex");
+    hexes.forEach((hex) => {
+      rowData.hexes.push(getElementData(hex));
+    });
+    data.rows.push(rowData);
+  });
+  return data;
+}
+function getDataAttributeKeyVal(attribute) {
+  if (attribute.name == "class") return [];
+  if (attribute.name == "style") return [];
+  if (attribute.name == "texture") return [attribute.name, getImageIndex(attribute.value, textureImages)];
+  if (attribute.name == "icon") return [attribute.name, getImageIndex(attribute.value, iconImages)];
+  return [attribute.name, attribute.value];
+}
 function setElementData(element, data) {
   for (const [key, value] of Object.entries(data)) {
+    if (key == "texture") {
+      element.setAttribute(key, textureImages[parseInt(value)]);
+      continue;
+    }
+    if (key == "icon") {
+      element.setAttribute(key, iconImages[parseInt(value)]);
+      continue;
+    }
     element.setAttribute(key, value);
   }
   return data;
@@ -492,9 +572,14 @@ function setElementData(element, data) {
 function getElementData(element) {
   var data = {};
   Array.from(element.attributes).forEach((attribute) => {
-    data[attribute.name] = attribute.value;
+    var [key, val] = getDataAttributeKeyVal(attribute);
+    if (!key) return;
+    data[key] = val;
   });
   return data;
+}
+function getImageIndex(path, images) {
+  return images.indexOf(images.find((x) => path.indexOf(x) != -1));
 }
 function bindToggles() {
   document.querySelectorAll("[toggle]").forEach((toggle) => {
@@ -528,15 +613,15 @@ function bindAddAssetControls() {
   document.querySelectorAll(".add-asset").forEach((button) => {
     button.addEventListener("click", function () {
       var assetType = button.getAttribute("type");
-      if (assetType == "icon") return addAsset(iconImages, assetInputField.value);
-      return addAsset(textureImages, assetInputField.value);
+      addAsset(assetInputField.value, assetType);
+      populateImageControls();
+      bindHexDetailsControls();
     });
   });
 }
-function addAsset(list, asset) {
-  list.push(asset);
-  populateImageControls();
-  bindHexDetailsControls();
+function addAsset(asset, assetType) {
+  if (assetType == "icon") iconImages = [...iconImages, asset].sort();
+  if (assetType == "texture") textureImages = [...textureImages, asset].sort();
 }
 function bindGrabScroll() {
   var grabbing = false;

@@ -1,6 +1,6 @@
-:root {
-  --gap: 6px;
-  --half-gap: 3px;
+.btn {
+  border-color: #313131;
+  margin: 3px;
 }
 body {
   display: flex;
@@ -24,6 +24,12 @@ nav.in > *:not(button[toggle]) {
   opacity: 1;
   pointer-events: all;
 }
+data-controls {
+  display: block;
+}
+data-controls button.btn {
+  flex: 1 0 0;
+}
 nav.in {
   flex: 0.6 1 0;
 }
@@ -33,8 +39,10 @@ h2,
 h3,
 h4,
 h5,
-h6 {
-  font-family: source;
+h6,
+button,
+input {
+  font-family: "source";
   text-align: center;
   margin: 4px 0px 2px 0px;
 }
@@ -55,7 +63,7 @@ map-frame {
   border: 1px solid black;
   flex: 1 1 0;
   height: calc(100vh - 2px);
-  background: #ddd;
+  background: #e8dcb8;
 }
 map-frame instructions {
   position: absolute;
@@ -175,22 +183,22 @@ hex river-container river {
 hex[tile-type="water"] texture-container river-container:first-child {
   display: block;
 }
-hex[tile-type="water"][neighbor-1_-1] texture-container river-container:nth-child(2) {
+hex[tile-type="water"][n-1_-1] texture-container river-container:nth-child(2) {
   display: block;
 }
-hex[tile-type="water"][neighbor1_-1] texture-container river-container:nth-child(3) {
+hex[tile-type="water"][n1_-1] texture-container river-container:nth-child(3) {
   display: block;
 }
-hex[tile-type="water"][neighbor-1_1] texture-container river-container:nth-child(4) {
+hex[tile-type="water"][n-1_1] texture-container river-container:nth-child(4) {
   display: block;
 }
-hex[tile-type="water"][neighbor1_1] texture-container river-container:nth-child(5) {
+hex[tile-type="water"][n1_1] texture-container river-container:nth-child(5) {
   display: block;
 }
-hex[tile-type="water"][neighbor-2_0] texture-container river-container:nth-child(6) {
+hex[tile-type="water"][n-2_0] texture-container river-container:nth-child(6) {
   display: block;
 }
-hex[tile-type="water"][neighbor2_0] texture-container river-container:nth-child(7) {
+hex[tile-type="water"][n2_0] texture-container river-container:nth-child(7) {
   display: block;
 }
 hex texture-container river-container:nth-child(2) {
@@ -299,14 +307,14 @@ row hex[texture="img/map/water.png"] inner texture {
 row hex cluster-image:first-child {
   display: block;
 }
-row hex[neighbor1_-1] cluster-image:nth-child(2),
-row hex[neighbor-1_-1] cluster-image:nth-child(3) {
+row hex[n1_-1] cluster-image:nth-child(2),
+row hex[n-1_-1] cluster-image:nth-child(3) {
   top: -30px;
   z-index: 1;
   display: block;
 }
-row hex[neighbor1_1] cluster-image:nth-child(6),
-row hex[neighbor-1_1] cluster-image:nth-child(7) {
+row hex[n1_1] cluster-image:nth-child(6),
+row hex[n-1_1] cluster-image:nth-child(7) {
   top: 30px;
   z-index: 3;
   display: block;
@@ -319,11 +327,11 @@ row hex cluster-image:nth-child(3),
 row hex cluster-image:nth-child(7) {
   left: -25px;
 }
-row hex[neighbor2_0] cluster-image:nth-child(4) {
+row hex[n2_0] cluster-image:nth-child(4) {
   left: 45px;
   display: block;
 }
-row hex[neighbor-2_0] cluster-image:nth-child(5) {
+row hex[n-2_0] cluster-image:nth-child(5) {
   left: -45px;
   display: block;
 }
@@ -352,6 +360,7 @@ row hex name {
   border-radius: 5px;
   padding: 0px 3px;
   font-size: 28px;
+  line-height: 28px;
   text-transform: uppercase;
   z-index: 9;
 }
@@ -477,10 +486,14 @@ textures .selected texture-inner {
   background-color: #dfd;
   border: 3px solid green;
 }
+input#randomness {
+  width: calc(100% - 30px);
+}
 button[toggle] {
   position: absolute;
   top: 0px;
   right: 0px;
+  z-index: 9999;
 }
 button.chevronToggle::before {
   content: ">";

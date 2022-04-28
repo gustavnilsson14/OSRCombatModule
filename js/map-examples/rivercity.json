@@ -1,0 +1,707 @@
+{
+  "rows": [
+    {
+      "hexes": [
+        {
+          "tile-type": "water",
+          "posx": "-4",
+          "posy": "-4",
+          "n-1_-1": "1",
+          "n1_-1": "1",
+          "n-2_0": "1",
+          "texture": 5,
+          "n-1_1": "1",
+          "tile-name": "jelly lake"
+        },
+        {
+          "tile-type": "landmark",
+          "posx": "-2",
+          "posy": "-4",
+          "n-1_-1": "1",
+          "n1_-1": "1",
+          "texture": 3,
+          "n2_0": "1",
+          "n-1_1": "1",
+          "n1_1": "1"
+        },
+        {
+          "tile-type": "landmark",
+          "posx": "0",
+          "posy": "-4",
+          "n-1_-1": "1",
+          "n1_-1": "1",
+          "texture": 3,
+          "n2_0": "1",
+          "n-1_1": "1",
+          "n1_1": "1",
+          "n-2_0": "1"
+        },
+        {
+          "tile-type": "landmark",
+          "posx": "2",
+          "posy": "-4",
+          "n-1_-1": "1",
+          "n1_-1": "1",
+          "n-1_1": "1",
+          "n1_1": "1",
+          "texture": 5,
+          "n-2_0": "1",
+          "icon": 7
+        },
+        {
+          "tile-type": "water",
+          "posx": "4",
+          "posy": "-4",
+          "n-1_-1": "1",
+          "n1_-1": "1",
+          "n2_0": "1",
+          "texture": 5,
+          "n1_1": "1"
+        }
+      ]
+    },
+    {
+      "hexes": [
+        {
+          "tile-type": "water",
+          "posx": "-5",
+          "posy": "-3",
+          "texture": 5,
+          "n-1_-1": "1",
+          "n-2_0": "1",
+          "n1_-1": "1"
+        },
+        {
+          "tile-type": "landmark",
+          "posx": "-3",
+          "posy": "-3",
+          "n2_0": "1",
+          "n1_1": "1",
+          "texture": 3,
+          "n1_-1": "1"
+        },
+        {
+          "tile-type": "landmark",
+          "posx": "-1",
+          "posy": "-3",
+          "n-2_0": "1",
+          "n2_0": "1",
+          "n-1_1": "1",
+          "n1_1": "1",
+          "texture": 2,
+          "icon": 16,
+          "n1_-1": "1",
+          "n-1_-1": "1"
+        },
+        {
+          "tile-type": "landmark",
+          "posx": "1",
+          "posy": "-3",
+          "n1_-1": "1",
+          "n-2_0": "1",
+          "n2_0": "1",
+          "n-1_1": "1",
+          "n1_1": "1",
+          "texture": 1,
+          "icon": 31,
+          "tile-name": "tainted reservoir",
+          "n-1_-1": "1"
+        },
+        {
+          "tile-type": "landmark",
+          "posx": "3",
+          "posy": "-3",
+          "n-1_-1": "1",
+          "n-2_0": "1",
+          "n-1_1": "1",
+          "texture": 3
+        },
+        {
+          "tile-type": "water",
+          "posx": "5",
+          "posy": "-3",
+          "texture": 5,
+          "n1_-1": "1",
+          "n2_0": "1",
+          "n-1_1": "1",
+          "n1_1": "1",
+          "n-1_-1": "1",
+          "tile-name": "smoker sea"
+        }
+      ]
+    },
+    {
+      "hexes": [
+        {
+          "tile-type": "landmark",
+          "posx": "-6",
+          "posy": "-2",
+          "n-1_-1": "1",
+          "n-2_0": "1",
+          "n-1_1": "1",
+          "texture": 5,
+          "icon": 7
+        },
+        {
+          "tile-type": "city",
+          "posx": "-4",
+          "posy": "-2",
+          "texture": 1,
+          "n1_1": "1",
+          "n-1_1": "1"
+        },
+        {
+          "tile-type": "landmark",
+          "posx": "-2",
+          "posy": "-2",
+          "n-1_-1": "1",
+          "n1_-1": "1",
+          "n2_0": "1",
+          "texture": 3
+        },
+        {
+          "tile-type": "landmark",
+          "posx": "0",
+          "posy": "-2",
+          "n-1_-1": "1",
+          "n1_-1": "1",
+          "n-2_0": "1",
+          "n2_0": "1",
+          "n1_1": "1",
+          "texture": 2,
+          "icon": 16,
+          "tile-name": "river cliffs"
+        },
+        {
+          "tile-type": "landmark",
+          "posx": "2",
+          "posy": "-2",
+          "n-1_-1": "1",
+          "n1_-1": "1",
+          "n-2_0": "1",
+          "n-1_1": "1",
+          "texture": 3,
+          "icon": -1
+        },
+        {
+          "tile-type": "water",
+          "posx": "4",
+          "posy": "-2",
+          "texture": 5,
+          "n-1_1": "1",
+          "n1_-1": "1",
+          "n2_0": "1"
+        },
+        {
+          "tile-type": "water",
+          "posx": "6",
+          "posy": "-2",
+          "n1_-1": "1",
+          "n2_0": "1",
+          "texture": 5,
+          "n-1_-1": "1",
+          "n-2_0": "1",
+          "n1_1": "1"
+        }
+      ]
+    },
+    {
+      "hexes": [
+        {
+          "tile-type": "landmark",
+          "posx": "-7",
+          "posy": "-1",
+          "n-1_-1": "1",
+          "n1_-1": "1",
+          "n-2_0": "1",
+          "n-1_1": "1",
+          "n1_1": "1",
+          "texture": 3
+        },
+        {
+          "tile-type": "city",
+          "posx": "-5",
+          "posy": "-1",
+          "texture": 1,
+          "n1_-1": "1",
+          "n2_0": "1",
+          "n1_1": "1"
+        },
+        {
+          "tile-type": "city",
+          "posx": "-3",
+          "posy": "-1",
+          "texture": 1,
+          "n2_0": "1",
+          "n-1_1": "1",
+          "n-1_-1": "1",
+          "n-2_0": "1"
+        },
+        {
+          "tile-type": "city",
+          "posx": "-1",
+          "posy": "-1",
+          "texture": 1,
+          "n-2_0": "1"
+        },
+        {
+          "tile-type": "landmark",
+          "posx": "1",
+          "posy": "-1",
+          "n-1_-1": "1",
+          "n1_-1": "1",
+          "texture": 3
+        },
+        {
+          "tile-type": "water",
+          "posx": "3",
+          "posy": "-1",
+          "texture": 5,
+          "n-1_1": "1",
+          "n1_-1": "1"
+        },
+        {
+          "tile-type": "landmark",
+          "posx": "5",
+          "posy": "-1",
+          "n-1_1": "1",
+          "n1_1": "1",
+          "texture": 7,
+          "icon": 30,
+          "tile-name": "Saurian lair"
+        },
+        {
+          "tile-type": "water",
+          "posx": "7",
+          "posy": "-1",
+          "n1_-1": "1",
+          "n2_0": "1",
+          "texture": 5,
+          "n-1_-1": "1"
+        }
+      ]
+    },
+    {
+      "hexes": [
+        {
+          "tile-type": "landmark",
+          "posx": "-8",
+          "posy": "0",
+          "n-1_-1": "1",
+          "n1_-1": "1",
+          "n-2_0": "1",
+          "n2_0": "1",
+          "n-1_1": "1",
+          "n1_1": "1",
+          "texture": 3
+        },
+        {
+          "tile-type": "landmark",
+          "posx": "-6",
+          "posy": "0",
+          "n-1_-1": "1",
+          "n-2_0": "1",
+          "n-1_1": "1",
+          "n1_1": "1",
+          "texture": 4,
+          "icon": 11,
+          "tile-name": "old bunker"
+        },
+        {
+          "tile-type": "city",
+          "posx": "-4",
+          "posy": "0",
+          "texture": 1,
+          "n1_-1": "1",
+          "n-1_-1": "1"
+        },
+        {
+          "tile-type": "water",
+          "posx": "-2",
+          "posy": "0",
+          "texture": 5,
+          "n-1_1": "1",
+          "n2_0": "1",
+          "water-icon": "img/map/bridge2.png",
+          "tile-name": "River city"
+        },
+        {
+          "tile-type": "water",
+          "texture": 5,
+          "posx": "0",
+          "posy": "0",
+          "n-2_0": "1",
+          "n2_0": "1",
+          "water-icon": ""
+        },
+        {
+          "tile-type": "water",
+          "posx": "2",
+          "posy": "0",
+          "texture": 5,
+          "n-2_0": "1",
+          "n1_-1": "1"
+        },
+        {
+          "tile-type": "landmark",
+          "posx": "4",
+          "posy": "0",
+          "n1_-1": "1",
+          "n2_0": "1",
+          "n-1_1": "1",
+          "n1_1": "1",
+          "texture": 7
+        },
+        {
+          "tile-type": "landmark",
+          "posx": "6",
+          "posy": "0",
+          "n-1_-1": "1",
+          "n-2_0": "1",
+          "n2_0": "1",
+          "n-1_1": "1",
+          "n1_1": "1",
+          "texture": 7
+        },
+        {
+          "tile-type": "landmark",
+          "posx": "8",
+          "posy": "0",
+          "n1_-1": "1",
+          "n-2_0": "1",
+          "n2_0": "1",
+          "n-1_1": "1",
+          "n1_1": "1",
+          "texture": 7
+        }
+      ]
+    },
+    {
+      "hexes": [
+        {
+          "tile-type": "landmark",
+          "posx": "-7",
+          "posy": "1",
+          "n-1_-1": "1",
+          "n1_-1": "1",
+          "n-2_0": "1",
+          "n2_0": "1",
+          "n-1_1": "1",
+          "texture": 3
+        },
+        {
+          "tile-type": "landmark",
+          "posx": "-5",
+          "posy": "1",
+          "n-1_-1": "1",
+          "n-2_0": "1",
+          "texture": 3
+        },
+        {
+          "tile-type": "water",
+          "posx": "-3",
+          "posy": "1",
+          "texture": 5,
+          "n1_-1": "1",
+          "n-1_1": "1"
+        },
+        {
+          "tile-type": "city",
+          "posx": "-1",
+          "posy": "1",
+          "texture": 1,
+          "n2_0": "1",
+          "n-1_1": "1",
+          "n1_1": "1"
+        },
+        {
+          "tile-type": "city",
+          "posx": "1",
+          "posy": "1",
+          "texture": 1,
+          "n-2_0": "1",
+          "n-1_1": "1"
+        },
+        {
+          "tile-type": "landmark",
+          "posx": "3",
+          "posy": "1",
+          "n1_-1": "1",
+          "n2_0": "1",
+          "n-1_1": "1",
+          "n1_1": "1",
+          "texture": 7
+        },
+        {
+          "tile-type": "landmark",
+          "posx": "5",
+          "posy": "1",
+          "n-1_-1": "1",
+          "n1_-1": "1",
+          "n-2_0": "1",
+          "n2_0": "1",
+          "n-1_1": "1",
+          "n1_1": "1",
+          "texture": 7,
+          "icon": 17,
+          "tile-name": "vehicle factory"
+        },
+        {
+          "tile-type": "landmark",
+          "posx": "7",
+          "posy": "1",
+          "n-1_-1": "1",
+          "n1_-1": "1",
+          "n-2_0": "1",
+          "n2_0": "1",
+          "n-1_1": "1",
+          "n1_1": "1",
+          "texture": 7
+        }
+      ]
+    },
+    {
+      "hexes": [
+        {
+          "tile-type": "water",
+          "posx": "-6",
+          "posy": "2",
+          "n-2_0": "1",
+          "n-1_1": "1",
+          "texture": 5,
+          "n2_0": "1",
+          "n1_1": "1"
+        },
+        {
+          "tile-type": "water",
+          "posx": "-4",
+          "posy": "2",
+          "texture": 5,
+          "n1_-1": "1",
+          "n-1_1": "1",
+          "n-2_0": "1"
+        },
+        {
+          "tile-type": "city",
+          "posx": "-2",
+          "posy": "2",
+          "texture": 1,
+          "n1_-1": "1",
+          "n2_0": "1"
+        },
+        {
+          "tile-type": "city",
+          "posx": "0",
+          "posy": "2",
+          "texture": 1,
+          "n-1_-1": "1",
+          "n1_-1": "1",
+          "n-2_0": "1"
+        },
+        {
+          "tile-type": "landmark",
+          "posx": "2",
+          "posy": "2",
+          "n1_-1": "1",
+          "n2_0": "1",
+          "n-1_1": "1",
+          "n1_1": "1",
+          "texture": 7
+        },
+        {
+          "tile-type": "landmark",
+          "posx": "4",
+          "posy": "2",
+          "n-1_-1": "1",
+          "n1_-1": "1",
+          "n-2_0": "1",
+          "n2_0": "1",
+          "n-1_1": "1",
+          "n1_1": "1",
+          "texture": 7
+        },
+        {
+          "tile-type": "landmark",
+          "posx": "6",
+          "posy": "2",
+          "n-1_-1": "1",
+          "n1_-1": "1",
+          "n-2_0": "1",
+          "n2_0": "1",
+          "n-1_1": "1",
+          "n1_1": "1",
+          "texture": 7
+        }
+      ]
+    },
+    {
+      "hexes": [
+        {
+          "tile-type": "water",
+          "posx": "-5",
+          "posy": "3",
+          "n-2_0": "1",
+          "n-1_1": "1",
+          "texture": 5,
+          "n1_-1": "1",
+          "n-1_-1": "1"
+        },
+        {
+          "tile-type": "landmark",
+          "posx": "-3",
+          "posy": "3",
+          "n2_0": "1",
+          "n-1_1": "1",
+          "n1_1": "1",
+          "texture": 7
+        },
+        {
+          "tile-type": "landmark",
+          "posx": "-1",
+          "posy": "3",
+          "n-2_0": "1",
+          "n2_0": "1",
+          "n-1_1": "1",
+          "n1_1": "1",
+          "texture": 7
+        },
+        {
+          "tile-type": "landmark",
+          "posx": "1",
+          "posy": "3",
+          "n1_-1": "1",
+          "n-2_0": "1",
+          "n2_0": "1",
+          "n-1_1": "1",
+          "n1_1": "1",
+          "texture": 7,
+          "icon": 18,
+          "tile-name": "radio mp"
+        },
+        {
+          "tile-type": "landmark",
+          "posx": "3",
+          "posy": "3",
+          "n-1_-1": "1",
+          "n1_-1": "1",
+          "n-2_0": "1",
+          "n2_0": "1",
+          "n-1_1": "1",
+          "n1_1": "1",
+          "texture": 7
+        },
+        {
+          "tile-type": "landmark",
+          "posx": "5",
+          "posy": "3",
+          "n-1_-1": "1",
+          "n1_-1": "1",
+          "n-2_0": "1",
+          "n2_0": "1",
+          "n-1_1": "1",
+          "n1_1": "1",
+          "texture": 0
+        }
+      ]
+    },
+    {
+      "hexes": [
+        {
+          "tile-type": "landmark",
+          "posx": "-4",
+          "posy": "4",
+          "n1_-1": "1",
+          "n-2_0": "1",
+          "n2_0": "1",
+          "n-1_1": "1",
+          "n1_1": "1",
+          "texture": 7
+        },
+        {
+          "tile-type": "landmark",
+          "posx": "-2",
+          "posy": "4",
+          "n-1_-1": "1",
+          "n1_-1": "1",
+          "n-2_0": "1",
+          "n2_0": "1",
+          "n-1_1": "1",
+          "n1_1": "1",
+          "texture": 7
+        },
+        {
+          "tile-type": "landmark",
+          "posx": "0",
+          "posy": "4",
+          "n-1_-1": "1",
+          "n1_-1": "1",
+          "n-2_0": "1",
+          "n2_0": "1",
+          "n-1_1": "1",
+          "n1_1": "1",
+          "texture": 7
+        },
+        {
+          "tile-type": "landmark",
+          "posx": "2",
+          "posy": "4",
+          "n-1_-1": "1",
+          "n1_-1": "1",
+          "n-2_0": "1",
+          "n2_0": "1",
+          "n-1_1": "1",
+          "n1_1": "1",
+          "texture": 0
+        },
+        {
+          "tile-type": "landmark",
+          "posx": "4",
+          "posy": "4",
+          "n-1_-1": "1",
+          "n1_-1": "1",
+          "n-2_0": "1",
+          "n2_0": "1",
+          "n-1_1": "1",
+          "n1_1": "1",
+          "texture": 0,
+          "tile-name": "western desert"
+        }
+      ]
+    }
+  ],
+  "icons": [
+    "Untitled.png",
+    "apartments1.png",
+    "cabin.png",
+    "cabin2.png",
+    "factory1.png",
+    "factory2.png",
+    "factory3.png",
+    "forest.png",
+    "fort1.png",
+    "hospital.png",
+    "house1.png",
+    "modern1.png",
+    "modern2.png",
+    "modern3.png",
+    "modern4.png",
+    "modern5.png",
+    "mountain.png",
+    "radar1.png",
+    "radiotower1.png",
+    "ruin1.png",
+    "ruin2.png",
+    "shop.png",
+    "shop2.png",
+    "silo.png",
+    "skyscraper.png",
+    "skyscraper2.png",
+    "starship.png",
+    "town_hall1.png",
+    "warehouse1.png",
+    "warehouse2.png",
+    "warehouse3.png",
+    "watertower.png"
+  ],
+  "textures": ["desert.jpg", "dirt.jpg", "gravel.jpg", "mud.png", "pavement.jpg", "rocky.jpg", "toxic.jpg", "wasteland.jpg", "zone.jpg"]
+}

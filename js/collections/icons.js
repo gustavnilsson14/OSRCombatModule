@@ -17,6 +17,7 @@ function getIcons() {
     "modern5.png",
     "mountain.png",
     "radar1.png",
+    "radiotower1.png",
     "ruin1.png",
     "ruin2.png",
     "shop.png",
@@ -53,5 +54,20 @@ function getCityBuildings() {
     "modern3.png",
     "modern4.png",
     "modern5.png",
+  ];
+}
+function getTrees() {
+  return [
+    "tree1.png",
+    "tree2.png",
+    "tree3.png",
+    "tree4.png",
+    "tree5.png",
+    "tree6.png",
+    "tree7.png",
+    "tree8.png",
+    "tree9.png",
+    "tree10.png",
+    "tree11.png",
   ];
 }
