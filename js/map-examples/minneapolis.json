@@ -3,15 +3,16 @@
     {
       "hexes": [
         {
-          "tile-type": "water",
+          "tile-type": "landmark",
           "posx": "-4",
           "posy": "-4",
           "n-1_-1": "1",
           "n1_-1": "1",
           "n-2_0": "1",
-          "texture": 5,
+          "n2_0": "1",
           "n-1_1": "1",
-          "tile-name": "jelly lake"
+          "n1_1": "1",
+          "texture": "pavement.jpg"
         },
         {
           "tile-type": "landmark",
@@ -19,10 +20,11 @@
           "posy": "-4",
           "n-1_-1": "1",
           "n1_-1": "1",
-          "texture": 3,
+          "n-2_0": "1",
           "n2_0": "1",
           "n-1_1": "1",
-          "n1_1": "1"
+          "n1_1": "1",
+          "texture": "pavement.jpg"
         },
         {
           "tile-type": "landmark",
@@ -30,11 +32,11 @@
           "posy": "-4",
           "n-1_-1": "1",
           "n1_-1": "1",
-          "texture": 3,
+          "n-2_0": "1",
           "n2_0": "1",
           "n-1_1": "1",
           "n1_1": "1",
-          "n-2_0": "1"
+          "texture": "desert.jpg"
         },
         {
           "tile-type": "landmark",
@@ -42,91 +44,104 @@
           "posy": "-4",
           "n-1_-1": "1",
           "n1_-1": "1",
+          "n-2_0": "1",
+          "n2_0": "1",
           "n-1_1": "1",
           "n1_1": "1",
-          "texture": 5,
-          "n-2_0": "1",
-          "icon": 7
+          "texture": "desert.jpg"
         },
         {
-          "tile-type": "water",
+          "tile-type": "landmark",
           "posx": "4",
           "posy": "-4",
           "n-1_-1": "1",
           "n1_-1": "1",
+          "n-2_0": "1",
           "n2_0": "1",
-          "texture": 5,
-          "n1_1": "1"
+          "n-1_1": "1",
+          "n1_1": "1",
+          "texture": "desert.jpg",
+          "icon": "modern2.png",
+          "tile-name": "mall of america"
         }
       ]
     },
     {
       "hexes": [
         {
-          "tile-type": "water",
+          "tile-type": "landmark",
           "posx": "-5",
           "posy": "-3",
-          "texture": 5,
+          "texture": "pavement.jpg",
           "n-1_-1": "1",
+          "n1_-1": "1",
           "n-2_0": "1",
-          "n1_-1": "1"
+          "n2_0": "1",
+          "n-1_1": "1",
+          "n1_1": "1"
         },
         {
           "tile-type": "landmark",
           "posx": "-3",
           "posy": "-3",
+          "n-1_-1": "1",
+          "n1_-1": "1",
+          "n-2_0": "1",
           "n2_0": "1",
+          "n-1_1": "1",
           "n1_1": "1",
-          "texture": 3,
-          "n1_-1": "1"
+          "texture": "pavement.jpg"
         },
         {
           "tile-type": "landmark",
           "posx": "-1",
           "posy": "-3",
+          "n-1_-1": "1",
+          "n1_-1": "1",
           "n-2_0": "1",
           "n2_0": "1",
           "n-1_1": "1",
           "n1_1": "1",
-          "texture": 2,
-          "icon": 16,
-          "n1_-1": "1",
-          "n-1_-1": "1"
+          "texture": "pavement.jpg"
         },
         {
           "tile-type": "landmark",
           "posx": "1",
           "posy": "-3",
+          "n-1_-1": "1",
           "n1_-1": "1",
           "n-2_0": "1",
           "n2_0": "1",
           "n-1_1": "1",
           "n1_1": "1",
-          "texture": 1,
-          "icon": 31,
-          "tile-name": "tainted reservoir",
-          "n-1_-1": "1"
+          "texture": "pavement.jpg"
         },
         {
           "tile-type": "landmark",
           "posx": "3",
           "posy": "-3",
           "n-1_-1": "1",
-          "n-2_0": "1",
-          "n-1_1": "1",
-          "texture": 3
-        },
-        {
-          "tile-type": "water",
-          "posx": "5",
-          "posy": "-3",
-          "texture": 5,
           "n1_-1": "1",
+          "n-2_0": "1",
           "n2_0": "1",
           "n-1_1": "1",
           "n1_1": "1",
+          "texture": "pavement.jpg"
+        },
+        {
+          "tile-type": "landmark",
+          "posx": "5",
+          "posy": "-3",
+          "texture": "desert.jpg",
           "n-1_-1": "1",
-          "tile-name": "smoker sea"
+          "n1_-1": "1",
+          "n-2_0": "1",
+          "n2_0": "1",
+          "n-1_1": "1",
+          "n1_1": "1",
+          "icon": "factory2.png",
+          "tile-name": "robot factory",
+          "description": "the grave of trin skitter and luke puzzles\na shopping district with an old robotic factory"
         }
       ]
     },
@@ -137,18 +152,24 @@
           "posx": "-6",
           "posy": "-2",
           "n-1_-1": "1",
+          "n1_-1": "1",
           "n-2_0": "1",
+          "n2_0": "1",
           "n-1_1": "1",
-          "texture": 5,
-          "icon": 7
+          "n1_1": "1",
+          "texture": "pavement.jpg"
         },
         {
-          "tile-type": "city",
+          "tile-type": "landmark",
           "posx": "-4",
           "posy": "-2",
-          "texture": 1,
-          "n1_1": "1",
-          "n-1_1": "1"
+          "texture": "pavement.jpg",
+          "n-1_-1": "1",
+          "n1_-1": "1",
+          "n-2_0": "1",
+          "n2_0": "1",
+          "n-1_1": "1",
+          "n1_1": "1"
         },
         {
           "tile-type": "landmark",
@@ -156,8 +177,11 @@
           "posy": "-2",
           "n-1_-1": "1",
           "n1_-1": "1",
+          "n-2_0": "1",
           "n2_0": "1",
-          "texture": 3
+          "n-1_1": "1",
+          "n1_1": "1",
+          "texture": "gravel.jpg"
         },
         {
           "tile-type": "landmark",
@@ -167,10 +191,9 @@
           "n1_-1": "1",
           "n-2_0": "1",
           "n2_0": "1",
+          "n-1_1": "1",
           "n1_1": "1",
-          "texture": 2,
-          "icon": 16,
-          "tile-name": "river cliffs"
+          "texture": "gravel.jpg"
         },
         {
           "tile-type": "landmark",
@@ -179,29 +202,36 @@
           "n-1_-1": "1",
           "n1_-1": "1",
           "n-2_0": "1",
+          "n2_0": "1",
           "n-1_1": "1",
-          "texture": 3,
-          "icon": -1
+          "n1_1": "1",
+          "texture": "pavement.jpg"
         },
         {
-          "tile-type": "water",
+          "tile-type": "landmark",
           "posx": "4",
           "posy": "-2",
-          "texture": 5,
-          "n-1_1": "1",
+          "texture": "pavement.jpg",
+          "n-1_-1": "1",
           "n1_-1": "1",
-          "n2_0": "1"
+          "n-2_0": "1",
+          "n2_0": "1",
+          "n-1_1": "1",
+          "n1_1": "1"
         },
         {
-          "tile-type": "water",
+          "tile-type": "landmark",
           "posx": "6",
           "posy": "-2",
-          "n1_-1": "1",
-          "n2_0": "1",
-          "texture": 5,
           "n-1_-1": "1",
+          "n1_-1": "1",
           "n-2_0": "1",
-          "n1_1": "1"
+          "n2_0": "1",
+          "n-1_1": "1",
+          "n1_1": "1",
+          "texture": "pavement.jpg",
+          "icon": "img/map/mcdonalds.png",
+          "tile-name": "mcdonalds"
         }
       ]
     },
@@ -214,35 +244,46 @@
           "n-1_-1": "1",
           "n1_-1": "1",
           "n-2_0": "1",
+          "n2_0": "1",
           "n-1_1": "1",
           "n1_1": "1",
-          "texture": 3
+          "texture": "pavement.jpg"
         },
         {
-          "tile-type": "city",
+          "tile-type": "landmark",
           "posx": "-5",
           "posy": "-1",
-          "texture": 1,
+          "n-1_-1": "1",
           "n1_-1": "1",
+          "n-2_0": "1",
           "n2_0": "1",
+          "n-1_1": "1",
+          "n1_1": "1",
+          "texture": "pavement.jpg"
+        },
+        {
+          "tile-type": "landmark",
+          "posx": "-3",
+          "posy": "-1",
+          "texture": "gravel.jpg",
+          "n-1_-1": "1",
+          "n1_-1": "1",
+          "n-2_0": "1",
+          "n2_0": "1",
+          "n-1_1": "1",
           "n1_1": "1"
         },
         {
-          "tile-type": "city",
-          "posx": "-3",
-          "posy": "-1",
-          "texture": 1,
-          "n2_0": "1",
-          "n-1_1": "1",
-          "n-1_-1": "1",
-          "n-2_0": "1"
-        },
-        {
-          "tile-type": "city",
+          "tile-type": "landmark",
           "posx": "-1",
           "posy": "-1",
-          "texture": 1,
-          "n-2_0": "1"
+          "n-1_-1": "1",
+          "n1_-1": "1",
+          "n-2_0": "1",
+          "n2_0": "1",
+          "n-1_1": "1",
+          "n1_1": "1",
+          "texture": "gravel.jpg"
         },
         {
           "tile-type": "landmark",
@@ -250,34 +291,51 @@
           "posy": "-1",
           "n-1_-1": "1",
           "n1_-1": "1",
-          "texture": 3
+          "n-2_0": "1",
+          "n2_0": "1",
+          "n-1_1": "1",
+          "n1_1": "1",
+          "texture": "gravel.jpg"
         },
         {
-          "tile-type": "water",
+          "tile-type": "landmark",
           "posx": "3",
           "posy": "-1",
-          "texture": 5,
+          "texture": "pavement.jpg",
+          "n-1_-1": "1",
+          "n1_-1": "1",
+          "n-2_0": "1",
+          "n2_0": "1",
           "n-1_1": "1",
-          "n1_-1": "1"
+          "n1_1": "1"
         },
         {
           "tile-type": "landmark",
           "posx": "5",
           "posy": "-1",
+          "n-1_-1": "1",
+          "n1_-1": "1",
+          "n-2_0": "1",
+          "n2_0": "1",
           "n-1_1": "1",
           "n1_1": "1",
-          "texture": 7,
-          "icon": 30,
-          "tile-name": "Saurian lair"
+          "texture": "pavement.jpg",
+          "icon": "undefined",
+          "tile-name": ""
         },
         {
-          "tile-type": "water",
+          "tile-type": "landmark",
           "posx": "7",
           "posy": "-1",
+          "n-1_-1": "1",
           "n1_-1": "1",
+          "n-2_0": "1",
           "n2_0": "1",
-          "texture": 5,
-          "n-1_-1": "1"
+          "n-1_1": "1",
+          "n1_1": "1",
+          "texture": "pavement.jpg",
+          "icon": "img/map/tent.png",
+          "tile-name": "strange tent"
         }
       ]
     },
@@ -293,86 +351,109 @@
           "n2_0": "1",
           "n-1_1": "1",
           "n1_1": "1",
-          "texture": 3
+          "texture": "pavement.jpg"
         },
         {
           "tile-type": "landmark",
           "posx": "-6",
           "posy": "0",
           "n-1_-1": "1",
+          "n1_-1": "1",
           "n-2_0": "1",
+          "n2_0": "1",
           "n-1_1": "1",
           "n1_1": "1",
-          "texture": 4,
-          "icon": 11,
-          "tile-name": "old bunker"
+          "texture": "pavement.jpg"
         },
         {
-          "tile-type": "city",
+          "tile-type": "landmark",
           "posx": "-4",
           "posy": "0",
-          "texture": 1,
+          "n-1_-1": "1",
           "n1_-1": "1",
-          "n-1_-1": "1"
+          "n-2_0": "1",
+          "n2_0": "1",
+          "n-1_1": "1",
+          "n1_1": "1",
+          "texture": "pavement.jpg"
         },
         {
-          "tile-type": "water",
+          "tile-type": "landmark",
           "posx": "-2",
           "posy": "0",
-          "texture": 5,
-          "n-1_1": "1",
+          "texture": "gravel.jpg",
+          "n-1_-1": "1",
+          "n1_-1": "1",
+          "n-2_0": "1",
           "n2_0": "1",
-          "water-icon": "img/map/bridge2.png",
-          "tile-name": "River city"
+          "n-1_1": "1",
+          "n1_1": "1"
         },
         {
-          "tile-type": "water",
-          "texture": 5,
+          "tile-type": "landmark",
+          "texture": "gravel.jpg",
           "posx": "0",
           "posy": "0",
+          "n-1_-1": "1",
+          "n1_-1": "1",
           "n-2_0": "1",
           "n2_0": "1",
-          "water-icon": ""
+          "n-1_1": "1",
+          "n1_1": "1",
+          "icon": "modern3.png",
+          "tile-name": "Lambda campus"
         },
         {
-          "tile-type": "water",
+          "tile-type": "landmark",
           "posx": "2",
           "posy": "0",
-          "texture": 5,
+          "texture": "pavement.jpg",
+          "n-1_-1": "1",
+          "n1_-1": "1",
           "n-2_0": "1",
-          "n1_-1": "1"
+          "n2_0": "1",
+          "n-1_1": "1",
+          "n1_1": "1"
         },
         {
           "tile-type": "landmark",
           "posx": "4",
           "posy": "0",
+          "n-1_-1": "1",
           "n1_-1": "1",
+          "n-2_0": "1",
           "n2_0": "1",
           "n-1_1": "1",
           "n1_1": "1",
-          "texture": 7
+          "texture": "pavement.jpg",
+          "tile-name": "saurian den",
+          "icon": "town_hall1.png"
         },
         {
           "tile-type": "landmark",
           "posx": "6",
           "posy": "0",
           "n-1_-1": "1",
-          "n-2_0": "1",
-          "n2_0": "1",
-          "n-1_1": "1",
-          "n1_1": "1",
-          "texture": 7
-        },
-        {
-          "tile-type": "landmark",
-          "posx": "8",
-          "posy": "0",
           "n1_-1": "1",
           "n-2_0": "1",
           "n2_0": "1",
           "n-1_1": "1",
           "n1_1": "1",
-          "texture": 7
+          "texture": "pavement.jpg",
+          "tile-name": "planks & hammers",
+          "icon": "warehouse3.png"
+        },
+        {
+          "tile-type": "landmark",
+          "posx": "8",
+          "posy": "0",
+          "n-1_-1": "1",
+          "n1_-1": "1",
+          "n-2_0": "1",
+          "n2_0": "1",
+          "n-1_1": "1",
+          "n1_1": "1",
+          "texture": "pavement.jpg"
         }
       ]
     },
@@ -387,50 +468,70 @@
           "n-2_0": "1",
           "n2_0": "1",
           "n-1_1": "1",
-          "texture": 3
+          "n1_1": "1",
+          "texture": "pavement.jpg"
         },
         {
           "tile-type": "landmark",
           "posx": "-5",
           "posy": "1",
           "n-1_-1": "1",
-          "n-2_0": "1",
-          "texture": 3
-        },
-        {
-          "tile-type": "water",
-          "posx": "-3",
-          "posy": "1",
-          "texture": 5,
           "n1_-1": "1",
-          "n-1_1": "1"
-        },
-        {
-          "tile-type": "city",
-          "posx": "-1",
-          "posy": "1",
-          "texture": 1,
+          "n-2_0": "1",
           "n2_0": "1",
           "n-1_1": "1",
-          "n1_1": "1"
+          "n1_1": "1",
+          "texture": "pavement.jpg"
         },
         {
-          "tile-type": "city",
+          "tile-type": "landmark",
+          "posx": "-3",
+          "posy": "1",
+          "n-1_-1": "1",
+          "n1_-1": "1",
+          "n-2_0": "1",
+          "n2_0": "1",
+          "n-1_1": "1",
+          "n1_1": "1",
+          "texture": "gravel.jpg"
+        },
+        {
+          "tile-type": "landmark",
+          "posx": "-1",
+          "posy": "1",
+          "n-1_-1": "1",
+          "n1_-1": "1",
+          "n-2_0": "1",
+          "n2_0": "1",
+          "n-1_1": "1",
+          "n1_1": "1",
+          "texture": "gravel.jpg"
+        },
+        {
+          "tile-type": "landmark",
           "posx": "1",
           "posy": "1",
-          "texture": 1,
+          "n-1_-1": "1",
+          "n1_-1": "1",
           "n-2_0": "1",
-          "n-1_1": "1"
+          "n2_0": "1",
+          "n-1_1": "1",
+          "n1_1": "1",
+          "texture": "gravel.jpg"
         },
         {
           "tile-type": "landmark",
           "posx": "3",
           "posy": "1",
+          "n-1_-1": "1",
           "n1_-1": "1",
+          "n-2_0": "1",
           "n2_0": "1",
           "n-1_1": "1",
           "n1_1": "1",
-          "texture": 7
+          "texture": "pavement.jpg",
+          "icon": "gasstation.png",
+          "tile-name": "eel ranch"
         },
         {
           "tile-type": "landmark",
@@ -442,9 +543,7 @@
           "n2_0": "1",
           "n-1_1": "1",
           "n1_1": "1",
-          "texture": 7,
-          "icon": 17,
-          "tile-name": "vehicle factory"
+          "texture": "pavement.jpg"
         },
         {
           "tile-type": "landmark",
@@ -456,57 +555,75 @@
           "n2_0": "1",
           "n-1_1": "1",
           "n1_1": "1",
-          "texture": 7
+          "texture": "pavement.jpg"
         }
       ]
     },
     {
       "hexes": [
         {
-          "tile-type": "water",
+          "tile-type": "landmark",
           "posx": "-6",
           "posy": "2",
-          "n-2_0": "1",
-          "n-1_1": "1",
-          "texture": 5,
-          "n2_0": "1",
-          "n1_1": "1"
-        },
-        {
-          "tile-type": "water",
-          "posx": "-4",
-          "posy": "2",
-          "texture": 5,
-          "n1_-1": "1",
-          "n-1_1": "1",
-          "n-2_0": "1"
-        },
-        {
-          "tile-type": "city",
-          "posx": "-2",
-          "posy": "2",
-          "texture": 1,
-          "n1_-1": "1",
-          "n2_0": "1"
-        },
-        {
-          "tile-type": "city",
-          "posx": "0",
-          "posy": "2",
-          "texture": 1,
           "n-1_-1": "1",
           "n1_-1": "1",
-          "n-2_0": "1"
+          "n-2_0": "1",
+          "n2_0": "1",
+          "n-1_1": "1",
+          "n1_1": "1",
+          "texture": "pavement.jpg"
+        },
+        {
+          "tile-type": "landmark",
+          "posx": "-4",
+          "posy": "2",
+          "n-1_-1": "1",
+          "n1_-1": "1",
+          "n-2_0": "1",
+          "n2_0": "1",
+          "n-1_1": "1",
+          "n1_1": "1",
+          "texture": "gravel.jpg"
+        },
+        {
+          "tile-type": "landmark",
+          "posx": "-2",
+          "posy": "2",
+          "n-1_-1": "1",
+          "n1_-1": "1",
+          "n-2_0": "1",
+          "n2_0": "1",
+          "n-1_1": "1",
+          "n1_1": "1",
+          "texture": "gravel.jpg",
+          "icon": "modern1.png",
+          "tile-name": "town hall"
+        },
+        {
+          "tile-type": "landmark",
+          "posx": "0",
+          "posy": "2",
+          "n-1_-1": "1",
+          "n1_-1": "1",
+          "n-2_0": "1",
+          "n2_0": "1",
+          "n-1_1": "1",
+          "n1_1": "1",
+          "texture": "gravel.jpg"
         },
         {
           "tile-type": "landmark",
           "posx": "2",
           "posy": "2",
+          "n-1_-1": "1",
           "n1_-1": "1",
+          "n-2_0": "1",
           "n2_0": "1",
           "n-1_1": "1",
           "n1_1": "1",
-          "texture": 7
+          "texture": "pavement.jpg",
+          "icon": "skyscraper.png",
+          "tile-name": "capricorn hotel"
         },
         {
           "tile-type": "landmark",
@@ -518,7 +635,7 @@
           "n2_0": "1",
           "n-1_1": "1",
           "n1_1": "1",
-          "texture": 7
+          "texture": "pavement.jpg"
         },
         {
           "tile-type": "landmark",
@@ -530,53 +647,59 @@
           "n2_0": "1",
           "n-1_1": "1",
           "n1_1": "1",
-          "texture": 7
+          "texture": "pavement.jpg"
         }
       ]
     },
     {
       "hexes": [
         {
-          "tile-type": "water",
+          "tile-type": "landmark",
           "posx": "-5",
           "posy": "3",
-          "n-2_0": "1",
-          "n-1_1": "1",
-          "texture": 5,
+          "n-1_-1": "1",
           "n1_-1": "1",
-          "n-1_-1": "1"
+          "n-2_0": "1",
+          "n2_0": "1",
+          "n-1_1": "1",
+          "n1_1": "1",
+          "texture": "pavement.jpg"
         },
         {
           "tile-type": "landmark",
           "posx": "-3",
           "posy": "3",
-          "n2_0": "1",
-          "n-1_1": "1",
-          "n1_1": "1",
-          "texture": 7
-        },
-        {
-          "tile-type": "landmark",
-          "posx": "-1",
-          "posy": "3",
-          "n-2_0": "1",
-          "n2_0": "1",
-          "n-1_1": "1",
-          "n1_1": "1",
-          "texture": 7
-        },
-        {
-          "tile-type": "landmark",
-          "posx": "1",
-          "posy": "3",
+          "n-1_-1": "1",
           "n1_-1": "1",
           "n-2_0": "1",
           "n2_0": "1",
           "n-1_1": "1",
           "n1_1": "1",
-          "texture": 7,
-          "icon": 18,
-          "tile-name": "radio mp"
+          "texture": "gravel.jpg"
+        },
+        {
+          "tile-type": "landmark",
+          "posx": "-1",
+          "posy": "3",
+          "n-1_-1": "1",
+          "n1_-1": "1",
+          "n-2_0": "1",
+          "n2_0": "1",
+          "n-1_1": "1",
+          "n1_1": "1",
+          "texture": "gravel.jpg"
+        },
+        {
+          "tile-type": "landmark",
+          "posx": "1",
+          "posy": "3",
+          "n-1_-1": "1",
+          "n1_-1": "1",
+          "n-2_0": "1",
+          "n2_0": "1",
+          "n-1_1": "1",
+          "n1_1": "1",
+          "texture": "pavement.jpg"
         },
         {
           "tile-type": "landmark",
@@ -588,7 +711,7 @@
           "n2_0": "1",
           "n-1_1": "1",
           "n1_1": "1",
-          "texture": 7
+          "texture": "pavement.jpg"
         },
         {
           "tile-type": "landmark",
@@ -600,7 +723,7 @@
           "n2_0": "1",
           "n-1_1": "1",
           "n1_1": "1",
-          "texture": 0
+          "texture": "pavement.jpg"
         }
       ]
     },
@@ -610,12 +733,13 @@
           "tile-type": "landmark",
           "posx": "-4",
           "posy": "4",
+          "n-1_-1": "1",
           "n1_-1": "1",
           "n-2_0": "1",
           "n2_0": "1",
           "n-1_1": "1",
           "n1_1": "1",
-          "texture": 7
+          "texture": "pavement.jpg"
         },
         {
           "tile-type": "landmark",
@@ -627,7 +751,7 @@
           "n2_0": "1",
           "n-1_1": "1",
           "n1_1": "1",
-          "texture": 7
+          "texture": "pavement.jpg"
         },
         {
           "tile-type": "landmark",
@@ -639,7 +763,7 @@
           "n2_0": "1",
           "n-1_1": "1",
           "n1_1": "1",
-          "texture": 7
+          "texture": "pavement.jpg"
         },
         {
           "tile-type": "landmark",
@@ -651,7 +775,7 @@
           "n2_0": "1",
           "n-1_1": "1",
           "n1_1": "1",
-          "texture": 0
+          "texture": "pavement.jpg"
         },
         {
           "tile-type": "landmark",
@@ -663,8 +787,7 @@
           "n2_0": "1",
           "n-1_1": "1",
           "n1_1": "1",
-          "texture": 0,
-          "tile-name": "western desert"
+          "texture": "pavement.jpg"
         }
       ]
     }
@@ -679,8 +802,10 @@
     "factory3.png",
     "forest.png",
     "fort1.png",
+    "gasstation.png",
     "hospital.png",
     "house1.png",
+    "mcdonalds.png",
     "modern1.png",
     "modern2.png",
     "modern3.png",
@@ -697,6 +822,7 @@
     "skyscraper.png",
     "skyscraper2.png",
     "starship.png",
+    "tent.png",
     "town_hall1.png",
     "warehouse1.png",
     "warehouse2.png",
