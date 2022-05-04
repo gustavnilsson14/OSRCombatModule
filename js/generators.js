@@ -1,36 +1,25 @@
 document.onreadystatechange = function () {
   if (document.readyState != "complete") return;
-
   bindEnemiesSelect();
-  var timeSpentButton = document.querySelector("#time-spent-button");
-  var interval;
-  timeSpentButton.addEventListener("click", function () {
-    if (timeSpentButton.getAttribute("on") == "true") {
-      timeSpentButton.setAttribute("on", "false");
-      clearInterval(interval);
-      timeSpentButton.innerHTML = "START COMBAT TIMER";
-      return;
-    }
-    timeSpentButton.innerHTML = "STOP COMBAT TIMER";
-    timeSpentButton.setAttribute("on", "true");
-    var display = document.querySelector("#time-spent");
-    var start = new Date();
-    display.innerHTML = new Date(start.getTime() - start.getTime()).toUTCString().split(" ")[4];
-    interval = setInterval(() => {
-      var now = new Date();
-      console.log(now.getTimezoneOffset());
-      display.innerHTML = new Date(now.getTime() - start.getTime()).toUTCString().split(" ")[4];
-    }, 1000);
-  });
+  bindGenerators();
+  enableDragSort(".drag-sort-enable");
+};
+function bindGenerators() {
   document.querySelectorAll("generator").forEach((generator) => {
     generator.querySelectorAll("controls").forEach((controls) => {
-      var generatorFunction = eval(generator.getAttribute("function"));
+      var functionName = generator.getAttribute("function");
+      var generatorFunction = eval(functionName);
+      try {
+        eval(`${functionName}Populate`)(generator, controls);
+      } catch (e) {}
+
       var resultsContainer = generator.querySelector("results");
       controls.querySelector("button").addEventListener("click", () => {
         var amountInput = controls.querySelector(".amount");
-        var amount = parseInt(amountInput.value) > 0 ? parseInt(amountInput.value) : 1;
+        var amount = 1;
+        if (amountInput) amount = parseInt(amountInput.value) > 0 ? parseInt(amountInput.value) : 1;
         var data = {};
-        controls.querySelectorAll("input:not(.amount)").forEach((input) => {
+        controls.querySelectorAll("input").forEach((input) => {
           data[input.getAttribute("name")] = getInputVal(input);
         });
         resultsContainer.innerHTML = "";
@@ -42,8 +31,25 @@ document.onreadystatechange = function () {
       });
     });
   });
-  enableDragSort(".drag-sort-enable");
-};
+}
+function combatTimer(timeSpentButton) {
+  if (timeSpentButton.getAttribute("on") == "true") {
+    timeSpentButton.setAttribute("on", "false");
+    clearInterval(timeSpentButton.interval);
+    timeSpentButton.innerHTML = "START COMBAT TIMER";
+    return;
+  }
+  timeSpentButton.innerHTML = "STOP COMBAT TIMER";
+  timeSpentButton.setAttribute("on", "true");
+  var display = document.querySelector("#time-spent");
+  var start = new Date();
+  display.innerHTML = new Date(start.getTime() - start.getTime()).toUTCString().split(" ")[4];
+
+  timeSpentButton.interval = setInterval(() => {
+    var now = new Date();
+    display.innerHTML = new Date(now.getTime() - start.getTime()).toUTCString().split(" ")[4];
+  }, 1000);
+}
 
 function bindEnemiesSelect() {
   var select = document.querySelector("#enemies_data");
@@ -76,14 +82,12 @@ function addNewEnemy(enemy) {
 
 function getInputVal(input) {
   if (input.getAttribute("type") == "checkbox") return input.checked;
+  if (input.getAttribute("type") == "number") return parseInt(input.value);
   return input.value;
 }
 
 function generateLocation(container, data) {
   var locationData = getResultDict(getLocationObject(), data);
-  var lootTable = getItems().filter((x) => x.type == "stuff");
-  var loot = getRandomFrom(lootTable);
-  locationData.loot = loot.name;
   createDictDom(container, locationData);
 }
 function generateBattleFeature(container, data) {
@@ -101,9 +105,12 @@ function generateNames(nestedNames, count) {
 function generateName(container, data) {
   var resultNames = [];
   var allNames = getNames();
+  console.log(data);
   Object.keys(data).forEach((namesIndex) => {
     if (!!data) if (!data[namesIndex]) return;
     var names = allNames[namesIndex];
+    if (!names) return;
+    console.log(names, namesIndex);
     resultNames.push(names[Math.floor(Math.random() * names.length)]);
   });
   container.appendChild(createTag("p", resultNames.join(" ")));
@@ -113,7 +120,6 @@ function createDictDom(container, data) {
   element.classList.add("inner");
   container.appendChild(element);
   if (data instanceof GeneratorArray) {
-    console.log("data instanceof GeneratorArray");
     data.getList().forEach((index) => {
       element.appendChild(createTag("value", index));
     });
@@ -130,5 +136,49 @@ function createDictDom(container, data) {
     }
     indexElement.appendChild(createTag("key", `${index[0].toUpperCase() + index.substring(1)}`));
     createDictDom(element, data[index]);
+  });
+  return element;
+}
+function generateLoot(container, data) {
+  var totalValue = data.total_value;
+  var items = getItems().filter((x) => data[x.type] == true);
+  var template = document.querySelector("slot-template");
+  while (totalValue > 0) {
+    items = items.filter((item) => getItemValue(item) <= totalValue);
+    if (items.length == 0) break;
+    var item = getRandomFrom(items);
+    totalValue -= getItemValue(item);
+
+    var slot = applyToTemplate(template, item);
+    console.log(slot);
+    container.appendChild(slot);
+    /*
+    totalValue -= getItemValue(item);
+    itemData = {};
+    itemData[item.name] = {
+      type: item.type,
+      quality: item.usage.filter((x) => x == "QUALITY").length,
+      effect: item.usage.filter((x) => x == "EFFECT").length,
+      durability: item.usage.filter((x) => x == "DURABILITY").length,
+      damageTypes: item.damageTypes,
+    };
+    var element = createDictDom(container, itemData);
+    var image = createTag("img");
+    image.style.backgroundImage = `url(${item.image})`;
+    element.appendChild(image);
+    */
+  }
+}
+function generateLootPopulate(generator, controls) {
+  var lootTypes = [...new Set(getItems().map((x) => x.type))];
+  var checkboxTemplate = document.querySelector("checkbox-template");
+  var inputTemplate = document.querySelector("input-template");
+  var button = generator.querySelector("button");
+  lootTypes.forEach((lootType) => {
+    var checkbox = applyToTemplate(checkboxTemplate, {
+      generator: "loot",
+      label: lootType,
+    });
+    button.before(checkbox);
   });
 }

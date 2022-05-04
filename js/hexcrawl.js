@@ -551,20 +551,12 @@ function getData() {
 function getDataAttributeKeyVal(attribute) {
   if (attribute.name == "class") return [];
   if (attribute.name == "style") return [];
-  if (attribute.name == "texture") return [attribute.name, getImageIndex(attribute.value, textureImages)];
-  if (attribute.name == "icon") return [attribute.name, getImageIndex(attribute.value, iconImages)];
+  if (attribute.name == "texture") return [attribute.name, attribute.value];
+  if (attribute.name == "icon") return [attribute.name, attribute.value];
   return [attribute.name, attribute.value];
 }
 function setElementData(element, data) {
   for (const [key, value] of Object.entries(data)) {
-    if (key == "texture") {
-      element.setAttribute(key, textureImages[parseInt(value)]);
-      continue;
-    }
-    if (key == "icon") {
-      element.setAttribute(key, iconImages[parseInt(value)]);
-      continue;
-    }
     element.setAttribute(key, value);
   }
   return data;

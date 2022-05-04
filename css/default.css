@@ -1,64 +1,69 @@
 @font-face {
-    font-family: 'medula';
-    src: url('../Source_Code_Pro/MedulaOne-Regular.ttf');
+  font-family: "medula";
+  src: url("../Source_Code_Pro/MedulaOne-Regular.ttf");
 }
-        
+
 @font-face {
-    font-family: 'source';
-    src: url('../Source_Code_Pro/SourceCodePro-VariableFont_wght.ttf');
+  font-family: "source";
+  src: url("../Source_Code_Pro/SourceCodePro-VariableFont_wght.ttf");
 }
-body{
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    margin: 0;
-    border: 0;
-    padding: 0;
+
+.template,
+[template] {
+  display: none;
 }
-a4{
-    width: 500px;
-    height: 700px;
+body {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin: 0;
+  border: 0;
+  padding: 0;
 }
-a4-landscape{
-    height: 500px;
-    width: 700px;
+a4 {
+  width: 500px;
+  height: 700px;
 }
-nav{
-    position: fixed;
-    display: flex;
-    flex-direction: column;
-    top: 0px;
-    left: 0px;
-    width: 10%;
-    height: 100vh;
-    z-index: 99;
+a4-landscape {
+  height: 500px;
+  width: 700px;
 }
-nav a{
-    display: flex;
-    font-size: 2vw;
-    text-transform: uppercase;
-    font-weight: 700;
-    font-family: 'source';
+nav {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  top: 0px;
+  left: 0px;
+  width: 10%;
+  height: 100vh;
+  z-index: 99;
 }
-row{
-    display: flex;
-    flex: 1;
-    flex-grow: 1;
-    flex-direction: row;
+nav a {
+  display: flex;
+  font-size: 2vw;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-family: "source";
 }
-column{
-    display: flex;
-    flex: 1;
-    flex-grow: 1;
-    flex-direction: column;
+row {
+  display: flex;
+  flex: 1;
+  flex-grow: 1;
+  flex-direction: row;
 }
-row>separator{
-    border-right: 1px solid black;
+column {
+  display: flex;
+  flex: 1;
+  flex-grow: 1;
+  flex-direction: column;
 }
-.wrap{
-    flex-wrap: wrap;
+row > separator {
+  border-right: 1px solid black;
 }
-.on-top{
-    position: relative;
-    z-index: 99;
+.wrap {
+  flex-wrap: wrap;
+}
+.on-top {
+  position: relative;
+  z-index: 99;
 }

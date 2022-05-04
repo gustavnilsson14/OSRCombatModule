@@ -77,6 +77,13 @@ h6 {
 results {
   overflow-x: hidden;
 }
+results.flex-results {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  gap: 20px;
+}
 results > div {
   animation-name: slidein;
   animation-duration: 0.5s;
@@ -84,6 +91,17 @@ results > div {
   padding-bottom: 0;
   margin-top: 0px;
   margin-bottom: 5px;
+  position: relative;
+}
+results > div > img {
+  position: absolute;
+  height: 80%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  transform: translateY(10%);
+  left: 200px;
+  padding: 0 15%;
 }
 
 results > div div {
@@ -239,4 +257,7 @@ enemy button.remove {
 div.inner {
   display: flex;
   flex-direction: column;
+}
+slot {
+  border: 1px solid black;
 }

@@ -126,13 +126,33 @@
         {{/hasSkill}}
       </slot>
     </slot-template>
+    <vehicle-template>
+      <vehicle> </vehicle>
+    </vehicle-template>
     <container></container>
     <script>
       var template = document.querySelector("slot-template");
       var container = document.querySelector("container");
-      getItems().forEach((item) => {
+      var typeSort = [
+        "melee",
+        "ranged",
+        "explosive",
+        "magic",
+        "shield",
+        "headgear",
+        "armor",
+        "consumable",
+        "stuff",
+        "tool",
+        "cybernetics",
+        "artifact",
+      ];
+      var items = getItems().sort((a, b) => {
+        return typeSort.indexOf(a.type) < typeSort.indexOf(b.type) ? -1 : 1;
+      });
+      items.forEach((item) => {
         var slot = applyToTemplate(template, item);
-        container.insertAdjacentHTML("beforeend", slot);
+        container.appendChild(slot);
       });
       document.querySelector("nav amount").textContent = document.querySelectorAll("slot").length;
       document.querySelectorAll("slot").forEach((element, i) => {

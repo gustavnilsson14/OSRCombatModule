@@ -159,6 +159,25 @@ slot inner usage *:nth-child(9) {
 slot inner usage *:nth-child(10) {
   right: 13px;
 }
+slot inner usage *:nth-child(11) {
+  bottom: 58px;
+  right: 26px;
+}
+slot inner usage *:nth-child(12) {
+  bottom: 44px;
+  right: 26px;
+}
+slot inner usage *:nth-child(13) {
+  bottom: 30px;
+  right: 26px;
+}
+slot inner usage *:nth-child(14) {
+  bottom: 16px;
+  right: 26px;
+}
+slot inner usage *:nth-child(15) {
+  right: 26px;
+}
 slot inner usage span.DURABILITY {
   border: 0;
   border-style: dashed;
@@ -242,8 +261,14 @@ slot name::before {
 .stuff name::before {
   content: url(../img/gear-solid.svg);
 }
+.tool name::before {
+  content: url(../img/tool.svg);
+}
 .explosive name::before {
   content: url(../img/bomb.svg);
+}
+.consumable name::before {
+  content: url(../img/consumable.svg);
 }
 .artifact name::before {
   content: "";

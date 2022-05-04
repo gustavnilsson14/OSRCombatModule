@@ -295,8 +295,12 @@ row hex cluster-image {
   background-position: bottom;
   z-index: 2;
 }
-row hex[tile-type="city"] cluster-image {
+row hex cluster-image {
   filter: drop-shadow(10px -5px 5px rgba(0, 0, 0, 0.5));
+}
+row hex[tile-type="forest"] cluster-image {
+  width: 60px;
+  height: 90px;
 }
 row hex[texture="img/map/water.png"] inner texture {
   animation: water-hex-move 10s ease-in-out;
@@ -371,9 +375,6 @@ row hex:hover name {
 row hex.selected name {
   transform: translateX(-50%) translateY(-8px) scale(1.3);
   background-color: rgba(0, 0, 0, 0);
-}
-.template {
-  display: none;
 }
 selected-hex {
   display: none;

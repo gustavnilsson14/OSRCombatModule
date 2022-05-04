@@ -653,7 +653,7 @@ function getItems() {
     {
       name: "FRAG GRENADE",
       type: "explosive",
-      usage: ["EFFECT", "EFFECT", "EFFECT", "EFFECT", "EFFECT", "DURABILITY", "DURABILITY", "DURABILITY", "DURABILITY", "DURABILITY"],
+      usage: ["DURABILITY", "DURABILITY", "DURABILITY", "DURABILITY", "DURABILITY", "EFFECT", "EFFECT", "EFFECT", "EFFECT", "EFFECT"],
       damageTypes: ["BLAST"],
       hasSkill: true,
       size: false,
@@ -663,12 +663,38 @@ function getItems() {
     {
       name: "MOLOTOV COCKTAIL",
       type: "explosive",
-      usage: ["EFFECT", "EFFECT", "DURABILITY", "DURABILITY", "DURABILITY", "DURABILITY", "DURABILITY"],
+      usage: ["DURABILITY", "DURABILITY", "DURABILITY", "DURABILITY", "DURABILITY", "EFFECT", "EFFECT"],
       damageTypes: ["*", "LIGHT"],
       hasSkill: true,
       size: false,
       horizontal: false,
       image: "img/items/molotov.png",
+    },
+    {
+      name: "TANK SHELL",
+      type: "explosive",
+      usage: [
+        "DURABILITY",
+        "DURABILITY",
+        "DURABILITY",
+        "DURABILITY",
+        "DURABILITY",
+        "EFFECT",
+        "EFFECT",
+        "EFFECT",
+        "EFFECT",
+        "EFFECT",
+        "EFFECT",
+        "EFFECT",
+        "EFFECT",
+        "EFFECT",
+        "EFFECT",
+      ],
+      damageTypes: ["BLAST"],
+      hasSkill: true,
+      size: false,
+      horizontal: true,
+      image: "img/items/tankshell.png",
     },
     {
       name: "SHOCK",
@@ -722,7 +748,7 @@ function getItems() {
     },
     {
       name: "RATIONS",
-      type: "stuff",
+      type: "consumable",
       usage: ["DURABILITY", "DURABILITY", "DURABILITY"],
       damageTypes: [],
       hasSkill: false,
@@ -732,7 +758,7 @@ function getItems() {
     },
     {
       name: "FRESH FRUITS",
-      type: "stuff",
+      type: "consumable",
       usage: ["DURABILITY", "DURABILITY", "DURABILITY"],
       damageTypes: [],
       hasSkill: false,
@@ -742,7 +768,7 @@ function getItems() {
     },
     {
       name: "WATER",
-      type: "stuff",
+      type: "consumable",
       usage: ["DURABILITY", "DURABILITY", "DURABILITY"],
       damageTypes: [],
       hasSkill: false,
@@ -752,7 +778,7 @@ function getItems() {
     },
     {
       name: "CAPRISUN",
-      type: "stuff",
+      type: "consumable",
       usage: ["DURABILITY", "DURABILITY", "DURABILITY"],
       damageTypes: [],
       hasSkill: false,
@@ -762,7 +788,7 @@ function getItems() {
     },
     {
       name: "NAILS",
-      type: "stuff",
+      type: "tool",
       usage: ["DURABILITY", "DURABILITY", "DURABILITY"],
       damageTypes: [],
       hasSkill: false,
@@ -802,7 +828,7 @@ function getItems() {
     },
     {
       name: "SENSORS",
-      type: "stuff",
+      type: "tool",
       usage: ["DURABILITY", "DURABILITY", "DURABILITY"],
       damageTypes: [],
       hasSkill: false,
@@ -812,7 +838,7 @@ function getItems() {
     },
     {
       name: "TIMER",
-      type: "stuff",
+      type: "tool",
       usage: ["DURABILITY", "DURABILITY", "DURABILITY"],
       damageTypes: [],
       hasSkill: false,
@@ -822,7 +848,7 @@ function getItems() {
     },
     {
       name: "REMOTE",
-      type: "stuff",
+      type: "tool",
       usage: ["DURABILITY", "DURABILITY", "DURABILITY"],
       damageTypes: [],
       hasSkill: false,
@@ -832,7 +858,7 @@ function getItems() {
     },
     {
       name: "MEDICINE",
-      type: "stuff",
+      type: "tool",
       usage: ["DURABILITY", "DURABILITY", "DURABILITY"],
       damageTypes: [],
       hasSkill: false,
@@ -842,7 +868,7 @@ function getItems() {
     },
     {
       name: "FIRST AID KIT",
-      type: "stuff",
+      type: "tool",
       usage: ["DURABILITY", "DURABILITY", "DURABILITY"],
       damageTypes: [],
       hasSkill: false,
@@ -852,7 +878,7 @@ function getItems() {
     },
     {
       name: "INFLATABLE BOAT",
-      type: "stuff",
+      type: "tool",
       usage: ["DURABILITY", "DURABILITY", "DURABILITY"],
       damageTypes: [],
       hasSkill: false,
@@ -862,7 +888,7 @@ function getItems() {
     },
     {
       name: "CAR BATTERY",
-      type: "stuff",
+      type: "tool",
       usage: ["DURABILITY", "DURABILITY", "DURABILITY"],
       damageTypes: [],
       hasSkill: false,
@@ -892,7 +918,7 @@ function getItems() {
     },
     {
       name: "GASOLINE",
-      type: "stuff",
+      type: "tool",
       usage: ["DURABILITY", "DURABILITY", "DURABILITY"],
       damageTypes: [],
       hasSkill: false,
@@ -902,7 +928,7 @@ function getItems() {
     },
     {
       name: "CAR PARTS",
-      type: "stuff",
+      type: "tool",
       usage: ["DURABILITY", "DURABILITY", "DURABILITY"],
       damageTypes: [],
       hasSkill: false,
@@ -912,7 +938,7 @@ function getItems() {
     },
     {
       name: "GEIGER COUNTER",
-      type: "stuff",
+      type: "tool",
       usage: ["DURABILITY", "DURABILITY", "DURABILITY"],
       damageTypes: [],
       hasSkill: false,
@@ -922,7 +948,7 @@ function getItems() {
     },
     {
       name: "PORTABLE STILL",
-      type: "stuff",
+      type: "tool",
       usage: ["DURABILITY", "DURABILITY", "DURABILITY"],
       damageTypes: [],
       hasSkill: false,
@@ -932,7 +958,7 @@ function getItems() {
     },
     {
       name: "TENT",
-      type: "stuff",
+      type: "tool",
       usage: ["DURABILITY", "DURABILITY", "DURABILITY"],
       damageTypes: [],
       hasSkill: false,
@@ -952,7 +978,7 @@ function getItems() {
     },
     {
       name: "ACID",
-      type: "stuff",
+      type: "tool",
       usage: ["DURABILITY", "DURABILITY", "DURABILITY"],
       damageTypes: [],
       hasSkill: false,
@@ -972,7 +998,7 @@ function getItems() {
     },
     {
       name: "PARACHUTE",
-      type: "stuff",
+      type: "tool",
       usage: ["DURABILITY", "DURABILITY", "DURABILITY"],
       damageTypes: [],
       hasSkill: false,
@@ -992,7 +1018,7 @@ function getItems() {
     },
     {
       name: "EXPLOSIVES",
-      type: "stuff",
+      type: "tool",
       usage: ["DURABILITY", "DURABILITY"],
       damageTypes: [],
       hasSkill: false,
@@ -1022,7 +1048,7 @@ function getItems() {
     },
     {
       name: "STEAK",
-      type: "stuff",
+      type: "consumable",
       usage: ["DURABILITY", "DURABILITY", "DURABILITY"],
       damageTypes: [],
       hasSkill: false,
@@ -1032,7 +1058,7 @@ function getItems() {
     },
     {
       name: "WATER DISPENSER",
-      type: "stuff",
+      type: "consumable",
       usage: ["DURABILITY", "DURABILITY", "DURABILITY", "DURABILITY", "DURABILITY"],
       damageTypes: [],
       hasSkill: false,
@@ -1052,7 +1078,7 @@ function getItems() {
     },
     {
       name: "REGENERATIUM",
-      type: "stuff",
+      type: "artifact",
       usage: ["DURABILITY", "DURABILITY"],
       damageTypes: [],
       hasSkill: false,
@@ -1062,7 +1088,7 @@ function getItems() {
     },
     {
       name: "AMPHETAMINES",
-      type: "stuff",
+      type: "tool",
       usage: ["DURABILITY", "DURABILITY", "DURABILITY", "DURABILITY", "DURABILITY"],
       damageTypes: [],
       hasSkill: false,
@@ -1072,7 +1098,7 @@ function getItems() {
     },
     {
       name: "HALLUCINOGENS",
-      type: "stuff",
+      type: "tool",
       usage: ["DURABILITY", "DURABILITY", "DURABILITY", "DURABILITY", "DURABILITY"],
       damageTypes: [],
       hasSkill: false,
@@ -1082,7 +1108,7 @@ function getItems() {
     },
     {
       name: "OPIOIDS",
-      type: "stuff",
+      type: "tool",
       usage: ["DURABILITY", "DURABILITY", "DURABILITY", "DURABILITY", "DURABILITY"],
       damageTypes: [],
       hasSkill: false,
@@ -1092,7 +1118,7 @@ function getItems() {
     },
     {
       name: "BOOZE",
-      type: "stuff",
+      type: "consumable",
       usage: ["DURABILITY", "DURABILITY", "DURABILITY", "DURABILITY", "DURABILITY"],
       damageTypes: [],
       hasSkill: false,
@@ -1112,7 +1138,7 @@ function getItems() {
     },
     {
       name: "BINOCULARS",
-      type: "stuff",
+      type: "tool",
       usage: ["DURABILITY", "DURABILITY"],
       damageTypes: [],
       hasSkill: false,
@@ -1122,7 +1148,7 @@ function getItems() {
     },
     {
       name: "EXPANDABLE SOLAR",
-      type: "stuff",
+      type: "artifact",
       usage: ["DURABILITY", "DURABILITY"],
       damageTypes: [],
       hasSkill: false,
@@ -1132,7 +1158,7 @@ function getItems() {
     },
     {
       name: "EXPANDABLE TURBINE",
-      type: "stuff",
+      type: "artifact",
       usage: ["DURABILITY", "DURABILITY"],
       damageTypes: [],
       hasSkill: false,
@@ -1142,7 +1168,7 @@ function getItems() {
     },
     {
       name: "BURNER GENERATOR",
-      type: "stuff",
+      type: "tool",
       usage: ["DURABILITY", "DURABILITY", "DURABILITY", "DURABILITY", "DURABILITY"],
       damageTypes: [],
       hasSkill: false,
@@ -1598,4 +1624,20 @@ function getItems() {
     if (item.name.length > 14) item.textClass = "smallest";
   }
   return items;
+}
+function getItemValue(item) {
+  if (item.type == "magic") return 40;
+  var baseValue = item.usage.reduce((sum, usage) => getUsageValue(sum) + getUsageValue(usage));
+  if (item.type == "artifact") return baseValue * 10;
+  if (item.type == "cybernetics") return baseValue * 3;
+  if (item.type == "stuff") return baseValue;
+  if (item.type == "explosive") return baseValue;
+  if (item.type == "armor") return baseValue * 2;
+  return baseValue;
+}
+function getUsageValue(usage) {
+  if (usage == "DURABILITY") return 1;
+  if (usage == "EFFECT") return 3;
+  if (usage == "QUALITY") return 4;
+  return usage;
 }

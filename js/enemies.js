@@ -732,7 +732,7 @@ function getEnemies() {
         {
           name: "Slap",
           damage: "3-3-3",
-          "damage types": ["smash, pain"],
+          "damage types": ["smash", "pain"],
         },
       ],
       actions: [
@@ -759,41 +759,41 @@ function getEnemies() {
     {
       name: "Great angler",
       description:
-        "Great anglers are horrible monsters, mutated anglerfish which dwell in moist, semisubmerged caverns or pits. The enjoy human flesh, and eats any who stumbles into its lair.",
+        "Great anglers are horrible monsters, mutated anglerfish which dwell in moist, semisubmerged caverns or pits. The enjoy human flesh, and eats any who stumbles into its lair. Usually only the light is seen, then the six legged and clawed monstrosity shows itself as its prey draws close",
       image: "angler.png",
       stats: {
-        str: 20,
-        dex: 8,
-        wil: 2,
-        en: 182,
-        av: 1,
+        str: 30,
+        dex: 4,
+        wil: 5,
+        en: 224,
+        av: 3,
       },
-      weaknesses: ["cut", "volt", "nuke", "light"],
+      weaknesses: ["burst", "blast", "volt", "light"],
       attacks: [
         {
-          name: "Slap",
-          damage: "3-3-3",
-          "damage types": ["smash, pain"],
+          name: "Rake",
+          damage: "4-3-4",
+          "damage types": ["cut", "pain"],
+        },
+        {
+          name: "Bite",
+          damage: "5-3-4",
+          "damage types": ["stab", "smash", "pain"],
         },
       ],
       actions: [
         {
-          name: "Grapple",
-          effect:
-            "The squid can grapple an opponent at range. Each turn while grappled, the victim is pulled towards the squid, and cannot take tactical action. At the start of each round, on successful DEX, the victim slithers loose. If the squid takes critical damage, its grip loosens, and the victim escapes. The squid can only grapple one opponent. Recharges on 4",
+          name: "Dash",
+          effect: "Move 3 tiles in any direction.",
         },
         {
           name: "Devour",
+          effect: "Eats any unconscious enemy adjacent to them.",
+        },
+        {
+          name: "Expunge",
           effect:
-            "The squid consumes one melee opponent which is also grappled. The devoured victim becomes unconscious, and takes 2d4 ooze damage each turn. The squid regurgitates the devoured victim if it takes critical damage.",
-        },
-        {
-          name: "Harden",
-          effect: "Gain 1 armor, and mitigate 1 weakness.",
-        },
-        {
-          name: "Massive slappery",
-          effect: "When using slap, enemies on the same tile as the target, and the target, suffer knockback on a failed STR.",
+            "Releases a radioactive spray from its many pores on its back, extinguishing fire, and dealing 3d6 nuke damage within 2 tiles of the Great Angler.",
         },
       ],
     },
@@ -803,38 +803,135 @@ function getEnemies() {
         "Giant, amphibious angler fish, mutated in a manner which allows them to speak, and granting them a higher level of intelligence than most other creatures. Angoliants are considered evil by civilized folk. They enjoy human flesh, but also to toy with their prey.",
       image: "angolian.png",
       stats: {
-        str: 20,
-        dex: 8,
-        wil: 2,
-        en: 182,
-        av: 1,
+        str: 30,
+        dex: 3,
+        wil: 10,
+        en: 208,
+        av: 3,
       },
-      weaknesses: ["cut", "volt", "nuke", "light"],
+      weaknesses: ["burst", "blast", "volt", "light"],
       attacks: [
         {
-          name: "Slap",
-          damage: "3-3-3",
-          "damage types": ["smash, pain"],
+          name: "Rake",
+          damage: "4-2-4",
+          "damage types": ["cut", "pain"],
+        },
+        {
+          name: "Bite",
+          damage: "5-2-4",
+          "damage types": ["stab", "smash", "pain"],
         },
       ],
       actions: [
         {
-          name: "Grapple",
-          effect:
-            "The squid can grapple an opponent at range. Each turn while grappled, the victim is pulled towards the squid, and cannot take tactical action. At the start of each round, on successful DEX, the victim slithers loose. If the squid takes critical damage, its grip loosens, and the victim escapes. The squid can only grapple one opponent. Recharges on 4",
+          name: "Dash",
+          effect: "Move 2 tiles in any direction.",
         },
         {
           name: "Devour",
-          effect:
-            "The squid consumes one melee opponent which is also grappled. The devoured victim becomes unconscious, and takes 2d4 ooze damage each turn. The squid regurgitates the devoured victim if it takes critical damage.",
+          effect: "Eats any unconscious enemy adjacent to them.",
         },
         {
           name: "Harden",
           effect: "Gain 1 armor, and mitigate 1 weakness.",
         },
         {
-          name: "Massive slappery",
-          effect: "When using slap, enemies on the same tile as the target, and the target, suffer knockback on a failed STR.",
+          name: "Roar",
+          effect:
+            "The Angoliant roars with otherworldly tone. All enemies save WIL, and on a fail they suffer 4d6 neural damage, and they are unable to move or attack the first turn.Recharges on a 4.",
+        },
+      ],
+    },
+    {
+      name: "Service Bot",
+      description:
+        "A service robot corrupted by the passage of time. Service bots have exceptionally creative AI's, and often use underhanded tactics, and trickery to lure their targets into traps. They speak softly, and were made for service professions originally.",
+      image: "servicebot.png",
+      stats: {
+        str: 10,
+        dex: 4,
+        wil: 8,
+        en: 42,
+        av: 2,
+      },
+      weaknesses: ["gun", "smash", "burst", "blast", "volt"],
+      attacks: [
+        {
+          name: "Sawblade",
+          damage: "3-1-1",
+          "damage types": ["cut", "pain"],
+        },
+        {
+          name: "Throw stuff",
+          damage: "1-1-1",
+          "damage types": ["smash"],
+        },
+      ],
+      actions: [
+        {
+          name: "Grovel",
+          effect:
+            "If the service bot controls itself, and is not remotely controlled, it will grovel if wounded, stand ground, and take the defend action.",
+        },
+        {
+          name: "Feign Shutdown",
+          effect:
+            "On a successful DEX, the next damage to the Service Bot will cause it to feign shutdown. It may resume fighting as a tactical action.",
+        },
+        {
+          name: "Shoot Tazer",
+          effect:
+            "Fires a tazer at an enemy combatant, dealing 1d6 volt damage. The target must use a tactical action to remove the tazer, or take an additional 1d6 volt damage for each tactical action they make. Usable once.",
+        },
+      ],
+    },
+    {
+      name: "Clowndroid",
+      description:
+        "An android initially made for jolly entertainment, but deranged as the unmaintained AI evolved in a sinister direction. It has modified itself with weapons, and use them in a manic glee.",
+      image: "clown.png",
+      stats: {
+        str: 8,
+        dex: 14,
+        wil: 7,
+        en: 108,
+        av: 2,
+      },
+      weaknesses: ["gun", "burst", "blast", "volt"],
+      attacks: [
+        {
+          name: "Sawblade",
+          damage: "3-2-3",
+          "damage types": ["cut", "pain"],
+        },
+        {
+          name: "Nail Barrage",
+          damage: "3-2-3",
+          "damage types": ["stab", "gun"],
+        },
+        {
+          name: "Piston Kick",
+          damage: "2-2-3",
+          "damage types": ["smash", "blast"],
+        },
+      ],
+      actions: [
+        {
+          name: "Chaos Footwork",
+          effect: "When targeted by ranged attacks, and not in melee, on successful DEX the clown takes no damage",
+        },
+        {
+          name: "Acrobatics",
+          effect: "Move 2 tiles. Can move past enemy combatants.",
+        },
+        {
+          name: "Electric Discharge",
+          effect: "Enemies in melee save their STR. If they fail, they cannot move, and take 2d6 volt damage",
+        },
+        {
+          name: "Noxious Grenade",
+          effect:
+            "Throws a grenade to a target tile, which deals 3d6 nuke damage to all combatants on the tile. Affected targets save STR, and on fail they suffer one mutation progress. Recharges on a 4.",
         },
       ],
     },

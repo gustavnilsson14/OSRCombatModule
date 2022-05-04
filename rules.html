@@ -474,13 +474,19 @@
                     <info-row>
                         <inner>
                             <h4>Aim</h4>
-                            <span>When attacking, choose a die and increase its result by 1 before rolling.</span>
+                            <span>When attacking, choose a die and increase its result by 1 before rolling. Also allows the combatant to target opponents at range beyond the closest front.</span>
                         </inner>
                     </info-row>
                     <info-row>
                         <inner>
                             <h4>Brace</h4>
                             <span>When attacked, choose a die and reduce its result by 1 after rolling.</span>
+                        </inner>
+                    </info-row>
+                    <info-row>
+                        <inner>
+                            <h4>Cover</h4>
+                            <span>Only usable if on the same tile as something which could provide cover from ranged attacks. When used, all ranged attacks against the combatant have their dice reduced by 1/2/3, depending on the quality of the cover according to the GM.</span>
                         </inner>
                     </info-row>
                     <info-row>
@@ -631,6 +637,22 @@
                     <box class="no-border">
                         <h4>Damage Rating (DR)</h4>
                         <p>Most items are weapons, and have a damage rating ranging from 0 and upwards, explained further in the weapons section.</p>
+                        <p>The damage rating is the total of hollow quality slots, and effect symbols on the weapon card.</p>
+                    </box>
+                    <box class="no-border">
+                        <h4>Skill Rating (SR)</h4>
+                        <p>A characters skill with the individual weapon affects their efficiency greatly, and can turn any weapon lethal.</p>
+                        <p>Skill is tracked on the weapon card.</p>
+                    </box>
+                    <box class="no-border">
+                        <h4>Level (LVL)</h4>
+                        
+                        <p>The characters general experience level weighs in on how much damage they do.</p>
+                        <p>Level is tracked on your character sheet.</p>
+                    </box>
+                </row>
+                <row class="internal">
+                    <box class="no-border">
                         <info-list class="dice-enumeration weapons no-roll">
                             <info-row class="na-enumeration">
                                 <inner>
@@ -670,9 +692,6 @@
                         </info-list>
                     </box>
                     <box class="no-border">
-                        <h4>Skill Rating (SR)</h4>
-                        <p>A characters skill with the individual weapon affects their efficiency greatly, and can turn any weapon lethal.</p>
-                        <p>Skill is tracked on the weapon card.</p>
                         <info-list class="dice-enumeration no-roll" style="counter-set: list 2;">
                             <info-row>
                                 <inner>
@@ -702,10 +721,6 @@
                         </info-list>
                     </box>
                     <box class="no-border">
-                        <h4>Level (LVL)</h4>
-                        
-                        <p>The characters general experience level weighs in on how much damage they do.</p>
-                        <p>Level is tracked on your character sheet.</p>
                         <info-list class="dice-enumeration no-roll" style="counter-set: list 2;">
                             <info-row>
                                 <inner>
@@ -783,14 +798,12 @@
                 <img src="img/armor.png" alt="">
             </box>
             <box class="x2">
-
                 <h4>Weaknesses</h4>
                 <p>All weapons deals damage of one or more damage types. All combatants have one or more weakness to these damage types. Figuring out an opponents weakness can be key to winning a battle</p>
                 <p>When dealing damage to an opponent with a damage type they are weak against this is considered <i>critical damage</i>. Dealing <i>critical damage</i> causes the attack to add another of the highest damage die to the attack.</p>
                 <h4>Damage types</h4>
                 <row class="internal">
-                    <box class="no-border">
-                        
+                    <box class="no-border">                        
                         <info-list class="small-span no-min-width no-roll centered" style="counter-set: list 0;">
                             <info-row>
                                 <inner>

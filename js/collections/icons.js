@@ -10,6 +10,7 @@ function getIcons() {
     "factory1.png",
     "factory2.png",
     "factory3.png",
+    "mcdonalds.png",
     "modern1.png",
     "modern2.png",
     "modern3.png",
@@ -26,12 +27,14 @@ function getIcons() {
     "skyscraper2.png",
     "silo.png",
     "starship.png",
+    "tent.png",
     "town_hall1.png",
     "warehouse1.png",
     "warehouse2.png",
     "warehouse3.png",
     "watertower.png",
     "Untitled.png",
+    "gasstation.png",
   ];
 }
 function getWaterIcons() {
@@ -69,5 +72,8 @@ function getTrees() {
     "tree9.png",
     "tree10.png",
     "tree11.png",
+    "tree12.png",
+    "tree13.png",
+    "tree14.png",
   ];
 }

@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="css/default.css" />
+    <link rel="stylesheet" href="css/item.css" />
     <link rel="stylesheet" href="css/generators.css" />
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.1.0/mustache.min.js"
@@ -18,6 +19,8 @@
     <script src="js/collections/items.js"></script>
     <script src="js/collections/malenames.js"></script>
     <script src="js/collections/shopnames.js"></script>
+    <script src="js/collections/tavernnames.js"></script>
+    <script src="js/collections/traits.js"></script>
     <script src="js/collections/femalenames.js"></script>
     <script src="js/collections/lastnames.js"></script>
     <script src="js/collections/banditnames.js"></script>
@@ -43,16 +46,55 @@
         <input id="enemies" list="enemies_data" />
         <datalist id="enemies_data"></datalist>
         <button id="add-enemy">ADD SELECTED</button>
-        <button id="time-spent-button">START COMBAT TIMER</button>
+        <button id="time-spent-button" onclick="combatTimer(this)">START COMBAT TIMER</button>
         <span id="time-spent"></span>
       </controls>
     </nav>
+
+    <checkbox-template template>
+      <checkbox>
+        <label for="{{generator}}_{{label}}">{{label}}</label>
+        <input id="{{generator}}_{{label}}" name="{{label}}" type="checkbox" />
+      </checkbox>
+    </checkbox-template>
+    <input-template template>
+      <input name="{{generator}}_{{label}}" type="{{type}}" placeholder="{{label}}" />
+    </input-template>
+
+    <slot-template template>
+      <slot class="{{type}} {{#size}}x2{{/size}} {{#horizontal}}horizontal-image{{/horizontal}}">
+        <name>
+          <span class="{{textClass}}">{{name}}</span>
+        </name>
+        <inner style="background-image: url({{image}})">
+          <damagetypes>
+            {{#damageTypes}}
+            <span>{{.}}</span>
+            {{/damageTypes}}
+          </damagetypes>
+          <usage>
+            {{#usage}}
+            <span class="{{.}}"></span>
+            {{/usage}}
+          </usage>
+        </inner>
+        {{#hasSkill}}
+        <skill>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+          <skillslot></skillslot>
+        </skill>
+        {{/hasSkill}}
+      </slot>
+    </slot-template>
     <container>
       <generators>
         <generator function="generateName">
           <h2>Names</h2>
           <controls class="drag-sort-enable">
-            <input class="amount" type="number" placeholder="Amount" />
+            <input class="amount" name="amount" type="number" placeholder="Amount" />
 
             <checkbox class="draggable">
               <label for="name_maleFirstNames">maleFirstNames</label>
@@ -82,6 +124,22 @@
               <label for="name_shopNames">shopNames</label>
               <input id="name_shopNames" name="shopNames" type="checkbox" />
             </checkbox>
+            <checkbox class="draggable">
+              <label for="name_tavernNames">tavernNames</label>
+              <input id="name_tavernNames" name="tavernNames" type="checkbox" />
+            </checkbox>
+            <checkbox class="draggable">
+              <label for="name_virtues">virtues</label>
+              <input id="name_virtues" name="virtues" type="checkbox" />
+            </checkbox>
+            <checkbox class="draggable">
+              <label for="name_vices">vices</label>
+              <input id="name_vices" name="vices" type="checkbox" />
+            </checkbox>
+            <checkbox class="draggable">
+              <label for="name_flaws">flaws</label>
+              <input id="name_flaws" name="flaws" type="checkbox" />
+            </checkbox>
 
             <button>Generate</button>
           </controls>
@@ -90,7 +148,7 @@
         <generator function="generateLocation">
           <h2>Locations</h2>
           <controls>
-            <input class="amount" type="number" placeholder="Amount" />
+            <input class="amount" name="amount" type="number" placeholder="Amount" />
             <checkbox>
               <label for="location_any">any</label>
               <input id="location_any" name="any" type="checkbox" />
@@ -114,7 +172,7 @@
         <generator function="generateBattleFeature">
           <h2>Battle features</h2>
           <controls>
-            <input class="amount" type="number" placeholder="Amount" />
+            <input class="amount" name="amount" type="number" placeholder="Amount" />
             <checkbox>
               <label for="battlefeature_any">any</label>
               <input id="battlefeature_any" name="any" type="checkbox" />
@@ -151,9 +209,17 @@
           </controls>
           <results></results>
         </generator>
+        <generator function="generateLoot">
+          <h2>Loot</h2>
+          <controls>
+            <input class="total_value" name="total_value" type="number" placeholder="Value" />
+            <button>Generate</button>
+          </controls>
+          <results class="flex-results"></results>
+        </generator>
       </generators>
       <enemies>
-        <enemy-template style="display: none">
+        <enemy-template template>
           <button class="remove">X</button>
           <h2>{{name}}</h2>
           <description>{{description}}</description>

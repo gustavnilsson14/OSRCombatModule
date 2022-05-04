@@ -39,10 +39,11 @@ function handleResultDictIndex(innerData) {
 function getValue(val) {
   if (val instanceof WeightedValue) return val.val;
   if (typeof val == "string") return val;
+  if (typeof val == "number") return val;
   return null;
 }
 function applyToTemplate(template, data) {
-  return Mustache.render(template.innerHTML, data);
+  return new DOMParser().parseFromString(Mustache.render(template.innerHTML, data), "text/html").body.firstChild;
 }
 async function sleep(timeout) {
   await new Promise((resolve) =>
