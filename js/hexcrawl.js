@@ -155,6 +155,7 @@ function setHexPosition(hex, pos) {
   hex.setAttribute("posY", pos.y);
   hex.style.left = `${2000 + pos.x * 72}px`;
   hex.style.top = `${2000 + pos.y * 90}px`;
+  hex.style.zIndex = parseInt(pos.y) + 100;
 }
 function setHexPositions() {
   var rows = document.querySelectorAll("map row");
@@ -224,10 +225,9 @@ function bindHexEvents(hex) {
   hexInner.addEventListener("mouseout", hexMouseOutLambda);
 }
 function onHexSelected(hex, multiSelect) {
-  console.log("onHexSelected");
-  if (handleFogHexClick(hex)) return;
   if (!multiSelect) deSelectHex();
   if (selectedHexes.indexOf(hex) != -1) return;
+  handleFogHexClick(hex);
   selectedHexes.push(hex);
   hex.classList.add("selected");
   showHexDetails(hex);
@@ -241,11 +241,10 @@ function deSelectHex() {
   selectedHexes = [];
 }
 function handleFogHexClick(hex) {
-  if (!hex.getAttribute("fog")) return false;
+  if (!hex.hasAttribute("fog")) return;
   hex.removeAttribute("fog");
   fogHexToRealHex(hex);
   createFogHexes(hex);
-  return true;
 }
 function fogHexToRealHex(hex) {
   var parentTexture = getParentTexture(hex);
