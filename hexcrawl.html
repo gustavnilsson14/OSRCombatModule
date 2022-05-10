@@ -20,13 +20,13 @@
   </head>
   <body>
     <nav class="in">
-      <button id="nav-toggle" on class="chevronToggle" toggle="in" targets="nav,#nav-toggle"></button>
-      <data-controls>
+      <navtab-buttons tabbuttongroup>
+        <button selected tabbutton target="#map"><span>Map Data</span></button>
+        <button tabbutton target="#campaign"><span>Campaign Data</span></button>
+      </navtab-buttons>
+      <button id="nav-toggle" on class="chevronToggle" toggle="in" targets="nav,#nav-toggle"></button
+      ><data-controls>
         <row style="width: calc(100% - 30px)">
-          <button id="expand" class="btn btn-primary btn-sm">EXPAND</button>
-          <input style="flex: 0.5 0 0" id="randomness" type="number" class="form-control" step="0.1" min="0" max="1" placeholder="Randomness" />
-        </row>
-        <row>
           <button id="export" onclick="exportData(this)" class="btn btn-default btn-sm">EXPORT</button>
           <button id="import" onclick="importData(this)" class="btn btn-default btn-sm">IMPORT</button>
           <button id="save" onclick="save(this)" class="btn btn-default btn-sm">SAVE</button>
@@ -39,61 +39,122 @@
         </row>
         <row>
           <button id="clear" onclick="clearData(this)" class="btn btn-danger btn-sm">CLEAR</button>
+          <input style="flex: 0.8 0 0" id="randomness" type="number" class="form-control" step="0.1" min="0" max="1" placeholder="Randomness" />
         </row>
       </data-controls>
-      <selected-hex>
-        <h4>Position <pos display="innerHTML" property id="posx"></pos>:<pos display="innerHTML" property id="posy"></pos></h4>
-        <label for="tile-name"><h4>Title</h4></label>
-        <input id="tile-name" property placeholder="Title" />
-        <row style="max-height: 175px">
-          <box>
-            <h4>Description</h4>
-            <textarea property id="description"></textarea>
-          </box>
-          <box>
-            <label for="tile-tint"><h4>Tint</h4></label>
-            <input property type="color" id="tile-tint" placeholder="Tint" />
-
-            <label for="tile-tint-opacity"><h4>Tint Opacity</h4></label>
-            <input property step="0.1" type="number" min="0" max="1" value="0" id="tile-tint-opacity" placeholder="Tint" />
-          </box>
-        </row>
-        <h3>Tile type</h3>
-        <row class="tile-type">
-          <label for="landmark">
-            <span>Landmark</span>
-            <input property display="radio" type="radio" id="landmark" name="tile-type" val="landmark" checked />
-          </label>
-          <label for="city">
-            <span>City</span>
-            <input property display="radio" type="radio" id="city" name="tile-type" val="city" />
-          </label>
-          <label for="water">
-            <span>Water</span>
-            <input property display="radio" type="radio" id="water" name="tile-type" val="water" />
-          </label>
-          <label for="forest">
-            <span>Forest</span>
-            <input property display="radio" type="radio" id="forest" name="tile-type" val="forest" />
-          </label>
-        </row>
-        <tile-type-options>
+      <div id="map" class="navtab selected">
+        <selected-hex>
+          <h4>Position <pos display="innerHTML" property id="posx"></pos>:<pos display="innerHTML" property id="posy"></pos></h4>
           <row>
-            <box landmark>
-              <h4>Icon</h4>
-              <icons> </icons>
+            <box>
+              <label for="tile-name"><h4>Title</h4></label>
+              <input id="tile-name" property placeholder="Title" />
             </box>
-            <box water>
-              <h4>Icon</h4>
-              <water-icons> </water-icons>
-            </box>
-            <box landmark city water forest>
-              <h4>Texture</h4>
-              <textures> </textures>
+            <box style="justify-content: center">
+              <button onclick="removeHex()" class="remove-tile btn btn-secondary btn-sm">Remove tile</button>
             </box>
           </row>
-        </tile-type-options>
-      </selected-hex>
+
+          <row style="max-height: 175px">
+            <box>
+              <h4>Description</h4>
+              <textarea property id="description"></textarea>
+            </box>
+            <box>
+              <label for="tile-tint"><h4>Tint</h4></label>
+              <input property type="color" id="tile-tint" placeholder="Tint" />
+
+              <label for="tile-tint-opacity"><h4>Tint Opacity</h4></label>
+              <input property step="0.1" type="number" min="0" max="1" value="0" id="tile-tint-opacity" placeholder="Tint" />
+            </box>
+          </row>
+          <h3>Tile type</h3>
+          <row class="tile-type">
+            <label for="landmark">
+              <span>Landmark</span>
+              <input property display="radio" type="radio" id="landmark" name="tile-type" val="landmark" checked />
+            </label>
+            <label for="city">
+              <span>City</span>
+              <input property display="radio" type="radio" id="city" name="tile-type" val="city" />
+            </label>
+            <label for="water">
+              <span>Water</span>
+              <input property display="radio" type="radio" id="water" name="tile-type" val="water" />
+            </label>
+            <label for="forest">
+              <span>Forest</span>
+              <input property display="radio" type="radio" id="forest" name="tile-type" val="forest" />
+            </label>
+          </row>
+          <tile-type-options>
+            <row>
+              <box landmark>
+                <h4>Icon</h4>
+                <icons> </icons>
+              </box>
+              <box water>
+                <h4>Icon</h4>
+                <water-icons> </water-icons>
+              </box>
+              <box landmark city water forest>
+                <h4>Texture</h4>
+                <textures> </textures>
+              </box>
+            </row>
+          </tile-type-options>
+        </selected-hex>
+      </div>
+      <div id="campaign" class="navtab">
+        <row class="faction-stats">
+          <box>
+            <label for="charity">
+              <span>Charities</span>
+              <input type="number" data name="charity" id="charity" />
+            </label>
+            <label for="promises">
+              <span>Promises kept</span>
+              <input type="number" data name="promises" id="promises" />
+            </label>
+            <label for="rescues">
+              <span>Rescues</span>
+              <input type="number" data name="rescues" id="rescues" />
+            </label>
+          </box>
+          <box>
+            <label for="murders">
+              <span>Murders</span>
+              <input type="number" data name="murders" id="murders" />
+            </label>
+            <label for="thefts">
+              <span>Things stolen</span>
+              <input type="number" data name="thefts" id="thefts" />
+            </label>
+            <label for="lies">
+              <span>Lies told</span>
+              <input type="number" data name="lies" id="lies" />
+            </label>
+          </box>
+          <box>
+            <label for="reliability">
+              <span>Reliability</span>
+              <input type="number" data name="reliability" id="reliability" />
+            </label>
+            <label for="manners">
+              <span>Manners</span>
+              <input type="number" data name="manners" id="manners" />
+            </label>
+          </box>
+          <box>
+            <label for="days">
+              <span>Days active</span>
+              <input type="number" data name="days" id="days" />
+            </label>
+          </box>
+        </row>
+        <h4>Exploration log</h4>
+        <textarea data name="adventure-log" id="" cols="30" rows="10"></textarea>
+      </div>
     </nav>
     <hex id="hex-template" class="template" tile-type="landmark">
       <texture-container>

@@ -936,6 +936,133 @@ function getEnemies() {
       ],
     },
     {
+      name: "Crackjaw",
+      description: "A mutated honey badger, astride six legs with thick fur. Hunts in packs.",
+      image: "badger.png",
+      stats: {
+        str: 8,
+        dex: 10,
+        wil: 7,
+        en: 32,
+        av: 1,
+      },
+      weaknesses: ["stab", "gun", "burst", "light", "nuke", "neural"],
+      attacks: [
+        {
+          name: "Bite",
+          damage: "2-2-1",
+          "damage types": ["stab", "pain"],
+        },
+        {
+          name: "Rake",
+          damage: "2-2-1",
+          "damage types": ["cut", "pain"],
+        },
+      ],
+      actions: [
+        {
+          name: "Sprint",
+          effect: "Increases movement speed to 2 while charging. First attack deals knockback on failed STR.",
+        },
+        {
+          name: "Bond",
+          effect:
+            "Stick to an enemy in melee on a failed DEX, increasing melee damage by 1d6 to the bonded enemy, and increasing armor by 1 when attacked by the bonded enemy. All attacks from other enemies deal critical damage.",
+        },
+      ],
+    },
+    {
+      name: "Borq",
+      description:
+        'Warmongering, seafaring, mutated boar. Borq always bide their time, choosing the opportune moment to strike, thus minting the saying: "Never trust a Borq"',
+      image: "borq.png",
+      stats: {
+        str: 9,
+        dex: 6,
+        wil: 7,
+        en: 40,
+        av: 1,
+      },
+      weaknesses: ["burst", "light", "nuke", "volt", "neural"],
+      attacks: [
+        {
+          name: "Club",
+          damage: "1-2-1",
+          "damage types": ["smash"],
+        },
+        {
+          name: "Gore",
+          damage: "2-2-1",
+          "damage types": ["stab", "pain"],
+        },
+        {
+          name: "Pipe gun",
+          damage: "2-1-1",
+          "damage types": ["gun"],
+        },
+      ],
+      actions: [
+        {
+          name: "Charging attack",
+          effect:
+            "Can only be done if an enemy is exactly 2 tiles away. The borq moves into melee, they make a club attack with 1d6 increased damage. On failed STR, the target suffers knockback.",
+        },
+        {
+          name: "Screech",
+          effect: "Can only be done when below 20 EN. The borq screeches and recieves a second wind, and gains 3 armor for the round. Usable once.",
+        },
+        {
+          name: "Firing squad",
+          effect: "Each borq using this TA adds 1 guarantueed damage to all borq using firing squad on the same tile.",
+        },
+      ],
+    },
+    {
+      name: "Aspur",
+      description: "Great serpen",
+      image: "borq.png",
+      stats: {
+        str: 9,
+        dex: 6,
+        wil: 7,
+        en: 40,
+        av: 1,
+      },
+      weaknesses: ["burst", "light", "nuke", "volt", "neural"],
+      attacks: [
+        {
+          name: "Club",
+          damage: "1-2-1",
+          "damage types": ["smash"],
+        },
+        {
+          name: "Gore",
+          damage: "2-2-1",
+          "damage types": ["stab", "pain"],
+        },
+        {
+          name: "Pipe gun",
+          damage: "2-1-1",
+          "damage types": ["gun"],
+        },
+      ],
+      actions: [
+        {
+          name: "Charging attack",
+          effect:
+            "Can only be done if an enemy is exactly 2 tiles away. The borq moves into melee, they make a club attack with 1d6 increased damage. On failed STR, the target suffers knockback.",
+        },
+        {
+          name: "Screech",
+          effect: "Can only be done when below 20 EN. The borq screeches and recieves a second wind, and gains 3 armor for the round. Usable once.",
+        },
+        {
+          name: "Firing squad",
+          effect: "Each borq using this TA adds 1 guarantueed damage for the pipe gun to all borq using firing squad on the same tile.",
+        },
+      ],
+    },
+    {
       name: "Massive Landwhale",
       description:
         "Landwhales exist on a different foodchain, as they are monolithic creatures. Landwhales have an unnatural fear of humans, and if startled may trample or destroy huge swathes of land.",

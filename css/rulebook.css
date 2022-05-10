@@ -1,0 +1,308 @@
+.flex-right {
+  display: flex;
+  flex: 1;
+  justify-content: flex-end;
+}
+.small-span span {
+  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+}
+h1,
+h2,
+h3 {
+  text-align: center;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+h4,
+h5,
+h6 {
+  margin-top: 10px;
+  text-decoration: underline;
+}
+p {
+  margin: 10px 0;
+}
+img.small {
+  width: 50%;
+  margin: 0 auto;
+}
+* {
+  font-family: "source";
+  font-weight: 700;
+}
+container {
+  display: flex;
+  width: 90vw;
+  margin: 0 auto;
+  flex-direction: column;
+}
+@media screen and (min-width: 920px) {
+  container {
+    width: 70vw;
+  }
+}
+row {
+  display: flex;
+  flex: 1;
+  flex-grow: 1;
+  padding: 20px 0px;
+  margin-bottom: 20px;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+row.internal {
+  padding: 0px;
+  margin: 0;
+  flex-grow: 0;
+}
+row.internal box {
+  padding: 0px 0;
+}
+box {
+  display: flex;
+  flex: 1;
+  flex-grow: 1;
+  border: 2px solid #ccc;
+  flex-direction: column;
+  padding: 20px;
+}
+box {
+  min-width: calc(100% - 50px);
+}
+.x1-5 {
+  min-width: calc(100% - 50px);
+}
+.x2 {
+  min-width: calc(100% - 50px);
+}
+.x3 {
+  min-width: calc(100% - 50px);
+}
+@media screen and (min-width: 920px) {
+  box {
+    min-width: calc(32% - 50px);
+  }
+  .x1-5 {
+    min-width: calc(50% - 56px);
+  }
+  .x2 {
+    min-width: calc(66% - 42px);
+  }
+  .x3 {
+    min-width: calc(100% - 40px);
+  }
+}
+box:first-child {
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+box:last-child {
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+info-list {
+  display: flex;
+  flex-direction: column;
+  background: #eee;
+  margin: 8px 0;
+}
+info-list.space-between info-row {
+  justify-content: space-between;
+}
+info-list.centered info-row {
+  justify-content: center;
+}
+info-list info-row h4 {
+  margin: 0;
+  text-decoration: none;
+}
+info-row {
+  display: flex;
+  flex-direction: row;
+  border-bottom: 1px dotted #aaa;
+  transition: 0.2s all;
+}
+info-row:nth-child(2n) {
+  background: #e5e5e5;
+}
+info-row.result {
+  border-right: 2px solid red;
+  background: #fff;
+}
+info-row inner {
+  padding: 7px;
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  flex-grow: 1;
+}
+info-row inner > * {
+  margin-right: 10px;
+  font-size: 14px;
+}
+info-row inner > h4 {
+  min-width: 130px;
+  margin-right: 10px;
+  justify-content: center;
+  flex-direction: column;
+  display: flex;
+}
+.weapons info-row inner > h4 {
+  width: 80px;
+}
+.weapons info-row inner > cost {
+  align-self: flex-end;
+  flex: 1;
+  flex-grow: 1;
+  text-align: right;
+  margin-right: 0px;
+}
+info-list:not(.no-enumeration) info-row::before {
+  content: "#" counter(list);
+  background: #ccc;
+  padding: 6px;
+  width: 32px;
+  text-align: center;
+  counter-increment: list;
+  justify-content: center;
+  flex-direction: column;
+  display: flex;
+}
+info-list.dice-enumeration info-row::before {
+  content: "1d" counter(list);
+  counter-increment: list + 2;
+  width: 38px;
+}
+info-list.dice-enumeration info-row.na-enumeration::before {
+  content: "0";
+}
+info-list.dice-enumeration info-row.before-increment-static::before {
+  content: "+1";
+}
+info-list.separator-pipes info-row inner > *:not(:first-child) {
+  border-left: 2px solid black;
+  padding-left: 10px;
+}
+info-list.space-between inner {
+  justify-content: space-between;
+}
+info-list.space-between inner > *:last-child {
+  text-align: right;
+}
+info-list.no-min-width h4 {
+  min-width: 0;
+}
+li {
+  font-size: 14px;
+}
+.no-border {
+  border: 0;
+}
+.black-bg {
+  background-image: linear-gradient(45deg, #aaa, #ccc);
+  border-radius: 20px;
+  margin-top: 8px;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.black-bg background-image {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 50%;
+  height: 80%;
+  margin: 20px;
+}
+.black-bg text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: right;
+  padding: 20px;
+  width: calc(50%);
+}
+.black-bg:last-child text {
+  text-align: left;
+}
+.black-bg text p {
+  font-size: 14px;
+  margin: 0;
+}
+gear {
+  display: flex;
+  flex-direction: column;
+  counter-set: gear 0;
+}
+item {
+  counter-increment: gear;
+  font-size: 14px;
+  padding: 6px 10px 6px 0;
+  background: #eee;
+}
+item::before {
+  content: "#" counter(gear);
+  font-size: 14px;
+  padding: 6px 10px;
+  margin-right: 6px;
+  background: #ccc;
+}
+ul.item-types li {
+  padding: 2px 0;
+}
+ul.item-types li span {
+  display: flex;
+  justify-content: space-between;
+  width: 150px;
+}
+ul.item-types li span::after {
+  display: block;
+  height: 18px;
+  width: 18px;
+  margin-left: 10px;
+}
+ul.item-types li.melee span::after {
+  content: url(img/blades.svg);
+}
+ul.item-types li.ranged span::after {
+  content: url(img/gun-solid.svg);
+}
+ul.item-types li.shield span::after {
+  content: url(img/shield-solid.svg);
+}
+ul.item-types li.headgear span::after {
+  content: url(img/jason-mask.svg);
+}
+ul.item-types li.armor span::after {
+  content: url(img/armor.svg);
+}
+ul.item-types li.stuff span::after {
+  content: url(img/gear-solid.svg);
+}
+info-list info-row button {
+  background: #ddd;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+h1 {
+  padding-top: 50px;
+}
+h1 span {
+  color: #555;
+  font-size: 18px;
+}

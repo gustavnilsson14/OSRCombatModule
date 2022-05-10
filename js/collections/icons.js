@@ -35,6 +35,8 @@ function getIcons() {
     "watertower.png",
     "Untitled.png",
     "gasstation.png",
+    "watertreatment.png",
+    "windturbine.png",
   ];
 }
 function getWaterIcons() {

@@ -43,23 +43,27 @@ document.onreadystatechange = function () {
   });
   bindGrabScroll();
   bindToggles();
+  bindTabs();
   animateClouds();
   setup();
 };
 function setup() {
   createDefaultGrid();
   populateImageControls();
-  bindExpand();
-  bindHexes();
   centerView();
   bindAddAssetControls();
 }
 function createDefaultGrid() {
-  var firstRow = cloneTemplate(rowTemplate, mapContainer);
-  var firstHex = cloneTemplate(hexTemplate, firstRow);
+  firstHex = createHex({ x: 0, y: 0 });
   firstHex.setAttribute("texture", getAssetPath(getRandomFrom(getTextures())));
-  setHexPositions();
   renderHex(firstHex);
+  createFogHexes(firstHex);
+}
+function createHex(pos) {
+  var hex = cloneTemplate(hexTemplate, mapContainer);
+  setHexPosition(hex, { x: pos.x, y: pos.y });
+  bindHex(hex);
+  return hex;
 }
 function animateClouds() {
   var clouds = document.querySelector("clouds");
@@ -71,44 +75,29 @@ function animateClouds() {
     clouds.style.backgroundPosition = `${x}px ${y}px`;
   }, 1000 / 30);
 }
-function bindExpand() {
-  document.querySelector("#expand").addEventListener("click", expand);
-}
-function expand() {
-  var newHexes = [];
-  var currentRows = document.querySelectorAll("map row:not(.template)");
-  var randomness = document.querySelector("#randomness");
-  currentRows.forEach((row) => {
-    var obj = appendAndPrepend(hexTemplate, row);
-    newHexes.push(obj.top);
-    newHexes.push(obj.bottom);
+function createFogHexes(parentHex) {
+  getHexNeighborPositions(parentHex).forEach((pos) => {
+    if (getHexByPosition(pos)) return;
+    var hex = createHex(pos);
+    var parentPos = getHexPosition(parentHex);
+    hex.setAttribute("parent", `${parentPos.x}_${parentPos.y}`);
+    renderHex(hex);
+    hex.setAttribute("fog", true);
   });
-  var rowAmount = parseInt(currentRows.length / 2);
-  var newRows = appendAndPrepend(rowTemplate, mapContainer);
-  var hexAmount = rowAmount + 2;
-  newHexes = [...newHexes, ...appendAmount(hexTemplate, newRows.top, hexAmount)];
-  newHexes = [...newHexes, ...appendAmount(hexTemplate, newRows.bottom, hexAmount)];
-  setHexPositions();
-  newHexes.forEach((newHex) => {
-    var parent = getNewHexParent(newHexes, newHex);
-    var texture = parent.getAttribute("texture");
-    if (Math.random() < parseFloat(randomness.value)) texture = getRandomFrom(getTextures());
-    newHex.setAttribute("texture", texture);
-    renderHex(newHex);
-  });
-  bindHexes();
-  centerView();
 }
 function getHexNeighbors(hex) {
   var pos = getHexPosition(hex);
   return [
-    document.querySelector(`hex[posx="${pos.x - 1}"][posy="${pos.y - 1}"]`),
-    document.querySelector(`hex[posx="${pos.x + 1}"][posy="${pos.y - 1}"]`),
-    document.querySelector(`hex[posx="${pos.x - 2}"][posy="${pos.y}"]`),
-    document.querySelector(`hex[posx="${pos.x + 2}"][posy="${pos.y}"]`),
-    document.querySelector(`hex[posx="${pos.x - 1}"][posy="${pos.y + 1}"]`),
-    document.querySelector(`hex[posx="${pos.x + 1}"][posy="${pos.y + 1}"]`),
+    getHexByPosition({ x: pos.x - 1, y: pos.y - 1 }),
+    getHexByPosition({ x: pos.x + 1, y: pos.y - 1 }),
+    getHexByPosition({ x: pos.x - 2, y: pos.y }),
+    getHexByPosition({ x: pos.x + 2, y: pos.y }),
+    getHexByPosition({ x: pos.x - 1, y: pos.y + 1 }),
+    getHexByPosition({ x: pos.x + 1, y: pos.y + 1 }),
   ].filter((x) => x != null);
+}
+function getHexByPosition(pos) {
+  return document.querySelector(`hex[posx="${pos.x}"][posy="${pos.y}"]`);
 }
 function getHexNeighborPositions(hex) {
   var pos = getHexPosition(hex);
@@ -161,6 +150,12 @@ function centerView(behaviour = "auto") {
     inline: "center",
   });
 }
+function setHexPosition(hex, pos) {
+  hex.setAttribute("posX", pos.x);
+  hex.setAttribute("posY", pos.y);
+  hex.style.left = `${2000 + pos.x * 72}px`;
+  hex.style.top = `${2000 + pos.y * 90}px`;
+}
 function setHexPositions() {
   var rows = document.querySelectorAll("map row");
   var posY = Math.ceil(rows.length / 2) - rows.length;
@@ -175,11 +170,9 @@ function setHexPositions() {
     posY++;
   });
 }
-function bindHexes() {
-  document.querySelectorAll("map hex").forEach((hex) => {
-    setNeighborClasses(hex);
-    bindHexEvents(hex);
-  });
+function bindHex(hex) {
+  setNeighborClasses(hex);
+  bindHexEvents(hex);
 }
 function getCorrectedHexStartX(posY, hexes) {
   if (posY % 2 == 0) return -(hexes.length - 1);
@@ -196,6 +189,7 @@ function setNeighborClasses(hex) {
     var neighbor = document.querySelector(`hex[posx="${neighborPos.x}"][posy="${neighborPos.y}"]`);
     hex.setAttribute(`n${posDiff.x}_${posDiff.y}`, 1);
     if (!neighbor) return;
+    if (neighbor.hasAttribute("fog")) return;
     if (matchTileType(hex, neighbor)) return;
     hex.removeAttribute(`n${posDiff.x}_${posDiff.y}`);
   });
@@ -230,6 +224,8 @@ function bindHexEvents(hex) {
   hexInner.addEventListener("mouseout", hexMouseOutLambda);
 }
 function onHexSelected(hex, multiSelect) {
+  console.log("onHexSelected");
+  if (handleFogHexClick(hex)) return;
   if (!multiSelect) deSelectHex();
   if (selectedHexes.indexOf(hex) != -1) return;
   selectedHexes.push(hex);
@@ -243,6 +239,27 @@ function deSelectHex() {
     hex.classList.remove("selected");
   });
   selectedHexes = [];
+}
+function handleFogHexClick(hex) {
+  if (!hex.getAttribute("fog")) return false;
+  hex.removeAttribute("fog");
+  fogHexToRealHex(hex);
+  createFogHexes(hex);
+  return true;
+}
+function fogHexToRealHex(hex) {
+  var parentTexture = getParentTexture(hex);
+  if (parentTexture) hex.setAttribute("texture", getParentTexture(hex));
+  renderHex(hex);
+}
+function getParentTexture(hex) {
+  if (!hex.getAttribute("parent")) return getRandomFrom(getTextures());
+  var randomness = document.querySelector("#randomness");
+  if (Math.random() < parseFloat(randomness.value)) return getRandomFrom(getTextures());
+  var pos = { x: hex.getAttribute("parent").split("_")[0], y: hex.getAttribute("parent").split("_")[1] };
+  var parent = getHexByPosition(pos);
+  var texture = parent.getAttribute("texture");
+  return texture;
 }
 function showHexDetails(hex) {
   selectedHexContainer.classList.add("visible");
@@ -350,14 +367,12 @@ function displayHexProperties(hex) {
 
 function renderHex(hex) {
   hex.querySelector("name").innerHTML = hex.getAttribute("tile-name");
-  var pos = getHexPosition(hex);
-  hex.style.left = `${pos.x * 72}px`;
-  hex.style.top = `${pos.y * 90}px`;
   var tint = hex.querySelector("tint");
-  var texture = hex.querySelector("texture");
   tint.style.backgroundColor = hex.getAttribute("tile-tint");
   tint.style.opacity = hex.getAttribute("tile-tint-opacity");
-  texture.style.backgroundImage = `url(${getAssetPath(hex.getAttribute("texture"))})`;
+  var texturePath = getAssetPath(hex.getAttribute("texture"));
+  var texture = hex.querySelector("texture");
+  if (texturePath) texture.style.backgroundImage = `url(${texturePath})`;
   renderIcon(hex, "icon");
   renderIcon(hex, "water-icon");
   renderCluster(hex);
@@ -413,25 +428,6 @@ function getClusterImageByType(type) {
   return "";
 }
 
-function appendAmount(template, container, amount) {
-  var newItems = [];
-  for (let i = 0; i < amount; i++) {
-    var newItem = cloneTemplate(template);
-    newItems.push(newItem);
-    container.appendChild(newItem);
-  }
-  return newItems;
-}
-function appendAndPrepend(template, container) {
-  var top = cloneTemplate(template);
-  var bottom = cloneTemplate(template);
-  container.appendChild(top);
-  container.prepend(bottom);
-  return {
-    top: top,
-    bottom: bottom,
-  };
-}
 function cloneTemplate(template, container = null) {
   var newNode = template.cloneNode(true);
   newNode.removeAttribute("id", "");
@@ -441,6 +437,20 @@ function cloneTemplate(template, container = null) {
 }
 function unloadPage() {
   return "You have unsaved changes on this page. Do you want to leave this page and discard your changes or stay on this page?";
+}
+function removeHex() {
+  selectedHexes.forEach((hex) => {
+    var pos = getHexPosition(hex);
+    hex.remove();
+    newHex = createHex(pos);
+    newHex.setAttribute("fog", true);
+  });
+  var hexes = document.querySelectorAll("hex:not(.template)");
+  hexes.forEach((hex) => {
+    if (!hex.hasAttribute("fog")) return;
+    if (getHexNeighbors(hex).filter((neighbor) => !neighbor.hasAttribute("fog")).length > 0) return;
+    hex.remove();
+  });
 }
 function populateImageControls() {
   populateControlType(iconTemplate, iconsContainer, iconImages, "icon");
@@ -458,6 +468,7 @@ function populateControlType(template, container, images, controlType) {
   });
 }
 function getAssetPath(asset) {
+  if (asset == null) return "";
   if (asset.indexOf("http") == 0) return asset;
   if (asset.indexOf("file:/") == 0) return asset;
   if (asset.indexOf("img/map/") == 0) return asset;
@@ -516,18 +527,12 @@ async function clearData(button) {
 function parseData(data) {
   iconImages = [...new Set([...data.icons, ...getIcons()])].sort();
   textureImages = [...new Set([...data.textures, ...getTextures()])].sort();
-
-  data.rows.forEach((row) => {
-    var newRow = cloneTemplate(rowTemplate);
-    row.hexes.forEach((hex) => {
-      var newHex = cloneTemplate(hexTemplate);
-      newRow.appendChild(newHex);
-      setElementData(newHex, hex);
-      renderHex(newHex);
-    });
-    mapContainer.appendChild(newRow);
+  data.hexes.forEach((hex) => {
+    var newHex = createHex({ x: hex.posx, y: hex.posy });
+    setElementData(newHex, hex);
+    renderHex(newHex);
   });
-  bindHexes();
+  setCampaignData(data.campaign);
   populateImageControls();
 }
 async function buttonFeedback(button, className = "success", timeout = 500) {
@@ -536,17 +541,25 @@ async function buttonFeedback(button, className = "success", timeout = 500) {
   button.classList.remove(`btn-${className}`);
 }
 function getData() {
-  var data = { rows: [], icons: iconImages, textures: textureImages };
-  var rows = document.querySelectorAll("map row:not(.template)");
-  rows.forEach((row) => {
-    var rowData = { hexes: [] };
-    var hexes = row.querySelectorAll("hex");
-    hexes.forEach((hex) => {
-      rowData.hexes.push(getElementData(hex));
-    });
-    data.rows.push(rowData);
+  var data = { hexes: [], icons: iconImages, textures: textureImages };
+  var hexes = document.querySelectorAll("hex:not(.template)");
+  hexes.forEach((hex) => {
+    data.hexes.push(getElementData(hex));
   });
+  data["campaign"] = getCampaginData();
   return data;
+}
+function getCampaginData() {
+  var result = {};
+  document.querySelectorAll("#campaign [data]").forEach((data) => {
+    result[data.getAttribute("name")] = data.value;
+  });
+  return result;
+}
+function setCampaignData(data) {
+  for (const [key, value] of Object.entries(data)) {
+    document.querySelector(`#campaign [name="${key}"]`).value = value;
+  }
 }
 function getDataAttributeKeyVal(attribute) {
   if (attribute.name == "class") return [];
@@ -583,6 +596,28 @@ function bindToggles() {
       toggleState = !toggleState;
       toggleClassOn(toggle, toggleState, toggleClass);
       toggleTargets(toggle, toggleState);
+    });
+  });
+}
+function bindTabs() {
+  document.querySelectorAll("[tabbuttongroup]").forEach((tabButton) => {
+    var allTargets = [];
+    document.querySelectorAll("[tabbutton]").forEach((tabButton) => {
+      allTargets.push(document.querySelector(tabButton.getAttribute("target")));
+    });
+    document.querySelectorAll("[tabbutton]").forEach((tabButton) => {
+      var siblings = Array.from(tabButton.parentNode.children);
+      var target = document.querySelector(tabButton.getAttribute("target"));
+      tabButton.addEventListener("click", function () {
+        siblings.forEach((sibling) => {
+          sibling.removeAttribute("selected");
+        });
+        tabButton.setAttribute("selected", "true");
+        allTargets.forEach((sibling) => {
+          sibling.classList.remove("selected");
+        });
+        target.classList.add("selected");
+      });
     });
   });
 }

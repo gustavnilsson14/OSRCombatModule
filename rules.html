@@ -6,310 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Massive Apocalypse</title>
     <link rel="stylesheet" href="css/default.css">
+    <link rel="stylesheet" href="css/rulebook.css">
+    
     <script src="js/rules.js"></script>
-    <style>
-        .flex-right{
-            display: flex; 
-            flex: 1;
-            justify-content: flex-end;
-        }
-        .small-span span{
-            font-size: 12px;
-            display: flex;
-            flex-direction: column;
-            text-align: right;
-        }
-        h1,h2,h3{
-            text-align: center;
-        }
-        h1,h2,h3,h4,h5,h6{
-            margin: 0;
-        }
-        h4,h5,h6{
-            margin-top:10px;
-            text-decoration: underline;
-        }
-        p{
-            margin: 10px 0;
-        }
-        img.small{
-            width: 50%;
-            margin: 0 auto;
-        }
-        *{
-            font-family: 'source';
-            font-weight: 700;
-        }
-        container{
-            display: flex;
-            width: 90vw;
-            margin: 0 auto;
-            flex-direction: column;
-        }
-        @media screen and (min-width: 920px) {
-            container{
-                width: 70vw;
-            }
-        }
-        row{
-            display: flex;
-            flex: 1;
-            flex-grow: 1;
-            padding: 20px 0px;
-            margin-bottom: 20px;
-            flex-direction: row;
-            justify-content: space-between;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-        row.internal{
-            padding: 0px;
-            margin: 0;
-            flex-grow: 0;
-            
-        }
-        row.internal box{
-            padding: 0px 0;
-        }
-        box{
-            display: flex;
-            flex: 1;
-            flex-grow: 1;
-            border: 2px solid #ccc;
-            flex-direction: column;
-            padding: 20px;
-        }
-        box{
-            min-width: calc(100% - 50px);
-        }
-        .x1-5{
-            min-width: calc(100% - 50px);
-        }
-        .x2{
-            min-width: calc(100% - 50px);
-        }
-        .x3{
-            min-width: calc(100% - 50px);
-        }
-        @media screen and (min-width: 920px) {
-            box{
-                min-width: calc(32% - 50px);
-            }
-            .x1-5{
-                min-width: calc(50% - 56px);
-            }
-            .x2{
-                min-width: calc(66% - 42px);
-            }
-            .x3{
-                min-width: calc(100% - 40px);
-            }
-        }
-        box:first-child{
-            border-top-left-radius: 20px;
-            border-bottom-left-radius: 20px;
-        }
-        box:last-child{
-            border-top-right-radius: 20px;
-            border-bottom-right-radius: 20px;
-        }
-        info-list{
-            display: flex;
-            flex-direction: column;
-            background: #eee;
-            margin: 8px 0;
-        }
-        info-list.space-between info-row{
-            justify-content: space-between;
-        }
-        info-list.centered info-row{
-            justify-content: center;
-        }
-        info-list info-row h4{
-            margin: 0;
-            text-decoration: none;
-        }
-        info-row{
-            display: flex;
-            flex-direction: row;
-            border-bottom: 1px dotted #aaa;
-            transition: 0.2s all;
-        }
-        info-row:nth-child(2n){
-            background: #e5e5e5;
-        }
-        info-row.result{
-            border-right: 2px solid red;
-            background: #fff;
-        }
-        info-row inner{
-            padding: 7px;
-            display: flex;
-            flex-direction: row;
-            flex: 1;
-            flex-grow: 1;
-        }
-        info-row inner>*{
-            margin-right: 10px;
-            font-size: 14px;
-        }
-        info-row inner>h4{
-            min-width: 130px;
-            margin-right: 10px;
-            justify-content: center;
-            flex-direction: column;
-            display: flex;
-        }
-        .weapons info-row inner>h4{
-            width: 80px;
-        }
-        .weapons info-row inner>cost{
-            align-self: flex-end;
-            flex:1;
-            flex-grow: 1;
-            text-align: right; 
-            margin-right: 0px;
-        }
-        info-list:not(.no-enumeration) info-row::before{   
-            content: "#" counter(list);
-            background: #ccc;
-            padding: 6px;
-            width: 32px;
-            text-align: center;
-            counter-increment: list;
-            justify-content: center;
-            flex-direction: column;
-            display: flex;
-        }
-        info-list.dice-enumeration info-row::before{
-            content: "1d" counter(list);
-            counter-increment: list+2;
-            width: 38px;
-        }
-        info-list.dice-enumeration info-row.na-enumeration::before{
-            content: "0";
-        }
-        info-list.dice-enumeration info-row.before-increment-static::before{
-            content: "+1";
-        }
-        info-list.separator-pipes info-row inner>*:not(:first-child)
-        {
-            border-left: 2px solid black;
-            padding-left: 10px;
-        }
-        info-list.space-between inner{
-            justify-content: space-between;
-        }
-        info-list.space-between inner>*:last-child{
-            text-align: right;
-        }
-        info-list.no-min-width h4{
-            min-width: 0;
-        }
-        li{
-            font-size: 14px;
-        }
-        .no-border{
-            border:0;
-        }
-        .black-bg{
-            background-image: linear-gradient(45deg, #aaa, #ccc);
-            border-radius: 20px;
-            margin-top: 8px;
-            position: relative;
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-        }
-        .black-bg background-image{
-            display: flex;
-            flex-direction: column;
-            align-self: center;
-            background-size: contain;
-            background-position: center;
-            background-repeat: no-repeat;
-            width: 50%;
-            height: 80%;
-            margin: 20px;
-        }
-        .black-bg text{
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            text-align: right;
-            padding: 20px;
-            width: calc(50%);
-        }
-        .black-bg:last-child text{
-            text-align: left;
-        }
-        .black-bg text p{
-            font-size: 14px;
-            margin: 0;
-        }
-        gear{
-            display: flex;
-            flex-direction: column;
-            counter-set: gear 0;       
-        }
-        item{
-            counter-increment: gear;
-            font-size: 14px;
-            padding: 6px 10px 6px 0;
-            background: #eee;
-        }
-        item::before{
-            content: "#" counter(gear);
-            font-size: 14px;
-            padding: 6px 10px;
-            margin-right: 6px;
-            background: #ccc;
-        }
-        ul.item-types li{
-            padding: 2px 0;
-        }
-        ul.item-types li span{
-            display: flex;
-            justify-content: space-between;
-            width: 150px;
-        }
-        ul.item-types li span::after{
-            display: block;
-            height: 18px;
-            width: 18px;
-            margin-left: 10px;
-        }
-        ul.item-types li.melee span::after{
-            content: url(img/blades.svg);
-        }
-        ul.item-types li.ranged span::after{
-            content: url(img/gun-solid.svg);
-        }
-        ul.item-types li.shield span::after{
-            content: url(img/shield-solid.svg);
-        }
-        ul.item-types li.headgear span::after{
-            content: url(img/jason-mask.svg);
-        }
-        ul.item-types li.armor span::after{
-            content: url(img/armor.svg);
-        }
-        ul.item-types li.stuff span::after{
-            content: url(img/gear-solid.svg);
-        }
-        info-list info-row button{
-            background: #ddd;
-            border-top-left-radius: 10px;
-            border-bottom-left-radius: 10px;
-        }
-        h1{
-            padding-top: 50px;
-        }
-        h1 span{
-            color: #555;
-            font-size: 18px;
-        }
-    </style>
+    
 </head>
 <body>
     <nav>
@@ -323,7 +23,7 @@
     </nav>
     <container>
         <h1 style="width: 100%;">Massive Apocalypse<br><span>A combat system for, or hack of Into the Odd</span></h1>
-        
+        <row></row>
         <row>
             <box>
                 <p>Combat happens when people disagree violently, and is resolved in the following way, usually involving bruises, blood, and death.</p>
@@ -516,13 +216,13 @@
                     <info-row>
                         <inner>
                             <h4>Boost</h4>
-                            <span>The boost action increases the <i>charge</i> of 2 of the combatants spells by 1. If the combatant only has 1 spell, the second point is forfeit.</span>
+                            <span>The WIL check of your next spell is made at advantage, and your level damage die is added to the damage.</span>
                         </inner>
                     </info-row>
                     <info-row>
                         <inner>
                             <h4>Cast Spell</h4>
-                            <span>The cast spell action allows a combatant to cast one of their spells, explained in detail later this section.</span>
+                            <span>The cast spell action allows a combatant to cast one of their spells at the end of the round, unless interrupted.</span>
                         </inner>
                     </info-row>
                     <info-row>
@@ -610,15 +310,41 @@
 
                 <row class="internal">
                     <box class="no-border">
-                        <p>Spells deal damage based on the characters skill with the spell, their experience level, and their current amount of <i>charge</i>. Spells target a tile, and deal their damage to all combatants on that tile.</p>
-
-                        <p>Casting a spell consumes all its <i>charges</i>. Each charge spent adds another dice rolled for damage. The skill of the spell ranges from 1-5, and will improve the type of dice rolled, starting at 1d4 at 1 skill, ending at 1d12 at 5 skill. All spells cast adds the level damage dice to their damage.</p>
-
-                        <p>When combat starts, all combatants recieve a single charge for a spell off their choice. The standard way to gain extra charges is by using <i>boost</i> as their <i>tactical action</i>.</p>
-
-                        <p>After cast once, a spell cannot be used for the rest of the combat.</p>
+                        <p>Spells are manipulation of the foreign energies landed on the planet, also known as magic. These all have powerful effects, and are inherently damaging to the target and volatile such as they might damage the caster. Each spell has an amount of charges, and may be used until those are depleted.</p>
+                        <p>In combat casting spells is done as a tactical action. The caster decides on the amount of charges to spend, and the spell deals damage, and increases its volatility for each charge spent.</p>
+                        <p>Each spell charge spent up to the skill level of the spell increases its damage by 2d8. Each charge which exceeds the skill level increases damage by 1d8.</p>
+                        <p>When casting a spell, any amount of spell charges may be used. The caster must make a WIL save. Each spell charge spent reduces WIL by 1 for this check.</p>
+                        <p>If the WIL save fails, the spell also deals half damage to the player, and they suffer the drained injury.</p>
+                        <p>To replenish the charges of a spell, the caster must meditate at a shine dedicated to the same magic as the spell. When meditating, the spells charges is set to 1d6 + the casters skill level.</p>
+                        
+                        <p>In combat, any spell can only be cast once. A spell interrupted also count towards this.</p>
                     </box>
                     <box class="no-border">
+                        
+                        <p>The spell is cast at the end of the round, unless interrupted by any of the following;</p>
+                        <info-list class="separator-pipes no-roll" style="counter-set: list 0;">
+                            <info-row>
+                                <inner>
+                                    <span>The caster moves in any way during the round, including forced movement like knockback</span>
+                                </inner>
+                            </info-row>
+                            <info-row>
+                                <inner>
+                                    <span>The caster is hit by an attack where the attacker used the aim tactical action</span>
+                                </inner>
+                            </info-row>
+                            <info-row>
+                                <inner>
+                                    <span>The caster suffers damage from a damage type they are weak against</span>
+                                </inner>
+                            </info-row>
+                            <info-row>
+                                <inner>
+                                    <span>The caster is wounded</span>
+                                </inner>
+                            </info-row>
+                        </info-list>
+                        <p>When interrupted, the caster makes a STR save. If the save fails, they lose the charges spent on the spell, and do not cast the spell at the end of the round.</p>
                         <img style="margin-top: 14px;" src="img/caster.png" alt="">
                         
                     </box>
@@ -750,8 +476,18 @@
                         </info-list>
                     </box>
                 </row>
-                <h4>Advantage</h4>
+                <row class="internal">
+                    <box class="no-border">
+                        <h4>Advantage</h4>
                 <p>When rolling damage with advantage, any number of dice may be rerolled once, and the new result is the one used.</p>
+                    </box>
+                    <box class="no-border">
+                        <h4>Guaranteed damage</h4>
+                <p>Some TA's, and some weapons add guaranteed damage. This damage is added after rolling for damage, and it ignores armor.</p>
+                    </box>
+                </row>
+                
+                
             </box>
             <box class="x2">
                 <h4>Endurance</h4>
